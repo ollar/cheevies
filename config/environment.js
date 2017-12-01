@@ -21,7 +21,22 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    firebase: {
+      apiKey: process.env.FIREBASE_CONNECT_apiKey,
+      authDomain: process.env.FIREBASE_CONNECT_authDomain,
+      databaseURL: process.env.FIREBASE_CONNECT_databaseURL,
+      projectId: process.env.FIREBASE_CONNECT_projectId,
+      storageBucket: process.env.FIREBASE_CONNECT_storageBucket,
+      messagingSenderId: process.env.FIREBASE_CONNECT_messagingSenderId,
+    },
+    // torii: {
+    //   sessionServiceName: 'session'
+    // },
+    i18n: {
+      defaultLocale: 'ru',
+    },
   };
 
   if (environment === 'development') {
