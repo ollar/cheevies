@@ -1,0 +1,1188 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"flex",
+				"flex-flow"
+			],
+			[
+				"old",
+				"oldElement"
+			],
+			[
+				"tra",
+				"transition"
+			],
+			[
+				"anima",
+				"animation-direction"
+			],
+			[
+				"anim",
+				"animation-direction"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"trans",
+				"transform"
+			],
+			[
+				"tea",
+				"text-align"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"categ",
+				"category"
+			],
+			[
+				"product",
+				"productId"
+			],
+			[
+				"te",
+				"textarea"
+			],
+			[
+				"em",
+				"em-base"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"ima",
+				"imageData"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"category",
+				"categoryId"
+			],
+			[
+				"pro",
+				"product"
+			],
+			[
+				"cate",
+				"categoryId"
+			],
+			[
+				"t",
+				"tinymce"
+			],
+			[
+				"co",
+				"catController"
+			],
+			[
+				"image",
+				"imageModel"
+			],
+			[
+				"file",
+				"fileStorage"
+			],
+			[
+				"de",
+				"destroyModel"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"page",
+				"page_id"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/templates/register.hbs",
+			"settings":
+			{
+				"buffer_size": 934,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/environment.js",
+			"settings":
+			{
+				"buffer_size": 1718,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".watchmanconfig",
+			"settings":
+			{
+				"buffer_size": 37,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/torii-adapters/application.js",
+			"settings":
+			{
+				"buffer_size": 120,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes/application.js",
+			"settings":
+			{
+				"buffer_size": 469,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/register.js",
+			"settings":
+			{
+				"buffer_size": 169,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"snipp",
+				"Snippet: _super"
+			],
+			[
+				"snippe\t",
+				"Snippet: Get Elements"
+			],
+			[
+				"pro",
+				"Project: Save As"
+			],
+			[
+				"sett",
+				"Preferences: Settings"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"setting",
+				"Preferences: Settings"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ollar/Documents/dev/cheevies-jerk",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/routes",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/torii-adapters",
+		"/Users/ollar/Documents/dev/cheevies-jerk/config"
+	],
+	"file_history":
+	[
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/application.hbs",
+		"/Users/ollar/Documents/dev/cheevies-jerk/package.json",
+		"/Users/ollar/Documents/dev/cheevies-jerk/.env",
+		"/Users/ollar/Documents/dev/cheevies-jerk/ember-cli-build.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/image-drop-area.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/image-drop-area.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/mixins/image-manage.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/entity-manage.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/entity-manage.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/services/file-storage.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_main.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_layout.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/app.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/product/index.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/product-height-wrapper.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/swiper-container.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/index.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/product-block.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/router.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/products/index.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/products.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/transitions.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/transitions/material-page-appear.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/entity-images-wrapper.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/transitions/page.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/utils/showdown.js",
+		"/Users/ollar/Documents/dev/scetch-shop/ember-cli-build.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/products/details.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/product-slide.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/scale-wrapper.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/products/details.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/product.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/product-slide.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_vars.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/category-slide.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/product/index.js",
+		"/Users/ollar/Documents/dev/scetch-shop/config/manifest.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/entity-image.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/page-block.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/index.html",
+		"/Users/ollar/Documents/dev/scetch-shop/sketch-shop.sublime-project",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/cart-item.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/loading.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/application.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/cart-block.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/application.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/site-header.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/cart-block.hbs",
+		"/Users/ollar/Library/Application Support/Sublime Text 3/Packages/User/_super.sublime-snippet",
+		"/Users/ollar/Documents/dev/scetch-shop/package.json",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/page.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/pages.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/quick-links.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/checkout.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/locales/en/translations.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/services/cart.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/checkout.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/cart-item.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/checkout.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/category-slide.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/category/index.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/swiper-container.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/index-categories-wrapper.js",
+		"/Users/ollar/Documents/dev/scetch-shop/firebase.json",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_mixins.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/site-footer.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/bower_components/swiper/src/less/mixins.less",
+		"/Users/ollar/Documents/dev/scetch-shop/app/mixins/block-manage.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/category-create.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/category/edit.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/page/edit.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/page-create.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/product/edit.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/product-create.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/admin-menu.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/login.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/site-header.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/quick-links.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/admin-menu.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/login.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/torii-adapters/application.js",
+		"/Users/ollar/Documents/dev/scetch-shop/config/environment.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/not-found.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/models/block.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/models/product.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/block-manager.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/block-manager.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_modular_scale.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_em.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_functions.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_buttons.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/image-drop-area.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/bower_components/pure/buttons.css",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/categories.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_categories.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_products.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/quick-links.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/product-block.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/product-block.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_contrast.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_brightness.scss",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/text-block.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/text-block.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/page-block.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/helpers/price.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/product/edit.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/components/site-footer.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/models/category.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/test.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/test.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/test.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/product/index.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/helpers/eq.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/entity/manage.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/product/edit.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/product-create.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category/index.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/page/index.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/page/edit.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/utils/destroy-model.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/products.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category/edit.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category-create.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/category/edit.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/routes/categories.js",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/product-create.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/templates/category-create.hbs",
+		"/Users/ollar/Documents/dev/scetch-shop/app/models/image.js"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"email"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/templates/register.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 934,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								520,
+								520
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "config/environment.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1031,
+								982
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 224.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": ".watchmanconfig",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 37,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/torii-adapters/application.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/routes/application.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 469,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								113
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/controllers/register.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "cheevie.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"appli",
+				"app/routes/application.js"
+			],
+			[
+				"contrregis",
+				"app/controllers/register.js"
+			],
+			[
+				"filestorage",
+				"app/services/file-storage.js"
+			],
+			[
+				"entity",
+				"app/controllers/entity-manage.js"
+			],
+			[
+				"mixins/image-manage",
+				"app/mixins/image-manage.js"
+			],
+			[
+				"image",
+				"app/templates/components/image-drop-area.hbs"
+			],
+			[
+				"drop",
+				"app/components/image-drop-area.js"
+			],
+			[
+				"app",
+				"app/styles/app.scss"
+			],
+			[
+				"swiper-container",
+				"app/components/swiper-container.js"
+			],
+			[
+				"index",
+				"app/templates/index.hbs"
+			],
+			[
+				"product-height-wrapper",
+				"app/components/product-height-wrapper.js"
+			],
+			[
+				"prodinde",
+				"app/templates/product/index.hbs"
+			],
+			[
+				"produ",
+				"app/templates/components/product-block.hbs"
+			],
+			[
+				"la",
+				"app/styles/_layout.scss"
+			],
+			[
+				"layou",
+				"app/styles/_layout.scss"
+			],
+			[
+				"main",
+				"app/styles/_main.scss"
+			],
+			[
+				"swiper",
+				"app/components/swiper-container.js"
+			],
+			[
+				"templprodu",
+				"app/templates/products.hbs"
+			],
+			[
+				"routes",
+				"app/router.js"
+			],
+			[
+				"entity-images-wrapper",
+				"app/components/entity-images-wrapper.js"
+			],
+			[
+				"prodslide",
+				"app/components/product-slide.js"
+			],
+			[
+				"templprod",
+				"app/templates/products.hbs"
+			],
+			[
+				"produinde",
+				"app/templates/product/index.hbs"
+			],
+			[
+				"scale-wrapper",
+				"app/components/scale-wrapper.js"
+			],
+			[
+				"details",
+				"app/routes/products/details.js"
+			],
+			[
+				"proddet",
+				"app/templates/products/details.hbs"
+			],
+			[
+				"prod",
+				"app/routes/product.js"
+			],
+			[
+				"produde",
+				"app/routes/products/details.js"
+			],
+			[
+				"product-block",
+				"app/templates/components/product-block.hbs"
+			],
+			[
+				"products",
+				"app/templates/products.hbs"
+			],
+			[
+				"prodsli",
+				"app/components/product-slide.js"
+			],
+			[
+				"productslide",
+				"app/templates/components/product-slide.hbs"
+			],
+			[
+				"categs",
+				"app/components/category-slide.js"
+			],
+			[
+				"produs",
+				"app/templates/components/product-slide.hbs"
+			],
+			[
+				"templinde",
+				"app/templates/index.hbs"
+			],
+			[
+				"prodind",
+				"app/controllers/product/index.js"
+			],
+			[
+				"tempproind",
+				"app/templates/product/index.hbs"
+			],
+			[
+				"entity-image",
+				"app/templates/components/entity-image.hbs"
+			],
+			[
+				"load",
+				"app/templates/loading.hbs"
+			],
+			[
+				"sitehe",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"cart",
+				"app/templates/components/cart-block.hbs"
+			],
+			[
+				"appl",
+				"app/routes/application.js"
+			],
+			[
+				"site-header",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"quick",
+				"app/templates/components/quick-links.hbs"
+			],
+			[
+				"pages",
+				"app/templates/pages.hbs"
+			],
+			[
+				"file",
+				"app/services/file-storage.js"
+			],
+			[
+				"transpa",
+				"app/transitions/page.js"
+			],
+			[
+				"page.hb",
+				"app/templates/page.hbs"
+			],
+			[
+				"trans",
+				"app/locales/en/translations.js"
+			],
+			[
+				"tran",
+				"app/locales/en/translations.js"
+			],
+			[
+				"enti",
+				"app/controllers/entity-manage.js"
+			],
+			[
+				"tr",
+				"app/locales/en/translations.js"
+			],
+			[
+				"check",
+				"app/templates/checkout.hbs"
+			],
+			[
+				"servcart",
+				"app/services/cart.js"
+			],
+			[
+				"cartblock",
+				"app/components/cart-block.js"
+			],
+			[
+				"rouapp",
+				"app/routes/application.js"
+			],
+			[
+				"product-slide",
+				"app/components/product-slide.js"
+			],
+			[
+				"category-slide",
+				"app/templates/components/category-slide.hbs"
+			],
+			[
+				"categinde",
+				"app/templates/category/index.hbs"
+			],
+			[
+				"inde-",
+				"app/components/index-categories-wrapper.js"
+			],
+			[
+				"categsli",
+				"app/templates/components/category-slide.hbs"
+			],
+			[
+				"compcateg",
+				"app/components/category-slide.js"
+			],
+			[
+				"templswi",
+				"app/templates/components/swiper-container.hbs"
+			],
+			[
+				"mixin",
+				"app/styles/_mixins.scss"
+			],
+			[
+				"mixi",
+				"bower_components/swiper/src/less/mixins.less"
+			],
+			[
+				"footer",
+				"app/templates/components/site-footer.hbs"
+			],
+			[
+				"categedit",
+				"app/routes/category/edit.js"
+			],
+			[
+				"cate",
+				"app/routes/category-create.js"
+			],
+			[
+				"pegcre",
+				"app/routes/page-create.js"
+			],
+			[
+				"pageedti",
+				"app/routes/page/edit.js"
+			],
+			[
+				"produe",
+				"app/routes/product/edit.js"
+			],
+			[
+				"header",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"admin",
+				"app/templates/components/admin-menu.hbs"
+			],
+			[
+				"routproed",
+				"app/routes/product-create.js"
+			],
+			[
+				"checkout",
+				"app/templates/checkout.hbs"
+			],
+			[
+				"temcart",
+				"app/templates/components/cart-block.hbs"
+			],
+			[
+				"tra",
+				"app/locales/en/translations.js"
+			],
+			[
+				"hea",
+				"app/components/site-header.js"
+			],
+			[
+				"compqui",
+				"app/templates/components/quick-links.hbs"
+			],
+			[
+				"compq",
+				"app/components/quick-links.js"
+			],
+			[
+				"rotapp",
+				"app/routes/application.js"
+			],
+			[
+				"site",
+				"app/components/site-header.js"
+			],
+			[
+				"head",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"routeapp",
+				"app/routes/application.js"
+			],
+			[
+				"compadm",
+				"app/templates/components/admin-menu.hbs"
+			],
+			[
+				"confenv",
+				"config/environment.js"
+			],
+			[
+				"contrlog",
+				"app/controllers/login.js"
+			],
+			[
+				"temlenti",
+				"app/templates/entity-manage.hbs"
+			],
+			[
+				"lo",
+				"app/templates/login.hbs"
+			],
+			[
+				"modeblo",
+				"app/models/block.js"
+			],
+			[
+				"templchec",
+				"app/templates/checkout.hbs"
+			],
+			[
+				"roucheck",
+				"app/routes/checkout.js"
+			],
+			[
+				"modep",
+				"app/models/product.js"
+			],
+			[
+				"servi",
+				"app/services/cart.js"
+			],
+			[
+				"modelblo",
+				"app/models/block.js"
+			],
+			[
+				"serv",
+				"app/services/cart.js"
+			],
+			[
+				"cartbloc",
+				"app/templates/components/cart-block.hbs"
+			],
+			[
+				"contrprod",
+				"app/controllers/product/index.js"
+			],
+			[
+				"templpro",
+				"app/templates/product/index.hbs"
+			],
+			[
+				"block",
+				"app/components/block-manager.js"
+			],
+			[
+				"butt",
+				"app/styles/_buttons.scss"
+			],
+			[
+				"tementi",
+				"app/templates/entity-manage.hbs"
+			],
+			[
+				"tempent",
+				"app/templates/entity-manage.hbs"
+			],
+			[
+				"tempage",
+				"app/templates/pages.hbs"
+			],
+			[
+				"tempro",
+				"app/templates/products.hbs"
+			],
+			[
+				"tempcate",
+				"app/templates/categories.hbs"
+			],
+			[
+				"show",
+				"app/utils/showdown.js"
+			],
+			[
+				"modelblock",
+				"app/models/block.js"
+			],
+			[
+				"tempblok",
+				"app/templates/components/page-block.hbs"
+			],
+			[
+				"stybutt",
+				"app/styles/_buttons.scss"
+			],
+			[
+				"text",
+				"app/templates/components/text-block.hbs"
+			],
+			[
+				"tempte",
+				"app/templates/components/text-block.hbs"
+			],
+			[
+				"templent",
+				"app/templates/entity-manage.hbs"
+			],
+			[
+				"compo",
+				"app/components/product-block.js"
+			],
+			[
+				"comp",
+				"app/components/page-block.js"
+			],
+			[
+				"helppe",
+				"app/helpers/price.js"
+			],
+			[
+				"tement",
+				"app/templates/entity-manage.hbs"
+			],
+			[
+				"temcomhe",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"comadm",
+				"app/components/admin-menu.js"
+			],
+			[
+				"templad",
+				"app/templates/components/admin-menu.hbs"
+			],
+			[
+				"temcateg",
+				"app/templates/category/index.hbs"
+			],
+			[
+				"modelpro",
+				"app/models/product.js"
+			],
+			[
+				"modelcate",
+				"app/models/category.js"
+			],
+			[
+				"modelcateg",
+				"app/models/category.js"
+			],
+			[
+				"contprodin",
+				"app/controllers/product/index.js"
+			],
+			[
+				"contrtes",
+				"app/controllers/test.js"
+			],
+			[
+				"templtes",
+				"app/templates/test.hbs"
+			],
+			[
+				"routetes",
+				"app/routes/test.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 243.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

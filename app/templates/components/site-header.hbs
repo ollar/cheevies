@@ -1,0 +1,28 @@
+<section class="section">
+  <nav class="center-wrapper container level is-mobile" role="navigation" aria-label="main navigation">
+    <div class="level-left">
+      {{avatar-icon user=user}}
+      <div class="user-name">
+        {{#link-to 'profile' user}}
+          {{user.name}}
+        {{/link-to}}
+      </div>
+    </div>
+
+
+    <div class="level-right">
+      <div>
+        {{#if session.isAuthenticated}}
+          {{#if user}}
+          {{!-- <div class="left-side"> --}}
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="">
+        {{#if session.isAuthenticated}}
+        <button class="button is-light" {{action 'signOut'}}>{{t 'buttons.sign_out'}}</button>
+        {{/if}}
+      </div>
+    </div>
+  </nav>
+</section>

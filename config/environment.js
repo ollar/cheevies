@@ -1,5 +1,6 @@
 /* eslint-env node */
 'use strict';
+require('dotenv').config();
 
 module.exports = function(environment) {
   let ENV = {
@@ -31,11 +32,11 @@ module.exports = function(environment) {
       storageBucket: process.env.FIREBASE_CONNECT_storageBucket,
       messagingSenderId: process.env.FIREBASE_CONNECT_messagingSenderId,
     },
-    // torii: {
-    //   sessionServiceName: 'session'
-    // },
+    torii: {
+      sessionServiceName: 'session'
+    },
     i18n: {
-      defaultLocale: 'ru',
+      defaultLocale: 'en',
     },
   };
 

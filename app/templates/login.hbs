@@ -1,0 +1,29 @@
+<section class="section container">
+  <h1 class="title">
+    {{t 'login.title'}}
+  </h1>
+  <form {{action 'passwordSignIn' on="submit"}}>
+    <div class="field">
+      <label class="label">{{t 'form.email.label'}}</label>
+      <div class="control">
+        {{input class="input" type="email" placeholder=(t 'form.email.placeholder') value=fields.email}}
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">{{t 'form.password.label'}}</label>
+      <div class="control">
+        {{input class="input" type="password" placeholder=(t 'form.password.placeholder') value=fields.password}}
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">{{t 'login.buttons.submit'}}</button>
+      </div>
+      <div class="control">
+        <button class="button is-text" type="button" {{action 'goToRegister'}}>{{t 'login.buttons.register'}}</button>
+      </div>
+    </div>
+  </form>
+</section>
