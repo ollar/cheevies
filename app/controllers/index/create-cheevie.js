@@ -11,6 +11,7 @@ export default Controller.extend({
         firebase.storage().ref(`cheevies/${this.get('model.id')}`).put(this.get('file'))
           .then((snapshot) => {
             this.get('model').set('imageUrl', snapshot.downloadURL);
+            this.get('model').save();
           })
           .catch(() => false);
       }
