@@ -43,6 +43,10 @@ export default Component.extend({
   }),
   didRender() {
     this._super(...arguments);
-    this.$().css('backgroundColor', this.get('backgroundColour'));
+    this.$().css({
+      'backgroundColor': this.get('backgroundColour'),
+      height: this.attrs.size,
+      width: this.attrs.size,
+    });
   },
 });

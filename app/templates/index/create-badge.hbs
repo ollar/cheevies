@@ -1,0 +1,38 @@
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <section class="section">
+      <h1 class="title">
+        {{t 'create-badge.title'}}
+      </h1>
+      <h3 class="subtitle">
+        {{t 'create-badge.subtitle'}}
+      </h3>
+      <form {{action 'createBadge' on="submit"}}>
+        <div class="field">
+          <label class="label">{{t 'create-badge.form.name.label'}}</label>
+          <div class="control">
+            {{input class="input" type="text" placeholder=(t 'create-badge.form.name.placeholder') value=fields.name}}
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">{{t 'create-badge.form.description.label'}}</label>
+          <div class="control">
+            {{textarea class="textarea" placeholder=(t 'create-badge.form.description.placeholder') value=fields.description}}
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary">{{t 'buttons.submit'}}</button>
+          </div>
+          <div class="control">
+            <button class="button is-text" type="button" {{action 'goBack'}}>{{t 'buttons.cancel'}}</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+  <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>
+</div>

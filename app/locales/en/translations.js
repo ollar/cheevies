@@ -36,6 +36,23 @@ export default {
   },
 
   buttons: {
+    submit: 'Submit',
+    cancel: 'Cancel',
     sign_out: 'Sign out',
+  },
+
+  'create-cheevie': {
+    title: 'Create cheevie',
+    subtitle: 'Feel free to express your best imagination',
+    form: {
+      name: {
+        label: 'Cheevie name',
+        placeholder: 'Add cheevie name here',
+      },
+      description: {
+        label: 'Cheevie description',
+        placeholder: 'Add cheevie description here',
+      },
+    }
   }
 };
