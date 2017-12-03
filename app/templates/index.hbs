@@ -7,11 +7,9 @@
   <h2 class="title">
     {{t 'index.users-list.title'}}
   </h2>
-  <div class="columns is-mobile is-centered">
+  <div class="columns is-mobile is-centered is-multiline">
     {{#each model.users as |user|}}
-      <div class="column is-one-fifth has-text-centered">
-        {{user-in-list user=user}}
-      </div>
+      {{user-in-list user=user class="column is-one-fifth has-text-centered"}}
     {{/each}}
   </div>
 </section>
@@ -20,11 +18,9 @@
   <h2 class="title">
     {{t 'index.cheevies-list.title'}}
   </h2>
-  <div class="columns is-mobile is-centered">
+  <div class="columns is-mobile is-centered is-multiline">
     {{#each model.cheevies as |cheevie|}}
-      <div class="column is-one-fifth has-text-centered">
-        {{cheevie-in-list cheevie=cheevie}}
-      </div>
+      {{cheevie-in-list cheevie=cheevie class="column is-one-fifth has-text-centered"}}
     {{/each}}
   </div>
 </section>
