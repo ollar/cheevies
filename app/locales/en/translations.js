@@ -54,5 +54,14 @@ export default {
         placeholder: 'Add cheevie description here',
       },
     }
-  }
+  },
+
+  index: {
+    'users-list': {
+      title: 'All jerks',
+    },
+    'cheevies-list': {
+      title: 'All cheevies',
+    },
+  },
 };

@@ -1,0 +1,15 @@
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <section class="section">
+      <h1 class="title">
+        {{model.name}}
+      </h1>
+
+      <div class="description">
+        {{model.description}}
+      </div>
+    </section>
+  </div>
+  <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>
+</div>

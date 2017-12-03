@@ -20,7 +20,7 @@ export default Controller.extend({
           .then(() => {
             let user = this.get('store').createRecord('user', {
               name: this.get('fields.name'),
-              photoURL: '',
+              imageUrl: '',
               email: this.get('fields.email'),
             });
 

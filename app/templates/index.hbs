@@ -1,7 +1,32 @@
 <section class="section">
   {{link-to (t 'index.create-cheevie.linkText') 'index.create-cheevie'}}
   {{!-- {{link-to (t 'index.create-badge.linkText') 'index.create-badge'}} --}}
-
-
-  {{outlet}}
 </section>
+
+<section class="section">
+  <h2 class="title">
+    {{t 'index.users-list.title'}}
+  </h2>
+  <div class="columns is-mobile is-centered">
+    {{#each model.users as |user|}}
+      <div class="column is-one-fifth has-text-centered">
+        {{user-in-list user=user}}
+      </div>
+    {{/each}}
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">
+    {{t 'index.cheevies-list.title'}}
+  </h2>
+  <div class="columns is-mobile is-centered">
+    {{#each model.cheevies as |cheevie|}}
+      <div class="column is-one-fifth has-text-centered">
+        {{cheevie-in-list cheevie=cheevie}}
+      </div>
+    {{/each}}
+  </div>
+</section>
+
+{{outlet}}

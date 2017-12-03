@@ -7,7 +7,7 @@ export default Controller.extend({
 
   cheeviesPickerIsVisible: false,
 
-  userId: computed.readOnly('model.user.id'),
+  userId: computed.readOnly('model.id'),
   myId: computed.readOnly('getUser.user.id'),
   me: computed.alias('getUser.user'),
 
@@ -24,7 +24,7 @@ export default Controller.extend({
       if (!this.get('isMe')) return;
       firebase.storage().ref(`users/${this.get('myId')}`).put(file)
         .then((snapshot) => {
-          this.get('me').set('photoURL', snapshot.downloadURL);
+          this.get('me').set('imageUrl', snapshot.downloadURL);
           this.get('me').save();
         })
         .catch(() => false);
@@ -33,7 +33,7 @@ export default Controller.extend({
     removeImage() {
       if (!this.get('isMe')) return;
       firebase.storage().ref(`users/${this.get('myId')}`).delete();
-      this.get('me').set('photoURL', '');
+      this.get('me').set('imageUrl', '');
       this.get('me').save();
     },
   }

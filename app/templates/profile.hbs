@@ -1,23 +1,22 @@
-
 <section class="hero is-success is-fullheight">
   <div class="hero-body">
     <div class="container">
       {{#images-drop-area
-        images=model.user.photoURL
+        images=model.imageUrl
         uploadImage=(action 'uploadImage')
       }}
-        {{avatar-icon user=model.user size=200}}
+        {{icon-image data=this.model size=200}}
         {{#if isMe}}
-          {{#if model.user.photoURL}}
+          {{#if model.imageUrl}}
             <a class="delete is-large" {{action 'removeImage'}}></a>
           {{/if}}
         {{/if}}
       {{/images-drop-area}}
       <h1 class="title">
-        {{model.user.name}}
+        {{model.name}}
       </h1>
       <div class="cheevies">
-        {{#each model.user.cheevies as |cheevie|}}
+        {{#each model.cheevies as |cheevie|}}
           aaa
         {{/each}}
       </div>
@@ -25,18 +24,24 @@
       {{#unless isMe}}
         <button {{action 'showCheeviesPicker' true}}>Give cheevie</button>
       {{/unless}}
-
-      {{#if cheeviesPickerIsVisible}}
-        <div class="modal is-active">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            {{#each model.cheevies as |cheevie|}}
-              {{cheevie.name}}
-            {{/each}}
-          </div>
-          <button class="modal-close is-large" aria-label="close" {{action 'showCheeviesPicker' false}}></button>
-        </div>
-      {{/if}}
     </div>
   </div>
 </section>
+
+{{#if cheeviesPickerIsVisible}}
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <section class="section">
+        <div class="columns is-mobile is-centered">
+          {{#each cheevies as |cheevie|}}
+            <div class="column is-one-fifth has-text-centered">
+              {{cheevie-in-list cheevie=cheevie}}
+            </div>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+    <button class="modal-close is-large" aria-label="close" {{action 'showCheeviesPicker' false}}></button>
+  </div>
+{{/if}}

@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('index', {path: '/'}, function() {
     this.route('create-cheevie');
     this.route('create-badge');
+    this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
   });
 });
 

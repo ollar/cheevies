@@ -3,7 +3,6 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-  classNames: ['user-avatar'],
   colours: [
     '#b71c1c',
     '#880e4f',
@@ -16,23 +15,25 @@ export default Component.extend({
     '#bf360c',
     '#3e2723',
   ],
-  name: computed('user.{displayName,name}', function() {
-    if (Object.keys(this.get('user')).length === 0) return '';
-    return this.get('user').displayName ||
-      (this.get('user').get && this.get('user').get('name')) ||
+  name: computed('data.{displayName,name}', function() {
+    if (Object.keys(this.get('data')).length === 0) return '';
+    return this.get('data').displayName ||
+      (this.get('data').get && this.get('data').get('name')) ||
       'anonymous';
   }),
-  initials: Ember.computed('name', function() {
+  initials: computed('name', function() {
     if (!this.get('name')) return '';
     return this.get('name')
+      .trim()
       .split(' ')
       .map(item => item[0].toUpperCase())
       .slice(0,2)
       .join('');
   }),
-  backgroundColour: Ember.computed('name', function() {
+  backgroundColour: computed('name', function() {
     if (!this.get('name')) return '';
     var colourNumber = this.get('name')
+      .trim()
       .split('')
       .map((item) => item.charCodeAt())
       .reduce((sum, i) => sum + i);
