@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import firebase from 'firebase';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 
 export default Controller.extend({
   image: null,

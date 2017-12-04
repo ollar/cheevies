@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
-  model(urlParams, transition) {
+  model(urlParams) {
     return RSVP.hash({
       users: this.get('store').findAll('user'),
       badges: this.get('store').findAll('badge'),

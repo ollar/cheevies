@@ -3,25 +3,36 @@
   {{!-- {{link-to (t 'index.create-badge.linkText') 'index.create-badge'}} --}}
 </section>
 
-<section class="section">
-  <h2 class="title">
-    {{t 'index.users-list.title'}}
-  </h2>
-  <div class="columns is-mobile is-centered is-multiline">
-    {{#each model.users as |user|}}
-      {{user-in-list user=user class="column is-one-fifth has-text-centered"}}
-    {{/each}}
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{t 'index.users-list.title'}}
+      </h1>
+      <div class="columns is-mobile is-centered is-multiline">
+        {{#each model.users as |user|}}
+          {{user-in-list user=user class="column has-text-centered"}}
+        {{/each}}
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <h2 class="title">
-    {{t 'index.cheevies-list.title'}}
-  </h2>
-  <div class="columns is-mobile is-centered is-multiline">
-    {{#each model.cheevies as |cheevie|}}
-      {{cheevie-in-list cheevie=cheevie class="column is-one-fifth has-text-centered"}}
-    {{/each}}
+
+<section class="hero is-info is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{t 'index.cheevies-list.title'}}
+      </h1>
+      <div class="columns is-mobile is-centered is-multiline">
+        {{#each model.cheevies as |cheevie|}}
+          {{#link-to 'index.cheevie-details' cheevie class="is-inline-block"}}
+            {{cheevie-in-list cheevie=cheevie class="column has-text-centered"}}
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </div>
   </div>
 </section>
 

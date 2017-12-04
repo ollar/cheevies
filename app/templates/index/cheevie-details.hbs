@@ -1,18 +1,68 @@
 <div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <section class="section">
+    {{#if (eq showMode)}}
+      <button class="button mode-toggle is-info" {{action 'toggleMode'}}>
+        {{t 'buttons.edit'}}
+      </button>
       <figure class="image">
         <img src={{model.imageUrl}}>
       </figure>
-      <h1 class="title">
-        {{model.name}}
-      </h1>
+      <section class="section">
+        <h1 class="title">
+          {{model.name}}
+        </h1>
 
-      <div class="description">
-        {{model.description}}
-      </div>
-    </section>
+        <div class="description">
+          {{model.description}}
+        </div>
+      </section>
+    {{else}}
+      <button class="button mode-toggle is-danger" {{action 'toggleMode'}}>
+        {{t 'buttons.cancel'}}
+      </button>
+      <section class="section">
+        {{#images-drop-area
+          images=model.photoUR
+          uploadImage=(action 'uploadImage')
+        }}
+          {{#if image}}
+            <figure class="image">
+              <img src={{image.url}}>
+            </figure>
+
+            <a class="delete is-large" {{action 'removeImage'}}></a>
+          {{else}}
+            {{icon-image data=model size=300}}
+          {{/if}}
+        {{/images-drop-area}}
+
+        <form {{action 'updateCheevie' on="submit"}}>
+          <div class="field">
+            <label class="label">{{t 'create-cheevie.form.name.label'}}</label>
+            <div class="control">
+              {{input class="input" type="text" placeholder=(t 'create-cheevie.form.name.placeholder') value=model.name}}
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">{{t 'create-cheevie.form.description.label'}}</label>
+            <div class="control">
+              {{textarea class="textarea" placeholder=(t 'create-cheevie.form.description.placeholder') value=model.description}}
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary">{{t 'buttons.submit'}}</button>
+            </div>
+            <div class="control">
+              <button class="button is-text" type="button" {{action 'goBack'}}>{{t 'buttons.cancel'}}</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    {{/if}}
   </div>
   <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>
 </div>

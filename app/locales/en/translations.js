@@ -38,6 +38,7 @@ export default {
   buttons: {
     submit: 'Submit',
     cancel: 'Cancel',
+    edit: 'Edit',
     sign_out: 'Sign out',
   },
 
@@ -56,12 +57,26 @@ export default {
     }
   },
 
+  profile: {
+    buttons: {
+      'give-cheevie': 'Present a cheevie',
+    },
+  },
+
+  nav: {
+    home: 'Home',
+    profile: 'Profile',
+  },
+
   index: {
     'users-list': {
       title: 'All jerks',
     },
     'cheevies-list': {
       title: 'All cheevies',
+    },
+    'create-cheevie': {
+      linkText: 'Create new cheevie',
     },
   },
 };

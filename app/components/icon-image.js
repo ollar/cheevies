@@ -48,6 +48,7 @@ export default Component.extend({
       'backgroundColor': this.get('backgroundColour'),
       height: this.attrs.size,
       width: this.attrs.size,
+      lineHeight: this.attrs.size + 'px',
     });
   },
 });

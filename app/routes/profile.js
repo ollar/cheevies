@@ -1,10 +1,13 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
 
 export default Route.extend({
+  cheevies: [],
   afterModel() {
-    this.get('store').findAll('cheevie').then(res => {
-      this.set('controller.cheevies', res);
-    });
+    return this.get('store').findAll('cheevie').then(res => this.set('cheevies', res));
   },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('cheevies', this.get('cheevies'))
+  }
 });

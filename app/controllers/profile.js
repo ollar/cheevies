@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
 import firebase from 'firebase';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  getUser: Ember.inject.service(),
+  getUser: service(),
 
   cheeviesPickerIsVisible: false,
 
@@ -35,6 +36,12 @@ export default Controller.extend({
       firebase.storage().ref(`users/${this.get('myId')}`).delete();
       this.get('me').set('imageUrl', '');
       this.get('me').save();
+    },
+
+    pickCheevie(cheevie) {
+      this.model.get('cheevies').pushObject(cheevie);
+      this.model.save();
+      this.send('showCheeviesPicker', false);
     },
   }
 });

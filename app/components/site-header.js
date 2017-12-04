@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 
 export default Component.extend({
   tagName: 'header',
@@ -15,7 +16,7 @@ export default Component.extend({
     signOut() {
       this.get('session').close()
         .then(() => {
-          return Ember.getOwner(this).get('router').transitionTo('login');
+          return getOwner(this).get('router').transitionTo('login');
         });
     },
   }
