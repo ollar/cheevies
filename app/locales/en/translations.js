@@ -38,6 +38,7 @@ export default {
   buttons: {
     submit: 'Submit',
     cancel: 'Cancel',
+    back: 'Back',
     edit: 'Edit',
     sign_out: 'Sign out',
   },
