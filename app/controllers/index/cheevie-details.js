@@ -29,10 +29,6 @@ export default Controller.extend({
       this.transitionToRoute('index');
     },
     uploadImage(file) {
-      const image = {
-        url: URL.createObjectURL(file),
-      };
-
       this.set('model.imageUrl', URL.createObjectURL(file));
       this.set('file', file);
     },
