@@ -16,7 +16,6 @@ export default Component.extend({
     '#3e2723',
   ],
   name: computed('data.{displayName,name}', function() {
-    console.log(this.get('data'))
     if (Object.keys(this.get('data')).length === 0) return '';
     return this.get('data').displayName ||
       (this.get('data').get && this.get('data').get('name')) ||

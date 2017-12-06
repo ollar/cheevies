@@ -6,6 +6,14 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    // "ember-cli-critical": {
+    //   enabled: true,
+    // }
+    'esw-cache-fallback': {
+      patterns: [
+        'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/(.+)'
+      ],
+    }
   });
 
   app.import('node_modules/bulma/css/bulma.css');
