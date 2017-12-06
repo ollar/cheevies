@@ -6,7 +6,7 @@ export default Controller.extend({
   image: null,
   file: null,
   actions: {
-    createCheevie() {
+    updateCheevie() {
       if (this.get('file')) {
         firebase.storage().ref(`cheevies/${this.get('model.id')}`).put(this.get('file'))
           .then((snapshot) => {

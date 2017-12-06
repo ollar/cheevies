@@ -16,6 +16,7 @@ export default Component.extend({
     '#3e2723',
   ],
   name: computed('data.{displayName,name}', function() {
+    console.log(this.get('data'))
     if (Object.keys(this.get('data')).length === 0) return '';
     return this.get('data').displayName ||
       (this.get('data').get && this.get('data').get('name')) ||
@@ -42,6 +43,14 @@ export default Component.extend({
 
     return this.get('colours')[index];
   }),
+
+  power: computed.readOnly('data.power'),
+
+  powerColour: computed('power', function() {
+    if (!this.get('power')) return;
+    return this.get('data.rates')[this.get('power')];
+  }),
+
   didRender() {
     this._super(...arguments);
     this.$().css({
@@ -49,8 +58,10 @@ export default Component.extend({
       height: this.attrs.size,
       width: this.attrs.size,
       lineHeight: this.attrs.size + 'px',
-      backgroundImage: `url(${this.get('data.imageUrl')})`,
-      backgroundSize: 'cover',
+      backgroundImage: this.get('data.imageUrl') ?
+        `url(${this.get('data.imageUrl')})` : null,
+      boxShadow: this.get('powerColour') ?
+        `0 0 0 3px ${this.get('powerColour')}` : null,
     });
   },
 });

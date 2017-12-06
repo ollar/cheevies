@@ -55,6 +55,12 @@ export default {
         label: 'Cheevie description',
         placeholder: 'Add cheevie description here',
       },
+      power: {
+        label: 'Select cheevie power',
+        green: 'Green',
+        yellow: 'Yellow',
+        red: 'Red',
+      },
     }
   },
 

@@ -55,6 +55,12 @@ export default {
         label: 'Описание ачивки',
         placeholder: 'Укажи описание ачивки',
       },
+      power: {
+        label: 'Цвет ачивки',
+        green: 'Зеленый',
+        yellow: 'Желтый',
+        red: 'Красный',
+      },
     }
   },
 

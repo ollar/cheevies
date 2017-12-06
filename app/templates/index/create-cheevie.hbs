@@ -24,30 +24,7 @@
         {{/if}}
       {{/images-drop-area}}
 
-      <form {{action 'createCheevie' on="submit"}}>
-        <div class="field">
-          <label class="label">{{t 'create-cheevie.form.name.label'}}</label>
-          <div class="control">
-            {{input class="input" type="text" placeholder=(t 'create-cheevie.form.name.placeholder') value=model.name}}
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">{{t 'create-cheevie.form.description.label'}}</label>
-          <div class="control">
-            {{textarea class="textarea" placeholder=(t 'create-cheevie.form.description.placeholder') value=model.description}}
-          </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-primary">{{t 'buttons.submit'}}</button>
-          </div>
-          <div class="control">
-            <button class="button is-text" type="button" {{action 'goBack'}}>{{t 'buttons.cancel'}}</button>
-          </div>
-        </div>
-      </form>
+      {{partial 'cheevie-edit-form'}}
     </section>
   </div>
   <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>

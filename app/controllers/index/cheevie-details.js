@@ -6,6 +6,7 @@ export default Controller.extend({
   file: null,
   showMode: true,
   image: computed('model.imageUrl', function() {
+    if (!this.get('model.imageUrl')) return;
     return {
       url: this.get('model.imageUrl'),
     }
@@ -32,17 +33,18 @@ export default Controller.extend({
         url: URL.createObjectURL(file),
       };
 
-      this.set('image', image);
+      this.set('model.imageUrl', URL.createObjectURL(file));
       this.set('file', file);
     },
     removeImage() {
       this.set('image', null);
+      this.set('model.imageUrl', null);
     },
     updateCheevie() {
-      if (this.get('image.url') !== this.get('model.imageUrl') && this.get('file')) {
+      if (this.get('file')) {
         firebase.storage().ref(`cheevies/${this.get('model.id')}`).put(this.get('file'))
           .then((snapshot) => {
-            this.get('model').set('imageUrl', snapshot.downloadURL);
+            this.set('model.imageUrl', snapshot.downloadURL);
             this.get('model').save();
           })
           .catch(() => false);
