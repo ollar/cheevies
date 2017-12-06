@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"bacc",
+				"background-color"
+			],
+			[
+				"align",
+				"align-items"
+			],
+			[
 				"flex",
 				"flex-flow"
 			],
@@ -119,59 +127,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/templates/register.hbs",
-			"settings":
-			{
-				"buffer_size": 934,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/environment.js",
-			"settings":
-			{
-				"buffer_size": 1718,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".watchmanconfig",
-			"settings":
-			{
-				"buffer_size": 37,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/torii-adapters/application.js",
-			"settings":
-			{
-				"buffer_size": 120,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/routes/application.js",
-			"settings":
-			{
-				"buffer_size": 469,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/register.js",
-			"settings":
-			{
-				"buffer_size": 169,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -233,14 +188,46 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/ollar/Documents/dev/cheevies-jerk",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/routes",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/torii-adapters",
-		"/Users/ollar/Documents/dev/cheevies-jerk/config"
+		"/Users/bss/Documents/Projects/cheevies-jerk"
 	],
 	"file_history":
 	[
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/icon-image.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/icon-image.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/locales/ru/translations.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/config/environment.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/cheevie.sublime-project",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index/cheevie-details.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/index/cheevie-details.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/locales/en/translations.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/cheevie-in-list.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/user-in-list.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/cheevie-in-list.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/user-in-list.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/application.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/ember-notify.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/application.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/login.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/index.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/profile.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/profile.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/index/cheevie-details.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/index/create-cheevie.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/images-drop-area.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/images-drop-area.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index/create-cheevie.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/cheevie-in-list.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/user-in-list.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/profile.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/profile.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/site-header.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/site-header.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/site-header.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/services/session.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/register.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/torii-adapters/application.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/register.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/application.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/package.json",
 		"/Users/ollar/Documents/dev/cheevies-jerk/.env",
@@ -332,53 +319,18 @@
 		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_em.scss",
 		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_functions.scss",
 		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_buttons.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/image-drop-area.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/bower_components/pure/buttons.css",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/categories.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_categories.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/_products.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/quick-links.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/product-block.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/components/product-block.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_contrast.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/styles/functions/_brightness.scss",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/text-block.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/components/text-block.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/components/page-block.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/helpers/price.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/product/edit.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/components/site-footer.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/models/category.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/routes/test.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/test.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/test.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/routes/product/index.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/helpers/eq.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/entity/manage.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/product/edit.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/product-create.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category/index.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/page/index.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/page/edit.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/utils/destroy-model.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/routes/products.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category/edit.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/category-create.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/category/edit.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/routes/categories.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/product-create.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/category-create.hbs",
-		"/Users/ollar/Documents/dev/scetch-shop/app/models/image.js"
+		"/Users/ollar/Documents/dev/scetch-shop/app/styles/component-styles/image-drop-area.scss"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 101.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -386,6 +338,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"contain",
+			"urlParams",
+			"4000",
+			"message",
+			"profile",
+			"Documentation",
+			"index",
+			"edit",
+			"_image",
+			"goBack",
+			"buttons",
+			"right",
+			"showCheeviesPicker",
+			"controller",
+			"getOwner",
+			"ember",
 			"email"
 		],
 		"highlight": true,
@@ -404,192 +372,14 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/templates/register.hbs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 934,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								520,
-								520
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "config/environment.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1718,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1031,
-								982
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 224.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": ".watchmanconfig",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 37,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/torii-adapters/application.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 120,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								116,
-								116
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"open_with_edit": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/routes/application.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 469,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								464,
-								113
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/controllers/register.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 169,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								147,
-								147
-							]
-						],
-						"settings":
-						{
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 38.0
 	},
 	"input":
 	{
@@ -640,8 +430,124 @@
 		"selected_items":
 		[
 			[
+				"icon",
+				"app/templates/components/icon-image.hbs"
+			],
+			[
+				"iconima",
+				"app/components/icon-image.js"
+			],
+			[
+				"cheevde",
+				"app/styles/component-styles/index/cheevie-details.scss"
+			],
+			[
+				"trans",
+				"app/locales/en/translations.js"
+			],
+			[
+				"cheev",
+				"app/templates/index/cheevie-details.hbs"
+			],
+			[
+				"cheelis",
+				"app/components/cheevie-in-list.js"
+			],
+			[
+				"a",
+				"app/routes/application.js"
+			],
+			[
+				"appl",
+				"app/templates/application.hbs"
+			],
+			[
+				"routeinde",
+				"app/routes/index.js"
+			],
+			[
+				"login",
+				"app/controllers/login.js"
+			],
+			[
+				"app",
+				"app/templates/application.hbs"
+			],
+			[
 				"appli",
 				"app/routes/application.js"
+			],
+			[
+				"profile",
+				"app/styles/component-styles/profile.scss"
+			],
+			[
+				"profil",
+				"app/templates/profile.hbs"
+			],
+			[
+				"tr",
+				"app/locales/en/translations.js"
+			],
+			[
+				"profi",
+				"app/templates/profile.hbs"
+			],
+			[
+				"images",
+				"app/components/images-drop-area.js"
+			],
+			[
+				"create",
+				"app/controllers/index/create-cheevie.js"
+			],
+			[
+				"cheeviede",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"user-in-list",
+				"app/templates/components/user-in-list.hbs"
+			],
+			[
+				"index",
+				"app/templates/index.hbs"
+			],
+			[
+				"cheevie-in-list",
+				"app/templates/components/cheevie-in-list.hbs"
+			],
+			[
+				"profiel",
+				"app/templates/profile.hbs"
+			],
+			[
+				"cheevdet",
+				"app/templates/index/cheevie-details.hbs"
+			],
+			[
+				"site",
+				"app/templates/components/site-header.hbs"
+			],
+			[
+				"site-header",
+				"app/components/site-header.js"
+			],
+			[
+				"create-cheevie",
+				"app/controllers/index/create-cheevie.js"
+			],
+			[
+				"servse",
+				"app/services/session.js"
+			],
+			[
+				"contrprofi",
+				"app/controllers/profile.js"
+			],
+			[
+				"routeprof",
+				"app/routes/profile.js"
 			],
 			[
 				"contrregis",
@@ -668,16 +574,8 @@
 				"app/components/image-drop-area.js"
 			],
 			[
-				"app",
-				"app/styles/app.scss"
-			],
-			[
 				"swiper-container",
 				"app/components/swiper-container.js"
-			],
-			[
-				"index",
-				"app/templates/index.hbs"
 			],
 			[
 				"product-height-wrapper",
@@ -804,14 +702,6 @@
 				"app/templates/components/cart-block.hbs"
 			],
 			[
-				"appl",
-				"app/routes/application.js"
-			],
-			[
-				"site-header",
-				"app/templates/components/site-header.hbs"
-			],
-			[
 				"quick",
 				"app/templates/components/quick-links.hbs"
 			],
@@ -832,20 +722,12 @@
 				"app/templates/page.hbs"
 			],
 			[
-				"trans",
-				"app/locales/en/translations.js"
-			],
-			[
 				"tran",
 				"app/locales/en/translations.js"
 			],
 			[
 				"enti",
 				"app/controllers/entity-manage.js"
-			],
-			[
-				"tr",
-				"app/locales/en/translations.js"
 			],
 			[
 				"check",
@@ -964,10 +846,6 @@
 				"app/routes/application.js"
 			],
 			[
-				"site",
-				"app/components/site-header.js"
-			],
-			[
 				"head",
 				"app/templates/components/site-header.hbs"
 			],
@@ -1062,94 +940,6 @@
 			[
 				"tempcate",
 				"app/templates/categories.hbs"
-			],
-			[
-				"show",
-				"app/utils/showdown.js"
-			],
-			[
-				"modelblock",
-				"app/models/block.js"
-			],
-			[
-				"tempblok",
-				"app/templates/components/page-block.hbs"
-			],
-			[
-				"stybutt",
-				"app/styles/_buttons.scss"
-			],
-			[
-				"text",
-				"app/templates/components/text-block.hbs"
-			],
-			[
-				"tempte",
-				"app/templates/components/text-block.hbs"
-			],
-			[
-				"templent",
-				"app/templates/entity-manage.hbs"
-			],
-			[
-				"compo",
-				"app/components/product-block.js"
-			],
-			[
-				"comp",
-				"app/components/page-block.js"
-			],
-			[
-				"helppe",
-				"app/helpers/price.js"
-			],
-			[
-				"tement",
-				"app/templates/entity-manage.hbs"
-			],
-			[
-				"temcomhe",
-				"app/templates/components/site-header.hbs"
-			],
-			[
-				"comadm",
-				"app/components/admin-menu.js"
-			],
-			[
-				"templad",
-				"app/templates/components/admin-menu.hbs"
-			],
-			[
-				"temcateg",
-				"app/templates/category/index.hbs"
-			],
-			[
-				"modelpro",
-				"app/models/product.js"
-			],
-			[
-				"modelcate",
-				"app/models/category.js"
-			],
-			[
-				"modelcateg",
-				"app/models/category.js"
-			],
-			[
-				"contprodin",
-				"app/controllers/product/index.js"
-			],
-			[
-				"contrtes",
-				"app/controllers/test.js"
-			],
-			[
-				"templtes",
-				"app/templates/test.hbs"
-			],
-			[
-				"routetes",
-				"app/routes/test.js"
 			]
 		],
 		"width": 0.0

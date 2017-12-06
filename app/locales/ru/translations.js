@@ -2,7 +2,7 @@ export default {
   login: {
     buttons: {
       submit: 'Войти',
-      register: 'Зарегистрироваться',
+      register: 'Регистрация',
     },
     title: 'Логин',
   },
@@ -10,7 +10,7 @@ export default {
   register: {
     buttons: {
       login: 'Войти',
-      submit: 'Зарегистрироваться',
+      submit: 'Регистрация',
     },
     title: 'Регистрация',
   },
@@ -36,10 +36,10 @@ export default {
   },
 
   buttons: {
-    submit: 'Отправить',
+    submit: 'Ок',
     cancel: 'Отмена',
     back: 'Назад',
-    edit: 'Править',
+    edit: 'Изменить',
     sign_out: 'Выйти',
   },
 
@@ -60,7 +60,7 @@ export default {
 
   profile: {
     buttons: {
-      'give-cheevie': 'Подарить ачивку',
+      'give-cheevie': 'Вручить ачивку',
     },
   },
 

@@ -44,7 +44,6 @@ export default Component.extend({
   }),
   didRender() {
     this._super(...arguments);
-    console.log(this.get('data.imageUrl'))
     this.$().css({
       backgroundColor: this.get('backgroundColour'),
       height: this.attrs.size,
