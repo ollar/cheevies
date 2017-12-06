@@ -1,6 +1,4 @@
-{{#if data.imageUrl}}
-  <img src="{{data.imageUrl}}" alt="">
-{{else}}
+{{#unless data.imageUrl}}
   {{initials}}
-{{/if}}
+{{/unless}}
 {{yield}}

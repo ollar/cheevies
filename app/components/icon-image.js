@@ -44,11 +44,14 @@ export default Component.extend({
   }),
   didRender() {
     this._super(...arguments);
+    console.log(this.get('data.imageUrl'))
     this.$().css({
-      'backgroundColor': this.get('backgroundColour'),
+      backgroundColor: this.get('backgroundColour'),
       height: this.attrs.size,
       width: this.attrs.size,
       lineHeight: this.attrs.size + 'px',
+      backgroundImage: `url(${this.get('data.imageUrl')})`,
+      backgroundSize: 'cover',
     });
   },
 });
