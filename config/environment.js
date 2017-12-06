@@ -36,7 +36,7 @@ module.exports = function(environment) {
       sessionServiceName: 'session'
     },
     i18n: {
-      defaultLocale: 'en',
+      defaultLocale: 'ru',
     },
   };
 
