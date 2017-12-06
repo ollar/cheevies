@@ -2,6 +2,13 @@
 {{site-header}}
 {{/if}}
 
+{{#ember-notify as |message close|}}
+  <div class="notification is-{{message.type}}">
+    <button class="delete" {{action close}}></button>
+    {{message.text}}
+  </div>
+{{/ember-notify}}
+
 <main class="{{routeStyleNamespaceClassSet}}">
     {{outlet}}
 </main>

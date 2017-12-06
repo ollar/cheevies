@@ -39,6 +39,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-i18n": "^5.0.2",
     "ember-load-initializers": "^1.0.0",
+    "ember-notify": "^5.2.1",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.17.0",
     "emberfire": "^2.0.8",
