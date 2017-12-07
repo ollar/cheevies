@@ -24,7 +24,7 @@ export default Route.extend({
   },
 
   actions: {
-    willTransition(transition) {
+    willTransition() {
       if (this.userHasEnteredData()) {
         this.get('controller.model').save();
       }

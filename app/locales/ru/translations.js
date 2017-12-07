@@ -70,6 +70,9 @@ export default {
     buttons: {
       'give-cheevie': 'Вручить ачивку',
     },
+    links: {
+      'refuse_gift': 'Отказаться'
+    },
   },
 
   nav: {

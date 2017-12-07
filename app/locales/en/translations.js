@@ -70,6 +70,9 @@ export default {
     buttons: {
       'give-cheevie': 'Present a cheevie',
     },
+    links: {
+      'refuse_gift': 'Refuse'
+    },
   },
 
   nav: {

@@ -19,7 +19,7 @@ export default Route.extend({
       this.get('session').close();
     },
     error(e) {
-      alert(e);
+      console.error(e);
     },
     notify(type, text) {
       if (this.get('notificationTypes').indexOf(type) === -1) {
