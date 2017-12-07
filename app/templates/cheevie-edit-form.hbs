@@ -12,7 +12,7 @@
       <select name="power" id="power" onchange={{action (mut model.power) value='target.value'}}>
         {{#each-in model.rates as |rate colour|}}
           <option value={{rate}} selected={{eq model.power rate}}>
-            {{t (add 'create-cheevie.form.power.' colour)}}
+            {{t (add 'create-cheevie.form.power.' rate)}}
           </option>
         {{/each-in}}
       </select>

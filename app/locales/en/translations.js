@@ -59,9 +59,9 @@ export default {
       },
       power: {
         label: 'Select cheevie power',
-        green: 'Green',
-        yellow: 'Yellow',
-        red: 'Red',
+        low: 'Low',
+        normal: 'Normal',
+        high: 'High',
       },
     }
   },

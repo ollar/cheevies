@@ -1,8 +1,12 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-
+import {addObserver} from '@ember/object/observers';
 
 export default Component.extend({
+  init(options) {
+    this._super(options);
+    addObserver(this, 'power', this.updateStyles);
+  },
   colours: [
     '#b71c1c',
     '#880e4f',
@@ -50,8 +54,7 @@ export default Component.extend({
     return this.get('data.rates')[this.get('power')];
   }),
 
-  didRender() {
-    this._super(...arguments);
+  updateStyles() {
     this.$().css({
       backgroundColor: this.get('backgroundColour'),
       height: this.attrs.size,
@@ -62,5 +65,10 @@ export default Component.extend({
       boxShadow: this.get('powerColour') ?
         `0 0 0 3px ${this.get('powerColour')}` : null,
     });
+  },
+
+  didRender() {
+    this._super(...arguments);
+    this.updateStyles();
   },
 });
