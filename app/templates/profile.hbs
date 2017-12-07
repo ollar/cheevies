@@ -19,7 +19,11 @@
         {{/if}}
       {{/images-drop-area}}
       <h1 class="title">
-        {{model.name}}
+        {{#if isMe}}
+          {{input type='text' value=model.name class="psevdo-title"}}
+        {{else}}
+          {{model.name}}
+        {{/if}}
       </h1>
       <div class="cheevies">
         {{#each model.cheevies as |cheevie|}}

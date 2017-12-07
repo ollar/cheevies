@@ -17,5 +17,18 @@ export default Route.extend({
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('cheevies', this.get('cheevies'))
+  },
+
+  userHasEnteredData() {
+    return Object.keys(this.get('controller.model').changedAttributes()).length > 0;
+  },
+
+  actions: {
+    willTransition(transition) {
+      if (this.userHasEnteredData()) {
+        this.get('controller.model').save();
+      }
+      return true;
+    }
   }
 });
