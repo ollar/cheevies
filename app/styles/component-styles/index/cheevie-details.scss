@@ -1,8 +1,14 @@
-.mode-toggle {
+.mode-toggle,
+.cheevie-delete {
   position: absolute;
   left: 0;
   top: 0;
   z-index: 100;
+}
+
+.cheevie-delete {
+  right: 0;
+  left: auto;
 }
 
 .image,

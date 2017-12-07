@@ -33,6 +33,7 @@ export default {
     welcome_default: 'С возвращением!',
     welcome_google: 'Все утекло в ФСБ',
     welcome_github: 'Форкаю репы',
+    delete_cheevie_check: 'Действительно удалить?',
   },
 
   buttons: {
@@ -41,6 +42,7 @@ export default {
     back: 'Назад',
     edit: 'Изменить',
     sign_out: 'Выйти',
+    delete: 'Удалить',
   },
 
   'create-cheevie': {

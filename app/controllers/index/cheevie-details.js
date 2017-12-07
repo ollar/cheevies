@@ -51,6 +51,12 @@ export default Controller.extend({
       this.restoreMode();
 
       this.send('goBack');
+    },
+    deleteCheevie() {
+      if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
+        this.get('model').destroyRecord();
+        this.transitionToRoute('index');
+      }
     }
   }
 });

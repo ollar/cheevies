@@ -33,6 +33,7 @@ export default {
     welcome_default: 'Welcome back!',
     welcome_google: 'Yep, sending data to ANB',
     welcome_github: 'All your repos belongs to us!',
+    delete_cheevie_check: 'Are you sure?',
   },
 
   buttons: {
@@ -41,6 +42,7 @@ export default {
     back: 'Back',
     edit: 'Edit',
     sign_out: 'Sign out',
+    delete: 'Delete',
   },
 
   'create-cheevie': {
