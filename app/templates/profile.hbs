@@ -27,7 +27,20 @@
       </h1>
       <div class="cheevies">
         {{#each model.cheevies as |cheevie|}}
-          {{icon-image data=cheevie size=50 class="is-inline-block"}}
+          <div class="cheevie-wrapper is-inline-block">
+            {{icon-image data=cheevie size=50 class="is-inline-block"}}
+
+            <div class="cheevie-info card">
+              <div class="card-content">
+                <p class="title">
+                  {{cheevie.name}}
+                </p>
+                <p class="content">
+                  {{cheevie.description}}
+                </p>
+              </div>
+            </div>
+          </div>
         {{/each}}
       </div>
 

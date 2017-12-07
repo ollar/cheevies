@@ -29,3 +29,44 @@
   text-align: center;
   max-width: 100%;
 }
+
+.cheevie-wrapper {
+  position: relative;
+
+  &:hover {
+    .cheevie-info {
+      display: block;
+    }
+  }
+
+  &:first-child {
+    .cheevie-info {
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+
+  &:last-child {
+    .cheevie-info {
+      right: 0;
+      left: auto;
+      transform: translateX(0);
+    }
+  }
+}
+
+.cheevie-info {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: none;
+  width: 280px;
+  max-width: 1000px;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+
+  .title {
+    color: inherit;
+    margin: 0 0 1.5rem;
+  }
+}
