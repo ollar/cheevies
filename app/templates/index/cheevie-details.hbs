@@ -1,5 +1,5 @@
 <div class="modal is-active">
-  <div class="modal-background"></div>
+  <div class="modal-background" {{action 'goBack' on="click"}}></div>
   <div class="modal-content">
     {{#if (eq showMode)}}
       <button class="button mode-toggle is-info" {{action 'toggleMode'}}>

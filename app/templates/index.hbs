@@ -27,8 +27,8 @@
       </h1>
       <div class="columns is-mobile is-centered is-multiline">
         {{#each model.cheevies as |cheevie|}}
-          {{#link-to 'index.cheevie-details' cheevie class="is-inline-block"}}
-            {{cheevie-in-list cheevie=cheevie class="column has-text-centered"}}
+          {{#link-to 'index.cheevie-details' cheevie class="column is-inline-block has-text-centered"}}
+            {{cheevie-in-list cheevie=cheevie class="is-inline-block has-text-centered"}}
           {{/link-to}}
         {{/each}}
       </div>
