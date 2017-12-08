@@ -91,4 +91,6 @@ export default {
       linkText: 'Создать ачивку',
     },
   },
+
+  footer_message: 'Сделано ♥ 2017',
 };

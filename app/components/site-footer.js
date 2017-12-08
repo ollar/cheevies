@@ -2,5 +2,5 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'footer',
-  classNames: ['footer']
+  classNames: ['footer', 'has-text-centered']
 });

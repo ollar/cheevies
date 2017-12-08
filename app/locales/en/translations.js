@@ -91,4 +91,6 @@ export default {
       linkText: 'Create new cheevie',
     },
   },
+
+  footer_message: 'Made with ♥ 2017',
 };
