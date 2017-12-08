@@ -4,23 +4,23 @@
   </h1>
   <form {{action 'handleSubmit' on="submit"}}>
     <div class="field">
-        <label class="label">{{t 'form.name.label'}}</label>
+        <label class="label" for="name">{{t 'form.name.label'}}</label>
         <div class="control">
-            {{input class="input" type="text" placeholder=(t 'form.name.placeholder') value=fields.name}}
+            {{input class="input" id="name" type="text" placeholder=(t 'form.name.placeholder') value=fields.name}}
         </div>
     </div>
 
     <div class="field">
-      <label class="label">{{t 'form.email.label'}}</label>
+      <label class="label" for="email">{{t 'form.email.label'}}</label>
       <div class="control">
-        {{input class="input" type="email" placeholder=(t 'form.email.placeholder') value=fields.email}}
+        {{input class="input" id="email" type="email" placeholder=(t 'form.email.placeholder') value=fields.email}}
       </div>
     </div>
 
     <div class="field">
-      <label class="label">{{t 'form.password.label'}}</label>
+      <label class="label" for="password">{{t 'form.password.label'}}</label>
       <div class="control">
-        {{input class="input" type="password" placeholder=(t 'form.password.placeholder') value=fields.password}}
+        {{input class="input" id="password" type="password" placeholder=(t 'form.password.placeholder') value=fields.password}}
       </div>
     </div>
 
