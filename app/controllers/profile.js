@@ -43,5 +43,10 @@ export default Controller.extend({
       this.model.save();
       this.send('showCheeviesPicker', false);
     },
+
+    refuseCheevie(cheevie) {
+      this.model.get('cheevies').removeObject(cheevie);
+      this.model.save();
+    },
   }
 });

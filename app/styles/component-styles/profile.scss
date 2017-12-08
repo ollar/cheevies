@@ -2,7 +2,7 @@
   padding: 0.5rem 1.5rem;
 }
 
-.title {
+.name {
   margin: 1.5rem 0;
 }
 
@@ -34,20 +34,20 @@
   position: relative;
 
   &:hover {
-    .cheevie-info {
+    .item-hint {
       display: block;
     }
   }
 
   &:first-child {
-    .cheevie-info {
+    .item-hint{
       left: 0;
       transform: translateX(0);
     }
   }
 
   &:last-child {
-    .cheevie-info {
+    .item-hint {
       right: 0;
       left: auto;
       transform: translateX(0);
@@ -55,19 +55,10 @@
   }
 }
 
-.cheevie-info {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  display: none;
-  width: 280px;
-  max-width: 1000px;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-  z-index: 10;
-
-  .title {
-    color: inherit;
-    margin: 0 0 1.5rem;
+.cheevie-wrapper {
+  .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

@@ -18,7 +18,7 @@
           {{/if}}
         {{/if}}
       {{/images-drop-area}}
-      <h1 class="title">
+      <h1 class="title name">
         {{#if isMe}}
           {{input type='text' value=model.name class="psevdo-title"}}
         {{else}}
@@ -30,16 +30,11 @@
           <div class="cheevie-wrapper is-inline-block">
             {{icon-image data=cheevie size=50 class="is-inline-block"}}
 
-            <div class="cheevie-info card">
-              <div class="card-content">
-                <p class="title">
-                  {{cheevie.name}}
-                </p>
-                <p class="content">
-                  {{cheevie.description}}
-                </p>
-              </div>
-            </div>
+            {{#item-hint data=cheevie}}
+              {{#if isMe}}
+                <a class="delete is-small" {{action 'refuseCheevie' cheevie}}></a>
+              {{/if}}
+            {{/item-hint}}
           </div>
         {{/each}}
       </div>

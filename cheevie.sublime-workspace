@@ -127,6 +127,42 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/templates/profile.hbs",
+			"settings":
+			{
+				"buffer_size": 1914,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes/profile.js",
+			"settings":
+			{
+				"buffer_size": 803,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/profile.js",
+			"settings":
+			{
+				"buffer_size": 1276,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/component-styles/profile.scss",
+			"settings":
+			{
+				"buffer_size": 385,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -188,18 +224,23 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/bss/Documents/Projects/cheevies-jerk"
+		"/Users/bss/Documents/Projects/cheevies-jerk",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app"
 	],
 	"file_history":
 	[
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/icon-image.hbs",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/icon-image.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index/cheevie-details.hbs",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/index/cheevie-details.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/locales/en/translations.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/locales/ru/translations.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/login.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/index/cheevie-details.scss",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/profile.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/profile.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/icon-image.js",
+		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/icon-image.hbs",
 		"/Users/bss/Documents/Projects/cheevies-jerk/config/environment.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/cheevie.sublime-project",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index/cheevie-details.hbs",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/index/cheevie-details.scss",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/locales/en/translations.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/cheevie-in-list.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/user-in-list.scss",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/cheevie-in-list.scss",
@@ -207,11 +248,9 @@
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/application.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/ember-notify.scss",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/application.hbs",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/login.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/index.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/profile.hbs",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/profile.scss",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/index/cheevie-details.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/index/create-cheevie.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/images-drop-area.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/images-drop-area.scss",
@@ -219,8 +258,6 @@
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/cheevie-in-list.hbs",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/user-in-list.hbs",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/index.hbs",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/controllers/profile.js",
-		"/Users/bss/Documents/Projects/cheevies-jerk/app/routes/profile.js",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/styles/component-styles/site-header.scss",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/templates/components/site-header.hbs",
 		"/Users/bss/Documents/Projects/cheevies-jerk/app/components/site-header.js",
@@ -323,7 +360,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -338,6 +375,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"text",
+			"Регистрация",
 			"contain",
 			"urlParams",
 			"4000",
@@ -372,14 +411,138 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/templates/profile.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1914,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1000,
+								1000
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/routes/profile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 803,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								761,
+								761
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/controllers/profile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1276,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								903,
+								903
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/styles/component-styles/profile.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 385,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								343,
+								343
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Tomorrow-Night-Bright (SL).tmTheme",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 38.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -430,8 +593,52 @@
 		"selected_items":
 		[
 			[
+				"profile",
+				"app/routes/profile.js"
+			],
+			[
+				"profil",
+				"app/styles/component-styles/profile.scss"
+			],
+			[
+				"profi",
+				"app/templates/profile.hbs"
+			],
+			[
+				"rutr",
+				"app/locales/ru/translations.js"
+			],
+			[
+				"entra",
+				"app/locales/en/translations.js"
+			],
+			[
+				"login",
+				"app/controllers/login.js"
+			],
+			[
+				"cheedet",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"cheedetscs",
+				"app/styles/component-styles/index/cheevie-details.scss"
+			],
+			[
+				"entr",
+				"app/locales/en/translations.js"
+			],
+			[
+				"cheevdet",
+				"app/templates/index/cheevie-details.hbs"
+			],
+			[
 				"icon",
-				"app/templates/components/icon-image.hbs"
+				"app/components/icon-image.js"
+			],
+			[
+				"tr",
+				"app/locales/ru/translations.js"
 			],
 			[
 				"iconima",
@@ -466,32 +673,12 @@
 				"app/routes/index.js"
 			],
 			[
-				"login",
-				"app/controllers/login.js"
-			],
-			[
 				"app",
 				"app/templates/application.hbs"
 			],
 			[
 				"appli",
 				"app/routes/application.js"
-			],
-			[
-				"profile",
-				"app/styles/component-styles/profile.scss"
-			],
-			[
-				"profil",
-				"app/templates/profile.hbs"
-			],
-			[
-				"tr",
-				"app/locales/en/translations.js"
-			],
-			[
-				"profi",
-				"app/templates/profile.hbs"
 			],
 			[
 				"images",
@@ -520,10 +707,6 @@
 			[
 				"profiel",
 				"app/templates/profile.hbs"
-			],
-			[
-				"cheevdet",
-				"app/templates/index/cheevie-details.hbs"
 			],
 			[
 				"site",
@@ -920,26 +1103,6 @@
 			[
 				"butt",
 				"app/styles/_buttons.scss"
-			],
-			[
-				"tementi",
-				"app/templates/entity-manage.hbs"
-			],
-			[
-				"tempent",
-				"app/templates/entity-manage.hbs"
-			],
-			[
-				"tempage",
-				"app/templates/pages.hbs"
-			],
-			[
-				"tempro",
-				"app/templates/products.hbs"
-			],
-			[
-				"tempcate",
-				"app/templates/categories.hbs"
 			]
 		],
 		"width": 0.0

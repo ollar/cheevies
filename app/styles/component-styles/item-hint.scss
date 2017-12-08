@@ -1,0 +1,25 @@
+& {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: none;
+  width: 220px;
+  max-width: 1000px;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  z-index: 10;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+
+  .card-content {
+    padding: 0.5rem;
+  }
+
+  .title {
+    color: #333 !important;
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+}
