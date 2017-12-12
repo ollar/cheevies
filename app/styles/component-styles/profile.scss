@@ -11,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
 }
 
 .image-drop-area {
@@ -19,6 +20,7 @@
 
 .cheevies {
   margin: 3rem 0;
+  text-align: center;
 }
 
 .experience {
@@ -35,6 +37,8 @@
   font: inherit;
   text-align: center;
   max-width: 100%;
+  width: auto;
+  display: block;
 }
 
 .cheevie-wrapper {

@@ -9,4 +9,8 @@ export default Route.extend({
       cheevies: this.get('store').findAll('cheevie'),
     });
   },
+
+  activate() {
+
+  }
 });
