@@ -41,8 +41,13 @@
   display: block;
 }
 
+.title.name {
+  opacity: 0;
+}
+
 .cheevie-wrapper {
   position: relative;
+  transform: scale(0);
 
   &:hover {
     .item-hint {
