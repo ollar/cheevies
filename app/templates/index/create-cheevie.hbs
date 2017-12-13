@@ -1,31 +1,27 @@
-<div class="modal is-active">
-  <div class="modal-background" {{action 'goBack' on="click"}}></div>
-  <div class="modal-content">
-    <section class="section">
-      <h1 class="title">
-        {{t 'create-cheevie.title'}}
-      </h1>
-      <h3 class="subtitle">
-        {{t 'create-cheevie.subtitle'}}
-      </h3>
+{{#modal-wrapper goBack=(action 'goBack')}}
+  <section class="section">
+    <h1 class="title">
+      {{t 'create-cheevie.title'}}
+    </h1>
+    <h3 class="subtitle">
+      {{t 'create-cheevie.subtitle'}}
+    </h3>
 
-      {{#images-drop-area
-        images=model.photoUR
-        uploadImage=(action 'uploadImage')
-      }}
-        {{#if image}}
-          <figure class="image">
-            <img src={{image.url}}>
-          </figure>
+    {{#images-drop-area
+      images=model.photoUR
+      uploadImage=(action 'uploadImage')
+    }}
+      {{#if image}}
+        <figure class="image">
+          <img src={{image.url}}>
+        </figure>
 
-          <a class="delete is-large" {{action 'removeImage'}}></a>
-        {{else}}
-          {{icon-image data=model size=300}}
-        {{/if}}
-      {{/images-drop-area}}
+        <a class="delete is-large" {{action 'removeImage'}}></a>
+      {{else}}
+        {{icon-image data=model size=300}}
+      {{/if}}
+    {{/images-drop-area}}
 
-      {{partial 'cheevie-edit-form'}}
-    </section>
-  </div>
-  <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>
-</div>
+    {{partial 'cheevie-edit-form'}}
+  </section>
+{{/modal-wrapper}}

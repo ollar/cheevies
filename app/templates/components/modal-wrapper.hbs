@@ -1,0 +1,7 @@
+<div class="modal is-active">
+  <div class="modal-background" {{action goBack on="click"}}></div>
+  <div class="modal-content">
+    {{yield}}
+  </div>
+  <button class="modal-close is-large" aria-label="close" {{action goBack}}></button>
+</div>

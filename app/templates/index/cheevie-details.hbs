@@ -1,48 +1,44 @@
-<div class="modal is-active">
-  <div class="modal-background" {{action 'goBack' on="click"}}></div>
-  <div class="modal-content">
-    {{#if (eq showMode)}}
-      <button class="button mode-toggle is-info" {{action 'toggleMode'}}>
-        {{t 'buttons.edit'}}
-      </button>
-      <figure class="image">
-        <img src={{model.imageUrl}}>
-      </figure>
-      <section class="section">
-        <h1 class="title">
-          {{model.name}}
-        </h1>
+{{#modal-wrapper goBack=(action 'goBack')}}
+  {{#if (eq showMode)}}
+    <button class="button mode-toggle is-info" {{action 'toggleMode'}}>
+      {{t 'buttons.edit'}}
+    </button>
+    <figure class="image">
+      <img src={{model.imageUrl}}>
+    </figure>
+    <section class="section">
+      <h1 class="title">
+        {{model.name}}
+      </h1>
 
-        <div class="description">
-          {{model.description}}
-        </div>
-      </section>
-    {{else}}
-      <button class="button mode-toggle is-info" {{action 'toggleMode'}}>
-        {{t 'buttons.back'}}
-      </button>
-      <button class="button cheevie-delete is-danger" {{action 'deleteCheevie'}}>
-        {{t 'buttons.delete'}}
-      </button>
-      <section class="section">
-        {{#images-drop-area
-          images=model.imageUrl
-          uploadImage=(action 'uploadImage')
-        }}
-          {{#if image}}
-            <figure class="image">
-              <img src={{image.url}}>
-            </figure>
+      <div class="description">
+        {{model.description}}
+      </div>
+    </section>
+  {{else}}
+    <button class="button mode-toggle is-info" {{action 'toggleMode'}}>
+      {{t 'buttons.back'}}
+    </button>
+    <button class="button cheevie-delete is-danger" {{action 'deleteCheevie'}}>
+      {{t 'buttons.delete'}}
+    </button>
+    <section class="section">
+      {{#images-drop-area
+        images=model.imageUrl
+        uploadImage=(action 'uploadImage')
+      }}
+        {{#if image}}
+          <figure class="image">
+            <img src={{image.url}}>
+          </figure>
 
-            <a class="delete is-large" {{action 'removeImage'}}></a>
-          {{else}}
-            {{icon-image data=model size=300}}
-          {{/if}}
-        {{/images-drop-area}}
+          <a class="delete is-large" {{action 'removeImage'}}></a>
+        {{else}}
+          {{icon-image data=model size=300}}
+        {{/if}}
+      {{/images-drop-area}}
 
-        {{partial 'cheevie-edit-form'}}
-      </section>
-    {{/if}}
-  </div>
-  <button class="modal-close is-large" aria-label="close" {{action 'goBack'}}></button>
-</div>
+      {{partial 'cheevie-edit-form'}}
+    </section>
+  {{/if}}
+{{/modal-wrapper}}
