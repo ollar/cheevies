@@ -45,6 +45,11 @@ module.exports = function(/* environment, appConfig */) {
         "sizes": "192x192",
         "type": "image/png"
       },
+      {
+        "src": "manifest_icons/icon_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
     ],
   };
 }
