@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import run from '@ember/runloop';
+import { schedule } from '@ember/runloop';
 
 export default Route.extend({
   cheevies: [],
@@ -8,30 +8,29 @@ export default Route.extend({
   },
 
   activate() {
-    var header = document.querySelector('header');
-    if (header) {
-      var headerHeight = header.offsetHeight;
-      window.scrollTo(0, headerHeight);
-    }
-
-    run.later('afterRender', () => {
-      console.log('assa')
-    })
+    schedule('afterRender', () => {
+      var header = document.querySelector('header');
+      if (header) {
+        var headerHeight = header.offsetHeight;
+        window.scrollTo(0, headerHeight);
+      }
 
       var iconImage = document.querySelector('.icon-image');
-
       if (iconImage) {
         var iconImageAnimation = iconImage.animate([
-            {height: 0},
-            {height: '100px'},
-            {height: 0},
+            {
+              transform: 'scale(1.2)',
+              opacity: 0.3,
+            },
+            {
+              transform: 'scale(1)',
+              opacity: 1,
+            },
           ], {
-            duration: 5000,
-            iterations: Infinity,
+            duration: 300,
           });
       }
-    }, 1000)
-
+    });
   },
 
   setupController(controller, model) {
