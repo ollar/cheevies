@@ -14,9 +14,17 @@ main {
   flex-grow: 2;
 }
 
+.create-cheevie-link {
+  width: 100%;
+  border-radius: 0;
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+
 .modal-content {
   background-color: #fff;
   border-radius: 5px;
+  padding: 1em;
 }
 
 .footer {
