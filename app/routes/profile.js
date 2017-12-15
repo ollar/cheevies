@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { schedule } from '@ember/runloop';
-import {inject as service} from '@ember/service';
+
+import Middleware from '../utils/animation-middleware';
 
 export default Route.extend({
   cheevies: [],
@@ -8,9 +9,8 @@ export default Route.extend({
     return this.get('store').findAll('cheevie').then(res => this.set('cheevies', res));
   },
 
-  am: service('animation-middleware'),
-
   activate() {
+    this.set('am', new Middleware());
     schedule('afterRender', () => {
       var $header = document.querySelector('header');
       var $main = document.querySelector('main');
@@ -69,9 +69,9 @@ export default Route.extend({
           });
 
           if (_elems.length > 1) {
-            anim.onfinish = requestAnimationFrame(() => animate(_elems.slice(1)));
+            anim.onfinish = () => animate(_elems.slice(1));
           } else {
-            next();
+            anim.onfinish = next;
           }
         }
 
