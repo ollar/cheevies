@@ -43,6 +43,7 @@
 
 .cheevie-wrapper {
   position: relative;
+  z-index: 10;
 
   &:hover {
     .item-hint {
