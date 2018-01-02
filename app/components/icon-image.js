@@ -7,6 +7,8 @@ export default Component.extend({
     this._super(options);
     addObserver(this, 'power', this.updateStyles);
   },
+  classNameBindings: ['imageUrl:has-image'],
+  imageUrl: computed.bool('data.imageUrl'),
   colours: [
     '#b71c1c',
     '#880e4f',
