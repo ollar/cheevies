@@ -9,9 +9,9 @@ module.exports = function(defaults) {
     // "ember-cli-critical": {
     //   enabled: true,
     // }
-    'esw-cache-fallback': {
+    'esw-cache-first': {
       patterns: [
-        'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/(.+)'
+        'https://firebasestorage.googleapis.com/(.+)'
       ],
     }
   });
