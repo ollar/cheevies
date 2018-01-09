@@ -10,7 +10,7 @@ export default Route.extend({
   },
 
   activate() {
-    this.set('am', new Middleware());
+    const am = new Middleware();
     schedule('afterRender', () => {
       var $header = document.querySelector('header');
       var $main = document.querySelector('main');
@@ -23,7 +23,7 @@ export default Route.extend({
         window.scrollTo(0, headerHeight);
       }
 
-      this.get('am').use((next) => {
+      am.prepare((next) => {
         $($iconImage).css({transform: 'scale(1.2)'});
         $($title).css({opacity: 0});
         $($cheevies).css({transform: 'scale(0)', opacity: 0});
@@ -31,8 +31,8 @@ export default Route.extend({
         next();
       });
 
-      this.get('am').use((next) => {
-        $iconImage.animate([
+      am.step($iconImage,
+        [
           {
             transform: 'scale(1.2)',
             opacity: 0.3,
@@ -41,45 +41,31 @@ export default Route.extend({
             transform: 'scale(1)',
             opacity: 1,
           },
-        ], {
+        ],
+        {
           duration: 100,
           fill: 'forwards',
-        }).onfinish = next;
-      });
-
-      this.get('am').use((next) => {
-        $title.animate(
-          { opacity: [0,1] },
-          {
-            duration: 100,
-            fill: 'forwards',
-          }
-        ).onfinish = next;
-      });
-
-      this.get('am').use((next) => {
-        function animate(elems) {
-          var _elems = Array.prototype.slice.call(elems);
-          var anim = _elems[0].animate([
-            {transform: 'scale(0)', opacity: 0},
-            {transform: 'scale(1)', opacity: 1},
-          ], {
-            duration: 24,
-            fill: 'forwards',
-          });
-
-          if (_elems.length > 1) {
-            anim.onfinish = () => animate(_elems.slice(1));
-          } else {
-            anim.onfinish = next;
-          }
         }
+      );
 
-        animate($cheevies);
+      am.step($title, { opacity: [0,1] }, {
+        duration: 100,
+        fill: 'forwards',
       });
+
+      am.chain($cheevies,
+        [
+          {transform: 'scale(0)', opacity: 0},
+          {transform: 'scale(1)', opacity: 1},
+        ],
+        {
+          duration: 24,
+          fill: 'forwards',
+        }
+      );
 
       schedule('afterRender', () => {
-        this.get('am').go(() => {
+        am.go(() => {
           $main.classList.add('animation-finished');
         });
       });
