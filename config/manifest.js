@@ -1,7 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(/* environment, appConfig */) {
+module.exports = function(environment, appConfig) {
   // See https://github.com/san650/ember-web-app#documentation for a list of
   // supported properties
 
@@ -14,6 +14,7 @@ module.exports = function(/* environment, appConfig */) {
     display: "fullscreen",
     background_color: "#fff",
     theme_color: "#fff",
+    "gcm_sender_id": "103953800507",
     "icons": [
       {
         "src": "manifest_icons/icon_48.png",
