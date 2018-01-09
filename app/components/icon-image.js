@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import {addObserver} from '@ember/object/observers';
+import { addObserver } from '@ember/object/observers';
 
 export default Component.extend({
   init(options) {

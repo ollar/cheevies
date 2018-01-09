@@ -2,8 +2,11 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from '../utils/animation-middleware';
+import { inject as service } from '@ember/service';
+import { addObserver } from '@ember/object/observers';
 
 export default Route.extend({
+  gyro: service(),
   model() {
     return RSVP.hash({
       users: this.get('store').findAll('user'),
@@ -16,6 +19,14 @@ export default Route.extend({
     const am = new Middleware();
     schedule('afterRender', () => {
       const $iconImages = document.querySelectorAll('.icon-image');
+      const $heroUsersWrapper = document.querySelector('.hero.users-list');
+      const $heroCheeviesWrapper = document.querySelector('.hero.cheevies-list');
+
+      addObserver(this.get('gyro'), 'orientation', function(el, property) {
+        const {alpha, beta} = el.get(property);
+        $heroUsersWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
+        $heroCheeviesWrapper.style.backgroundPosition = `-${alpha}px -${beta}px`;
+      });
 
       am.prepare((next) => {
         $($iconImages).css({transform: 'scale(0.5)', opacity: 0});
