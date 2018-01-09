@@ -4,15 +4,14 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  console.log(defaults)
   let app = new EmberApp(defaults, {
     // Add options here
-    // "ember-cli-critical": {
-    //   enabled: true,
-    // }
-    'ember-service-worker': {
-      enabled: false
+    "ember-cli-critical": {
+      enabled: true,
     },
+    // 'ember-service-worker': {
+    //   enabled: false
+    // },
     'esw-cache-first': {
       patterns: [
         'https://firebasestorage.googleapis.com/(.+)'

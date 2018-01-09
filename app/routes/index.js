@@ -5,6 +5,14 @@ import Middleware from '../utils/animation-middleware';
 import { inject as service } from '@ember/service';
 import { addObserver } from '@ember/object/observers';
 
+function handleGyroChange($heroUsersWrapper, $heroCheeviesWrapper, el, property) {
+  const {alpha, beta} = el.get(property);
+  window.requestAnimationFrame(() => {
+    $heroUsersWrapper.style.backgroundPosition = `-${alpha}px -${beta}px`;
+    $heroCheeviesWrapper.style.backgroundPosition = `-${alpha}px -${beta}px`;
+  });
+}
+
 export default Route.extend({
   gyro: service(),
   model() {
@@ -22,11 +30,10 @@ export default Route.extend({
       const $heroUsersWrapper = document.querySelector('.hero.users-list');
       const $heroCheeviesWrapper = document.querySelector('.hero.cheevies-list');
 
-      addObserver(this.get('gyro'), 'orientation', function(el, property) {
-        const {alpha, beta} = el.get(property);
-        $heroUsersWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
-        $heroCheeviesWrapper.style.backgroundPosition = `-${alpha}px -${beta}px`;
-      });
+      const handleGyroChangeCarred =
+        handleGyroChange.bind(null, $heroUsersWrapper, $heroCheeviesWrapper);
+
+      addObserver(this.get('gyro'), 'orientation', handleGyroChangeCarred);
 
       am.prepare((next) => {
         $($iconImages).css({transform: 'scale(0.5)', opacity: 0});
