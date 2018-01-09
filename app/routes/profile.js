@@ -14,7 +14,7 @@ export default Route.extend({
     schedule('afterRender', () => {
       var $header = document.querySelector('header');
       var $main = document.querySelector('main');
-      var $iconImage = document.querySelector('.icon-image');
+      var $iconImage = document.querySelector('.user-image');
       var $title = document.querySelector('.title');
       var $cheevies = document.querySelectorAll('.cheevie-wrapper');
 

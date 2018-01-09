@@ -11,7 +11,7 @@
         images=model.imageUrl
         uploadImage=(action 'uploadImage')
       }}
-        {{icon-image data=this.model size=200 class="icon-image"}}
+        {{icon-image data=this.model size=200 class="user-image"}}
         {{#if isMe}}
           {{#if model.imageUrl}}
             <a class="delete is-large" {{action 'removeImage'}}></a>
