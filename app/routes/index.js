@@ -6,10 +6,17 @@ import { inject as service } from '@ember/service';
 import { addObserver } from '@ember/object/observers';
 
 function handleGyroChange($heroUsersWrapper, $heroCheeviesWrapper, el, property) {
-  const {alpha, beta} = el.get(property);
+  let {beta, gamma} = el.get(property);
+
+  if (beta >  89) { beta =  89}
+  if (beta < -89) { beta = -89}
+
+  if (gamma >  89) { gamma =  89}
+  if (gamma < -89) { gamma = -89}
+
   window.requestAnimationFrame(() => {
-    $heroUsersWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
-    $heroCheeviesWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
+    $heroUsersWrapper.style.backgroundPosition = `${gamma}px ${beta}px`;
+    $heroCheeviesWrapper.style.backgroundPosition = `${gamma}px ${beta}px`;
   });
 }
 
