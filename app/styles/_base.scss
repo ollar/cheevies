@@ -50,3 +50,8 @@ main {
   border-right-color: transparent;
   border-top-color: transparent;
 }
+
+.notification.is-error {
+  background-color: #ff3860;
+  color: #fff;
+}

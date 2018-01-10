@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   notify: service(),
-  notificationTypes: ['info', 'success', 'warning', 'danger'],
+  notificationTypes: ['info', 'success', 'warning', 'error'],
   session: service(),
   firebaseApp: service(),
   beforeModel(transition) {

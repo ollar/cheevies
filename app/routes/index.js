@@ -8,8 +8,8 @@ import { addObserver } from '@ember/object/observers';
 function handleGyroChange($heroUsersWrapper, $heroCheeviesWrapper, el, property) {
   const {alpha, beta} = el.get(property);
   window.requestAnimationFrame(() => {
-    $heroUsersWrapper.style.backgroundPosition = `${-alpha}px ${-beta}px`;
-    $heroCheeviesWrapper.style.backgroundPosition = `${-alpha}px ${-beta}px`;
+    $heroUsersWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
+    $heroCheeviesWrapper.style.backgroundPosition = `${alpha}px ${beta}px`;
   });
 }
 
