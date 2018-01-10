@@ -9,9 +9,10 @@ module.exports = function(defaults) {
     "ember-cli-critical": {
       enabled: true,
     },
-    // 'ember-service-worker': {
-    //   enabled: false
-    // },
+    'ember-service-worker': {
+      // enabled: false,
+      versionStrategy: 'every-build',
+    },
     'esw-cache-first': {
       patterns: [
         'https://firebasestorage.googleapis.com/(.+)'

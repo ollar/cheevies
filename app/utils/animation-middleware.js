@@ -42,7 +42,7 @@ Middleware.prototype.step = function($elem, steps, options) {
 
 Middleware.prototype.chain = function(elems, steps, options) {
   return this.use((next) => {
-    return chainAnimate.apply(this, [...arguments, next]);
+    return chainAnimate.call(this, elems, steps, options, next);
   });
 }
 
