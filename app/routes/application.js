@@ -5,24 +5,31 @@ export default Route.extend({
   notify: service(),
   notificationTypes: ['info', 'success', 'warning', 'error'],
   session: service(),
+  getUser: service(),
   firebaseApp: service(),
   beforeModel(transition) {
-
     const messaging = this.get('firebaseApp').messaging();
+    const _this = this;
 
-    messaging.requestPermission()
-      .then(function() {
-        console.log('Notification permission granted.');
-        // TODO(developer): Retrieve an Instance ID token for use with FCM.
-        // ...
-      })
-      .catch(function(err) {
-        console.log('Unable to get permission to notify.', err);
-      });
+    this.get('session').addObserver('me', this, () => {
+      const me = this.get('session.me');
 
-    messaging.onMessage(function(payload) {
+      if (Object.keys(me).length) {
+        messaging.requestPermission()
+          .then(() => messaging.getToken())
+          .then((token) => {
+            this.get('getUser.user').set('fcmToken', token);
+            this.get('getUser.user').save();
+          })
+          .catch((err) => {
+            this.send('notify', 'error', err.toString());
+          });
+      }
+    });
+
+    messaging.onMessage((payload) => {
+      _this.send('notify', 'info', payload.toString());
       console.log("Message received. ", payload);
-      // ...
     });
 
     return this.get('session').fetch()
