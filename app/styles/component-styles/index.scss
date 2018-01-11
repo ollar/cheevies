@@ -1,6 +1,7 @@
 .cheevies-list,
 .users-list {
   position: relative;
+  z-index: 1;
 
   canvas {
     position: absolute;
