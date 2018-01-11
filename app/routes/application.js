@@ -28,8 +28,7 @@ export default Route.extend({
     });
 
     messaging.onMessage((payload) => {
-      _this.send('notify', 'info', payload.toString());
-      console.log("Message received. ", payload);
+      _this.send('notify', 'info', payload.notification.body);
     });
 
     return this.get('session').fetch()

@@ -15,3 +15,19 @@ var config = {
 
 firebase.initializeApp(config);
 const messaging = firebase.messaging();
+
+// If you would like to customize notifications that are received in the
+// background (Web app is closed or not in browser focus) then you should
+// implement this optional method.
+// [START background_handler]
+messaging.setBackgroundMessageHandler(function(payload) {
+  // Customize notification here
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: '/manifest_icons/icon_192.png',
+  };
+
+  return self.registration.showNotification(notificationTitle,
+      notificationOptions);
+});
