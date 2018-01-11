@@ -16,13 +16,13 @@ function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
   if (gamma < -89) { gamma = -89}
 
   window.requestAnimationFrame(() => {
-    uctx.clearRect(0, 0, uctx.canvas.width, uctx.canvas.height);
+    uctx.clearRect(-90, -90, uctx.canvas.width + 90, uctx.canvas.height + 90);
     uctx.setTransform(1, 0, 0, 1, gamma, beta);
-    uctx.fillRect(0, 0, uctx.canvas.width, uctx.canvas.height);
+    uctx.fillRect(-90, -90, uctx.canvas.width + 90, uctx.canvas.height + 90);
 
-    cctx.clearRect(0, 0, cctx.canvas.width, cctx.canvas.height);
+    cctx.clearRect(-90, -90, cctx.canvas.width + 90, cctx.canvas.height + 90);
     cctx.setTransform(1, 0, 0, 1, gamma, beta);
-    cctx.fillRect(0, 0, cctx.canvas.width, cctx.canvas.height);
+    cctx.fillRect(-90, -90, cctx.canvas.width + 90, cctx.canvas.height + 90);
   });
 }
 
@@ -40,7 +40,7 @@ function createBGCanvas($parent, image) {
   img.onload = function() {
     const pattern = ctx.createPattern(img, 'repeat');
     ctx.fillStyle = pattern;
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    ctx.fillRect(-90, -90, canvasWidth + 90, canvasHeight + 90);
   };
 
   canvas.width = canvasWidth;
