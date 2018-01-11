@@ -2,11 +2,12 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from '../utils/animation-middleware';
-import { inject as service } from '@ember/service';
-import { addObserver } from '@ember/object/observers';
 
-function handleGyroChange($heroUsersWrapper, $heroCheeviesWrapper, ctx, el, property) {
-  let {beta, gamma} = el.get(property);
+function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
+  let {beta, gamma} = event;
+
+  const uctx = $heroUsersCanvas.getContext('2d');
+  const cctx = $heroCheeviesCanvas.getContext('2d');
 
   if (beta >  89) { beta =  89}
   if (beta < -89) { beta = -89}
@@ -15,17 +16,42 @@ function handleGyroChange($heroUsersWrapper, $heroCheeviesWrapper, ctx, el, prop
   if (gamma < -89) { gamma = -89}
 
   window.requestAnimationFrame(() => {
-    ctx.clearRect(0, 0, 600, 600);
+    uctx.clearRect(0, 0, uctx.canvas.width, uctx.canvas.height);
+    uctx.setTransform(1, 0, 0, 1, gamma, beta);
+    uctx.fillRect(0, 0, uctx.canvas.width, uctx.canvas.height);
 
-    ctx.setTransform(1, 0, 0, 1, gamma, beta);
-    ctx.fillRect(0, 0, 600, 600);
-    // $heroUsersWrapper.style.backgroundPosition = `${gamma}px ${beta}px`;
-    // $heroCheeviesWrapper.style.backgroundPosition = `${gamma}px ${beta}px`;
+    cctx.clearRect(0, 0, cctx.canvas.width, cctx.canvas.height);
+    cctx.setTransform(1, 0, 0, 1, gamma, beta);
+    cctx.fillRect(0, 0, cctx.canvas.width, cctx.canvas.height);
   });
 }
 
+function createBGCanvas($parent, image) {
+  const canvas = document.createElement('canvas');
+
+  const ctx = canvas.getContext('2d');
+
+  let canvasWidth = $parent.offsetWidth;
+  let canvasHeight = $parent.offsetHeight;
+
+  const img = new Image();
+  img.src = image;
+
+  img.onload = function() {
+    const pattern = ctx.createPattern(img, 'repeat');
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  };
+
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
+  $parent.appendChild(canvas);
+
+  return canvas;
+}
+
 export default Route.extend({
-  gyro: service(),
   model() {
     return RSVP.hash({
       users: this.get('store').findAll('user'),
@@ -37,34 +63,18 @@ export default Route.extend({
   activate() {
     const am = new Middleware();
 
-    const canvas = document.createElement('canvas');
-    canvas.width = 472;
-    canvas.height = 653;
-
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    const ctx = canvas.getContext('2d');
-
-    const img = new Image();
-    img.src = './images/511_2.png';
-
-    img.onload = function() {
-      const pattern = ctx.createPattern(img, 'repeat');
-      ctx.fillStyle = pattern;
-      ctx.fillRect(0, 0, 600, 600);
-    };
-
     schedule('afterRender', () => {
       const $iconImages = document.querySelectorAll('.icon-image');
       const $heroUsersWrapper = document.querySelector('.hero.users-list');
       const $heroCheeviesWrapper = document.querySelector('.hero.cheevies-list');
 
-      $heroUsersWrapper.appendChild(canvas);
+      const $heroUsersCanvas = createBGCanvas($heroUsersWrapper, './images/511_2.png');
+      const $heroCheeviesCanvas = createBGCanvas($heroCheeviesWrapper, './images/609_2.png');
 
       const handleGyroChangeCarred =
-        handleGyroChange.bind(null, $heroUsersWrapper, $heroCheeviesWrapper, ctx);
+        handleGyroChange.bind(null, $heroUsersCanvas, $heroCheeviesCanvas);
 
-      addObserver(this.get('gyro'), 'orientation', handleGyroChangeCarred);
+      window.addEventListener('deviceorientation', handleGyroChangeCarred, true);
 
       am.prepare((next) => {
         $($iconImages).css({transform: 'scale(0.5)', opacity: 0});
