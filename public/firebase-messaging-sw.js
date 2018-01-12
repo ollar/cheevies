@@ -22,12 +22,15 @@ const messaging = firebase.messaging();
 // [START background_handler]
 messaging.setBackgroundMessageHandler(function(payload) {
   // Customize notification here
+
+  console.log('aaa');
+
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    // icon: '/manifest_icons/icon_192.png',
+    icon: '/manifest_icons/icon_192.png',
+    badge: '/manifest_icons/icon_192.png',
   };
 
-  return self.registration.showNotification(notificationTitle,
-      notificationOptions);
+  return self.registration.showNotification(notificationTitle, notificationOptions);
 });

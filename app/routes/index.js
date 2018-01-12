@@ -16,13 +16,13 @@ function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
   if (gamma < -89) { gamma = -89}
 
   window.requestAnimationFrame(() => {
-    uctx.clearRect(-90, -90, uctx.canvas.width + 90, uctx.canvas.height + 90);
+    uctx.clearRect(-180, -180, uctx.canvas.width + 180, uctx.canvas.height + 180);
     uctx.setTransform(1, 0, 0, 1, gamma, beta);
-    uctx.fillRect(-90, -90, uctx.canvas.width + 90, uctx.canvas.height + 90);
+    uctx.fillRect(-180, -180, uctx.canvas.width + 180, uctx.canvas.height + 180);
 
-    cctx.clearRect(-90, -90, cctx.canvas.width + 90, cctx.canvas.height + 90);
+    cctx.clearRect(-180, -180, cctx.canvas.width + 180, cctx.canvas.height + 180);
     cctx.setTransform(1, 0, 0, 1, gamma, beta);
-    cctx.fillRect(-90, -90, cctx.canvas.width + 90, cctx.canvas.height + 90);
+    cctx.fillRect(-180, -180, cctx.canvas.width + 180, cctx.canvas.height + 180);
   });
 }
 
@@ -36,11 +36,13 @@ function createBGCanvas($parent, image) {
 
   const img = new Image();
   img.src = image;
+  ctx.fillStyle = 'rgba(0,0,0,0)';
+  ctx.fillRect(-180, -180, canvasWidth + 180, canvasHeight + 180);
 
   img.onload = function() {
     const pattern = ctx.createPattern(img, 'repeat');
     ctx.fillStyle = pattern;
-    ctx.fillRect(-90, -90, canvasWidth + 90, canvasHeight + 90);
+    ctx.fillRect(-180, -180, canvasWidth + 180, canvasHeight + 180);
   };
 
   canvas.width = canvasWidth;
