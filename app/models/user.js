@@ -14,6 +14,7 @@ export default DS.Model.extend({
   fcmToken: DS.attr('string'),
 
   cheevies: DS.hasMany('cheevie'),
+  unseenCheevies: DS.hasMany('cheevie'),
   badges: DS.hasMany('badge'),
 
   exp: computed('cheevies', 'badges', function() {

@@ -90,6 +90,9 @@ export default {
     'create-cheevie': {
       linkText: 'Create new cheevie',
     },
+    'new-cheevies': {
+      title: 'You\'ve got new cheevie!',
+    },
   },
 
   footer_message: 'Made with ♥ 2017',

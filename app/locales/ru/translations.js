@@ -90,6 +90,9 @@ export default {
     'create-cheevie': {
       linkText: 'Создать ачивку',
     },
+    'new-cheevies': {
+      title: 'У вас новая ачивка!',
+    },
   },
 
   footer_message: 'Сделано ♥ 2017',

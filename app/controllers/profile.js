@@ -40,6 +40,7 @@ export default Controller.extend({
 
     pickCheevie(cheevie) {
       this.model.get('cheevies').pushObject(cheevie);
+      this.model.get('unseenCheevies').pushObject(cheevie);
       this.model.save();
       this.send('showCheeviesPicker', false);
     },

@@ -24,6 +24,9 @@ export default Route.extend({
           .catch((err) => {
             this.send('notify', 'error', err.toString());
           });
+        if (me.get('unseenCheevies.length')) {
+          this.transitionTo('index.new-cheevies');
+        }
       }
     });
 
