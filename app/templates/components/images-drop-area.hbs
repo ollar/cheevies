@@ -6,5 +6,6 @@
     ondragleave={{action 'dragLeave'}}
     ondrop={{action 'drop'}}
 >
+  <input type="file" accept="image/*" capture="camera" onchange={{action 'inputChange'}} />
   {{yield}}
 </div>
