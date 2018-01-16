@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from '../utils/animation-middleware';
+import $ from 'jquery';
 
 function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
   let {beta, gamma} = event;
@@ -16,13 +17,13 @@ function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
   if (gamma < -89) { gamma = -89}
 
   window.requestAnimationFrame(() => {
-    uctx.clearRect(-180, -180, uctx.canvas.width + 180, uctx.canvas.height + 180);
+    uctx.clearRect(-90, -90, uctx.canvas.width + 180, uctx.canvas.height + 180);
     uctx.setTransform(1, 0, 0, 1, gamma, beta);
-    uctx.fillRect(-180, -180, uctx.canvas.width + 180, uctx.canvas.height + 180);
+    uctx.fillRect(-90, -90, uctx.canvas.width + 180, uctx.canvas.height + 180);
 
-    cctx.clearRect(-180, -180, cctx.canvas.width + 180, cctx.canvas.height + 180);
+    cctx.clearRect(-90, -90, cctx.canvas.width + 180, cctx.canvas.height + 180);
     cctx.setTransform(1, 0, 0, 1, gamma, beta);
-    cctx.fillRect(-180, -180, cctx.canvas.width + 180, cctx.canvas.height + 180);
+    cctx.fillRect(-90, -90, cctx.canvas.width + 180, cctx.canvas.height + 180);
   });
 }
 
@@ -37,12 +38,12 @@ function createBGCanvas($parent, image) {
   const img = new Image();
   img.src = image;
   ctx.fillStyle = 'rgba(0,0,0,0)';
-  ctx.fillRect(-180, -180, canvasWidth + 180, canvasHeight + 180);
+  ctx.fillRect(-90, -90, canvasWidth + 180, canvasHeight + 180);
 
   img.onload = function() {
     const pattern = ctx.createPattern(img, 'repeat');
     ctx.fillStyle = pattern;
-    ctx.fillRect(-180, -180, canvasWidth + 180, canvasHeight + 180);
+    ctx.fillRect(-90, -90, canvasWidth + 180, canvasHeight + 180);
   };
 
   canvas.width = canvasWidth;
@@ -95,7 +96,7 @@ export default Route.extend({
       );
 
       schedule('afterRender', () => {
-        am.go(() => console.log('complete'));
+        am.go(() => true);
       });
     });
   }
