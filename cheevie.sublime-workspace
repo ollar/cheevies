@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ha",
+				"handleGyroChange"
+			],
+			[
+				"anima",
+				"animate"
+			],
+			[
 				"pos",
 				"pos:f\tposition:fixed"
 			],
@@ -70,10 +78,6 @@
 			[
 				"tra",
 				"transition"
-			],
-			[
-				"anima",
-				"animation-direction"
 			],
 			[
 				"anim",
@@ -236,16 +240,20 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/ollar/Documents/dev/cheevies-jerk",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app",
-		"/Users/ollar/Documents/dev/cheevies-jerk/config"
+		"/Users/ollar/Documents/dev/cheevies-jerk"
 	],
 	"file_history":
 	[
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/services/gyro.js",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/routes/index.js",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/styles/component-styles/index.scss",
+		"/Users/ollar/Documents/dev/cheevies-jerk/ember-cli-build.js",
+		"/Users/ollar/Downloads/cheevies-jerk-firebase-adminsdk-fslo3-e83f59c7c4.json",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/components/icon-image.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/routes/profile.js",
+		"/Users/ollar/Documents/dev/cheevies-jerk/app/utils/animation-middleware.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/styles/component-styles/profile.scss",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/services/animation-middleware.js",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/utils/animation-middleware.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/styles/_base.scss",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/loading.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/styles/component-styles/loading.scss",
@@ -258,18 +266,15 @@
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/controllers/index/cheevie-details.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/profile.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/components/modal-wrapper.hbs",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/routes/index.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/cheevie-edit-form.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/login.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/register.hbs",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/components/icon-image.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/locales/ru/translations.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/locales/en/translations.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/package.json",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/controllers/profile.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/components/images-drop-area.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/index.html",
-		"/Users/ollar/Documents/dev/cheevies-jerk/ember-cli-build.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/components/cheevie-in-list.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/components/cheevie-in-list.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/helpers/add.js",
@@ -278,7 +283,6 @@
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/controllers/index/create-cheevie.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/controllers/login.js",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/models/cheevie.js",
-		"/Users/ollar/Documents/dev/cheevies-jerk/app/styles/component-styles/index.scss",
 		"/Users/ollar/Documents/dev/cheevies-jerk/dist/assets/vendor.css",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/templates/components/user-in-list.hbs",
 		"/Users/ollar/Documents/dev/cheevies-jerk/app/controllers/register.js",
@@ -367,13 +371,11 @@
 		"/Users/ollar/Documents/dev/scetch-shop/app/templates/pages.hbs",
 		"/Users/ollar/Documents/dev/scetch-shop/app/templates/components/quick-links.hbs",
 		"/Users/ollar/Documents/dev/scetch-shop/app/controllers/checkout.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/locales/en/translations.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/services/cart.js",
-		"/Users/ollar/Documents/dev/scetch-shop/app/templates/checkout.hbs"
+		"/Users/ollar/Documents/dev/scetch-shop/app/locales/en/translations.js"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -388,6 +390,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ctx",
+			"heroUsersWrapper",
+			"canvasWidth",
+			"beta",
+			"gamma",
+			"200",
+			"width",
+			"this",
+			"orientation",
+			"90",
+			"gamma",
+			"beta",
+			"gamma",
+			"x",
+			"alpha",
+			"heroUsersWrapper",
+			"heroCheeviesWrapper",
+			"gyro",
+			"this",
+			"use",
+			"animation",
+			"utils/animation-middleware",
 			"requestAnimationFrame",
 			"function",
 			"style",
@@ -493,26 +517,6 @@
 			"Cancel",
 			"Submit",
 			"label",
-			"email",
-			"Name",
-			"email",
-			"Password",
-			"label",
-			"goToRegister",
-			"placeholder",
-			"Email",
-			"password",
-			"Password",
-			"register",
-			"buttons",
-			"login",
-			"Submit",
-			"changeset",
-			"newPlayer",
-			"FIREBASE_CONNECT_apiKey",
-			"mut",
-			"name",
-			"changeset",
 			"email"
 		],
 		"highlight": true,
@@ -595,8 +599,36 @@
 		"selected_items":
 		[
 			[
+				"ember",
+				"ember-cli-build.js"
+			],
+			[
+				"index",
+				"app/styles/component-styles/index.scss"
+			],
+			[
+				"serv",
+				"app/services/gyro.js"
+			],
+			[
+				"servgyro",
+				"app/services/gyro.js"
+			],
+			[
+				"stylinde",
+				"app/styles/component-styles/index.scss"
+			],
+			[
 				"profile",
-				"app/styles/component-styles/profile.scss"
+				"app/routes/profile.js"
+			],
+			[
+				"image",
+				"app/components/icon-image.js"
+			],
+			[
+				"utils/animation-middleware",
+				"app/utils/animation-middleware.js"
 			],
 			[
 				"anim",
@@ -625,10 +657,6 @@
 			[
 				"bas",
 				"app/styles/_base.scss"
-			],
-			[
-				"index",
-				"app/templates/index.hbs"
 			],
 			[
 				"base",
@@ -705,10 +733,6 @@
 			[
 				"appli",
 				"app/routes/application.js"
-			],
-			[
-				"image",
-				"app/components/images-drop-area.js"
 			],
 			[
 				"tran",
@@ -1085,26 +1109,6 @@
 			[
 				"transpa",
 				"app/transitions/page.js"
-			],
-			[
-				"page.hb",
-				"app/templates/page.hbs"
-			],
-			[
-				"trans",
-				"app/locales/en/translations.js"
-			],
-			[
-				"enti",
-				"app/controllers/entity-manage.js"
-			],
-			[
-				"tr",
-				"app/locales/en/translations.js"
-			],
-			[
-				"check",
-				"app/templates/checkout.hbs"
 			]
 		],
 		"width": 0.0
