@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import firebase from 'firebase';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import imageResize from '../utils/image-resize';
 
 export default Controller.extend({
   getUser: service(),
@@ -21,14 +22,17 @@ export default Controller.extend({
       this.set('cheeviesPickerIsVisible', value);
     },
 
-    uploadImage(file) {
+    uploadImage(_file) {
       if (!this.get('isMe')) return;
-      firebase.storage().ref(`users/${this.get('myId')}`).put(file)
-        .then((snapshot) => {
-          this.get('me').set('imageUrl', snapshot.downloadURL);
-          this.get('me').save();
-        })
-        .catch(() => false);
+
+      imageResize(_file).then((file) => {
+        firebase.storage().ref(`users/${this.get('myId')}`).put(file)
+          .then((snapshot) => {
+            this.get('me').set('imageUrl', snapshot.downloadURL);
+            this.get('me').save();
+          })
+          .catch(() => false);
+      });
     },
 
     removeImage() {
