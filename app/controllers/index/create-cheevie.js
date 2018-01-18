@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import firebase from 'firebase';
-// import { computed } from '@ember/object';
+import imageResize from '../../utils/image-resize';
 
 export default Controller.extend({
   image: null,
@@ -23,13 +23,15 @@ export default Controller.extend({
       this.model.deleteRecord();
       this.transitionToRoute('index');
     },
-    uploadImage(file) {
-      const image = {
-        url: URL.createObjectURL(file),
-      };
+    uploadImage(_file) {
+      imageResize(_file).then((file) => {
+        const image = {
+          url: URL.createObjectURL(file),
+        };
 
-      this.set('image', image);
-      this.set('file', file);
+        this.set('image', image);
+        this.set('file', file);
+      });
     },
 
     removeImage() {
