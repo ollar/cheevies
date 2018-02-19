@@ -1,9 +1,12 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  fields: {
-    name: '',
-    description: '',
+  init() {
+    this._super(...arguments);
+    this.fields = {
+      name: '',
+      description: '',
+    };
   },
 
   actions: {

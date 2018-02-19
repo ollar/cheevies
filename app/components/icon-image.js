@@ -6,22 +6,23 @@ export default Component.extend({
   init(options) {
     this._super(options);
     addObserver(this, 'power', this.updateStyles);
+
+    this.colours = [
+      '#b71c1c',
+      '#880e4f',
+      '#4a148c',
+      '#01579b',
+      '#006064',
+      '#827717',
+      '#f57f17',
+      '#e65100',
+      '#bf360c',
+      '#3e2723',
+    ];
   },
   classNames: ['icon-image'],
   classNameBindings: ['imageUrl:has-image'],
   imageUrl: computed.bool('data.imageUrl'),
-  colours: [
-    '#b71c1c',
-    '#880e4f',
-    '#4a148c',
-    '#01579b',
-    '#006064',
-    '#827717',
-    '#f57f17',
-    '#e65100',
-    '#bf360c',
-    '#3e2723',
-  ],
   name: computed('data.{displayName,name}', function() {
     if (Object.keys(this.get('data')).length === 0) return '';
     return this.get('data').displayName ||

@@ -5,10 +5,11 @@ import { inject as service } from '@ember/service';
 export default ToriiSession.extend({
   store: service(),
 
-  me: {},
 
   init() {
     this._super(...arguments);
+
+    this.me = {};
 
     this.addObserver('isAuthenticated', this, () => {
       if (this.get('isAuthenticated')) {

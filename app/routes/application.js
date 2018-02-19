@@ -3,10 +3,13 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   notify: service(),
-  notificationTypes: ['info', 'success', 'warning', 'error'],
   session: service(),
   getUser: service(),
   firebaseApp: service(),
+  init() {
+    this._super(...arguments);
+    this.notificationTypes = ['info', 'success', 'warning', 'error'];
+  },
   beforeModel(transition) {
     const messaging = this.get('firebaseApp').messaging();
     const _this = this;

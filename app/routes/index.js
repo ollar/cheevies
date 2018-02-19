@@ -4,11 +4,8 @@ import { schedule } from '@ember/runloop';
 import Middleware from '../utils/animation-middleware';
 import $ from 'jquery';
 
-function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
+function handleGyroChange($heroUsers, $heroCheevies, event) {
   let {beta, gamma} = event;
-
-  const uctx = $heroUsersCanvas.getContext('2d');
-  const cctx = $heroCheeviesCanvas.getContext('2d');
 
   if (beta >  89) { beta =  89}
   if (beta < -89) { beta = -89}
@@ -17,41 +14,9 @@ function handleGyroChange($heroUsersCanvas, $heroCheeviesCanvas, event) {
   if (gamma < -89) { gamma = -89}
 
   window.requestAnimationFrame(() => {
-    uctx.clearRect(-90, -90, uctx.canvas.width + 180, uctx.canvas.height + 180);
-    uctx.setTransform(1, 0, 0, 1, gamma, beta);
-    uctx.fillRect(-90, -90, uctx.canvas.width + 180, uctx.canvas.height + 180);
-
-    cctx.clearRect(-90, -90, cctx.canvas.width + 180, cctx.canvas.height + 180);
-    cctx.setTransform(1, 0, 0, 1, gamma, beta);
-    cctx.fillRect(-90, -90, cctx.canvas.width + 180, cctx.canvas.height + 180);
+    $heroUsers.style.backgroundPosition = `${gamma}px ${beta}px`;
+    $heroCheevies.style.backgroundPosition = `${gamma}px ${beta}px`;
   });
-}
-
-function createBGCanvas($parent, image) {
-  const canvas = document.createElement('canvas');
-
-  const ctx = canvas.getContext('2d');
-
-  let canvasWidth = $parent.offsetWidth;
-  let canvasHeight = $parent.offsetHeight;
-
-  const img = new Image();
-  img.src = image;
-  ctx.fillStyle = 'rgba(0,0,0,0)';
-  ctx.fillRect(-90, -90, canvasWidth + 180, canvasHeight + 180);
-
-  img.onload = function() {
-    const pattern = ctx.createPattern(img, 'repeat');
-    ctx.fillStyle = pattern;
-    ctx.fillRect(-90, -90, canvasWidth + 180, canvasHeight + 180);
-  };
-
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
-
-  $parent.appendChild(canvas);
-
-  return canvas;
 }
 
 export default Route.extend({
@@ -71,11 +36,8 @@ export default Route.extend({
       const $heroUsersWrapper = document.querySelector('.hero.users-list');
       const $heroCheeviesWrapper = document.querySelector('.hero.cheevies-list');
 
-      const $heroUsersCanvas = createBGCanvas($heroUsersWrapper, './images/511_2.png');
-      const $heroCheeviesCanvas = createBGCanvas($heroCheeviesWrapper, './images/609_2.png');
-
       const handleGyroChangeCarred =
-        handleGyroChange.bind(null, $heroUsersCanvas, $heroCheeviesCanvas);
+        handleGyroChange.bind(null, $heroUsersWrapper, $heroCheeviesWrapper);
 
       window.addEventListener('deviceorientation', handleGyroChangeCarred, true);
 
