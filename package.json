@@ -61,6 +61,7 @@
   "dependencies": {
     "bulma": "^0.6.1",
     "ember-service-worker-cache-first": "^0.6.2",
-    "firebase": "^3.9.0"
+    "firebase": "^3.9.0",
+    "firebase-functions": "^0.8.1"
   }
 }
