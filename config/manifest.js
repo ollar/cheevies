@@ -1,7 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(environment, appConfig) {
+module.exports = function(/* environment, appConfig */) {
   // See https://github.com/san650/ember-web-app#documentation for a list of
   // supported properties
 

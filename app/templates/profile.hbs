@@ -11,7 +11,7 @@
         images=model.imageUrl
         uploadImage=(action 'uploadImage')
       }}
-        {{icon-image data=this.model size=200 class="user-image"}}
+        {{icon-image data=this.model _size=200 class="user-image"}}
         {{#if isMe}}
           {{#if model.imageUrl}}
             <a class="delete is-large" {{action 'removeImage'}}></a>
@@ -33,7 +33,7 @@
       <div class="cheevies">
         {{#each model.cheevies as |cheevie|}}
           <div class="cheevie-wrapper is-inline-block">
-            {{icon-image data=cheevie size=50 class="is-inline-block"}}
+            {{icon-image data=cheevie _size=50 class="is-inline-block"}}
 
             {{#item-hint data=cheevie}}
               {{#if isMe}}

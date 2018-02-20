@@ -61,9 +61,9 @@ export default Component.extend({
   updateStyles() {
     this.$().css({
       backgroundColor: this.get('backgroundColour'),
-      height: this.attrs.size,
-      width: this.attrs.size,
-      lineHeight: this.attrs.size + 'px',
+      height: this._size,
+      width: this._size,
+      lineHeight: this._size + 'px',
       backgroundImage: this.get('data.imageUrl') ?
         `url(${this.get('data.imageUrl')})` : null,
       boxShadow: this.get('powerColour') ?

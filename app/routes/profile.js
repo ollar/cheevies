@@ -1,10 +1,17 @@
 import Route from '@ember/routing/route';
 import { schedule } from '@ember/runloop';
 
+import $ from 'jquery';
+
 import Middleware from '../utils/animation-middleware';
 
 export default Route.extend({
-  cheevies: [],
+  init() {
+    this._super(...arguments);
+
+    this.cheevies = [];
+  },
+
   afterModel() {
     return this.get('store').findAll('cheevie').then(res => this.set('cheevies', res));
   },
