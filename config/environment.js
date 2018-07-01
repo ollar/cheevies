@@ -2,6 +2,15 @@
 'use strict';
 require('dotenv').config();
 
+const {
+  apiKey,
+  authDomain,
+  databaseURL,
+  storageBucket,
+  projectId,
+  messagingSenderId,
+} = process.env;
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'cheevies-jerk',
@@ -15,8 +24,8 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -25,15 +34,15 @@ module.exports = function(environment) {
     },
 
     firebase: {
-      apiKey: process.env.FIREBASE_CONNECT_apiKey,
-      authDomain: process.env.FIREBASE_CONNECT_authDomain,
-      databaseURL: process.env.FIREBASE_CONNECT_databaseURL,
-      projectId: process.env.FIREBASE_CONNECT_projectId,
-      storageBucket: process.env.FIREBASE_CONNECT_storageBucket,
-      messagingSenderId: process.env.FIREBASE_CONNECT_messagingSenderId,
+      apiKey,
+      authDomain,
+      databaseURL,
+      projectId,
+      storageBucket,
+      messagingSenderId,
     },
     torii: {
-      sessionServiceName: 'session'
+      sessionServiceName: 'session',
     },
     i18n: {
       defaultLocale: 'ru',
