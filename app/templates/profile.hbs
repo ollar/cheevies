@@ -11,6 +11,8 @@
         images=model.imageUrl
         uploadImage=(action 'uploadImage')
       }}
+        {{avatar-icon data=model image=avatar _size=200 class="user-image"}}
+
         {{icon-image data=this.model _size=200 class="user-image"}}
         {{#if isMe}}
           {{#if model.imageUrl}}

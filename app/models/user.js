@@ -10,6 +10,7 @@ const poinsMap = {
 export default DS.Model.extend({
   name: DS.attr('string'),
   imageUrl: DS.attr('string'),
+  'image-set': DS.belongsTo('image-set'),
   email: DS.attr('string'),
   fcmToken: DS.attr('string'),
 
