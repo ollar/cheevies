@@ -9,8 +9,7 @@ export default Component.extend({
     this._super(...arguments);
     addObserver(this, 'power', this.updateStyles);
   },
-  // classNameBindings: ['imageUrl:has-image'],
-  imageUrl: computed.bool('data.imageUrl'),
+  classNameBindings: ['image:has-image'],
   name: computed('data.{displayName,name}', function() {
     if (Object.keys(this.get('data')).length === 0) return '';
     return (
