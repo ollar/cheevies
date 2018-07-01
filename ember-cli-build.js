@@ -3,6 +3,10 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+const environment = EmberApp.env();
+const IS_PROD = environment === 'production';
+// const IS_TEST = environment === 'test';
+
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
@@ -10,14 +14,12 @@ module.exports = function(defaults) {
     //   enabled: true,
     // },
     'ember-service-worker': {
-      // enabled: false,
+      enabled: IS_PROD,
       versionStrategy: 'every-build',
     },
     'esw-cache-first': {
-      patterns: [
-        'https://firebasestorage.googleapis.com/(.+)'
-      ],
-    }
+      patterns: ['https://firebasestorage.googleapis.com/(.+)'],
+    },
   });
 
   app.import('node_modules/bulma/css/bulma.css');
