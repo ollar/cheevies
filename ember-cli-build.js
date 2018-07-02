@@ -10,9 +10,9 @@ const IS_PROD = environment === 'production';
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
-    // "ember-cli-critical": {
-    //   enabled: true,
-    // },
+    'ember-cli-critical': {
+      enabled: IS_PROD,
+    },
     'ember-service-worker': {
       enabled: IS_PROD,
       versionStrategy: 'every-build',
