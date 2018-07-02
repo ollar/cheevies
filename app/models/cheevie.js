@@ -10,6 +10,7 @@ export default DS.Model.extend({
       };
   },
 
+  'image-set': DS.belongsTo('image-set'),
   name: DS.attr('string'),
   description: DS.attr('string'),
   imageUrl: DS.attr('string'),

@@ -4,7 +4,7 @@
       {{t 'buttons.edit'}}
     </button>
     <figure class="image">
-      <img src={{model.imageUrl}}>
+      <img src={{image.url}}>
     </figure>
 
     <h1 class="title">
@@ -23,7 +23,6 @@
     </button>
 
     {{#images-drop-area
-      images=model.imageUrl
       uploadImage=(action 'uploadImage')
     }}
       {{#if image}}

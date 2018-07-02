@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import firebase from 'firebase';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import imageResize from '../utils/image-resize';
@@ -69,7 +68,7 @@ export default Controller.extend({
     },
 
     uploadImage(files) {
-      // if (!this.get('isMe')) return;
+      if (!this.get('isMe')) return;
       const file = files[0];
 
       if (!file || file.type.indexOf('image') < 0) return;
