@@ -5,20 +5,3 @@
 .users-list {
   background-image: url('../images/511_2.png');
 }
-
-.cheevies-in-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  @include sm() {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .cheevie-item {
-    padding: 0.5rem;
-  }
-
-  .icon-image {
-    display: inline-flex;
-  }
-}

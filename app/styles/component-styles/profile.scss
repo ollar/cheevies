@@ -2,7 +2,7 @@
   padding: 0.5rem 1.5rem;
 }
 
-.name {
+.title.name {
   margin: 1.5rem 0;
 }
 
@@ -52,7 +52,7 @@
   }
 
   &:first-child {
-    .item-hint{
+    .item-hint {
       left: 0;
       transform: translateX(0);
     }

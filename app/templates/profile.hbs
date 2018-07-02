@@ -55,17 +55,15 @@
   <div class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <section class="section">
-        <div class="columns is-mobile is-centered is-multiline">
+        <div class="cheevies-in-grid is-mobile is-centered is-multiline">
           {{#each cheevies as |cheevie|}}
-            <div class="column has-text-centered">
+            <div class="cheevie-item has-text-centered">
               <div {{action 'pickCheevie' cheevie on="click"}}>
                 {{cheevie-in-list cheevie=cheevie class="is-inline-block"}}
               </div>
             </div>
           {{/each}}
         </div>
-      </section>
     </div>
     <button class="modal-close is-large" aria-label="close" {{action 'showCheeviesPicker' false}}></button>
   </div>
