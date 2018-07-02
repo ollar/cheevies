@@ -48,13 +48,28 @@ export default Controller.extend({
       });
   },
 
+  removeImage() {
+    if (!this.get('isMe')) return resolve();
+
+    return this.model
+      .get('image-set')
+      .then(imageSet => {
+        if (!imageSet) resolve();
+        imageSet.eachRelationship(imageKey =>
+          imageSet.get(imageKey).then(image => image.destroyRecord())
+        );
+        return imageSet.destroyRecord();
+      })
+      .catch(() => true);
+  },
+
   actions: {
     showCheeviesPicker(value) {
       this.set('cheeviesPickerIsVisible', value);
     },
 
     uploadImage(files) {
-      if (!this.get('isMe')) return;
+      // if (!this.get('isMe')) return;
       const file = files[0];
 
       if (!file || file.type.indexOf('image') < 0) return;
@@ -81,21 +96,6 @@ export default Controller.extend({
             text: err.message,
           })
         );
-    },
-
-    removeImage() {
-      if (!this.get('isMe')) return resolve();
-
-      return this.model
-        .get('image-set')
-        .then(imageSet => {
-          if (!imageSet) resolve();
-          imageSet.eachRelationship(imageKey =>
-            imageSet.get(imageKey).then(image => image.destroyRecord())
-          );
-          return imageSet.destroyRecord();
-        })
-        .catch(() => true);
     },
 
     pickCheevie(cheevie) {
