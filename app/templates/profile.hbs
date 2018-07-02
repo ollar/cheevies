@@ -33,7 +33,7 @@
       <div class="cheevies">
         {{#each model.cheevies as |cheevie|}}
           <div class="cheevie-wrapper is-inline-block">
-            {{icon-image data=cheevie _size=50 class="is-inline-block"}}
+            {{icon-image data=cheevie image=(get cheevie.image-set '64') _size=50 class="is-inline-block"}}
 
             {{#item-hint data=cheevie}}
               {{#if isMe}}
