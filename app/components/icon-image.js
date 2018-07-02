@@ -1,4 +1,3 @@
-// import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { addObserver } from '@ember/object/observers';
 
@@ -32,9 +31,6 @@ export default Component.extend({
       height: this._size,
       width: this._size,
       lineHeight: this._size + 'px',
-      backgroundImage: this.get('data.imageUrl')
-        ? `url(${this.get('data.imageUrl')})`
-        : null,
       boxShadow: this.get('powerColour')
         ? `0 0 0 3px ${this.get('powerColour')}`
         : null,

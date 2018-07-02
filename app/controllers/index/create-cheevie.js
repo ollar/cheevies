@@ -1,21 +1,16 @@
+import { computed } from '@ember/object';
 import Controller from '@ember/controller';
-import firebase from 'firebase';
-import imageResize from '../../utils/image-resize';
+import ImageUploadMixin from '../../mixins/image-uploader';
 
-export default Controller.extend({
-  image: null,
-  file: null,
+export default Controller.extend(ImageUploadMixin, {
+  image: computed.readOnly('model.image-set.256'),
+
+  _uploadPath(image) {
+    return `cheevies/${this.model.id}/${image.width}/${image.name}`;
+  },
+
   actions: {
     updateCheevie() {
-      if (this.get('file')) {
-        firebase.storage().ref(`cheevies/${this.get('model.id')}`).put(this.get('file'))
-          .then((snapshot) => {
-            this.get('model').set('imageUrl', snapshot.downloadURL);
-            this.get('model').save();
-          })
-          .catch(() => false);
-      }
-
       this.get('model').save();
       this.transitionToRoute('index');
     },
@@ -23,19 +18,14 @@ export default Controller.extend({
       this.model.deleteRecord();
       this.transitionToRoute('index');
     },
-    uploadImage(_file) {
-      imageResize(_file).then((file) => {
-        const image = {
-          url: URL.createObjectURL(file),
-        };
-
-        this.set('image', image);
-        this.set('file', file);
-      });
+    uploadImage(files) {
+      const file = files[0];
+      if (!file || file.type.indexOf('image') < 0) return;
+      return this._uploadImage(file);
     },
 
     removeImage() {
-      this.set('image', null);
+      return this._removeImage();
     },
-  }
+  },
 });
