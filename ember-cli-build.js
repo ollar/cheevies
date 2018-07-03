@@ -20,6 +20,9 @@ module.exports = function(defaults) {
     'esw-cache-first': {
       patterns: ['https://firebasestorage.googleapis.com/(.+)'],
     },
+    'asset-cache': {
+      include: ['assets/**/*', 'images/**/*'],
+    },
 
     hinting: IS_TEST,
     tests: IS_TEST,
@@ -32,6 +35,9 @@ module.exports = function(defaults) {
   });
 
   app.import('node_modules/bulma/css/bulma.css');
+
+  app.import('node_modules/web-animation-middleware/dist/bundle.iife.js');
+  app.import('vendor/shims/web-animation-middleware.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

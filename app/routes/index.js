@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { schedule } from '@ember/runloop';
-import Middleware from '../utils/animation-middleware';
+import Middleware from 'web-animation-middleware';
 import $ from 'jquery';
 
 export default Route.extend({
