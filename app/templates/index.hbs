@@ -29,8 +29,8 @@
       </h1>
       <div class="cheevies-in-grid">
         {{#each model.cheevies as |cheevie|}}
-          {{#link-to 'index.cheevie-details' cheevie class="cheevie-item is-inline-block has-text-centered"}}
-            {{cheevie-in-list cheevie=cheevie class="is-inline-block has-text-centered"}}
+          {{#link-to 'index.cheevie-details' cheevie class="cheevie-item has-text-centered"}}
+            {{cheevie-in-list cheevie=cheevie class="has-text-centered"}}
           {{/link-to}}
         {{/each}}
       </div>
