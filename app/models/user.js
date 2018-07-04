@@ -17,6 +17,8 @@ export default DS.Model.extend({
   unseenCheevies: DS.hasMany('cheevie'),
   badges: DS.hasMany('badge'),
 
+  created: DS.attr('number'),
+
   exp: computed('cheevies', 'badges', function() {
     const exp = this.get('cheevies').reduce((sum, item) => {
       return sum + poinsMap[item.get('power')];

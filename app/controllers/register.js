@@ -12,33 +12,22 @@ export default Controller.extend({
 
   actions: {
     handleSubmit() {
-      this.get('session').register(this.get('fields.email'), this.get('fields.password'))
-        .then((newUser) => {
-          return newUser.updateProfile({
-            displayName: this.get('fields.name'),
-          })
-          .then(() => {
-            let user = this.get('store').createRecord('user', {
-              name: this.get('fields.name'),
-              imageUrl: '',
-              email: this.get('fields.email'),
-            });
-
-            user.save();
-          });
-        })
+      this.get('session')
+        .register(this.get('fields.email'), this.get('fields.password'))
         .then(() => {
-          return this.get('session').fetch().then(() => {
-            this.transitionToRoute('index');
-          });
+          return this.get('session')
+            .fetch()
+            .then(() => {
+              this.transitionToRoute('index');
+            });
         })
-        .catch((e) => {
+        .catch(e => {
           this.send('notify', 'error', e.toString());
         });
     },
 
     goToLogin() {
       this.transitionToRoute('login');
-    }
+    },
   },
 });

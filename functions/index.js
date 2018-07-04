@@ -25,6 +25,26 @@ exports.removeImageFileOnModelDestroy = functions.database
     return false;
   });
 
+exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
+  var { uid, email, displayName } = user;
+  return admin
+    .database()
+    .ref('/users/' + uid)
+    .set({
+      name: displayName,
+      email,
+      created: Date.now(),
+    });
+});
+
+exports.removeUserModelOnDelete = functions.auth.user().onDelete(user => {
+  var { uid } = user;
+  return admin
+    .database()
+    .ref('/users/' + uid)
+    .remove();
+});
+
 exports.onAddCheevie = functions.database
   .ref('/users/{userId}/cheevies/{cheevieId}')
   .onCreate(event => {
