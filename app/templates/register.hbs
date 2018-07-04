@@ -2,34 +2,41 @@
   <h1 class="title">
     {{t 'register.title'}}
   </h1>
+  <ul class="form-errors">
+    {{#each model.errors as |error|}}
+    <li>
+        {{error.attribute}}: {{error.message}}
+    </li>
+    {{/each}}
+  </ul>
   <form {{action 'handleSubmit' on="submit"}}>
     <div class="field">
         <label class="label" for="name">{{t 'form.name.label'}}</label>
         <div class="control">
-            {{input class="input" id="name" type="text" placeholder=(t 'form.name.placeholder') value=fields.name}}
+            {{input class="input" id="name" type="text" placeholder=(t 'form.name.placeholder') value=model.name}}
         </div>
     </div>
 
     <div class="field">
       <label class="label" for="email">{{t 'form.email.label'}}</label>
       <div class="control">
-        {{input class="input" id="email" type="email" placeholder=(t 'form.email.placeholder') value=fields.email}}
+        {{input class="input" id="email" type="email" placeholder=(t 'form.email.placeholder') value=model.email}}
       </div>
     </div>
 
     <div class="field">
       <label class="label" for="password">{{t 'form.password.label'}}</label>
       <div class="control">
-        {{input class="input" id="password" type="password" placeholder=(t 'form.password.placeholder') value=fields.password}}
+        {{input class="input" id="password" type="password" placeholder=(t 'form.password.placeholder') value=model.password}}
       </div>
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">{{t 'register.buttons.submit'}}</button>
+        <button class="button is-link" type="submit">{{t 'register.buttons.submit'}}</button>
       </div>
       <div class="control">
-        <button class="button is-text" type="button" {{action 'goToLogin'}}>{{t 'register.buttons.login'}}</button>
+          {{link-to (t 'register.buttons.login') 'login' class="button is-text"}}
       </div>
     </div>
   </form>
