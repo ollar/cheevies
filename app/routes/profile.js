@@ -1,9 +1,7 @@
 import Route from '@ember/routing/route';
 import { schedule } from '@ember/runloop';
 
-import $ from 'jquery';
-
-import Middleware from '../utils/animation-middleware';
+import Middleware from 'web-animation-middleware';
 
 export default Route.extend({
   init() {
@@ -13,7 +11,9 @@ export default Route.extend({
   },
 
   afterModel() {
-    return this.get('store').findAll('cheevie').then(res => this.set('cheevies', res));
+    return this.get('store')
+      .findAll('cheevie')
+      .then(res => this.set('cheevies', res));
   },
 
   activate() {
@@ -30,15 +30,12 @@ export default Route.extend({
         window.scrollTo(0, headerHeight);
       }
 
-      am.prepare((next) => {
-        $($iconImage).css({transform: 'scale(1.2)'});
-        $($title).css({opacity: 0});
-        $($cheevies).css({transform: 'scale(0)', opacity: 0});
+      am.prepare($iconImage, { transform: 'scale(1.2)' });
+      am.prepare($title, { opacity: 0 });
+      am.prepare($cheevies, { transform: 'scale(0)', opacity: 0 });
 
-        next();
-      });
-
-      am.step($iconImage,
+      am.step(
+        $iconImage,
         [
           {
             transform: 'scale(1.2)',
@@ -55,15 +52,20 @@ export default Route.extend({
         }
       );
 
-      am.step($title, { opacity: [0,1] }, {
-        duration: 100,
-        fill: 'forwards',
-      });
+      am.step(
+        $title,
+        { opacity: [0, 1] },
+        {
+          duration: 100,
+          fill: 'forwards',
+        }
+      );
 
-      am.chain($cheevies,
+      am.chain(
+        $cheevies,
         [
-          {transform: 'scale(0)', opacity: 0},
-          {transform: 'scale(1)', opacity: 1},
+          { transform: 'scale(0)', opacity: 0 },
+          { transform: 'scale(1)', opacity: 1 },
         ],
         {
           duration: 24,
@@ -81,11 +83,13 @@ export default Route.extend({
 
   setupController(controller, model) {
     this._super(controller, model);
-    controller.set('cheevies', this.get('cheevies'))
+    controller.set('cheevies', this.get('cheevies'));
   },
 
   userHasEnteredData() {
-    return Object.keys(this.get('controller.model').changedAttributes()).length > 0;
+    return (
+      Object.keys(this.get('controller.model').changedAttributes()).length > 0
+    );
   },
 
   actions: {
@@ -94,6 +98,6 @@ export default Route.extend({
         this.get('controller.model').save();
       }
       return true;
-    }
-  }
+    },
+  },
 });
