@@ -17,7 +17,7 @@ export default Component.extend({
     signOut() {
       this.get('session')
         .close()
-        .then(() => this.router.transitionTo('index'));
+        .then(() => this.router.transitionTo('login'));
     },
   },
 });
