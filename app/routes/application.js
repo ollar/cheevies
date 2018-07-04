@@ -18,13 +18,14 @@ export default Route.extend({
       const me = this.get('session.me');
 
       if (Object.keys(me).length) {
-        messaging.requestPermission()
+        messaging
+          .requestPermission()
           .then(() => messaging.getToken())
-          .then((token) => {
+          .then(token => {
             this.get('getUser.user').set('fcmToken', token);
             this.get('getUser.user').save();
           })
-          .catch((err) => {
+          .catch(err => {
             this.send('notify', 'error', err.toString());
           });
         if (me.get('unseenCheevies.length')) {
@@ -33,11 +34,12 @@ export default Route.extend({
       }
     });
 
-    messaging.onMessage((payload) => {
+    messaging.onMessage(payload => {
       _this.send('notify', 'info', payload.notification.body);
     });
 
-    return this.get('session').fetch()
+    return this.get('session')
+      .fetch()
       .catch(() => {
         if (['login', 'register'].indexOf(transition.targetName) > -1) {
           return;
@@ -57,6 +59,6 @@ export default Route.extend({
         return this.send('error', text);
       }
       return this.get('notify')[type](text);
-    }
-  }
+    },
+  },
 });
