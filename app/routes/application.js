@@ -51,9 +51,6 @@ export default Route.extend({
     signOut: function() {
       this.get('session').close();
     },
-    error(e) {
-      console.error(e);
-    },
     notify(type, text) {
       if (this.get('notificationTypes').indexOf(type) === -1) {
         return this.send('error', text);
