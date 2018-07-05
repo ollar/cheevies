@@ -63,7 +63,7 @@ export default {
         normal: 'Нормальная',
         high: 'Сложная',
       },
-    }
+    },
   },
 
   profile: {
@@ -71,7 +71,7 @@ export default {
       'give-cheevie': 'Вручить ачивку',
     },
     links: {
-      'refuse_gift': 'Отказаться'
+      refuse_gift: 'Отказаться',
     },
   },
 
@@ -95,5 +95,5 @@ export default {
     },
   },
 
-  footer_message: 'Сделано ♥ 2017',
+  footer_message: 'Сделано ♥ SPB 2017',
 };

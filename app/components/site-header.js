@@ -7,17 +7,17 @@ export default Component.extend({
   classNames: ['header'],
 
   session: service(),
-  getUser: service(),
+  me: service(),
   router: service(),
 
-  user: computed.readOnly('getUser.user'),
+  user: computed.readOnly('me.model'),
   avatar: computed.readOnly('user.image-set.64'),
 
   actions: {
     signOut() {
       this.get('session')
-        .close()
-        .then(() => this.router.transitionTo('login'));
+        .invalidate()
+        .then(() => this.get('router').transitionTo('login'));
     },
   },
 });

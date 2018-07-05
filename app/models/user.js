@@ -19,7 +19,7 @@ export default DS.Model.extend({
 
   created: DS.attr('number'),
 
-  exp: computed('cheevies', 'badges', function() {
+  exp: computed('cheevies.[]', 'badges', function() {
     const exp = this.get('cheevies').reduce((sum, item) => {
       return sum + poinsMap[item.get('power')];
     }, 0);

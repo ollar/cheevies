@@ -2,9 +2,9 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  getUser: service(),
+  me: service(),
   model() {
-    return this.get('getUser.user');
+    return this.get('me').fetch();
   },
 
   actions: {
@@ -13,6 +13,6 @@ export default Route.extend({
       model.set('unseenCheevies', []);
       model.save();
       return true;
-    }
-  }
+    },
+  },
 });

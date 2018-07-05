@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import Validator from '../../mixins/model-validator';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import firebase from 'firebase';
 
 export default DS.Model.extend(Validator, {
   session: service(),
@@ -27,11 +28,16 @@ export default DS.Model.extend(Validator, {
   })),
 
   signUp() {
-    return this.get('session')
-      .register(this.get('email'), this.get('password'))
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.get('email'), this.get('password'))
+      .then(newUser =>
+        newUser.updateProfile({
+          displayName: this.name,
+        })
+      )
       .then(() =>
-        this.get('session').open('firebase', {
-          provider: 'password',
+        this.session.authenticate('authenticator:firebase', {
           email: this.get('email'),
           password: this.get('password'),
         })

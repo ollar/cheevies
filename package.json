@@ -50,6 +50,7 @@
     "ember-service-worker": "^0.6.13",
     "ember-service-worker-asset-cache": "^0.6.3",
     "ember-service-worker-index": "^0.6.9",
+    "ember-simple-auth": "^1.6.0",
     "ember-source": "~3.1.0",
     "ember-web-app": "^2.3.0",
     "ember-welcome-page": "^3.0.0",
@@ -57,8 +58,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "image-resize-util": "0.0.5",
     "images-drop-area-component": "0.0.2",
-    "loader.js": "^4.2.3",
-    "torii": "^0.10.1"
+    "loader.js": "^4.2.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

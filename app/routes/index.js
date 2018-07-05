@@ -2,8 +2,9 @@ import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from 'web-animation-middleware';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend({
+export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     return hash({
       users: this.get('store').findAll('user'),

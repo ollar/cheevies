@@ -4,13 +4,12 @@ import { inject as service } from '@ember/service';
 import ImageUploadMixin from '../mixins/image-uploader';
 
 export default Controller.extend(ImageUploadMixin, {
-  getUser: service(),
+  me: service(),
 
   cheeviesPickerIsVisible: false,
 
   userId: computed.readOnly('model.id'),
-  myId: computed.readOnly('getUser.user.id'),
-  me: computed.alias('getUser.user'),
+  myId: computed.readOnly('me.model.id'),
 
   _uploadPath(image) {
     return `users/${this.model.id}/${image.width}/${image.name}`;
