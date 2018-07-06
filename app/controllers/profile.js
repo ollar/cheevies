@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ImageUploadMixin from '../mixins/image-uploader';
 import Popper from 'popper';
+import $ from 'jquery';
 
 export default Controller.extend(ImageUploadMixin, {
   me: service(),
@@ -55,6 +56,9 @@ export default Controller.extend(ImageUploadMixin, {
     cheevieDetails(cheevie) {
       const reference = document.querySelector(`#${cheevie.id}`);
       const popper = document.querySelector(`#${cheevie.id}_hint`);
+
+      $('.item-hint').hide();
+      $(popper).show();
 
       if (this.popper) this.popper.destroy();
 
