@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ImageUploadMixin from '../mixins/image-uploader';
+import Popper from 'popper';
 
 export default Controller.extend(ImageUploadMixin, {
   me: service(),
@@ -49,6 +50,15 @@ export default Controller.extend(ImageUploadMixin, {
     refuseCheevie(cheevie) {
       this.model.get('cheevies').removeObject(cheevie);
       this.model.save();
+    },
+
+    cheevieDetails(cheevie) {
+      const reference = document.querySelector(`#${cheevie.id}`);
+      const popper = document.querySelector(`#${cheevie.id}_hint`);
+
+      if (this.popper) this.popper.destroy();
+
+      this.popper = new Popper(reference, popper);
     },
   },
 });

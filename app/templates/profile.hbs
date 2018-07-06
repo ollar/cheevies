@@ -32,15 +32,17 @@
       </h1>
       <div class="cheevies">
         {{#each model.cheevies as |cheevie|}}
-          <div class="cheevie-wrapper is-inline-block">
+          <div class="cheevie-wrapper is-inline-block" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
             {{icon-image data=cheevie image=(get cheevie.image-set '64') _size=50 class="is-inline-block"}}
+          </div>
+        {{/each}}
 
-            {{#item-hint data=cheevie}}
+        {{#each model.cheevies as |cheevie|}}
+            {{#item-hint data=cheevie id=(add cheevie.id '_hint')}}
               {{#if isMe}}
                 <a class="delete is-small" {{action 'refuseCheevie' cheevie}}></a>
               {{/if}}
             {{/item-hint}}
-          </div>
         {{/each}}
       </div>
 

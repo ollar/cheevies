@@ -39,6 +39,9 @@ module.exports = function(defaults) {
   app.import('node_modules/web-animation-middleware/dist/bundle.iife.js');
   app.import('vendor/shims/web-animation-middleware.js');
 
+  app.import('node_modules/popper.js/dist/umd/popper.min.js');
+  app.import('vendor/shims/popper.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

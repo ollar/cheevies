@@ -67,6 +67,7 @@
     "dependencies": {
         "bulma": "^0.7.1",
         "ember-service-worker-cache-first": "^0.6.2",
+        "tooltip.js": "^1.2.0",
         "web-animation-middleware": "^1.0.2"
     }
 }
