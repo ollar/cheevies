@@ -11,6 +11,7 @@ export default DS.Model.extend({
   },
 
   'image-set': DS.belongsTo('image-set'),
+  group: DS.belongsTo(),
   name: DS.attr('string'),
   description: DS.attr('string'),
   power: DS.attr('string', { defaultValue: 'low' }),
