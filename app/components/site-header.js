@@ -10,7 +10,10 @@ export default Component.extend({
   me: service(),
   router: service(),
 
-  user: computed.readOnly('me.model'),
+  user: computed('me.model', function() {
+    if (this.get('me.model')) return this.get('me.model');
+    return {};
+  }),
   avatar: computed.readOnly('user.image-set.64'),
 
   actions: {

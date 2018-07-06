@@ -3,10 +3,14 @@ import { hash } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from 'web-animation-middleware';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import { inject as service } from '@ember/service';
 
 export default Route.extend(AuthenticatedRouteMixin, {
+  me: service(),
+
   model() {
     return hash({
+      me: this.me.fetch(),
       users: this.get('store').findAll('user'),
       badges: this.get('store').findAll('badge'),
       cheevies: this.get('store').findAll('cheevie'),

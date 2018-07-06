@@ -9,13 +9,9 @@ export default Component.extend({
     addObserver(this, 'power', this.updateStyles);
   },
   classNameBindings: ['image:has-image'],
-  name: computed('data.{displayName,name}', function() {
+  name: computed('data.name', function() {
     if (Object.keys(this.get('data')).length === 0) return '';
-    return (
-      this.get('data').displayName ||
-      (this.get('data').get && this.get('data').get('name')) ||
-      'anonymous'
-    );
+    return this.getWithDefault('data.name', 'anonymous');
   }),
 
   power: computed.readOnly('data.power'),
