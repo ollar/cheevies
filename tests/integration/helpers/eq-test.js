@@ -1,17 +1,62 @@
-
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('eq', 'helper:eq', {
-  integration: true
+  integration: true,
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('two values equals', function(assert) {
+  this.render(hbs`{{eq '1' '1'}}`);
 
-  this.render(hbs`{{eq inputValue}}`);
-
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'true'
+  );
 });
 
+test('three values equals', function(assert) {
+  this.render(hbs`{{eq '1' '1' '1'}}`);
+
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'true'
+  );
+});
+
+// TODO: some bug
+// test('three values equals', function(assert) {
+//   this.render(hbs`{{eq undefined undefined}}`);
+
+//   assert.equal(
+//     this.$()
+//       .text()
+//       .trim(),
+//     'true'
+//   );
+// });
+
+test('two diff values not equals', function(assert) {
+  this.render(hbs`{{eq '1' '2'}}`);
+
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'false'
+  );
+});
+
+test('three diff values not equals', function(assert) {
+  this.render(hbs`{{eq '1' '2' '1'}}`);
+
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'false'
+  );
+});
