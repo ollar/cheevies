@@ -9,6 +9,7 @@ export default Controller.extend(ImageUploadMixin, {
   me: service(),
 
   cheeviesPickerIsVisible: false,
+  openPopper: '',
 
   userId: computed.readOnly('model.id'),
   myId: computed.readOnly('me.model.id'),
@@ -56,13 +57,18 @@ export default Controller.extend(ImageUploadMixin, {
     cheevieDetails(cheevie) {
       const reference = document.querySelector(`#${cheevie.id}`);
       const popper = document.querySelector(`#${cheevie.id}_hint`);
+      if (this.popper) this.popper.destroy();
+      if (cheevie.id === this.openPopper) {
+        $('.item-hint').hide();
+        this.openPopper = '';
+        return;
+      }
 
       $('.item-hint').hide();
       $(popper).show();
 
-      if (this.popper) this.popper.destroy();
-
       this.popper = new Popper(reference, popper);
+      this.openPopper = cheevie.id;
     },
   },
 });
