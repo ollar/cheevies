@@ -10,13 +10,6 @@
 
 
   <div class="level-right">
-    <div>
-      {{#if session.isAuthenticated}}
-        {{#if user}}
-        {{!-- <div class="left-side"> --}}
-        {{/if}}
-      {{/if}}
-    </div>
     <div class="">
       {{#if session.isAuthenticated}}
       <button class="button is-light" {{action 'signOut'}}>{{t 'buttons.sign_out'}}</button>

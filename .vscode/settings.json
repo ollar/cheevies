@@ -1,15 +1,15 @@
 {
   "prettier.singleQuote": true,
   "prettier.disableLanguages": ["vue", "hbs", "scss", "sass", "css"],
-  "prettier.tabWidth": 4,
+  "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
   "editor.detectIndentation": false,
-  "editor.tabSize": 4,
+  "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "[handlebars]": {
-      "editor.formatOnSave": false
+    "editor.formatOnSave": false
   },
   "[html]": {
-      "editor.formatOnSave": false
+    "editor.formatOnSave": false
   }
 }

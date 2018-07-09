@@ -11,6 +11,12 @@
   </ul>
   <form {{action 'handleSubmit' on="submit"}}>
     <div class="field">
+        <label class="label" for="group">{{t 'form.name.group'}}</label>
+        <div class="control">
+            {{input class="input" id="group" type="text" placeholder=(t 'form.group.placeholder') value=model.group}}
+        </div>
+    </div>
+    <div class="field">
         <label class="label" for="name">{{t 'form.name.label'}}</label>
         <div class="control">
             {{input class="input" id="name" type="text" placeholder=(t 'form.name.placeholder') value=model.name}}

@@ -10,6 +10,7 @@ export default DS.Model.extend(Validator, {
   name: DS.attr('string'),
   password: DS.attr('string'),
   email: DS.attr('string'),
+  group: DS.attr('string'),
 
   validations: computed(() => ({
     name: {
@@ -24,6 +25,9 @@ export default DS.Model.extend(Validator, {
     email: {
       presence: true,
       email: true,
+    },
+    group: {
+      presence: true,
     },
   })),
 

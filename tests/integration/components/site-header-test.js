@@ -1,24 +1,45 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, clearRender } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('site-header', 'Integration | Component | site header', {
-  integration: true
+import Service from '@ember/service';
+import { computed } from '@ember/object';
+
+const meStub = Service.extend({
+  model: computed(() => ({
+    name: 'tester',
+  })),
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+const sessionStub = Service.extend({
+  isAuthenticated: true,
+});
 
-  this.render(hbs`{{site-header}}`);
+module('Integration | Component | site-header', function(hooks) {
+  setupRenderingTest(hooks);
 
-  assert.equal(this.$().text().trim(), '');
+  test('it renders', async function(assert) {
+    this.owner.register('service:me', meStub);
+    this.owner.register('service:session', sessionStub);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#site-header}}
-      template block text
-    {{/site-header}}
-  `);
+    await render(hbs`{{site-header}}`);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    const myName = this.owner.lookup('service:me').get('model.name');
+
+    assert.equal(
+      this.element.querySelector('.user-name').textContent.trim(),
+      myName
+    );
+
+    assert.ok(this.element.querySelector('.level-right button'));
+
+    await clearRender();
+
+    this.owner.lookup('service:session').set('isAuthenticated', false);
+
+    await render(hbs`{{site-header}}`);
+
+    assert.notOk(this.element.querySelector('.level-right button'));
+  });
 });

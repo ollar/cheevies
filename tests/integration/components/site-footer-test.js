@@ -1,36 +1,44 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, clearRender } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('site-footer', 'Integration | Component | site footer', {
-  integration: true,
-});
+module('Integration | Component | site-footer', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders in rus', async function(assert) {
+    this.owner.lookup('service:i18n').set('locale', 'ru');
 
-  this.set('footerMessage', hbs`{{t 'footer_message'}}`);
+    await render(hbs`{{t 'footer_message'}}`);
+    const footer_message = this.element.textContent;
+    await clearRender();
 
-  this.render(hbs`{{site-footer}}`);
+    await render(hbs`{{site-footer}}`);
+    assert.equal(this.element.textContent.trim(), footer_message);
+  });
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    this.get('footerMessage')
-  );
+  test('it renders in eng', async function(assert) {
+    this.owner.lookup('service:i18n').set('locale', 'en');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#site-footer}}
-      template block text
-    {{/site-footer}}
-  `);
+    await render(hbs`{{t 'footer_message'}}`);
+    const footer_message = this.element.textContent;
+    await clearRender();
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'template block text'
-  );
+    await render(hbs`{{site-footer}}`);
+    assert.equal(this.element.textContent.trim(), footer_message);
+  });
+
+  test('it renders with inner', async function(assert) {
+    this.owner.lookup('service:i18n').set('locale', 'ru');
+
+    await render(hbs`{{t 'footer_message'}}`);
+    const footer_message = this.element.textContent;
+    await clearRender();
+
+    await render(hbs`{{#site-footer}}test message{{/site-footer}}`);
+    assert.equal(
+      this.element.textContent.trim(),
+      `test message\n${footer_message}`
+    );
+  });
 });
