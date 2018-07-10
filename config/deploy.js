@@ -1,9 +1,17 @@
 /* eslint-env node */
 'use strict';
 
+require('dotenv').config();
+
+const { deployToken } = process.env;
+
 module.exports = function(deployTarget) {
   let ENV = {
-    build: {}
+    build: {},
+    firebase: {
+      deployToken,
+      // deployToken: process.env.FIREBASE_TOKEN (if .env stuff is your style)
+    },
     // include other plugin configuration that applies to all deploy targets here
   };
 
