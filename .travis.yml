@@ -17,4 +17,7 @@ script:
 - npm run lint:js
 - npm test
 after_success:
+- cd functions
+- npm i
+- cd ..
 - ember deploy production
