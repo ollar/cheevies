@@ -1,20 +1,3 @@
 <nav class="center-wrapper container level is-mobile" role="navigation" aria-label="main navigation">
-  <div class="level-left">
-    {{#link-to 'profile' user}}
-      {{icon-image data=user image=avatar class="header-icon"}}
-      <div class="user-name">
-        {{user.name}}
-      </div>
-    {{/link-to}}
-  </div>
-
-
-  <div class="level-right">
-    <div class="">
-      {{#if session.isAuthenticated}}
-      <button class="button is-light" {{action 'signOut'}}>{{t 'buttons.sign_out'}}</button>
-      {{/if}}
-    </div>
-  </div>
     {{yield}}
 </nav>

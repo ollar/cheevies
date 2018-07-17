@@ -19,7 +19,7 @@ export default DS.Model.extend({
 
   created: DS.attr('number'),
 
-  group: DS.belongsTo(),
+  groups: DS.hasMany('group'),
 
   exp: computed('cheevies.[]', 'badges', function() {
     const exp = this.get('cheevies').reduce((sum, item) => {

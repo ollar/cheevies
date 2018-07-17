@@ -1,15 +1,12 @@
+<ul class="form-errors">
+  {{#each model.errors as |error|}}
+  <li>
+      {{error.attribute}}: {{error.message}}
+  </li>
+  {{/each}}
+</ul>
+{{#unless session.isAuthenticated}}
 <section class="section container">
-  <h1 class="title">
-    {{t 'login.title'}}
-  </h1>
-  <ul class="form-errors">
-    {{#each model.errors as |error|}}
-    <li>
-        {{error.attribute}}: {{error.message}}
-    </li>
-    {{/each}}
-  </ul>
-
   <form {{action 'passwordSignIn' on="submit"}}>
     <div class="field">
       <label class="label" for="email">{{t 'form.email.label'}}</label>
@@ -27,7 +24,7 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <button type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+        <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
       </div>
       <div class="control">
           {{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
@@ -35,3 +32,25 @@
     </div>
   </form>
 </section>
+{{else}}
+<section>
+  <div class="user-image-wrapper">
+    {{icon-image data=me.model image=(get me.model.image-set '128') _size=128}}
+    <button class="icon-button" {{action 'invalidate'}}>
+      {{svg-icon _name="x" _size=20}}
+    </button>
+  </div>
+
+  <form {{action 'selectGroup' on="submit"}}>
+    <div class="field">
+      <label class="label" for="group">{{t 'form.group.label'}}</label>
+      <div class="control">
+        {{input class="input" id="group" placeholder=(t 'form.group.placeholder') value=model.group}}
+      </div>
+    </div>
+    <div class="control">
+        <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+      </div>
+  </form>
+</section>
+{{/unless}}

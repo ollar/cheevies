@@ -3,6 +3,12 @@ body {
   height: 100%;
 }
 
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
 body > .ember-view {
   height: 100%;
   display: flex;
@@ -12,63 +18,4 @@ body > .ember-view {
 
 main {
   flex-grow: 2;
-}
-
-.create-cheevie-link {
-  width: 100%;
-  border-radius: 0;
-  padding: 2rem;
-  font-size: 1.5rem;
-}
-
-.modal-content {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 1em;
-}
-
-.footer {
-  padding: 1rem;
-}
-
-.loading {
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.2);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loader {
-  border-color: #23d160;
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-.notification.is-error {
-  background-color: #ff3860;
-  color: #fff;
-}
-
-.cheevies-in-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 32%);
-  grid-gap: 1%;
-
-  @include sm() {
-    grid-template-columns: repeat(4, 24%);
-  }
-
-  .cheevie-item {
-  }
-
-  .icon-image {
-    display: inline-flex;
-  }
 }

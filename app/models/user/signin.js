@@ -5,6 +5,7 @@ import { computed } from '@ember/object';
 export default DS.Model.extend(Validator, {
   email: DS.attr('string'),
   password: DS.attr('string'),
+  group: DS.attr('string'),
 
   validations: computed(() => ({
     email: {
@@ -16,6 +17,9 @@ export default DS.Model.extend(Validator, {
       length: {
         minimum: 6,
       },
+    },
+    group: {
+      presence: true,
     },
   })),
 });
