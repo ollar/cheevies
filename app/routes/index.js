@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import Middleware from 'web-animation-middleware';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
@@ -12,6 +12,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   myGroup: computed.readOnly('session.data.group'),
 
   model() {
+    if (!this.myGroup) return {};
+
     return this.store
       .query('group', {
         orderBy: 'name',
@@ -24,12 +26,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
           cheevies: group.get('firstObject.cheevies'),
         })
       );
-    // return hash({
-    //   me: this.me.fetch(),
-    //   users: this.get('store').findAll('user'),
-    //   badges: this.get('store').findAll('badge'),
-    //   cheevies: this.get('store').findAll('cheevie'),
-    // });
   },
 
   activate() {
