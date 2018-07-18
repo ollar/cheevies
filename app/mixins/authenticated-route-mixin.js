@@ -6,7 +6,7 @@ export default Mixin.create(AuthenticatedRouteMixin, {
   beforeModel(transition) {
     if (
       !this.get('session.isAuthenticated') ||
-      !this.get('session.data.group')
+      !this.get('session.data.authenticated.group')
     ) {
       if (this.get('_isFastBoot')) {
         const fastboot = getOwner(this).lookup('service:fastboot');

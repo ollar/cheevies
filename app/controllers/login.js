@@ -69,7 +69,7 @@ export default Controller.extend({
             const myUid = this.get('me.model.id');
 
             if (myGroup.users.map(_u => _u.id).indexOf(myUid) > -1) {
-              this.get('session').set('data.group', myGroup.id);
+              this.get('session').set('data.authenticated.group', myGroup.id);
               return this.onSuccess();
             } else {
               return this.onError({
