@@ -15,8 +15,11 @@ export default Mixin.create(UnauthenticatedRouteMixin, {
         this.get('routeName') !== routeIfAlreadyAuthenticated
       );
 
+      console.log('UnauthenticatedRouteMixin', 1);
+
       this.transitionTo(routeIfAlreadyAuthenticated);
     } else {
+      console.log('UnauthenticatedRouteMixin', 2);
       return this._super(...arguments);
     }
   },
