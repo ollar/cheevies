@@ -35,7 +35,7 @@
 {{else}}
 <section>
   <div class="user-image-wrapper">
-    {{icon-image data=me.model image=(get me.model.image-set '128') _size=128}}
+    {{icon-image data=myModel image=(get me.model.image-set '128') _size=128}}
     <button class="icon-button" {{action 'invalidate'}}>
       {{svg-icon _name="x" _size=20}}
     </button>

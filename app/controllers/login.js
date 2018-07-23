@@ -1,10 +1,15 @@
 import Controller from '@ember/controller';
 import { schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   session: service(),
   me: service(),
+
+  myModel: computed('session.isAuthenticated', function() {
+    return this.me.fetch();
+  }),
 
   init() {
     this._super(...arguments);
