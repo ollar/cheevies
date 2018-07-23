@@ -32,6 +32,7 @@ module('Unit | Mixin | authenticated-route-mixin', function(hooks) {
 
   hooks.beforeEach(function() {
     this.owner.register('service:session', sessionStub);
+
     const TestRoute = Route.extend(
       MixinImplementingBeforeModel,
       AuthenticatedRouteMixinMixin,

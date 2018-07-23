@@ -21,13 +21,11 @@ export default Mixin.create(AuthenticatedRouteMixin, {
           }
         );
       } else {
-        console.log('AuthenticatedRouteMixin', 1);
         this.set('session.attemptedTransition', transition);
       }
 
       this.triggerAuthentication();
     } else {
-      console.log('AuthenticatedRouteMixin', 2);
       return this._super(...arguments);
     }
   },
