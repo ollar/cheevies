@@ -3,7 +3,6 @@ import {
   visit,
   currentURL,
   fillIn,
-  triggerKeyEvent,
   triggerEvent,
   waitFor,
 } from '@ember/test-helpers';
@@ -20,7 +19,7 @@ module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(function() {
-    this.owner.register('service:session', sessionStub);
+    // this.owner.register('service:session', sessionStub);
   });
 
   test('visiting /login unsigned should stay on login', async function(assert) {
@@ -53,16 +52,10 @@ module('Acceptance | login', function(hooks) {
 
     await fillIn('#email', 'tester@test.test');
     await fillIn('#password', '123456');
-
-    // await triggerKeyEvent('#password', 'keydown', 13);
     // await triggerEvent('[test-id="credentials-section"] form', 'submit');
-    // await triggerEvent('form', 'submit');
-    await triggerKeyEvent('#password', 'keydown', 13);
+    await triggerEvent('form', 'submit');
 
     await waitFor('[test-id="group-select-section"]', { timeout: 5000 });
-
-    console.log(this.element.querySelector('[test-id="credentials-section"]'));
-    console.log(this.element.querySelector('[test-id="group-select-section"]'));
 
     assert.ok(this.element.querySelector('[test-id="group-select-section"]'));
   });
