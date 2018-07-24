@@ -74,7 +74,7 @@ export default Mixin.create({
   beforeModel(transition) {
     if (
       !this.get('session.isAuthenticated') ||
-      !this.get('session.data.authenticated.group')
+      !this.get('session.data.group')
     ) {
       if (this.get('_isFastBoot')) {
         const fastboot = getOwner(this).lookup('service:fastboot');

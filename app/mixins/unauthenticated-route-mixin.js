@@ -65,7 +65,7 @@ export default Mixin.create({
   beforeModel() {
     if (
       this.get('session').get('isAuthenticated') &&
-      this.get('session.data.authenticated.group')
+      this.get('session.data.group')
     ) {
       let routeIfAlreadyAuthenticated = this.get('routeIfAlreadyAuthenticated');
       assert(

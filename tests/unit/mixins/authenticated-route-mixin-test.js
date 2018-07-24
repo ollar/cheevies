@@ -9,7 +9,7 @@ import { computed } from '@ember/object';
 
 const sessionStub = Service.extend({
   isAuthenticated: true,
-  data: computed(() => ({ authenticated: {} })),
+  data: computed(() => ({})),
 });
 
 const transition = {
@@ -48,9 +48,7 @@ module('Unit | Mixin | authenticated-route-mixin', function(hooks) {
 
   test('session is authenticated', function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
-    this.owner
-      .lookup('service:session')
-      .set('data.authenticated.group', 'true');
+    this.owner.lookup('service:session').set('data.group', 'true');
 
     route = this.owner.lookup('route:test');
 
@@ -61,9 +59,7 @@ module('Unit | Mixin | authenticated-route-mixin', function(hooks) {
 
   test('session is not authenticated', function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', false);
-    this.owner
-      .lookup('service:session')
-      .set('data.authenticated.group', 'true');
+    this.owner.lookup('service:session').set('data.group', 'true');
 
     route = this.owner.lookup('route:test');
 

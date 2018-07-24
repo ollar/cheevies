@@ -4,22 +4,26 @@ import {
   currentURL,
   fillIn,
   triggerEvent,
-  waitFor,
+  settled,
+  find,
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
-import { computed } from '@ember/object';
+import { resolve } from 'rsvp';
 
-const sessionStub = Service.extend({
-  isAuthenticated: false,
-  data: computed(() => ({ authenticated: {} })),
-});
+import sinon from 'sinon';
+import { computed } from '@ember/object';
 
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(function() {
-    // this.owner.register('service:session', sessionStub);
+    const sessionService = this.owner.lookup('service:session');
+
+    sinon.stub(sessionService, 'authenticate').callsFake(() => {
+      sessionService.set('isAuthenticated', true);
+      return resolve();
+    });
   });
 
   test('visiting /login unsigned should stay on login', async function(assert) {
@@ -38,9 +42,7 @@ module('Acceptance | login', function(hooks) {
 
   test('visiting /login signed and has group should redirect to index', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
-    this.owner
-      .lookup('service:session')
-      .set('data.authenticated.group', 'true');
+    this.owner.lookup('service:session').set('data.group', 'true');
 
     await visit('/login');
 
@@ -50,13 +52,39 @@ module('Acceptance | login', function(hooks) {
   test('fill login form should show group form', async function(assert) {
     await visit('/login');
 
-    await fillIn('#email', 'tester@test.test');
-    await fillIn('#password', '123456');
-    // await triggerEvent('[test-id="credentials-section"] form', 'submit');
+    await fillIn('#email', 'test@test.test');
+    await fillIn('#password', '1111111');
     await triggerEvent('form', 'submit');
 
-    await waitFor('[test-id="group-select-section"]', { timeout: 5000 });
+    assert.ok(find('[test-id="group-select-section"]'));
+  });
 
-    assert.ok(this.element.querySelector('[test-id="group-select-section"]'));
+  test('after setting group should login', async function(assert) {
+    this.owner.lookup('service:session').set('isAuthenticated', true);
+    const storeStub = Service.extend({
+      query: sinon
+        .stub()
+        .resolves([
+          { id: 'myGroup', name: 'test', users: [{ id: 'me' }], cheevies: [] },
+        ]),
+    });
+    const meStub = Service.extend({
+      fetch: sinon.stub().resolves({ id: 'me' }),
+      model: computed(() => ({ id: 'me' })),
+    });
+    this.owner.register('service:store-test', storeStub);
+    this.owner.register('service:me-test', meStub);
+
+    this.owner.inject('controller:login', 'store', 'service:store-test');
+    this.owner.inject('controller:login', 'me', 'service:me-test');
+
+    await visit('/login');
+
+    await fillIn('#group', 'testGroup');
+    await triggerEvent('form', 'submit');
+
+    await settled();
+
+    assert.equal(currentURL(), '/');
   });
 });

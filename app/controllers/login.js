@@ -16,10 +16,10 @@ export default Controller.extend({
 
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
-    this.selectGroup = this.selectGroup.bind(this);
+    this.passwordSignInSuccess = this.passwordSignInSuccess.bind(this);
   },
 
-  selectGroup() {
+  passwordSignInSuccess() {
     return this.me.fetch().then(myModel => {
       console.log(myModel);
     });
@@ -53,7 +53,7 @@ export default Controller.extend({
             email: this.get('model.email'),
             password: this.get('model.password'),
           })
-          .then(this.selectGroup, this.onError);
+          .then(this.passwordSignInSuccess, this.onError);
       }
     },
     selectGroup() {
@@ -63,18 +63,18 @@ export default Controller.extend({
             orderBy: 'name',
             equalTo: this.model.group,
           })
-          .then(group => {
-            if (!group.length) {
+          .then(groups => {
+            if (!groups.length) {
               return this.onError({
                 message: this.get('i18n').t('login.messages.no_such_group'),
               });
             }
 
-            const myGroup = group.firstObject;
+            const myGroup = groups.firstObject;
             const myUid = this.get('me.model.id');
 
             if (myGroup.users.map(_u => _u.id).indexOf(myUid) > -1) {
-              this.get('session').set('data.authenticated.group', myGroup.id);
+              this.get('session').set('data.group', myGroup.id);
               return this.onSuccess();
             } else {
               return this.onError({
