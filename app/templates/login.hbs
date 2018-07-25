@@ -22,13 +22,8 @@
       </div>
     </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
-      </div>
-      <div class="control">
-          {{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
-      </div>
+    <div class="field">
+      <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
     </div>
   </form>
 </section>
@@ -54,3 +49,5 @@
   </form>
 </section>
 {{/unless}}
+
+{{link-to (t 'login.buttons.register') 'register' class="button is-text"}}

@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { resolve } from 'rsvp';
 
 export default Controller.extend({
   session: service(),
@@ -20,13 +21,11 @@ export default Controller.extend({
   },
 
   passwordSignInSuccess() {
-    return this.me.fetch().then(myModel => {
-      console.log(myModel);
-    });
+    return this.me.fetch();
   },
 
   onSuccess() {
-    return Promise.resolve()
+    return resolve()
       .then(() =>
         this.send('notify', {
           type: 'info',

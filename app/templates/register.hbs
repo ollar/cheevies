@@ -1,21 +1,13 @@
-<section class="section container">
-  <h1 class="title">
-    {{t 'register.title'}}
-  </h1>
-  <ul class="form-errors">
-    {{#each model.errors as |error|}}
-    <li>
-        {{error.attribute}}: {{error.message}}
-    </li>
-    {{/each}}
-  </ul>
-  <form {{action 'handleSubmit' on="submit"}}>
-    <div class="field">
-        <label class="label" for="group">{{t 'form.name.group'}}</label>
-        <div class="control">
-            {{input class="input" id="group" type="text" placeholder=(t 'form.group.placeholder') value=model.group}}
-        </div>
-    </div>
+<ul class="form-errors">
+  {{#each model.errors as |error|}}
+  <li>
+      {{error.attribute}}: {{error.message}}
+  </li>
+  {{/each}}
+</ul>
+{{#unless session.isAuthenticated}}
+<section class="section container" test-id="credentials-section">
+  <form {{action 'handleRegister' on="submit"}}>
     <div class="field">
         <label class="label" for="name">{{t 'form.name.label'}}</label>
         <div class="control">
@@ -37,13 +29,33 @@
       </div>
     </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link" type="submit">{{t 'register.buttons.submit'}}</button>
-      </div>
-      <div class="control">
-          {{link-to (t 'register.buttons.login') 'login' class="button is-text"}}
-      </div>
+    <div class="field">
+      <button hidden class="button is-link" type="submit">{{t 'register.buttons.submit'}}</button>
     </div>
   </form>
 </section>
+{{else}}
+<section class="section container" test-id="group-select-section">
+  <div class="user-wrapper">
+    <div class="user-name">{{myModel.name}}</div>
+    <button class="icon-button" test-id="invalidate-button" {{action 'invalidate'}}>
+      {{svg-icon _name="x" _size=20}}
+    </button>
+  </div>
+
+  <form {{action "selectGroup" on="submit"}}>
+    <div class="field">
+        <label class="label" for="group">{{t 'form.name.group'}}</label>
+        <div class="control">
+            {{input class="input" id="group" type="text" placeholder=(t 'form.group.placeholder') value=model.group}}
+        </div>
+    </div>
+
+    <div class="control">
+      <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+    </div>
+  </form>
+</section>
+{{/unless}}
+
+{{link-to (t 'register.buttons.login') 'login' class="button is-text"}}

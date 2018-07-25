@@ -39,12 +39,6 @@ export default DS.Model.extend(Validator, {
         newUser.updateProfile({
           displayName: this.name,
         })
-      )
-      .then(() =>
-        this.session.authenticate('authenticator:firebase', {
-          email: this.get('email'),
-          password: this.get('password'),
-        })
       );
   },
 });

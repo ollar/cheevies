@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import {
   visit,
   currentURL,
@@ -13,30 +13,28 @@ import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 import sinon from 'sinon';
+import EmberObject from '@ember/object';
+import { A } from '@ember/array';
+
+const myModel = new EmberObject({ id: 'me', groups: A(), save: sinon.stub() });
+const groupStub = new EmberObject({
+  id: 'myGroup',
+  name: 'test',
+  users: A(),
+  cheevies: A(),
+  save: sinon.stub(),
+});
 
 const storeStub = Service.extend({
   query(modelType, options) {
-    const group = {
-      id: 'myGroup',
-      name: 'test',
-      users: [{ id: 'me' }],
-      cheevies: [],
-    };
-
-    const group2 = {
-      id: 'notMyGroup',
-      name: 'test',
-      users: [{ id: 'not me' }],
-      cheevies: [],
-    };
-
-    return resolve(options.equalTo === 'myGroup' ? [group] : [group2]);
+    return resolve(options.equalTo === 'myGroup' ? A([groupStub]) : A([]));
   },
+  createRecord: sinon.stub().returns(groupStub),
 });
 
 const meStub = Service.extend({
-  fetch: sinon.stub().resolves({ id: 'me' }),
-  model: computed(() => ({ id: 'me' })),
+  fetch: sinon.stub().resolves(myModel),
+  model: computed(() => myModel),
 });
 
 module('Acceptance | register', function(hooks) {
@@ -53,8 +51,8 @@ module('Acceptance | register', function(hooks) {
     this.owner.register('service:store-test', storeStub);
     this.owner.register('service:me-test', meStub);
 
-    this.owner.inject('controller:login', 'store', 'service:store-test');
-    this.owner.inject('controller:login', 'me', 'service:me-test');
+    this.owner.inject('controller:register', 'store', 'service:store-test');
+    this.owner.inject('controller:register', 'me', 'service:me-test');
     this.owner.inject('route:index', 'store', 'service:store-test');
   });
 
@@ -81,7 +79,7 @@ module('Acceptance | register', function(hooks) {
     assert.equal(currentURL(), '/');
   });
 
-  test('already signed should see group select form', async function(assert) {
+  test('already signed user should see group select form', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
 
     await visit('/register');
@@ -92,6 +90,10 @@ module('Acceptance | register', function(hooks) {
   test('after register success group select form should appear', async function(assert) {
     await visit('/register');
 
+    const controller = this.owner.lookup('controller:register');
+    controller.model.signUp = sinon.stub().resolves();
+
+    await fillIn('#name', 'tester');
     await fillIn('#email', 'test@test.test');
     await fillIn('#password', '123123123');
     await triggerEvent('form', 'submit');
@@ -101,13 +103,48 @@ module('Acceptance | register', function(hooks) {
     assert.ok(find('[test-id="group-select-section"]'));
   });
 
+  test('after selecting group >> GROUP EXISTS >> should add user to group and redirect to index', async function(assert) {
+    this.owner.lookup('service:session').set('isAuthenticated', true);
+    const store = this.owner.lookup('controller:register').store;
+    const me = this.owner.lookup('controller:register').me;
+
+    await visit('/register');
+    await fillIn('#group', 'myGroup');
+    await triggerEvent('form', 'submit');
+
+    await settled();
+
+    // user is saved to group
+    const myGroup = me.model.groups.firstObject;
+    assert.ok(myGroup.users.firstObject.id === me.model.id);
+
+    // group is saved to user
+    assert.ok(me.model.groups.map(_g => _g.id).indexOf(groupStub.id) > -1);
+
+    assert.equal(currentURL(), '/');
+  });
+
+  test('after selecting group >> GROUP NOT EXISTS >> should add user to group and redirect to index', async function(assert) {
+    this.owner.lookup('service:session').set('isAuthenticated', true);
+    const me = this.owner.lookup('controller:register').me;
+
+    await visit('/register');
+    await fillIn('#group', 'notMyGroup');
+    await triggerEvent('form', 'submit');
+
+    await settled();
+
+    const myGroup = me.model.groups.firstObject;
+    assert.ok(myGroup.users.firstObject.id === me.model.id);
+
+    assert.equal(currentURL(), '/');
+  });
+
   test('test invalidate', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
 
     await visit('/register');
-
     await click('[test-id="invalidate-button"]');
-
     await settled();
 
     assert.ok(
