@@ -5,6 +5,7 @@ import {
   fillIn,
   triggerEvent,
   settled,
+  click,
   find,
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -13,6 +14,31 @@ import { resolve } from 'rsvp';
 
 import sinon from 'sinon';
 import { computed } from '@ember/object';
+
+const storeStub = Service.extend({
+  query(modelType, options) {
+    const group = {
+      id: 'myGroup',
+      name: 'test',
+      users: [{ id: 'me' }],
+      cheevies: [],
+    };
+
+    const group2 = {
+      id: 'notMyGroup',
+      name: 'test',
+      users: [{ id: 'not me' }],
+      cheevies: [],
+    };
+
+    return resolve(options.equalTo === 'myGroup' ? [group] : [group2]);
+  },
+});
+
+const meStub = Service.extend({
+  fetch: sinon.stub().resolves({ id: 'me' }),
+  model: computed(() => ({ id: 'me' })),
+});
 
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
@@ -24,6 +50,13 @@ module('Acceptance | login', function(hooks) {
       sessionService.set('isAuthenticated', true);
       return resolve();
     });
+
+    this.owner.register('service:store-test', storeStub);
+    this.owner.register('service:me-test', meStub);
+
+    this.owner.inject('controller:login', 'store', 'service:store-test');
+    this.owner.inject('controller:login', 'me', 'service:me-test');
+    this.owner.inject('route:index', 'store', 'service:store-test');
   });
 
   test('visiting /login unsigned should stay on login', async function(assert) {
@@ -61,30 +94,42 @@ module('Acceptance | login', function(hooks) {
 
   test('after setting group should login', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
-    const storeStub = Service.extend({
-      query: sinon
-        .stub()
-        .resolves([
-          { id: 'myGroup', name: 'test', users: [{ id: 'me' }], cheevies: [] },
-        ]),
-    });
-    const meStub = Service.extend({
-      fetch: sinon.stub().resolves({ id: 'me' }),
-      model: computed(() => ({ id: 'me' })),
-    });
-    this.owner.register('service:store-test', storeStub);
-    this.owner.register('service:me-test', meStub);
-
-    this.owner.inject('controller:login', 'store', 'service:store-test');
-    this.owner.inject('controller:login', 'me', 'service:me-test');
 
     await visit('/login');
 
-    await fillIn('#group', 'testGroup');
+    await fillIn('#group', 'myGroup');
     await triggerEvent('form', 'submit');
 
     await settled();
 
     assert.equal(currentURL(), '/');
+  });
+
+  test('after setting wrong group should not login', async function(assert) {
+    this.owner.lookup('service:session').set('isAuthenticated', true);
+
+    await visit('/login');
+
+    await fillIn('#group', 'wrongGroup');
+    await triggerEvent('form', 'submit');
+
+    await settled();
+
+    assert.equal(currentURL(), '/login');
+  });
+
+  test('test invalidate', async function(assert) {
+    this.owner.lookup('service:session').set('isAuthenticated', true);
+
+    await visit('/login');
+
+    await click('[test-id="invalidate-button"]');
+
+    await settled();
+
+    assert.ok(
+      this.owner.lookup('service:session').get('isAuthenticated'),
+      false
+    );
   });
 });
