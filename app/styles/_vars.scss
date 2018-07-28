@@ -1,7 +1,7 @@
 $font-family-preload: helvetica, arial, sans-serif;
 $font-family: 'Roboto', $font-family-preload;
 $font-size: 16px;
-$line-height: 24px;
+$line-height: $font-size * 1.5;
 
 $colours: (
   aqua:  #7FDBFF,

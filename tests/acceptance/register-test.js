@@ -151,5 +151,6 @@ module('Acceptance | register', function(hooks) {
       this.owner.lookup('service:session').get('isAuthenticated'),
       false
     );
+    assert.notOk(this.owner.lookup('service:session').get('data.group'));
   });
 });

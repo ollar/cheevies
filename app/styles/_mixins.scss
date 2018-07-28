@@ -51,7 +51,14 @@
 }
 
 @mixin center-wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 ms(1);
+  display: grid;
+  grid-template-columns: [all-start] minmax(ms(0), ms(1)) [content-start] minmax(300px, 600px) [content-end] minmax(ms(0), ms(1)) [all-end];
+
+  & > * {
+    grid-column: content;
+  }
+
+  & > .full-width {
+    grid-column: all;
+  }
 }
