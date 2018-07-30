@@ -17,6 +17,7 @@ Router.map(function() {
     this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
     this.route('new-cheevies');
   });
+  this.route('logout');
 });
 
 export default Router;
