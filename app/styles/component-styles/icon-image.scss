@@ -1,0 +1,11 @@
+& {
+  border-radius: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+
+  img {
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}

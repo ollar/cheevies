@@ -1,57 +1,69 @@
-{{#login-svg-bg}}
+{{#login-svg-bg _isAuthenticated=session.isAuthenticated}}
 
-<ul class="form-errors">
-  {{#each model.errors as |error|}}
-  <li>
-      {{error.attribute}}: {{error.message}}
-  </li>
-  {{/each}}
-</ul>
-{{#unless session.isAuthenticated}}
-<section class="section container" test-id="credentials-section">
-  <form {{action 'passwordSignIn' on="submit"}}>
-    <div class="field">
-      <label class="label" for="email">{{t 'form.email.label'}}</label>
-      <div class="control">
-        {{input class="input" id="email" type="email" placeholder=(t 'form.email.placeholder') value=model.email}}
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label" for="password">{{t 'form.password.label'}}</label>
-      <div class="control">
-        {{input class="input" type="password" id="password" placeholder=(t 'form.password.placeholder') value=model.password}}
-      </div>
-    </div>
-
-    <div class="field">
-      <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
-    </div>
-  </form>
-</section>
-{{else}}
-<section test-id="group-select-section">
-  <div class="user-image-wrapper">
-    {{icon-image data=myModel image=(get me.model.image-set '128') _size=128}}
-    <button class="icon-button" test-id="invalidate-button" {{action 'invalidate'}}>
-      {{svg-icon _name="x" _size=20}}
-    </button>
+<div class="center-wrapper">
+  <div class="logo-wrapper">
+    <img src="/images/Logo.svg" alt="">
   </div>
 
-  <form {{action 'selectGroup' on="submit"}}>
-    <div class="field">
-      <label class="label" for="group">{{t 'form.group.label'}}</label>
-      <div class="control">
-        {{input class="input" id="group" placeholder=(t 'form.group.placeholder') value=model.group}}
+  <ul class="form-errors">
+    {{#each model.errors as |error|}}
+    <li>
+        {{error.attribute}}: {{error.message}}
+    </li>
+    {{/each}}
+  </ul>
+  {{#unless session.isAuthenticated}}
+  <section class="section container" test-id="credentials-section">
+    <form {{action 'passwordSignIn' on="submit"}} autocomplete="off">
+      <div class="field">
+        <label class="label" for="email">{{t 'form.email.label'}}</label>
+        <div class="control">
+          {{input title=(t 'form.email.label') autocomplete="off" class="input" id="email" type="email" placeholder=" " value=model.email}}
+          <div class="placeholder">{{t 'form.email.placeholder'}}</div>
+          <div class="background"></div>
+        </div>
       </div>
-    </div>
-    <div class="control">
-      <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
-    </div>
-  </form>
-</section>
-{{/unless}}
 
-{{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
+      <div class="field">
+        <label class="label" for="password">{{t 'form.password.label'}}</label>
+        <div class="control">
+          {{input title=(t 'form.email.label') autocomplete="off" class="input" type="password" id="password" placeholder=" " value=model.password}}
+          <div class="placeholder">{{t 'form.password.placeholder'}}</div>
+          <div class="background"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+      </div>
+    </form>
+  </section>
+  {{else}}
+  <section test-id="group-select-section">
+    <div class="user-image-wrapper">
+      {{icon-image data=myModel image=(get me.model.image-set '128') _size=128}}
+      <button class="icon-button" test-id="invalidate-button" {{action 'invalidate'}}>
+        {{svg-icon _name="x" _size=20}}
+      </button>
+    </div>
+
+    <form {{action 'selectGroup' on="submit"}}>
+      <div class="field">
+        <label class="label" for="group">{{t 'form.group.label'}}</label>
+        <div class="control">
+          {{input class="input" id="group" placeholder=' ' value=model.group}}
+          <div class="placeholder">{{t 'form.group.placeholder'}}</div>
+          <div class="background"></div>
+        </div>
+      </div>
+      <div class="control">
+        <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+      </div>
+    </form>
+  </section>
+  {{/unless}}
+
+  {{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
+</div>
 
 {{/login-svg-bg}}

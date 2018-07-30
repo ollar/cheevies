@@ -1,3 +1,9 @@
+{{#register-svg-bg _isAuthenticated=session.isAuthenticated}}
+
+<div class="center-wrapper">
+<div class="logo-wrapper">
+  <img src="/images/Logo_white.svg" alt="">
+</div>
 <ul class="form-errors">
   {{#each model.errors as |error|}}
   <li>
@@ -11,21 +17,27 @@
     <div class="field">
         <label class="label" for="name">{{t 'form.name.label'}}</label>
         <div class="control">
-            {{input class="input" id="name" type="text" placeholder=(t 'form.name.placeholder') value=model.name}}
+            {{input class="input" id="name" type="text" placeholder=" " autocomplete="name"  value=model.name}}
+            <div class="placeholder">{{t 'form.name.placeholder'}}</div>
+            <div class="background"></div>
         </div>
     </div>
 
     <div class="field">
       <label class="label" for="email">{{t 'form.email.label'}}</label>
       <div class="control">
-        {{input class="input" id="email" type="email" placeholder=(t 'form.email.placeholder') value=model.email}}
+        {{input class="input" id="email" type="email" placeholder=" " value=model.email}}
+        <div class="placeholder">{{t 'form.email.placeholder'}}</div>
+        <div class="background"></div>
       </div>
     </div>
 
     <div class="field">
       <label class="label" for="password">{{t 'form.password.label'}}</label>
       <div class="control">
-        {{input class="input" id="password" type="password" placeholder=(t 'form.password.placeholder') value=model.password}}
+        {{input class="input" id="password" type="password" placeholder=" " value=model.password}}
+        <div class="placeholder">{{t 'form.password.placeholder'}}</div>
+        <div class="background"></div>
       </div>
     </div>
 
@@ -47,7 +59,9 @@
     <div class="field">
         <label class="label" for="group">{{t 'form.name.group'}}</label>
         <div class="control">
-            {{input class="input" id="group" type="text" placeholder=(t 'form.group.placeholder') value=model.group}}
+            {{input class="input" id="group" type="text" placeholder=" " value=model.group}}
+            <div class="placeholder">{{t 'form.group.placeholder'}}</div>
+            <div class="background"></div>
         </div>
     </div>
 
@@ -59,3 +73,6 @@
 {{/unless}}
 
 {{link-to (t 'register.buttons.login') 'login' class="button is-text"}}
+</div>
+
+{{/register-svg-bg}}

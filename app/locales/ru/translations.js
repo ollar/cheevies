@@ -28,6 +28,10 @@ export default {
       label: 'Пароль',
       placeholder: 'Укажите пароль',
     },
+    group: {
+      label: 'Group',
+      placeholder: 'Type your group here',
+    },
   },
   messages: {
     welcome_default: 'С возвращением!',

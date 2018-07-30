@@ -21,7 +21,10 @@ export default Controller.extend({
   },
 
   onRegisterSuccess() {
-    return this.me.fetch();
+    return this.me.fetch().then(() => {
+      this.myModel.set('name', this.model.name);
+      return this.myModel.save();
+    });
   },
 
   onSuccess() {

@@ -28,6 +28,10 @@ export default {
       label: 'Password',
       placeholder: 'Type your password here',
     },
+    group: {
+      label: 'Group',
+      placeholder: 'Type your group here',
+    },
   },
   messages: {
     welcome_default: 'Welcome back!',
@@ -63,7 +67,7 @@ export default {
         normal: 'Normal',
         high: 'High',
       },
-    }
+    },
   },
 
   profile: {
@@ -71,7 +75,7 @@ export default {
       'give-cheevie': 'Present a cheevie',
     },
     links: {
-      'refuse_gift': 'Refuse'
+      refuse_gift: 'Refuse',
     },
   },
 
@@ -91,7 +95,7 @@ export default {
       linkText: 'Create new cheevie',
     },
     'new-cheevies': {
-      title: 'You\'ve got new cheevie!',
+      title: "You've got new cheevie!",
     },
   },
 

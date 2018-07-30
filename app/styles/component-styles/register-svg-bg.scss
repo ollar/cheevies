@@ -1,0 +1,33 @@
+& {
+  @include center-wrapper;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  grid-column: all;
+  width: 200%;
+  transition: 0.3s;
+
+  svg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+
+    &:last-child {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+&.is-authenticated {
+  .background-wrapper{
+    transform: translate(-50%, 0);
+  }
+}

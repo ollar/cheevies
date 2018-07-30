@@ -14,3 +14,27 @@ form {
 .field {
   margin: 0 0 ms(0);
 }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="week"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+textarea {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+    outline: none;
+}

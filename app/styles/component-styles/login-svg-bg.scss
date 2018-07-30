@@ -1,4 +1,52 @@
 & {
   @include center-wrapper;
   position: relative;
+  height: 100vh;
+}
+
+#login-top,
+#login-bottom-1-1,
+#login-bottom-1-2 {
+  grid-column: all;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  width: 100%;
+}
+
+#login-bottom-1-1,
+#login-bottom-1-2 {
+  top: auto;
+  bottom: 0;
+
+  linearGradient {
+    stop {
+      transition: 0.3s;
+    }
+  }
+}
+
+&.is-authenticated {
+  #login-bottom-1-1 {
+    linearGradient {
+      stop:first-child {
+        stop-color: #00FFF0
+      }
+      stop:last-child {
+        stop-color: #4838FF
+      }
+    }
+  }
+  #login-bottom-1-2 {
+    linearGradient {
+      stop:first-child {
+        stop-color: #0075FF
+      }
+      stop:last-child {
+        stop-color: #000C49
+      }
+    }
+  } 
 }
