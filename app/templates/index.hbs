@@ -1,4 +1,4 @@
-<section class="users-list">
+<section class="users-list grid-wrapper-2">
   {{user-in-list user=model.me class="is-me"}}
 
   {{#each users as |user|}}
@@ -6,7 +6,7 @@
   {{/each}}
 </section>
 
-<section class="cheevies-list">
+<section class="cheevies-list grid-wrapper-3">
   {{#each cheevies as |cheevie|}}
     {{#link-to 'index.cheevie-details' cheevie}}
       {{cheevie-in-list cheevie=cheevie}}

@@ -31,3 +31,45 @@ a {
     height: 100%;
   }
 }
+
+.grid-wrapper-2 {
+  display: grid;
+  grid-template-columns: [left-start] 1fr [left-end] 0 [right-start] 1fr [right-end];
+  grid-template-rows: [first-start] 2fr [first-end] 0 [second-start] 2fr [second-end];
+  grid-auto-flow: dense;
+
+  & > *:nth-child(odd) {
+    grid-column: left;
+    grid-row: first;
+  }
+
+  & > *:nth-child(even) {
+    grid-column: right;
+    grid-row: second;
+  }
+}
+
+.grid-wrapper-3 {
+  display: grid;
+  grid-template-columns: [first-start] 1fr [forth-start] 1fr [first-end] 0 [second-start] 1fr [forth-end] 0 [fith-start] 1fr [second-end] 0 [third-start] 1fr [fith-end] 1fr [third-end];
+
+  & > *:nth-child(n) {
+    grid-column: first;
+  }
+
+  & > *:nth-child(2n) {
+    grid-column: second;
+  }
+
+  & > *:nth-child(3n) {
+    grid-column: third;
+  }
+
+  & > *:nth-child(4n) {
+    grid-column: forth;
+  }
+
+  & > *:nth-child(5n) {
+    grid-column: fith;
+  }
+}

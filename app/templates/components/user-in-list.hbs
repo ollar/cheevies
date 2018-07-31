@@ -1,11 +1,8 @@
-{{#link-to 'profile' user class="is-inline-block"}}
+{{#link-to 'profile' user}}
   {{icon-image data=user image=avatar _size=128}}
 {{/link-to}}
-<div class="cheevies has-text-weight-bold has-text-centered">
+<div class="cheevies-counter">
   {{user.cheevies.length}}
-</div>
-<div class="name">
-  {{user.name}}
 </div>
 
 {{yield}}
