@@ -72,7 +72,9 @@
 </section>
 {{/unless}}
 
-{{link-to (t 'register.buttons.login') 'login' class="button is-text"}}
+  <div class="text-center-wrapper login-link-wrapper">
+    {{t 'or'}} {{link-to (t 'register.buttons.login') 'login'}}
+  </div>
 </div>
 
 {{/register-svg-bg}}

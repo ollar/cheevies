@@ -45,7 +45,7 @@ module.exports = function(environment) {
       sessionServiceName: 'session',
     },
     i18n: {
-      defaultLocale: 'ru',
+      defaultLocale: 'en',
     },
   };
 

@@ -63,7 +63,9 @@
   </section>
   {{/unless}}
 
-  {{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
+  <div class="text-center-wrapper register-link-wrapper">  
+    {{t 'or'}} {{link-to (t 'login.buttons.register') 'register' class="button is-text"}}
+  </div>
 </div>
 
 {{/login-svg-bg}}

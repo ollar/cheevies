@@ -1,4 +1,6 @@
 export default {
+  or: 'or',
+
   login: {
     buttons: {
       submit: 'Войти',
