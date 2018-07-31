@@ -1,36 +1,17 @@
-{{link-to (t 'index.create-cheevie.linkText') 'index.create-cheevie' class='create-cheevie-link button is-big is-success'}}
-
-<section class="hero is-primary is-fullheight users-list">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        {{t 'index.users-list.title'}}
-      </h1>
-      <div class="columns is-mobile is-centered is-multiline">
-        {{#each model.users as |user|}}
-          {{user-in-list user=user class="column has-text-centered"}}
-        {{/each}}
-      </div>
-    </div>
-  </div>
+<section class="users-list">
+  {{#each model.users as |user|}}
+    {{user-in-list user=user}}
+  {{/each}}
 </section>
 
+{{log model.cheevies}}
 
-<section class="hero is-info is-fullheight cheevies-list">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        {{t 'index.cheevies-list.title'}}
-      </h1>
-      <div class="cheevies-in-grid">
-        {{#each model.cheevies as |cheevie|}}
-          {{#link-to 'index.cheevie-details' cheevie class="cheevie-item has-text-centered"}}
-            {{cheevie-in-list cheevie=cheevie class="has-text-centered"}}
-          {{/link-to}}
-        {{/each}}
-      </div>
-    </div>
-  </div>
+<section class="cheevies-list">
+  {{#each model.cheevies as |cheevie|}}
+    {{#link-to 'index.cheevie-details' cheevie}}
+      {{cheevie-in-list cheevie=cheevie}}
+    {{/link-to}}
+  {{/each}}
 </section>
 
 {{outlet}}
