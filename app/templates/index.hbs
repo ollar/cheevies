@@ -1,13 +1,13 @@
 <section class="users-list">
-  {{#each model.users as |user|}}
+  {{user-in-list user=model.me class="is-me"}}
+
+  {{#each users as |user|}}
     {{user-in-list user=user}}
   {{/each}}
 </section>
 
-{{log model.cheevies}}
-
 <section class="cheevies-list">
-  {{#each model.cheevies as |cheevie|}}
+  {{#each cheevies as |cheevie|}}
     {{#link-to 'index.cheevie-details' cheevie}}
       {{cheevie-in-list cheevie=cheevie}}
     {{/link-to}}
