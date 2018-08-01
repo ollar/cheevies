@@ -38,3 +38,17 @@ textarea {
     box-sizing: border-box;
     outline: none;
 }
+
+button {
+  display: inline-block;
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  user-select: none;
+  box-sizing: border-box;
+  outline: none;
+}

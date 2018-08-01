@@ -19,6 +19,15 @@ section {
   width: 100vw;
 }
 
+.users-list {
+  a:nth-child(2n - 1) {
+    .cheevies-counter {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
 footer {
   color: #fff;
   height: 50px;

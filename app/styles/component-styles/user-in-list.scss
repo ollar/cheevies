@@ -1,0 +1,15 @@
+& {
+  position: relative;
+}
+
+.cheevies-counter {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 100%;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(225deg, #FF0000 0%, #7D0000 100%);
+}

@@ -1,9 +1,13 @@
 <div class="sections-wrapper {{activePage}}">
   <section class="users-list grid-wrapper-2">
-    {{user-in-list user=model.me class="is-me"}}
+    {{#link-to 'profile' model.me class="is-me"}}
+      {{user-in-list user=model.me}}
+    {{/link-to}}
 
     {{#each users as |user|}}
-      {{user-in-list user=user}}
+      {{#link-to 'profile' user}}
+        {{user-in-list user=user}}
+      {{/link-to}}
     {{/each}}
   </section>
 

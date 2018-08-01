@@ -8,7 +8,6 @@ export default Component.extend({
     this._super(...arguments);
     addObserver(this, 'power', this.updateStyles);
   },
-  classNameBindings: ['image:has-image'],
   name: computed('data.name', function() {
     if (Object.keys(this.get('data')).length === 0) return '';
     return this.getWithDefault('data.name', 'anonymous');
