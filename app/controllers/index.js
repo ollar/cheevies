@@ -9,4 +9,10 @@ export default Controller.extend({
   }),
 
   cheevies: computed.readOnly('model.cheevies'),
+
+  actions: {
+    setActivePage(type) {
+      this.set('activePage', type);
+    },
+  },
 });

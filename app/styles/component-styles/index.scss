@@ -1,3 +1,39 @@
 & {
-  @include center-wrapper;
+  overflow: hidden;
+}
+
+.sections-wrapper {
+  width: 200vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transition: transform 0.3s;
+  height: calc(100vh - 50px);
+  overflow: auto;
+
+  &.cheevies {
+    transform: translate(-50%, 0);
+  }
+}
+
+section {
+  width: 100vw;
+}
+
+footer {
+  color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #05070E;
+
+  button {
+    margin: 0 ms(0);
+
+    &.active {
+      svg {
+        stroke-width: 3px;
+      }
+    }
+  }
 }

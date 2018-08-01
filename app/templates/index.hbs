@@ -1,17 +1,28 @@
-<section class="users-list grid-wrapper-2">
-  {{user-in-list user=model.me class="is-me"}}
+<div class="sections-wrapper {{activePage}}">
+  <section class="users-list grid-wrapper-2">
+    {{user-in-list user=model.me class="is-me"}}
 
-  {{#each users as |user|}}
-    {{user-in-list user=user}}
-  {{/each}}
-</section>
+    {{#each users as |user|}}
+      {{user-in-list user=user}}
+    {{/each}}
+  </section>
 
-<section class="cheevies-list grid-wrapper-3">
-  {{#each cheevies as |cheevie|}}
-    {{#link-to 'index.cheevie-details' cheevie}}
-      {{cheevie-in-list cheevie=cheevie}}
-    {{/link-to}}
-  {{/each}}
-</section>
+  <section class="cheevies-list grid-wrapper-3">
+    {{#each cheevies as |cheevie|}}
+      {{#link-to 'index.cheevie-details' cheevie}}
+        {{cheevie-in-list cheevie=cheevie}}
+      {{/link-to}}
+    {{/each}}
+  </section>
+</div>
 
 {{outlet}}
+
+<footer>
+  <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{action 'setActivePage' 'users'}}>
+    {{svg-icon _name="users" _size=24}}
+  </button>
+  <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{action 'setActivePage' 'cheevies'}}>
+    {{svg-icon _name="star" _size=24}}
+  </button>
+</footer>
