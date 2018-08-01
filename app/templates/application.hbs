@@ -1,5 +1,6 @@
+{{#site-drawer drawerData as |drawerData|}}
 {{#if session.isAuthenticated}}
-{{site-header}}
+  {{site-header _drawerData=drawerData}}
 {{/if}}
 
 {{#ember-notify as |message close|}}
@@ -9,8 +10,9 @@
   </div>
 {{/ember-notify}}
 
-<main class="{{routeStyleNamespaceClassSet}}">
+<div class="content-wrapper {{routeStyleNamespaceClassSet}}">
     {{outlet}}
-</main>
+</div>
 
+{{/site-drawer}}
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">

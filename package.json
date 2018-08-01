@@ -60,7 +60,8 @@
     "image-resize-util": "0.0.5",
     "images-drop-area-component": "0.0.2",
     "loader.js": "^4.2.3",
-    "qunit-dom": "^0.6.2"
+    "qunit-dom": "^0.6.2",
+    "site-drawer-component": "0.0.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

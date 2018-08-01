@@ -1,0 +1,30 @@
+.drawer {
+  background: linear-gradient(180deg, #1D2349 0%, #131731 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  overflow: hidden;
+
+  img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  padding-top: 28px;
+}
+
+.user-name {
+  text-align: center;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 0 0 30px;
+}
+
+.cheevies-list {
+  padding: 0 ms(0);
+}

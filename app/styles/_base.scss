@@ -11,9 +11,25 @@ body > .ember-view {
   min-height: 100vh;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 ms(1);
+}
+
 a {
   color: #fff;
   text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  margin: 0;
 }
 
 .text-center-wrapper {

@@ -1,0 +1,19 @@
+<div class="avatar">
+  <img src={{avatar.512.url}} alt="">
+</div>
+
+<div class="info">
+  <h3 class="user-name">
+    {{me.model.name}}
+  </h3>
+
+  <div class="cheevies-list">
+    <div class="grid-wrapper-3">
+      {{#each cheevies as |cheevie|}}
+        {{cheevie-in-list cheevie=cheevie}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{yield}}
