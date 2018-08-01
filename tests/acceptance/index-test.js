@@ -32,9 +32,7 @@ module('Acceptance | index', function(hooks) {
 
   test('visiting / signed and has group should stay on index', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
-    this.owner
-      .lookup('service:session')
-      .set('data.authenticated.group', 'true');
+    this.owner.lookup('service:session').set('data.group', 'true');
 
     await visit('/');
 
