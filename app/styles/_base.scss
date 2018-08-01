@@ -53,31 +53,24 @@ a {
   display: grid;
   grid-template-columns: [first-start] 1fr [forth-start] 1fr [first-end] 0 [second-start] 1fr [forth-end] 0 [fith-start] 1fr [second-end] 0 [third-start] 1fr [fith-end] 1fr [third-end];
 
+  & > * {
+    grid-column: fith;
+    justify-self: center;
+  }
 
-
-
-
-
-  & > *:nth-child(6n - 5) {
+  & > *:nth-child(5n - 4) {
     grid-column: first;
   }
 
-  & > *:nth-child(6n - 4) {
+  & > *:nth-child(5n - 3) {
     grid-column: second;
   }
 
-  & > *:nth-child(6n - 3) {
+  & > *:nth-child(5n - 2) {
     grid-column: third;
   }
 
-  & > *:nth-child(6n - 2) {
+  & > *:nth-child(5n - 1) {
     grid-column: forth;
   }
-
-  & > *:nth-child(6n - 1) {
-    grid-column: fith;
-  }
-
-
-
 }
