@@ -1,4 +1,4 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import {
   visit,
   currentURL,
@@ -105,7 +105,6 @@ module('Acceptance | register', function(hooks) {
 
   test('after selecting group >> GROUP EXISTS >> should add user to group and redirect to index', async function(assert) {
     this.owner.lookup('service:session').set('isAuthenticated', true);
-    const store = this.owner.lookup('controller:register').store;
     const me = this.owner.lookup('controller:register').me;
 
     await visit('/register');
