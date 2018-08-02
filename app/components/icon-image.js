@@ -1,15 +1,10 @@
 import { computed } from '@ember/object';
-import { addObserver } from '@ember/object/observers';
-
 import Component from 'avatar-icon-component/components/avatar-icon';
+import { isEmpty } from '@ember/utils';
 
 export default Component.extend({
-  init() {
-    this._super(...arguments);
-    addObserver(this, 'power', this.updateStyles);
-  },
   name: computed('data.name', function() {
-    if (Object.keys(this.get('data')).length === 0) return '';
+    if (isEmpty(this.data)) return '';
     return this.getWithDefault('data.name', 'anonymous');
   }),
 

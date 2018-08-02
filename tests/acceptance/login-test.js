@@ -123,7 +123,7 @@ module('Acceptance | login', function(hooks) {
 
     await visit('/login');
 
-    await click('[test-id="invalidate-button"]');
+    await click('[data-test-id="invalidate-button"]');
 
     await settled();
 

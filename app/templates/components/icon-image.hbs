@@ -1,6 +1,7 @@
 {{#if image}}
-<img src={{imageUrl}} height={{_size}} width={{_size}} alt={{altText}} />
+  <img src={{imageUrl}} height={{_size}} width={{_size}} alt={{altText}} />
 {{else}}
-<span>{{initials}}</span>
+  <span>{{initials}}</span>
 {{/if}}
+
 {{yield}}

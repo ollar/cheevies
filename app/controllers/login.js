@@ -9,7 +9,7 @@ export default Controller.extend({
   me: service(),
 
   myModel: computed('session.isAuthenticated', function() {
-    return this.me.fetch();
+    return this.me.model;
   }),
 
   init() {
