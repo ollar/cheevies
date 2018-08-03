@@ -11,10 +11,11 @@ import {
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import { resolve, hash } from 'rsvp';
 import sinon from 'sinon';
 import EmberObject from '@ember/object';
 import { A } from '@ember/array';
+import Route from '@ember/routing/route';
 
 const myModel = new EmberObject({ id: 'me', groups: A(), save: sinon.stub() });
 const groupStub = new EmberObject({
@@ -37,6 +38,16 @@ const meStub = Service.extend({
   model: computed(() => myModel),
 });
 
+const indexRouteStub = Route.extend({
+  model() {
+    return hash({
+      me: meStub,
+      users: [],
+      cheevies: [],
+    });
+  },
+});
+
 module('Acceptance | register', function(hooks) {
   setupApplicationTest(hooks);
 
@@ -50,6 +61,7 @@ module('Acceptance | register', function(hooks) {
 
     this.owner.register('service:store-test', storeStub);
     this.owner.register('service:me-test', meStub);
+    this.owner.register('route:index', indexRouteStub);
 
     this.owner.inject('controller:register', 'store', 'service:store-test');
     this.owner.inject('controller:register', 'me', 'service:me-test');

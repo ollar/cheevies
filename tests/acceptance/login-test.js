@@ -10,10 +10,11 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
-import { resolve } from 'rsvp';
+import { resolve, hash } from 'rsvp';
 
 import sinon from 'sinon';
 import { computed } from '@ember/object';
+import Route from '@ember/routing/route';
 
 const storeStub = Service.extend({
   query(modelType, options) {
@@ -40,6 +41,16 @@ const meStub = Service.extend({
   model: computed(() => ({ id: 'me' })),
 });
 
+const indexRouteStub = Route.extend({
+  model() {
+    return hash({
+      me: meStub,
+      users: [],
+      cheevies: [],
+    });
+  },
+});
+
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
 
@@ -53,6 +64,7 @@ module('Acceptance | login', function(hooks) {
 
     this.owner.register('service:store-test', storeStub);
     this.owner.register('service:me-test', meStub);
+    this.owner.register('route:index', indexRouteStub);
 
     this.owner.inject('controller:login', 'store', 'service:store-test');
     this.owner.inject('controller:login', 'me', 'service:me-test');
