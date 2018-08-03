@@ -1,5 +1,7 @@
 .drawer {
-  background: linear-gradient(180deg, #1D2349 0%, #131731 100%);
+  background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
+    linear-gradient(180deg, #1D2349 0%, #131731 100%);
+  background-size: 100% auto;
   display: flex;
   flex-direction: column;
 }
@@ -27,4 +29,20 @@
 
 .cheevies-list {
   padding: 0 ms(0);
+}
+
+.drawer-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  padding: 0 ms(0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-left: auto;
+  }
 }

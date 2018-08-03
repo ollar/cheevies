@@ -4,6 +4,16 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   me: service(),
+  session: service(),
+  router: service(),
   avatar: computed.readOnly('me.model.image-set'),
   cheevies: computed.readOnly('me.model.cheevies'),
+
+  actions: {
+    invalidate() {
+      return this.session
+        .invalidate()
+        .then(() => this.get('router').transitionTo('login'));
+    },
+  },
 });
