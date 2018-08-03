@@ -15,26 +15,11 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
+  var cheevie;
+
   run(() => {
-    var cheevie = {
-      name: 'test cheevie',
-      'image-set': {},
-    };
-
-    this.set('cheevie', cheevie);
-
-    this.render(hbs`{{cheevie-in-list cheevie=cheevie}}`);
-
-    assert.equal(
-      this.$('.name')
-        .text()
-        .trim(),
-      cheevie.name
-    );
-
     run(() => {
       cheevie = {
-        name: 'test cheevie',
         'image-set': {
           64: {
             url: 'some url',

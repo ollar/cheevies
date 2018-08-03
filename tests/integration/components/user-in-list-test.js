@@ -10,15 +10,10 @@ const user = {
 module('Integration | Component | user-in-list', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders without image', async function(assert) {
     this.set('user', user);
 
     await render(hbs`{{user-in-list user=user}}`);
-
-    assert.equal(
-      this.element.querySelector('.name').textContent.trim(),
-      user.name
-    );
 
     assert.equal(
       this.element.querySelector('.icon-image').textContent.trim(),
@@ -26,7 +21,7 @@ module('Integration | Component | user-in-list', function(hooks) {
     );
   });
 
-  test('it renders', async function(assert) {
+  test('it renders with image', async function(assert) {
     user['image-set'] = {
       128: {
         url: 'image_url',
