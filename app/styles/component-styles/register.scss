@@ -1,8 +1,12 @@
+& {
+  background-color: #fff;
+}
+
 .center-wrapper {
   position: absolute;
   top: 20vh;
   left: 50%;
-  transform: translate(-50%, 0);  
+  transform: translate(-50%, 0);
   width: 250px;
 }
 
@@ -48,7 +52,7 @@
 input {
   display: block;
   width: 100%;
-  background-color: transparent;  
+  background-color: transparent;
   position: relative;
   z-index: 1;
   color: #FF008A;

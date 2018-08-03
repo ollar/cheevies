@@ -1,4 +1,5 @@
 & {
+  background-color: #fff;
   a {
     color: #FF008A;
   }
@@ -15,7 +16,7 @@
   transform: translate(-50%, -50%);
   width: 250px;
   z-index: 1;
-} 
+}
 
 .control {
   background: linear-gradient(257.08deg, #8F38FF 5.93%, #FF008A 93.69%);
@@ -53,7 +54,7 @@
 input {
   display: block;
   width: 100%;
-  background-color: transparent;  
+  background-color: transparent;
   position: relative;
   z-index: 1;
   color: #FF008A;
@@ -115,7 +116,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .is-authenticated {
   .control {
     background: linear-gradient(257.08deg, #0075FF 5.93%, #4838FF 93.69%);
-  }  
+  }
 
   input, a {
     color: #0f00b6;
