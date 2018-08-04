@@ -19,20 +19,20 @@ import Route from '@ember/routing/route';
 const storeStub = Service.extend({
   query(modelType, options) {
     const group = {
-      id: 'myGroup',
+      id: 'mygroup',
       name: 'test',
       users: [{ id: 'me' }],
       cheevies: [],
     };
 
     const group2 = {
-      id: 'notMyGroup',
+      id: 'notmygroup',
       name: 'test',
       users: [{ id: 'not me' }],
       cheevies: [],
     };
 
-    return resolve(options.equalTo === 'myGroup' ? [group] : [group2]);
+    return resolve(options.equalTo === 'mygroup' ? [group] : [group2]);
   },
 });
 
@@ -109,7 +109,7 @@ module('Acceptance | login', function(hooks) {
 
     await visit('/login');
 
-    await fillIn('#group', 'myGroup');
+    await fillIn('#group', 'mygroup');
     await triggerEvent('form', 'submit');
 
     await settled();
