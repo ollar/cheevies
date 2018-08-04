@@ -60,7 +60,9 @@ export default Controller.extend({
         return this.store
           .query('group', {
             orderBy: 'name',
-            equalTo: this.model.group,
+            equalTo: this.getWithDefaults('model.group', '')
+              .toLowerCase()
+              .trim(),
           })
           .then(groups => {
             if (!groups.length) {

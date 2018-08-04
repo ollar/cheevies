@@ -10,6 +10,9 @@ export default Component.extend({
   cheevies: computed.readOnly('me.model.cheevies'),
 
   actions: {
+    createCheevie() {
+      this.get('router').transitionTo('index.create-cheevie');
+    },
     invalidate() {
       return this.session
         .invalidate()

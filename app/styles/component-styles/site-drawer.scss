@@ -2,22 +2,32 @@
   background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
     linear-gradient(180deg, #1D2349 0%, #131731 100%);
   background-size: 100% auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.5em auto 1.5em;
+  grid-template-rows: minmax(0, 35%) minmax(min-content, 1fr) 50px;
+  height: 100vh;
 }
 
 .avatar {
   overflow: hidden;
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
 
   img {
     display: block;
     max-width: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: scale-down;
   }
 }
 
 .info {
   padding-top: 28px;
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-name {
@@ -31,11 +41,27 @@
   padding: 0 ms(0);
 }
 
+.add-cheevie-wrapper {
+  color: white;
+  text-align: center;
+  padding: ms(0) 0 0;
+  margin-top: auto;
+
+  svg {
+    stroke-width: 1px;
+  }
+
+  .add-cheevie-text {
+    display: block;
+    font-size: 10px;
+    margin-top: -5px;
+    line-height: 1;
+  }
+}
+
 .drawer-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
   height: 50px;
   padding: 0 ms(0);
   color: #fff;

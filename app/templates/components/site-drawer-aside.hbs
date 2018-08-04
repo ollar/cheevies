@@ -14,6 +14,15 @@
       {{/each}}
     </div>
   </div>
+
+  <div class="add-cheevie-wrapper">
+    <button class="icon-button" {{action 'createCheevie'}}>
+      {{svg-icon _name="plus-circle" _size=48}}
+    </button>
+    <span class="add-cheevie-text">
+      {{t 'create-cheevie.title'}}
+    </span>
+  </div>
 </div>
 
 {{yield}}
