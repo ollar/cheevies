@@ -58,7 +58,7 @@
     "emberfire": "^2.0.10",
     "eslint-plugin-ember": "^5.0.0",
     "image-resize-util": "0.0.5",
-    "images-drop-area-component": "0.0.2",
+    "images-drop-area-component": "0.0.3",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2",
     "site-drawer-component": "0.0.1"
