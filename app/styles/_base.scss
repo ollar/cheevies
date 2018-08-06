@@ -30,6 +30,7 @@ a {
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
+  line-height: 1;
   margin: 0;
 }
 
@@ -87,5 +88,15 @@ h1,h2,h3,h4,h5,h6 {
 
   & > *:nth-child(5n - 1) {
     grid-column: forth;
+  }
+}
+
+.images-drop-area {
+  position: relative;
+
+  #file-input {
+    position: absolute;
+    opacity: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
   }
 }
