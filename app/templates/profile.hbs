@@ -1,72 +1,69 @@
-<section class="hero is-success is-fullheight">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <li>{{link-to (t 'nav.home') 'index'}}</li>
-      <li>{{link-to (t 'nav.profile') 'profile' this.model}}</li>
-    </ul>
-  </nav>
-  <div class="hero-body">
-    <div class="container">
-      {{#images-drop-area
-        images=model.imageUrl
-        uploadImage=(action 'uploadImage')
-      }}
-        {{icon-image data=this.model image=avatar _size=200 class="user-image"}}
-        {{#if isMe}}
-          {{#if model.imageUrl}}
-            <a class="delete is-large" {{action 'removeImage'}}></a>
-          {{/if}}
-        {{/if}}
-      {{/images-drop-area}}
+<section class="content-wrapper">
+<div class="user-image-wrapper">
+  {{#images-drop-area
+    images=model.imageUrl
+    uploadImage=(action 'uploadImage')
+  }}
+    {{icon-image data=this.model image=avatar class="user-image"}}
+    {{#if isMe}}
+      {{#if model.imageUrl}}
+        <button class="icon-image delete" {{action 'removeImage'}}>
+          {{svg-icon _name="x" _size=24}}
+        </button>
+      {{/if}}
+    {{/if}}
+  {{/images-drop-area}}
 
-      <div class="experience">
-        {{model.exp}}
-      </div>
-
-      <h1 class="title name">
-        {{#if isMe}}
-          {{input type='text' value=model.name class="psevdo-title"}}
-        {{else}}
-          {{model.name}}
-        {{/if}}
-      </h1>
-      <div class="cheevies">
-        {{#each model.cheevies as |cheevie|}}
-          <div class="cheevie-wrapper is-inline-block" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
-            {{icon-image data=cheevie image=(get cheevie.image-set '64') _size=50 class="is-inline-block"}}
-          </div>
-        {{/each}}
-
-        {{#each model.cheevies as |cheevie|}}
-            {{#item-hint data=cheevie id=(add cheevie.id '_hint')}}
-              {{#if isMe}}
-                <a class="delete is-small" {{action 'refuseCheevie' cheevie}}></a>
-              {{/if}}
-            {{/item-hint}}
-        {{/each}}
-      </div>
-
-      {{#unless isMe}}
-        <button class="button is-large is-light is-outlined" {{action 'showCheeviesPicker' true}}>{{t 'profile.buttons.give-cheevie'}}</button>
-      {{/unless}}
-    </div>
+  <div class="experience">
+    {{model.exp}}
   </div>
-</section>
+</div>
+
+<h1 class="name">
+  {{#if isMe}}
+    {{input type='text' value=model.name class="psevdo-title"}}
+  {{else}}
+    {{model.name}}
+  {{/if}}
+</h1>
+
+<div class="cheevies grid-wrapper-3">
+  {{#each model.cheevies as |cheevie|}}
+    <div class="cheevie-wrapper is-inline-block" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
+      {{icon-image data=cheevie image=(get cheevie.image-set '64') _size=50 class="is-inline-block"}}
+    </div>
+  {{/each}}
+
+  {{#each model.cheevies as |cheevie|}}
+      {{#item-hint data=cheevie id=(add cheevie.id '_hint')}}
+        {{#if isMe}}
+          <button class="icon-button delete" {{action 'refuseCheevie' cheevie}}>
+            {{svg-icon _name="x" _size=18}}
+          </button>
+        {{/if}}
+      {{/item-hint}}
+  {{/each}}
+</div>
 
 {{#if cheeviesPickerIsVisible}}
-  <div class="modal is-active">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-        <div class="cheevies-in-grid is-mobile is-centered is-multiline">
-          {{#each cheevies as |cheevie|}}
-            <div class="cheevie-item has-text-centered">
-              <div {{action 'pickCheevie' cheevie on="click"}}>
-                {{cheevie-in-list cheevie=cheevie}}
-              </div>
-            </div>
-          {{/each}}
+  {{#modal-wrapper goBack=(action 'showCheeviesPicker' false)}}
+    <div class="cheevies grid-wrapper-3">
+      {{#each cheevies as |cheevie|}}
+        <div class="cheevie-item has-text-centered">
+          <div {{action 'pickCheevie' cheevie on="click"}}>
+            {{cheevie-in-list cheevie=cheevie}}
+          </div>
         </div>
+      {{/each}}
     </div>
-    <button class="modal-close is-large" aria-label="close" {{action 'showCheeviesPicker' false}}></button>
-  </div>
+  {{/modal-wrapper}}
 {{/if}}
+</section>
+
+{{#unless isMe}}
+  <footer>
+    <button class="icon-button give-cheevie" {{action 'showCheeviesPicker' true}}>
+      {{svg-icon _name="award" _size=24}}
+    </button>
+  </footer>
+{{/unless}}

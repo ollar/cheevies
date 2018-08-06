@@ -22,7 +22,7 @@ export default Controller.extend(ImageUploadMixin, {
     return this.get('userId') === this.get('myId');
   }),
 
-  avatar: computed.readOnly('model.image-set.256'),
+  avatar: computed.readOnly('model.image-set.512'),
 
   actions: {
     showCheeviesPicker(value) {

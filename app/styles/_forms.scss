@@ -31,7 +31,7 @@ input[type="tel"],
 input[type="color"],
 select,
 textarea {
-  padding: 0.5em 0.6em;
+  padding: ms(-1, $font-size) ms(0, $font-size);
   display: inline-block;
   border: none;
   border-bottom: 1px solid;
