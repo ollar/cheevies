@@ -99,4 +99,17 @@ h1,h2,h3,h4,h5,h6 {
     opacity: 0;
     top: 0; left: 0; right: 0; bottom: 0;
   }
+
+  .drop-area {
+    height: 30vh;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      stroke-width: 1px;
+      pointer-events: none;
+    }
+  }
 }

@@ -65,3 +65,17 @@ figure.image {
 .description {
   margin: 0 0 ms(1, 16px);
 }
+
+.control {
+  text-align: center;
+
+  .button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    padding: 4px;
+    color: white;
+    border-radius: 100%;
+    background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
+  }
+}
