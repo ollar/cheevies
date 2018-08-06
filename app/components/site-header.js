@@ -9,7 +9,7 @@ export default Component.extend({
 
   currentRouteName: computed.readOnly('router.currentRouteName'),
   isIndex: computed('currentRouteName', function() {
-    return this.currentRouteName.match('index');
+    return this.currentRouteName.startsWith('index');
   }),
 
   actions: {

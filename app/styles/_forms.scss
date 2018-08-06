@@ -1,64 +1,66 @@
-form {
-  label {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+.ember-view {
+  form {
+    label {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
   }
-}
 
-.field {
-  margin: 0 0 ms(0);
-}
+  .field {
+    margin: 0 0 ms(0);
+  }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="url"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="week"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-select,
-textarea {
-  padding: ms(-1, $font-size) ms(0, $font-size);
-  display: inline-block;
-  border: none;
-  border-bottom: 1px solid;
-  border-radius: 0;
-  background: none;
-  vertical-align: middle;
-  box-sizing: border-box;
-  outline: none;
-  color: white;
-  width: 100%;
-
-  &::placeholder {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="week"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  select,
+  textarea {
+    padding: ms(-1, $font-size) ms(0, $font-size);
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    background: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+    outline: none;
     color: white;
-    font-weight: 100;
-  }
-}
+    width: 100%;
 
-button {
-  display: inline-block;
-  zoom: 1;
-  line-height: normal;
-  white-space: nowrap;
-  vertical-align: middle;
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-drag: none;
-  user-select: none;
-  box-sizing: border-box;
-  outline: none;
+    &::placeholder {
+      color: white;
+      font-weight: 100;
+    }
+  }
+
+  button {
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+    outline: none;
+  }
 }
