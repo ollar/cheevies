@@ -4,18 +4,6 @@ import { schedule } from '@ember/runloop';
 import Middleware from 'web-animation-middleware';
 
 export default Route.extend({
-  init() {
-    this._super(...arguments);
-
-    this.cheevies = [];
-  },
-
-  afterModel() {
-    return this.get('store')
-      .findAll('cheevie')
-      .then(res => this.set('cheevies', res));
-  },
-
   activate() {
     const am = new Middleware();
     schedule('afterRender', () => {
@@ -79,11 +67,6 @@ export default Route.extend({
         });
       });
     });
-  },
-
-  setupController(controller, model) {
-    this._super(controller, model);
-    controller.set('cheevies', this.get('cheevies'));
   },
 
   userHasEnteredData() {

@@ -9,7 +9,9 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('register');
   this.route('login');
-  this.route('profile', { path: '/profile/:user_id' });
+  this.route('profile', { path: '/profile/:user_id' }, function() {
+    this.route('give-cheevie');
+  });
 
   this.route('index', {path: '/'}, function() {
     this.route('create-cheevie');

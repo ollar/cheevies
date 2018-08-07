@@ -8,7 +8,6 @@ import $ from 'jquery';
 export default Controller.extend(ImageUploadMixin, {
   me: service(),
 
-  cheeviesPickerIsVisible: false,
   openPopper: '',
 
   userId: computed.readOnly('model.id'),
@@ -25,10 +24,6 @@ export default Controller.extend(ImageUploadMixin, {
   avatar: computed.readOnly('model.image-set.512'),
 
   actions: {
-    showCheeviesPicker(value) {
-      this.set('cheeviesPickerIsVisible', value);
-    },
-
     uploadImage(files) {
       if (!this.get('isMe')) return;
       const file = files[0];
