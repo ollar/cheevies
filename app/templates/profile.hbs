@@ -1,4 +1,4 @@
-<section class="content-wrapper">
+<section class="content-wrapper {{if isMe 'is-me'}}">
 <div class="user-image-wrapper">
   {{#images-drop-area
     images=model.imageUrl
@@ -30,7 +30,7 @@
 <div class="cheevies grid-wrapper-3">
   {{#each model.cheevies as |cheevie|}}
     <div class="cheevie-wrapper is-inline-block" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
-      {{icon-image data=cheevie image=(get cheevie.image-set '64') _size=50 class="is-inline-block"}}
+      {{cheevie-in-list cheevie=cheevie}}
     </div>
   {{/each}}
 

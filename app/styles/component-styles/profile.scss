@@ -7,6 +7,10 @@
   @include center-wrapper;
   height: calc(100vh - 50px);
   overflow: auto;
+
+  &.is-me {
+    height: 100vh;
+  }
 }
 
 .user-image-wrapper {
@@ -52,7 +56,7 @@
   margin: 0 0 ms(2, $font-size);
   text-align: center;
 
-  input {
+  .psevdo-title {
     font: inherit;
     text-align: center;
     padding: 0;
