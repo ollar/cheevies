@@ -2,14 +2,15 @@
   <div class="field">
     <label class="label" for="name">{{t 'create-cheevie.form.name.label'}}</label>
     <div class="control">
-      {{input class="input" id="name" type="text" placeholder=(t 'create-cheevie.form.name.placeholder') value=model.name}}
+      {{input class="input" data-test-id="name" id="name" type="text" placeholder=(t 'create-cheevie.form.name.placeholder') value=model.name}}
     </div>
   </div>
 
   <div class="field">
     <label class="label" for="power">{{t 'create-cheevie.form.power.label'}}</label>
     <div class="control">
-      <select name="power" id="power" id="power" onchange={{action (mut model.power) value='target.value'}}>
+      <select name="power" id="power" id="power" onchange={{action (mut model.power)
+        data-test-id="power" value='target.value'}}>
         {{#each-in model.rates as |rate colour|}}
           <option value={{rate}} selected={{eq model.power rate}}>
             {{t (add 'create-cheevie.form.power.' rate)}}
@@ -22,13 +23,18 @@
   <div class="field">
     <label class="label" for="description">{{t 'create-cheevie.form.description.label'}}</label>
     <div class="control">
-      {{textarea class="textarea" id="description" placeholder=(t 'create-cheevie.form.description.placeholder') value=model.description}}
+      {{textarea
+        data-test-id="description"
+        class="textarea"
+        id="description"
+        placeholder=(t 'create-cheevie.form.description.placeholder')
+        value=model.description}}
     </div>
   </div>
 
   <div class="field is-grouped">
     <div class="control">
-      <button class="button is-primary">
+      <button type="submit" class="button">
         {{svg-icon _name="check" _size=24}}
       </button>
     </div>
