@@ -48,8 +48,10 @@
 
 {{#unless isMe}}
   <footer>
-    <button class="icon-button give-cheevie" {{action 'showCheeviesPicker' true}}>
+    <button class="icon-button give-cheevie" {{action 'showCheeviesPicker'}}>
       {{svg-icon _name="award" _size=24}}
     </button>
   </footer>
 {{/unless}}
+
+{{outlet}}

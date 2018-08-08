@@ -65,5 +65,9 @@ export default Controller.extend(ImageUploadMixin, {
       this.popper = new Popper(reference, popper);
       this.openPopper = cheevie.id;
     },
+
+    showCheeviesPicker() {
+      this.transitionToRoute('profile.give-cheevie');
+    },
   },
 });
