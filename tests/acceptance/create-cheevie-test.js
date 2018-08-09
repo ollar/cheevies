@@ -49,12 +49,12 @@ module('Acceptance | create cheevie', function(hooks) {
   hooks.beforeEach(function() {
     this.owner.register('service:session', sessionServiceStub);
     this.owner.register('service:store-test', storeStub);
-    this.owner.inject('route:index', 'store', 'service:store-test');
-    this.owner.inject(
-      'route:index.create-cheevie',
-      'store',
-      'service:store-test'
-    );
+    // this.owner.inject('route:index', 'store', 'service:store-test');
+    // this.owner.inject(
+    //   'route:index.create-cheevie',
+    //   'store',
+    //   'service:store-test'
+    // );
   });
 
   test('visiting /create-cheevie', async function(assert) {
