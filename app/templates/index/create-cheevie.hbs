@@ -1,8 +1,10 @@
 {{#modal-wrapper goBack=(action 'goBack')}}
     {{#images-drop-area
-      images=model.photoUR
+      images=_model.images-set
       uploadImage=(action 'uploadImage')
     }}
+      {{log image }}
+
       {{#if image}}
         <figure class="image">
           <img src={{image.url}}>

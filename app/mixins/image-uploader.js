@@ -41,9 +41,9 @@ export default Mixin.create({
       .then(_hash => {
         const a = this.store.createRecord('image-set');
         a.setProperties(_hash);
-        this.model.set('image-set', a);
+        this._model.set('image-set', a);
         a.save();
-        return this.model.save();
+        return this._model.save();
       })
       .catch(err =>
         this.send('notify', {
@@ -54,7 +54,7 @@ export default Mixin.create({
   },
 
   _removeImage() {
-    return this.model
+    return this._model
       .get('image-set')
       .then(imageSet => {
         if (!imageSet) resolve();

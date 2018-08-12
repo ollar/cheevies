@@ -1,22 +1,24 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { Promise } from 'rsvp';
 
 export default Service.extend({
   session: service(),
   store: service(),
 
   isAuthenticated: computed.readOnly('session.isAuthenticated'),
+  model: null,
 
-  uid: computed('isAuthenticated', function() {
+  groupName: computed('isAuthenticated', function() {
     return this.isAuthenticated
-      ? this.getWithDefault('session.data.authenticated.uid', '')
+      ? this.getWithDefault('session.data.group', '')
       : '';
   }),
 
   fetch() {
     return new Promise(res => {
-      if (!this.uid) {
+      if (!this.groupName) {
         this.set('model', null);
         return res(null);
       }
@@ -25,14 +27,16 @@ export default Service.extend({
         return res(this.model);
       }
 
-      this.get('store')
-        .findRecord('user', this.uid)
-        .then(user => {
-          this.set('model', user);
-          return res(user);
+      return this.get('store')
+        .query('group', {
+          orderBy: 'name',
+          equalTo: this.groupName,
+        })
+        .then(_group => {
+          const group = _group.firstObject;
+          this.set('model', group);
+          return res(group);
         });
     });
   },
-
-  model: null,
 });

@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import {
   visit,
   currentURL,
@@ -11,6 +11,7 @@ import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 import sinon from 'sinon';
+import { testGroup, cheevieModel } from './common-stubs';
 
 const sessionServiceStub = Service.extend({
   isAuthenticated: true,
@@ -20,26 +21,21 @@ const sessionServiceStub = Service.extend({
   })),
 });
 
-const cheevieModel = sinon.stub().resolves({
-  save() {
-    return resolve();
+const myGroupStub = Service.extend({
+  groupName: 'test',
+  model: testGroup,
+  fetch() {
+    return resolve(testGroup);
   },
 });
 
 const storeStub = Service.extend({
   query() {
-    const group = {
-      id: 'myGroup',
-      name: 'test',
-      users: [],
-      cheevies: [],
-    };
-
-    return resolve([group]);
+    return resolve([testGroup]);
   },
 
   createRecord() {
-    return cheevieModel();
+    return cheevieModel;
   },
 });
 
@@ -48,13 +44,14 @@ module('Acceptance | create cheevie', function(hooks) {
 
   hooks.beforeEach(function() {
     this.owner.register('service:session', sessionServiceStub);
+    this.owner.register('service:myGroup', myGroupStub);
     this.owner.register('service:store-test', storeStub);
-    // this.owner.inject('route:index', 'store', 'service:store-test');
-    // this.owner.inject(
-    //   'route:index.create-cheevie',
-    //   'store',
-    //   'service:store-test'
-    // );
+    this.owner.inject('route:index', 'store', 'service:store-test');
+    this.owner.inject(
+      'route:index.create-cheevie',
+      'store',
+      'service:store-test'
+    );
   });
 
   test('visiting /create-cheevie', async function(assert) {
@@ -67,12 +64,16 @@ module('Acceptance | create cheevie', function(hooks) {
     await visit('/create-cheevie');
 
     await fillIn('#name', 'test-cheevie-name');
-    await fillIn('#power', 'low');
+    await fillIn('#power', 'high');
     await fillIn('#description', 'test-cheevie-description');
 
     await triggerEvent('form', 'submit');
     await settled();
 
-    assert.ok('a');
+    assert.equal(cheevieModel.get('name'), 'test-cheevie-name');
+    assert.equal(cheevieModel.power, 'high');
+    assert.equal(cheevieModel.get('description'), 'test-cheevie-description');
+
+    assert.ok(testGroup.cheevies.length === 1);
   });
 });
