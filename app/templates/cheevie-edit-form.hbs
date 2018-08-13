@@ -6,19 +6,23 @@
     </div>
   </div>
 
-  {{!-- <div class="field">
-    <label class="label" for="power">{{t 'create-cheevie.form.power.label'}}</label>
-    <div class="control">
-      <select name="power" id="power" id="power" onchange={{action (mut model.power)
-        data-test-id="power" value='target.value'}}>
-        {{#each-in model.rates as |rate colour|}}
-          <option value={{rate}} selected={{eq model.power rate}}>
-            {{t (add 'create-cheevie.form.power.' rate)}}
-          </option>
-        {{/each-in}}
-      </select>
-    </div>
-  </div> --}}
+  <div class="field power">
+      {{#each _model.rates as |rate|}}
+        <label class="control" for={{rate}}>
+          <input
+            type="radio"
+            name="power"
+            id={{rate}}
+            value={{rate}}
+            checked={{eq _model.power rate}}
+            onchange={{action (mut _model.power) value='target.value'}}>
+
+          <div class="status {{rate}}">
+            <span>{{t (add 'create-cheevie.form.power.' rate)}}</span>
+          </div>
+        </label>
+      {{/each}}
+  </div>
 
   <div class="field">
     <label class="label" for="description">{{t 'create-cheevie.form.description.label'}}</label>

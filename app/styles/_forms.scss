@@ -1,19 +1,27 @@
 .ember-view {
   form {
-    label {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
+    .label {
+      @include nigel;
     }
   }
 
   .field {
     margin: 0 0 ms(0);
+
+    &.power {
+      position: absolute;
+      top: ms(2);
+      right: ms(2);
+
+      label {
+        display: block;
+        margin: ms(0) 0;
+      }
+
+      input {
+        @include nigel;
+      }
+    }
   }
 
   input[type="text"],
@@ -62,5 +70,42 @@
     user-select: none;
     box-sizing: border-box;
     outline: none;
+  }
+
+  .status {
+    @include size(30px);
+    border-radius: 100%;
+    transform: scale(0.8);
+    transition: transform 0.2s;
+    font-weight: 100;
+    font-size: 11px;
+    line-height: 30px;
+    text-align: center;
+    border: 2px solid white;
+
+    span {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &.low {
+      background: linear-gradient(225deg, #4838FF 0%, #0075FF 100%);
+    }
+
+    &.normal {
+      background: linear-gradient(225deg, #FF5C00 0%, #FFEC87 100%);
+    }
+
+    &.high {
+      background: linear-gradient(225deg, #FF0000 0%, #CD04FF 100%);
+    }
+  }
+
+  input:checked + .status {
+    transform: scale(1.2);
+
+    span {
+      opacity: 1;
+    }
   }
 }

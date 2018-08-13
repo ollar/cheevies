@@ -1,16 +1,16 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import {
   visit,
   currentURL,
   fillIn,
   settled,
+  click,
   triggerEvent,
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
-import sinon from 'sinon';
 import { testGroup, cheevieModel } from './common-stubs';
 
 const sessionServiceStub = Service.extend({
@@ -23,19 +23,21 @@ const sessionServiceStub = Service.extend({
 
 const myGroupStub = Service.extend({
   groupName: 'test',
-  model: testGroup,
+  model: testGroup.create(),
   fetch() {
-    return resolve(testGroup);
+    return resolve(this.model);
   },
 });
 
 const storeStub = Service.extend({
+  cheevieModel: cheevieModel.create(),
+  testGroup: testGroup.create(),
   query() {
-    return resolve([testGroup]);
+    return resolve([this.testGroup]);
   },
 
   createRecord() {
-    return cheevieModel;
+    return this.cheevieModel;
   },
 });
 
@@ -44,8 +46,8 @@ module('Acceptance | create cheevie', function(hooks) {
 
   hooks.beforeEach(function() {
     this.owner.register('service:session', sessionServiceStub);
-    this.owner.register('service:myGroup', myGroupStub);
     this.owner.register('service:store-test', storeStub);
+    this.owner.register('service:my-group', myGroupStub);
     this.owner.inject('route:index', 'store', 'service:store-test');
     this.owner.inject(
       'route:index.create-cheevie',
@@ -61,10 +63,13 @@ module('Acceptance | create cheevie', function(hooks) {
   });
 
   test('it creates cheevie model and adds it to the group', async function(assert) {
+    const cheevieModel = this.owner.lookup('service:store-test').cheevieModel;
+    const testGroup = this.owner.lookup('service:my-group').model;
+
     await visit('/create-cheevie');
 
     await fillIn('#name', 'test-cheevie-name');
-    await fillIn('#power', 'high');
+    await click('label[for="high"]');
     await fillIn('#description', 'test-cheevie-description');
 
     await triggerEvent('form', 'submit');
@@ -72,7 +77,7 @@ module('Acceptance | create cheevie', function(hooks) {
 
     assert.equal(cheevieModel.get('name'), 'test-cheevie-name');
     assert.equal(cheevieModel.power, 'high');
-    assert.equal(cheevieModel.get('description'), 'test-cheevie-description');
+    assert.equal(cheevieModel.description, 'test-cheevie-description');
 
     assert.ok(testGroup.cheevies.length === 1);
   });

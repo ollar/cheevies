@@ -3,7 +3,7 @@ import { hash } from 'rsvp';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  myGroup: service(),
+  myGroup: service('my-group'),
   model() {
     return hash({
       cheevie: this.get('store').createRecord('cheevie'),

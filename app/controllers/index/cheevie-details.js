@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend(ImageUploadMixin, {
   showMode: true,
-  myGroup: service(),
+  myGroup: service('my-group'),
 
   _model: computed.alias('model'),
 

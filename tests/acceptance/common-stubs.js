@@ -1,14 +1,18 @@
 import EmberObject, { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 
-export const testGroup = EmberObject.create({
+export const testGroup = EmberObject.extend({
   id: 'myGroup',
   name: 'test',
-  users: [],
-  cheevies: [],
+  users: computed(() => []),
+  cheevies: computed(() => []),
+  save() {
+    return resolve();
+  },
 });
 
-export const cheevieModel = EmberObject.create({
+export const cheevieModel = EmberObject.extend({
+  rates: computed(() => ['low', 'normal', 'high']),
   save() {
     return resolve();
   },

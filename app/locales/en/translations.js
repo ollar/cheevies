@@ -65,9 +65,9 @@ export default {
       },
       power: {
         label: 'Select cheevie power',
-        low: 'Low',
-        normal: 'Normal',
-        high: 'High',
+        low: 'low',
+        normal: 'norm',
+        high: 'high',
       },
     },
   },
