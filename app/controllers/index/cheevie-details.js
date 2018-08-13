@@ -1,17 +1,34 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend(ImageUploadMixin, {
   showMode: true,
+  myGroup: service(),
 
-  image: computed.readOnly('model.image-set.256'),
+  _model: computed.alias('model'),
+
+  _file: null,
+  image: computed.readOnly('model.image-set.512'),
+
+  _image: computed('_file.{name}', 'image', function() {
+    if (this._file) {
+      return {
+        url: window.URL.createObjectURL(this._file),
+      };
+    }
+    return this.image;
+  }),
 
   _uploadPath(image) {
     return `cheevies/${this.model.id}/${image.width}/${image.name}`;
   },
 
   restoreMode() {
+    this.setProperties({
+      _file: null,
+    });
     this.set('showMode', true);
   },
 
@@ -21,7 +38,6 @@ export default Controller.extend(ImageUploadMixin, {
       this.toggleProperty('showMode');
     },
 
-    // check this !!!!!!
     goBack() {
       this.model.rollbackAttributes();
       this.restoreMode();
@@ -31,19 +47,35 @@ export default Controller.extend(ImageUploadMixin, {
     uploadImage(files) {
       const file = files[0];
       if (!file || file.type.indexOf('image') < 0) return;
-      return this._uploadImage(file);
+      this.set('_file', file);
     },
     removeImage() {
+      if (this._file) {
+        return this.setProperties({
+          _file: null,
+          _image: null,
+        });
+      }
       return this._removeImage();
     },
-    updateCheevie() {
+    async updateCheevie() {
+      if (this._file) {
+        await this._uploadImage(this._file);
+      }
+
       this.get('model').save();
       this.restoreMode();
       this.send('goBack');
     },
-    deleteCheevie() {
+    async deleteCheevie() {
       if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
+        const group = this.myGroup.get('model');
+        group.get('cheevies').removeObject(this.get('model'));
+
+        await group.save();
+
         this.get('model').destroyRecord();
+        this.restoreMode();
         this.transitionToRoute('index');
       }
     },

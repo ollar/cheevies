@@ -4,14 +4,25 @@ import ImageUploadMixin from '../../mixins/image-uploader';
 
 export default Controller.extend(ImageUploadMixin, {
   _model: computed.alias('model.cheevie'),
-  image: computed.readOnly('_model.image-set.256'),
+  _file: null,
+  _image: computed('_file', function() {
+    if (this._file) {
+      return {
+        url: window.URL.createObjectURL(this._file),
+      };
+    }
+  }),
 
   _uploadPath(image) {
     return `cheevies/${this._model.id}/${image.width}/${image.name}`;
   },
 
   actions: {
-    updateCheevie() {
+    async updateCheevie() {
+      if (this._file) {
+        await this._uploadImage(this._file);
+      }
+
       const group = this.get('model.myGroup');
       const model = this.get('_model');
 
@@ -26,16 +37,23 @@ export default Controller.extend(ImageUploadMixin, {
     },
     goBack() {
       this._model.deleteRecord();
+      this.setProperties({
+        _file: null,
+        _image: null,
+      });
       this.transitionToRoute('index');
     },
     uploadImage(files) {
       const file = files[0];
       if (!file || file.type.indexOf('image') < 0) return;
-      return this._uploadImage(file);
+      this.set('_file', file);
     },
 
     removeImage() {
-      return this._removeImage();
+      this.setProperties({
+        _file: null,
+        _image: null,
+      });
     },
   },
 });

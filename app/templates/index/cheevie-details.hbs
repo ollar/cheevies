@@ -4,7 +4,7 @@
       {{svg-icon _name="edit" _size=24}}
     </button>
     <figure class="image">
-      <img src={{image.url}}>
+      <img src={{_image.url}}>
     </figure>
 
     <h1 class="title">
@@ -19,20 +19,24 @@
       {{svg-icon _name="chevron-left" size=24}}
     </button>
     <button class="icon-button cheevie-delete" {{action 'deleteCheevie'}}>
-      {{svg-icon _name="x" size=24}}
+      {{svg-icon _name="trash-2" size=24}}
     </button>
 
     {{#images-drop-area
       uploadImage=(action 'uploadImage')
     }}
-      {{#if image}}
+      {{#if _image}}
         <figure class="image">
-          <img src={{image.url}}>
+          <img src={{_image.url}}>
         </figure>
 
-        <a class="delete is-large" {{action 'removeImage'}}></a>
+        <button class="icon-button delete" {{action 'removeImage'}}>
+          {{svg-icon _name="x" size=24}}
+        </button>
       {{else}}
-        {{icon-image data=model _size=300}}
+        <div class="drop-area">
+          {{svg-icon _name="image" _size=48}}
+        </div>
       {{/if}}
     {{/images-drop-area}}
 

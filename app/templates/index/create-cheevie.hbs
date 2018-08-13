@@ -3,14 +3,14 @@
       images=_model.images-set
       uploadImage=(action 'uploadImage')
     }}
-      {{log image }}
-
-      {{#if image}}
+      {{#if _image}}
         <figure class="image">
-          <img src={{image.url}}>
+          <img src={{_image.url}}>
         </figure>
 
-        <a class="delete is-large" {{action 'removeImage'}}></a>
+        <button class="icon-button delete" {{action 'removeImage'}}>
+          {{svg-icon _name="x" size=24}}
+        </button>
       {{else}}
         <div class="drop-area">
           {{svg-icon _name="image" _size=48}}

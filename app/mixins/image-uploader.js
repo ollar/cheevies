@@ -42,8 +42,7 @@ export default Mixin.create({
         const a = this.store.createRecord('image-set');
         a.setProperties(_hash);
         this._model.set('image-set', a);
-        a.save();
-        return this._model.save();
+        return a.save().then(() => this._model.save());
       })
       .catch(err =>
         this.send('notify', {
@@ -62,6 +61,10 @@ export default Mixin.create({
           imageSet.get(imageKey).then(image => image.destroyRecord())
         );
         return imageSet.destroyRecord();
+      })
+      .then(() => {
+        this._model.set('image-set', null);
+        return this._model.save();
       })
       .catch(() => true);
   },
