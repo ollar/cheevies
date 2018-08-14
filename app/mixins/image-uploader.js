@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { hash, resolve } from 'rsvp';
+import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import imageResize from 'image-resize-util/utils/image-resize';
 
@@ -56,16 +56,18 @@ export default Mixin.create({
     return this._model
       .get('image-set')
       .then(imageSet => {
-        if (!imageSet) resolve();
-        imageSet.eachRelationship(imageKey =>
-          imageSet.get(imageKey).then(image => image.destroyRecord())
-        );
-        return imageSet.destroyRecord();
+        if (!imageSet) return resolve();
+        const imageSetKeys = Object.keys(imageSet.serialize());
+        return all(
+          imageSetKeys.map(imageKey =>
+            imageSet.get(imageKey).then(image => image.destroyRecord())
+          )
+        ).then(() => imageSet.destroyRecord());
       })
       .then(() => {
         this._model.set('image-set', null);
         return this._model.save();
       })
-      .catch(() => true);
+      .catch(e => console.error(e));
   },
 });
