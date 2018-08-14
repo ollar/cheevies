@@ -28,13 +28,13 @@
 </h1>
 
 <div class="cheevies grid-wrapper-3">
-  {{#each model.cheevies as |cheevie|}}
-    <div class="cheevie-wrapper is-inline-block" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
+  {{#each cheevies as |cheevie|}}
+    <div class="cheevie-wrapper" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
       {{cheevie-in-list cheevie=cheevie}}
     </div>
   {{/each}}
 
-  {{#each model.cheevies as |cheevie|}}
+  {{#each cheevies as |cheevie|}}
       {{#item-hint data=cheevie id=(add cheevie.id '_hint')}}
         {{#if isMe}}
           <button class="icon-button delete" {{action 'refuseCheevie' cheevie}}>

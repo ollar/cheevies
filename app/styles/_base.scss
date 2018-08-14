@@ -5,6 +5,7 @@ body {
 
   color: #fff;
   background: linear-gradient(199.22deg, #1D2349 4.37%, #05070E 98.82%);
+  overscroll-behavior: contain;
 }
 
 body > .ember-view {

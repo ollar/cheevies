@@ -4,14 +4,29 @@ import { inject as service } from '@ember/service';
 import ImageUploadMixin from '../mixins/image-uploader';
 import Popper from 'popper';
 import $ from 'jquery';
+import DS from 'ember-data';
 
 export default Controller.extend(ImageUploadMixin, {
   me: service(),
+  myGroup: service(),
 
   openPopper: '',
 
   userId: computed.readOnly('model.id'),
   myId: computed.readOnly('me.model.id'),
+
+  cheevies: computed('model.cheevies', function() {
+    return DS.PromiseArray.create({
+      promise: this.get('myGroup')
+        .fetch()
+        .then(myGroup => myGroup.get('cheevies'))
+        .then(availableCheevies =>
+          this.model.cheevies.filter(
+            cheevie => availableCheevies.indexOf(cheevie) > -1
+          )
+        ),
+    });
+  }),
 
   _uploadPath(image) {
     return `users/${this.model.id}/${image.width}/${image.name}`;
@@ -35,13 +50,6 @@ export default Controller.extend(ImageUploadMixin, {
 
     removeImage() {
       return this._removeImage();
-    },
-
-    pickCheevie(cheevie) {
-      this.model.get('cheevies').pushObject(cheevie);
-      this.model.get('unseenCheevies').pushObject(cheevie);
-      this.model.save();
-      this.send('showCheeviesPicker', false);
     },
 
     refuseCheevie(cheevie) {

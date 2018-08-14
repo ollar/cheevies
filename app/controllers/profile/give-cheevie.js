@@ -6,6 +6,10 @@ export default Controller.extend({
       return window.history.back();
     },
 
-    pickCheevie() {},
+    pickCheevie(cheevie) {
+      const user = this.model.user;
+      user.get('cheevies').pushObject(cheevie);
+      user.save().then(() => window.history.back());
+    },
   },
 });
