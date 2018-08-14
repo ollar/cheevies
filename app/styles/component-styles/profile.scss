@@ -78,6 +78,7 @@
   .card-content {
     @include center-wrapper;
     padding: ms(1) 0;
+    position: relative;
   }
 
   .title {
@@ -90,6 +91,15 @@
     top: 10px;
     color: white;
   }
+}
+
+.card-content-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #8F38FF;
 }
 
 .give-cheevie {

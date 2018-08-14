@@ -62,9 +62,9 @@ export default Route.extend({
       );
 
       schedule('afterRender', () => {
-        am.go(() => {
-          $main.classList.add('animation-finished');
-        });
+        // am.go(() => {
+        //   $main.classList.add('animation-finished');
+        // });
       });
     });
   },
