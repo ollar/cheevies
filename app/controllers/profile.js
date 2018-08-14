@@ -15,7 +15,7 @@ export default Controller.extend(ImageUploadMixin, {
   userId: computed.readOnly('model.id'),
   myId: computed.readOnly('me.model.id'),
 
-  cheevies: computed('model.cheevies', function() {
+  cheevies: computed('model.cheevies.[]', function() {
     return DS.PromiseArray.create({
       promise: this.get('myGroup')
         .fetch()
