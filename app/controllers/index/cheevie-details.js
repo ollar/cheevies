@@ -12,7 +12,7 @@ export default Controller.extend(ImageUploadMixin, {
   _file: null,
   image: computed.readOnly('model.image-set.512'),
 
-  _image: computed('_file.{name}', 'image', function() {
+  _image: computed('_file', 'image', function() {
     if (this._file) {
       return {
         url: window.URL.createObjectURL(this._file),
@@ -27,7 +27,7 @@ export default Controller.extend(ImageUploadMixin, {
 
   restoreMode() {
     this.setProperties({
-      _file: null,
+      _file: '',
     });
     this.set('showMode', true);
   },
@@ -52,8 +52,7 @@ export default Controller.extend(ImageUploadMixin, {
     removeImage() {
       if (this._file) {
         return this.setProperties({
-          _file: null,
-          _image: null,
+          _file: '',
         });
       }
       return this._removeImage();

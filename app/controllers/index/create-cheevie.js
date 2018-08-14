@@ -38,8 +38,7 @@ export default Controller.extend(ImageUploadMixin, {
     goBack() {
       this._model.deleteRecord();
       this.setProperties({
-        _file: null,
-        _image: null,
+        _file: '',
       });
       this.transitionToRoute('index');
     },
@@ -51,8 +50,7 @@ export default Controller.extend(ImageUploadMixin, {
 
     removeImage() {
       this.setProperties({
-        _file: null,
-        _image: null,
+        _file: '',
       });
     },
   },
