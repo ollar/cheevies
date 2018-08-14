@@ -1,5 +1,6 @@
 import EmberObject, { computed } from '@ember/object';
 import { resolve } from 'rsvp';
+import Service from '@ember/service';
 
 export const testGroup = EmberObject.extend({
   id: 'myGroup',
@@ -8,6 +9,14 @@ export const testGroup = EmberObject.extend({
   cheevies: computed(() => []),
   save() {
     return resolve();
+  },
+});
+
+export const myGroupStub = Service.extend({
+  groupName: 'test',
+  model: testGroup.create(),
+  fetch() {
+    return resolve(this.model);
   },
 });
 

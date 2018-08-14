@@ -8,7 +8,7 @@ export default Route.extend({
     const am = new Middleware();
     schedule('afterRender', () => {
       var $header = document.querySelector('header');
-      var $main = document.querySelector('main');
+      // var $main = document.querySelector('main');
       var $iconImage = document.querySelector('.user-image');
       var $title = document.querySelector('.title');
       var $cheevies = document.querySelectorAll('.cheevie-wrapper');

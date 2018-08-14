@@ -2,6 +2,7 @@ import Component from 'site-drawer-component/components/site-drawer-aside';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import DS from 'ember-data';
+import { resolve } from 'rsvp';
 
 export default Component.extend({
   me: service(),
@@ -14,9 +15,12 @@ export default Component.extend({
     return DS.PromiseArray.create({
       promise: this.get('myGroup')
         .fetch()
-        .then(myGroup => myGroup.get('cheevies'))
+        .then(myGroup => {
+          if (!myGroup) return resolve([]);
+          return myGroup.get('cheevies');
+        })
         .then(availableCheevies =>
-          this.me.model.cheevies.filter(
+          this.getWithDefault('me.model.cheevies', []).filter(
             cheevie => availableCheevies.indexOf(cheevie) > -1
           )
         ),

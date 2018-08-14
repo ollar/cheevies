@@ -16,15 +16,11 @@ import sinon from 'sinon';
 import EmberObject from '@ember/object';
 import { A } from '@ember/array';
 import Route from '@ember/routing/route';
+import { myGroupStub, testGroup } from './common-stubs';
 
 const myModel = new EmberObject({ id: 'me', groups: A(), save: sinon.stub() });
-const groupStub = new EmberObject({
-  id: 'myGroup',
-  name: 'test',
-  users: A(),
-  cheevies: A(),
-  save: sinon.stub(),
-});
+
+const groupStub = testGroup.create();
 
 const storeStub = Service.extend({
   query(modelType, options) {
@@ -62,6 +58,7 @@ module('Acceptance | register', function(hooks) {
     this.owner.register('service:store-test', storeStub);
     this.owner.register('service:me-test', meStub);
     this.owner.register('route:index', indexRouteStub);
+    this.owner.register('service:my-group', myGroupStub);
 
     this.owner.inject('controller:register', 'store', 'service:store-test');
     this.owner.inject('controller:register', 'me', 'service:me-test');

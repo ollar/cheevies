@@ -15,6 +15,7 @@ import { resolve, hash } from 'rsvp';
 import sinon from 'sinon';
 import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
+import { myGroupStub } from './common-stubs';
 
 const storeStub = Service.extend({
   query(modelType, options) {
@@ -65,6 +66,7 @@ module('Acceptance | login', function(hooks) {
     this.owner.register('service:store-test', storeStub);
     this.owner.register('service:me-test', meStub);
     this.owner.register('route:index', indexRouteStub);
+    this.owner.register('service:my-group', myGroupStub);
 
     this.owner.inject('controller:login', 'store', 'service:store-test');
     this.owner.inject('controller:login', 'me', 'service:me-test');

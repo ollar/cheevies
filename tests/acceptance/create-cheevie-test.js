@@ -11,7 +11,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
-import { testGroup, cheevieModel } from './common-stubs';
+import { testGroup, cheevieModel, myGroupStub } from './common-stubs';
 
 const sessionServiceStub = Service.extend({
   isAuthenticated: true,
@@ -19,14 +19,6 @@ const sessionServiceStub = Service.extend({
     group: 'tester',
     authenticated: {},
   })),
-});
-
-const myGroupStub = Service.extend({
-  groupName: 'test',
-  model: testGroup.create(),
-  fetch() {
-    return resolve(this.model);
-  },
 });
 
 const storeStub = Service.extend({

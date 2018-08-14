@@ -68,6 +68,8 @@ export default Mixin.create({
         this._model.set('image-set', null);
         return this._model.save();
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        throw e;
+      });
   },
 });
