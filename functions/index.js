@@ -25,6 +25,24 @@ exports.removeImageFileOnModelDestroy = functions.database
     return false;
   });
 
+exports.removeImageModelsOnImageSetModelDestroy = functions.database
+  .ref('/imageSets/{setId}')
+  .onDelete(snapshot => {
+    const imageSet = snapshot.val();
+
+    if (imageSet) {
+      return Promise.all(
+        Object.keys(imageSet).map(setKey =>
+          admin
+            .database()
+            .ref('/images/' + imageSet[setKey])
+            .remove()
+        )
+      );
+    }
+    return false;
+  });
+
 exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
   var { uid, email, displayName } = user;
   return admin

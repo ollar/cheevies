@@ -57,12 +57,7 @@ export default Mixin.create({
       .get('image-set')
       .then(imageSet => {
         if (!imageSet) return resolve();
-        const imageSetKeys = Object.keys(imageSet.serialize());
-        return all(
-          imageSetKeys.map(imageKey =>
-            imageSet.get(imageKey).then(image => image.destroyRecord())
-          )
-        ).then(() => imageSet.destroyRecord());
+        return imageSet.destroyRecord();
       })
       .then(() => {
         this._model.set('image-set', null);
