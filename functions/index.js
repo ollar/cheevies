@@ -91,12 +91,24 @@ exports.onAddCheevie = functions.database
             body: `"${cheevie.name}" теперь твоя!`,
             image: cheevie.imageUrl,
             icon: cheevie.imageUrl,
-            // icon: '/manifest_icons/icon_192.png',
-            // badge: '/manifest_icons/icon_192.png',
           },
         };
 
         return admin.messaging().sendToDevice(fcmToken, payload);
       }
     );
+  });
+
+exports.addUnseenCheevieOnAddCheevie = functions.database
+  .ref('/users/{userId}/cheevies/{cheevieId}')
+  .onCreate((snapshot, event) => {
+    const userId = event.params.userId;
+    const cheevieId = event.params.cheevieId;
+
+    return admin
+      .database()
+      .ref('/users/' + userId + '/unseenCheevies')
+      .update({
+        [cheevieId]: true,
+      });
   });
