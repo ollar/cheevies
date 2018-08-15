@@ -3,6 +3,10 @@
   transition: transform 0.3s;
 }
 
+&.is-me {
+  transform: scale(1.2) !important;
+}
+
 .cheevies-counter {
   position: absolute;
   height: 40px;
