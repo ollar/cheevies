@@ -57,8 +57,9 @@ input {
   background-color: transparent;
   position: relative;
   z-index: 1;
-  color: #FF008A;
+  color: #FF008A !important;
   text-align: center;
+  border: none !important;
 
   &:placeholder-shown {
     & ~ .placeholder {
