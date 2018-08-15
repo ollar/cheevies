@@ -43,6 +43,9 @@ module.exports = function(defaults) {
   app.import('node_modules/popper.js/dist/umd/popper.min.js');
   app.import('vendor/shims/popper.js');
 
+  app.import('node_modules/particles.js/particles.js');
+  app.import('vendor/shims/particles.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

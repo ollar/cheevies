@@ -71,6 +71,7 @@
     "ember-service-worker-cache-first": "^0.6.2",
     "feather-icons": "^4.7.3",
     "normalize.css": "^8.0.0",
+    "particles.js": "^2.0.0",
     "popper.js": "^1.14.3",
     "web-animation-middleware": "^1.0.2"
   }
