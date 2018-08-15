@@ -87,12 +87,7 @@ export default {
   },
 
   index: {
-    'users-list': {
-      title: 'All jerks',
-    },
-    'cheevies-list': {
-      title: 'All cheevies',
-    },
+    'no-cheevies': 'There are no cheevies yet, but you are the best',
     'create-cheevie': {
       linkText: 'Create new cheevie',
     },

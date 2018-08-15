@@ -30,6 +30,13 @@ section {
   }
 }
 
+.no-cheevie-placeholder {
+  grid-column: 2 / 6 !important;
+  text-align: center;
+  align-self: flex-start;
+  margin-top: 40vh;
+}
+
 footer {
   color: #fff;
   height: 50px;

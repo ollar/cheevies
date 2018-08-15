@@ -16,10 +16,14 @@
   </section>
 
   <section class="cheevies-list grid-wrapper-3">
-    {{#each cheevies as |cheevie|}}
+    {{#each cheeviess as |cheevie|}}
       {{#link-to 'index.cheevie-details' cheevie}}
         {{cheevie-in-list cheevie=cheevie}}
       {{/link-to}}
+    {{else}}
+      <div class="no-cheevie-placeholder">
+        {{t 'index.no-cheevies'}}
+      </div>
     {{/each}}
   </section>
 </div>
