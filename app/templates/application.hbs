@@ -1,6 +1,8 @@
 {{#site-drawer drawerData as |drawerData|}}
   {{#if session.isAuthenticated}}
-    {{site-header _drawerData=drawerData}}
+    {{#if session.data.group}}
+      {{site-header _drawerData=drawerData}}
+    {{/if}}
   {{/if}}
 
   {{#ember-notify as |message close|}}

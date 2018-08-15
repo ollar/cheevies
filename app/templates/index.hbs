@@ -1,9 +1,12 @@
 {{#particles-container}}
 <div class="sections-wrapper {{activePage}}">
   <section class="users-list grid-wrapper-2">
-    {{#link-to 'profile' model.me}}
+    {{!-- {{#link-to 'profile' model.me}} --}}
+    <div {{action 'openDrawer'}}>
+
       {{user-in-list user=model.me class="is-me"}}
-    {{/link-to}}
+    </div>
+    {{!-- {{/link-to}} --}}
 
     {{#each users as |user|}}
       {{#link-to 'profile' user}}
