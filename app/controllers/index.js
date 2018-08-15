@@ -11,9 +11,7 @@ export default Controller.extend({
   cheevies: computed.readOnly('model.cheevies'),
 
   actions: {
-    openDrawer() {
-      console.log('openDrawer');
-    },
+    openDrawer() {},
     setActivePage(type) {
       this.set('activePage', type);
     },
