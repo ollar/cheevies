@@ -57,13 +57,20 @@ export default Controller.extend(ImageUploadMixin, {
       this.model.save();
     },
 
+    closeCheevieDetails() {
+      if (this.popper) this.popper.destroy();
+      $('.item-hint').hide();
+      this.set('openPopper', '');
+      return;
+    },
+
     cheevieDetails(cheevie) {
       const reference = document.querySelector(`#${cheevie.id}`);
       const popper = document.querySelector(`#${cheevie.id}_hint`);
       if (this.popper) this.popper.destroy();
       if (cheevie.id === this.openPopper) {
         $('.item-hint').hide();
-        this.openPopper = '';
+        this.set('openPopper', '');
         return;
       }
 
@@ -71,7 +78,7 @@ export default Controller.extend(ImageUploadMixin, {
       $(popper).show();
 
       this.popper = new Popper(reference, popper);
-      this.openPopper = cheevie.id;
+      this.set('openPopper', cheevie.id);
     },
 
     showCheeviesPicker() {

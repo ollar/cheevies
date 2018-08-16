@@ -37,8 +37,7 @@
   {{#each cheevies as |cheevie|}}
     {{#item-hint
       data=cheevie
-      id=(add cheevie.id '_hint')
-      cheevieDetailsAction=(action 'cheevieDetails' cheevie)}}
+      id=(add cheevie.id '_hint')}}
       {{#if isMe}}
         <button class="icon-button delete" {{action 'refuseCheevie' cheevie}}>
           {{svg-icon _name="trash-2" _size=18}}
@@ -48,6 +47,10 @@
   {{/each}}
 </div>
 </section>
+
+{{#if openPopper}}
+  <div class="card-content-overlay" {{action 'closeCheevieDetails' on='click'}}></div>
+{{/if}}
 
 {{#unless isMe}}
   <footer>
