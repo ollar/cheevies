@@ -10,6 +10,7 @@
     position: relative;
     overflow: hidden;
     padding: ms(1);
+    background-size: 200% 100%;
 
     &.info {
       background-image: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
@@ -29,7 +30,8 @@
   }
 
   .ember-notify-show {
-    animation: fade-in-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both,
+               bg-pan-left 4s both;
   }
   .ember-notify-hide {
     animation: fade-out-top 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -60,5 +62,14 @@
   100% {
     transform: translateY(-20px);
     opacity: 0;
+  }
+}
+
+@keyframes bg-pan-left {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

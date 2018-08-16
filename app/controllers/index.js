@@ -11,7 +11,12 @@ export default Controller.extend({
   cheevies: computed.readOnly('model.cheevies'),
 
   actions: {
-    openDrawer() {},
+    openDrawer() {
+      this.send('notify', {
+        type: 'error',
+        text: 'success success success success',
+      });
+    },
     setActivePage(type) {
       this.set('activePage', type);
     },
