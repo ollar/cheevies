@@ -32,6 +32,10 @@
     <div class="cheevie-wrapper" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
       {{cheevie-in-list cheevie=cheevie}}
     </div>
+  {{else}}
+    <div class="empty-placeholder">
+      {{t 'no-cheevies-placeholder'}}
+    </div>
   {{/each}}
 
   {{#each cheevies as |cheevie|}}

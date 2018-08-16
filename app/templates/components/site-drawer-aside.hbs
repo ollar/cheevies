@@ -11,6 +11,10 @@
     <div class="grid-wrapper-3">
       {{#each cheevies as |cheevie|}}
         {{cheevie-in-list cheevie=cheevie}}
+      {{else}}
+        <div class="empty-placeholder">
+          {{t 'no-cheevies-placeholder'}}
+        </div>
       {{/each}}
     </div>
   </div>

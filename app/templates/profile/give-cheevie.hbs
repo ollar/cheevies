@@ -6,6 +6,10 @@
           {{cheevie-in-list cheevie=cheevie}}
         </div>
       </div>
+    {{else}}
+      <div class="empty-placeholder">
+        {{t 'no-cheevies-placeholder'}}
+      </div>
     {{/each}}
   </div>
 {{/modal-wrapper}}

@@ -87,7 +87,6 @@ export default {
   },
 
   index: {
-    'no-cheevies': 'There are no cheevies yet, but you are the best',
     'create-cheevie': {
       linkText: 'Create new cheevie',
     },
@@ -95,6 +94,8 @@ export default {
       title: "You've got new cheevie!",
     },
   },
+
+  'no-cheevies-placeholder': 'There are no cheevies yet, but you are the best',
 
   footer_message: 'Made with ♥ 2017',
 };
