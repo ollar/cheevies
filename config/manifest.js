@@ -6,51 +6,52 @@ module.exports = function(/* environment, appConfig */) {
   // supported properties
 
   return {
-    name: "Cheevies",
-    short_name: "Cheevies",
-    description: "An app for collecting cheevies for fun",
-    start_url: "/",
-    lang: 'ru',
-    display: "fullscreen",
-    background_color: "#fff",
-    theme_color: "#fff",
-    "gcm_sender_id": "103953800507",
-    "icons": [
+    name: 'Cheevies',
+    short_name: 'Cheevies',
+    description: 'An app for collecting cheevies for fun',
+    start_url: '/',
+    lang: 'en',
+    display: 'fullscreen',
+    background_color: '#1D2349',
+    theme_color: '#1D2349',
+    gcm_sender_id: '103953800507',
+    icons: [
       {
-        "src": "manifest_icons/icon_48.png",
-        "sizes": "48x48",
-        "type": "image/png"
+        src: 'firefox/firefox-marketplace-512-512.png',
+        sizes: '512x512',
       },
       {
-        "src": "manifest_icons/icon_72.png",
-        "sizes": "72x72",
-        "type": "image/png"
+        src: 'firefox/firefox-marketplace-128-128.png',
+        sizes: '128x128',
       },
       {
-        "src": "manifest_icons/icon_96.png",
-        "sizes": "96x96",
-        "type": "image/png"
+        src: 'firefox/firefox-general-256-256.png',
+        sizes: '256x256',
       },
       {
-        "src": "manifest_icons/icon_144.png",
-        "sizes": "144x144",
-        "type": "image/png"
+        src: 'firefox/firefox-general-128-128.png',
+        sizes: '128x128',
       },
       {
-        "src": "manifest_icons/icon_168.png",
-        "sizes": "168x168",
-        "type": "image/png"
+        src: 'firefox/firefox-general-90-90.png',
+        sizes: '90x90',
       },
       {
-        "src": "manifest_icons/icon_192.png",
-        "sizes": "192x192",
-        "type": "image/png"
+        src: 'firefox/firefox-general-64-64.png',
+        sizes: '64x64',
       },
       {
-        "src": "manifest_icons/icon_512.png",
-        "sizes": "512x512",
-        "type": "image/png"
+        src: 'firefox/firefox-general-48-48.png',
+        sizes: '48x48',
+      },
+      {
+        src: 'firefox/firefox-general-32-32.png',
+        sizes: '32x32',
+      },
+      {
+        src: 'firefox/firefox-general-16-16.png',
+        sizes: '16x16',
       },
     ],
   };
-}
+};
