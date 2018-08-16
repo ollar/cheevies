@@ -18,22 +18,26 @@ export default Controller.extend(ImageUploadMixin, {
   },
 
   actions: {
-    async updateCheevie() {
-      if (this._file) {
-        await this._uploadImage(this._file);
-      }
+    updateCheevie() {
+      return new Promise(resolve => {
+        if (this._file) {
+          return resolve(this._uploadImage(this._file));
+        }
 
-      const group = this.get('model.myGroup');
-      const model = this.get('_model');
+        return resolve();
+      }).then(() => {
+        const group = this.get('model.myGroup');
+        const model = this.get('_model');
 
-      model.set('group', group);
+        model.set('group', group);
 
-      model.save();
-      group.get('cheevies').pushObject(model);
+        model.save();
+        group.get('cheevies').pushObject(model);
 
-      group.save();
+        group.save();
 
-      this.transitionToRoute('index');
+        this.transitionToRoute('index');
+      });
     },
     goBack() {
       this._model.deleteRecord();

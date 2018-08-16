@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
 import { inject as service } from '@ember/service';
+import { Promise } from 'rsvp';
 
 export default Controller.extend(ImageUploadMixin, {
   showMode: true,
@@ -57,25 +58,33 @@ export default Controller.extend(ImageUploadMixin, {
       }
       return this._removeImage();
     },
-    async updateCheevie() {
-      if (this._file) {
-        await this._uploadImage(this._file);
-      }
+    updateCheevie() {
+      return new Promise(resolve => {
+        if (this._file) {
+          return resolve(this._uploadImage(this._file));
+        }
 
-      this.get('model').save();
-      this.restoreMode();
-      this.send('goBack');
+        return resolve();
+      })
+        .then(() => this.get('model').save())
+        .then(() => {
+          this.restoreMode();
+          this.send('goBack');
+        });
     },
-    async deleteCheevie() {
+    deleteCheevie() {
       if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
         const group = this.myGroup.get('model');
-        group.get('cheevies').removeObject(this.get('model'));
-
-        await group.save();
-
-        this.get('model').destroyRecord();
-        this.restoreMode();
-        this.transitionToRoute('index');
+        const model = this.get('model');
+        return new Promise(resolve =>
+          resolve(group.get('cheevies').removeObject(model))
+        )
+          .then(() => group.save())
+          .then(() => model.destroyRecord())
+          .then(() => {
+            this.restoreMode();
+            this.transitionToRoute('index');
+          });
       }
     },
   },

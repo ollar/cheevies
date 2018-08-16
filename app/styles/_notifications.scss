@@ -1,0 +1,64 @@
+.app-notify {
+  position: fixed;
+	bottom: 0;
+	right: 0;
+  left: 0;
+  z-index: 10;
+
+  /* message box */
+  .callout {
+    position: relative;
+    overflow: hidden;
+    padding: ms(1);
+
+    &.info {
+      background-image: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+    }
+
+    &.success{
+      background-image: linear-gradient(to right, #ec2F4B, #009FFF);
+    }
+
+    &.warning{
+      background-image: linear-gradient(to right, #f7b733, #fc4a1a);
+    }
+
+    &.error {
+      background-image: linear-gradient(to right, #ff6a00, #ee0979);
+    }
+  }
+
+  .ember-notify-show {
+    animation: fade-in-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
+  .ember-notify-hide {
+    animation: fade-out-top 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  button {
+    @include nigel;
+  }
+}
+
+
+@keyframes fade-in-top {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+ @keyframes fade-out-top {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}

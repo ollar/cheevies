@@ -29,27 +29,31 @@ export default Mixin.create({
   },
 
   _uploadImage(file) {
-    return this._removeImage()
-      .then(() =>
-        hash(
-          IMAGE_SIZES.reduce((acc, cur) => {
-            acc[cur] = this._processImageUpload(file, cur);
-            return acc;
-          }, {})
+    return (
+      this._removeImage()
+        // return resolve()
+        .then(() =>
+          hash(
+            IMAGE_SIZES.reduce((acc, cur) => {
+              acc[cur] = this._processImageUpload(file, cur);
+              return acc;
+            }, {})
+          )
         )
-      )
-      .then(_hash => {
-        const a = this.store.createRecord('image-set');
-        a.setProperties(_hash);
-        this._model.set('image-set', a);
-        return a.save().then(() => this._model.save());
-      })
-      .catch(err =>
-        this.send('notify', {
-          type: 'error',
-          text: err.message,
+        .then(_hash => {
+          const a = this.store.createRecord('image-set');
+          a.setProperties(_hash);
+          this._model.set('image-set', a);
+          return a.save();
         })
-      );
+        .then(() => this._model.save())
+    );
+    // .catch(err =>
+    //   this.send('notify', {
+    //     type: 'error',
+    //     text: err.message,
+    //   })
+    // );
   },
 
   _removeImage() {

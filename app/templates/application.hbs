@@ -5,7 +5,7 @@
     {{/if}}
   {{/if}}
 
-  {{#ember-notify as |message close|}}
+  {{#ember-notify classPrefix="app-notify" as |message close|}}
     <div class="notification is-{{message.type}}">
       <button class="delete" {{action close}}></button>
       {{message.text}}
