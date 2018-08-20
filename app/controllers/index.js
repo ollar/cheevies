@@ -12,10 +12,7 @@ export default Controller.extend({
 
   actions: {
     openDrawer() {
-      this.send('notify', {
-        type: 'error',
-        text: 'success success success success',
-      });
+      this.send('toggleDrawer');
     },
     setActivePage(type) {
       this.set('activePage', type);
