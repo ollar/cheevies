@@ -127,3 +127,49 @@ h1,h2,h3,h4,h5,h6 {
   grid-column: 2 / 6 !important;
   text-align: center;
 }
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  animation: linear backgrounds 5s infinite;
+  z-index: 999;
+  background: linear-gradient(to right, #dc2424, #4a569d);
+  background-size: 200% 100%;
+
+}
+
+@keyframes backgrounds {
+  0% {
+    // background: linear-gradient(to right, #aa076b, #61045f);
+    background-position: 0 0;
+  }
+
+  // 20% {
+  //   background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
+  // }
+
+  // 40% {
+  //   background: linear-gradient(to right, #4776e6, #8e54e9);
+  // }
+
+  50% {
+    background-position: 100% 0;
+  }
+
+  // 60% {
+  //   background: linear-gradient(to right, #dc2424, #4a569d);
+  // }
+
+  // 80% {
+  //   background: linear-gradient(to right, #fc354c, #0abfbc);
+  // }
+
+  100% {
+    // background: linear-gradient(to right, #aa076b, #61045f);
+    background-position: 0 0;
+  }
+}
