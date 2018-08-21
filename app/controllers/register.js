@@ -75,7 +75,7 @@ export default Controller.extend({
                 ? // group exists
                   groups.firstObject
                 : // group not exists
-                  this.store.createRecord({ name: this.model.group });
+                  this.store.createRecord('group', { name: this.model.group });
 
             group.get('users').addObject(this.myModel);
             this.myModel.get('groups').addObject(group);

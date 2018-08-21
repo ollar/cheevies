@@ -8,9 +8,7 @@ export default Controller.extend({
   session: service(),
   me: service(),
 
-  myModel: computed('session.isAuthenticated', function() {
-    return this.me.model;
-  }),
+  myModel: computed.readOnly('me.model'),
 
   init() {
     this._super(...arguments);
@@ -65,26 +63,49 @@ export default Controller.extend({
               .trim(),
           })
           .then(groups => {
-            if (!groups.length) {
-              return this.onError({
-                message: this.get('i18n').t('login.messages.no_such_group'),
-              });
-            }
+            // if (!groups.length) {
+            //   return this.onError({
+            //     message: this.get('i18n').t('login.messages.no_such_group'),
+            //   });
+            // }
 
-            const myGroup = groups.firstObject;
-            const myUid = this.get('me.model.id');
+            var group =
+              groups.length > 0
+                ? // group exists
+                  groups.firstObject
+                : // group not exists
+                  this.store.createRecord('group', { name: this.model.group });
 
-            if (myGroup.users.map(_u => _u.id).indexOf(myUid) > -1) {
-              this.get('session').set('data.group', myGroup.id);
-              return this.onSuccess();
-            } else {
-              return this.onError({
-                message: this.get('i18n').t(
-                  'login.messages.you_are_not_in_group'
-                ),
-              });
-            }
-          });
+            group.get('users').addObject(this.myModel);
+            this.myModel.get('groups').addObject(group);
+            return group
+              .save()
+              .then(() => this.myModel.save())
+              .then(() => this.get('session').set('data.group', group.name))
+              .then(() =>
+                group.reload({
+                  adapterOptions: {
+                    shouldReloadAll: true,
+                    shouldReloadRecord: true,
+                  },
+                })
+              );
+
+            // const myUid = this.get('me.model.id');
+
+            // if (myGroup.users.map(_u => _u.id).indexOf(myUid) > -1) {
+            //   this.get('session').set('data.group', myGroup.id);
+            //   return this.onSuccess();
+            // } else {
+            //   return this.onError({
+            //     message: this.get('i18n').t(
+            //       'login.messages.you_are_not_in_group'
+            //     ),
+            //   });
+            // }
+          })
+          .then(this.onSuccess);
+        // .then(this.onSuccess, this.onError);
       }
     },
     invalidate() {

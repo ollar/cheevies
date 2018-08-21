@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { hash, resolve } from 'rsvp';
+import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import imageResize from 'image-resize-util/utils/image-resize';
 
