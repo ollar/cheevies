@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
-import { testGroup, cheevieModel } from './common-stubs';
+import { testGroup, cheevieModel, meStub } from './common-stubs';
 
 const sessionStub = Service.extend({
   isAuthenticated: false,
@@ -37,9 +37,8 @@ module('Acceptance | index', function(hooks) {
   hooks.beforeEach(function() {
     this.owner.register('service:session', sessionStub);
     this.owner.register('service:my-group', myGroupStub);
-
+    this.owner.register('service:me', meStub);
     this.owner.register('service:store-test', storeStub);
-
     this.owner.inject('route:index', 'store', 'service:store-test');
   });
 

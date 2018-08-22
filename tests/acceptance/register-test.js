@@ -10,15 +10,10 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve, hash } from 'rsvp';
+import { resolve } from 'rsvp';
 import sinon from 'sinon';
-import EmberObject from '@ember/object';
 import { A } from '@ember/array';
-import Route from '@ember/routing/route';
-import { myGroupStub, testGroup } from './common-stubs';
-
-const myModel = new EmberObject({ id: 'me', groups: A(), save: sinon.stub() });
+import { myGroupStub, testGroup, meStub } from './common-stubs';
 
 const groupStub = testGroup.create();
 
@@ -27,21 +22,6 @@ const storeStub = Service.extend({
     return resolve(options.equalTo === 'myGroup' ? A([groupStub]) : A([]));
   },
   createRecord: sinon.stub().returns(groupStub),
-});
-
-const meStub = Service.extend({
-  fetch: sinon.stub().resolves(myModel),
-  model: computed(() => myModel),
-});
-
-const indexRouteStub = Route.extend({
-  model() {
-    return hash({
-      me: meStub,
-      users: [],
-      cheevies: [],
-    });
-  },
 });
 
 module('Acceptance | register', function(hooks) {
@@ -56,12 +36,10 @@ module('Acceptance | register', function(hooks) {
     });
 
     this.owner.register('service:store-test', storeStub);
-    this.owner.register('service:me-test', meStub);
-    this.owner.register('route:index', indexRouteStub);
+    this.owner.register('service:me', meStub);
     this.owner.register('service:my-group', myGroupStub);
 
     this.owner.inject('controller:register', 'store', 'service:store-test');
-    this.owner.inject('controller:register', 'me', 'service:me-test');
     this.owner.inject('route:index', 'store', 'service:store-test');
   });
 

@@ -10,7 +10,7 @@ export default Route.extend({
     this._super(...arguments);
     this.notificationTypes = ['info', 'success', 'warning', 'error'];
   },
-  afterModel() {
+  ____afterModel() {
     const messaging = this.get('firebaseApp').messaging();
     const _this = this;
 

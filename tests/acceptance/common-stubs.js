@@ -10,6 +10,9 @@ export const testGroup = EmberObject.extend({
   save() {
     return resolve();
   },
+  reload() {
+    return resolve();
+  },
 });
 
 export const meModel = EmberObject.extend({
@@ -21,6 +24,8 @@ export const meModel = EmberObject.extend({
   unseenCheevies: computed(() => []),
   badges: computed(() => []),
   groups: computed(() => []),
+
+  save() {},
 });
 
 export const myGroupStub = Service.extend({

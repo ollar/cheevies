@@ -2,13 +2,19 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import { myGroupStub } from '../../acceptance/common-stubs';
 
 const user = {
   name: 'tester user',
+  cheevies: [],
 };
 
 module('Integration | Component | user-in-list', function(hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
+    this.owner.register('service:my-group', myGroupStub);
+  });
 
   test('it renders without image', async function(assert) {
     this.set('user', user);
