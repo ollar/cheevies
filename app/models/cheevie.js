@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 export default DS.Model.extend({
   rates: computed(() => ['high', 'normal', 'low']),
 
-  'image-set': DS.belongsTo('image-set'),
+  'image-set': DS.belongsTo('image-set', { inverse: null }),
   group: DS.belongsTo(),
   name: DS.attr('string'),
   description: DS.attr('string'),

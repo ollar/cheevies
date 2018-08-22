@@ -104,8 +104,7 @@ export default Controller.extend({
             //   });
             // }
           })
-          .then(this.onSuccess);
-        // .then(this.onSuccess, this.onError);
+          .then(this.onSuccess, this.onError);
       }
     },
     invalidate() {

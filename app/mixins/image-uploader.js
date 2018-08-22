@@ -39,11 +39,11 @@ export default Mixin.create({
         )
       )
       .then(_hash => {
-        const a = this.store.createRecord('image-set');
-        a.setProperties(_hash);
-        this._model.set('image-set', a);
-        a.save();
-        return this._model.save();
+        const imageSet = this.store.createRecord('image-set');
+        imageSet.setProperties(_hash);
+        this._model.set('image-set', imageSet);
+        this._model.save();
+        imageSet.save();
       })
       .catch(err =>
         this.send('notify', {

@@ -11,6 +11,5 @@ export default DS.Model.extend({
   badges: DS.hasMany('badge'),
 
   created: DS.attr('number'),
-
   groups: DS.hasMany('group'),
 });

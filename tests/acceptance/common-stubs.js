@@ -12,6 +12,17 @@ export const testGroup = EmberObject.extend({
   },
 });
 
+export const meModel = EmberObject.extend({
+  id: 'me',
+  email: 'test@test.test',
+  fcmToken: 'string',
+
+  cheevies: computed(() => []),
+  unseenCheevies: computed(() => []),
+  badges: computed(() => []),
+  groups: computed(() => []),
+});
+
 export const myGroupStub = Service.extend({
   groupName: 'test',
   model: testGroup.create(),
@@ -25,4 +36,16 @@ export const cheevieModel = EmberObject.extend({
   save() {
     return resolve();
   },
+});
+
+export const meStub = Service.extend({
+  _me: computed(function() {
+    return meModel.create();
+  }),
+  fetch() {
+    return resolve(this._me);
+  },
+  model: computed(function() {
+    return this._me;
+  }),
 });

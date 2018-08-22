@@ -13,9 +13,8 @@ import Service from '@ember/service';
 import { resolve, hash } from 'rsvp';
 
 import sinon from 'sinon';
-import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
-import { myGroupStub } from './common-stubs';
+import { myGroupStub, meStub } from './common-stubs';
 
 const storeStub = Service.extend({
   query(modelType, options) {
@@ -35,11 +34,6 @@ const storeStub = Service.extend({
 
     return resolve(options.equalTo === 'mygroup' ? [group] : [group2]);
   },
-});
-
-const meStub = Service.extend({
-  fetch: sinon.stub().resolves({ id: 'me' }),
-  model: computed(() => ({ id: 'me' })),
 });
 
 const indexRouteStub = Route.extend({
@@ -64,12 +58,12 @@ module('Acceptance | login', function(hooks) {
     });
 
     this.owner.register('service:store-test', storeStub);
-    this.owner.register('service:me-test', meStub);
+    this.owner.register('service:me', meStub);
     this.owner.register('route:index', indexRouteStub);
     this.owner.register('service:my-group', myGroupStub);
 
     this.owner.inject('controller:login', 'store', 'service:store-test');
-    this.owner.inject('controller:login', 'me', 'service:me-test');
+    // this.owner.inject('controller:login', 'me', 'service:me');
     this.owner.inject('route:index', 'store', 'service:store-test');
   });
 
