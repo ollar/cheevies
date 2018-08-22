@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { hash, resolve, all } from 'rsvp';
+import { hash, resolve } from 'rsvp';
 import { inject as service } from '@ember/service';
 import imageResize from 'image-resize-util/utils/image-resize';
 
@@ -29,31 +29,28 @@ export default Mixin.create({
   },
 
   _uploadImage(file) {
-    return (
-      this._removeImage()
-        // return resolve()
-        .then(() =>
-          hash(
-            IMAGE_SIZES.reduce((acc, cur) => {
-              acc[cur] = this._processImageUpload(file, cur);
-              return acc;
-            }, {})
-          )
+    return this._removeImage()
+      .then(() =>
+        hash(
+          IMAGE_SIZES.reduce((acc, cur) => {
+            acc[cur] = this._processImageUpload(file, cur);
+            return acc;
+          }, {})
         )
-        .then(_hash => {
-          const a = this.store.createRecord('image-set');
-          a.setProperties(_hash);
-          this._model.set('image-set', a);
-          return a.save();
+      )
+      .then(_hash => {
+        const a = this.store.createRecord('image-set');
+        a.setProperties(_hash);
+        this._model.set('image-set', a);
+        a.save();
+        return this._model.save();
+      })
+      .catch(err =>
+        this.send('notify', {
+          type: 'error',
+          text: err.message,
         })
-        .then(() => this._model.save())
-    );
-    // .catch(err =>
-    //   this.send('notify', {
-    //     type: 'error',
-    //     text: err.message,
-    //   })
-    // );
+      );
   },
 
   _removeImage() {
@@ -61,9 +58,8 @@ export default Mixin.create({
       .get('image-set')
       .then(imageSet => {
         if (!imageSet) return resolve();
-        return imageSet.destroyRecord();
-      })
-      .then(() => {
+        const _imageSet = this.store.peekRecord('image-set', imageSet.id);
+        _imageSet.destroyRecord();
         this._model.set('image-set', null);
         return this._model.save();
       })
