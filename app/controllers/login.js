@@ -68,6 +68,7 @@ export default Controller.extend({
             //     message: this.get('i18n').t('login.messages.no_such_group'),
             //   });
             // }
+            //
 
             var group =
               groups.length > 0
