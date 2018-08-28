@@ -44,7 +44,9 @@
 
 @mixin center-wrapper {
   display: grid;
-  grid-template-columns: [all-start] minmax(ms(0), ms(1)) [content-start] minmax(240px, 1fr) [content-end] minmax(ms(0), ms(1)) [all-end];
+  grid-template-columns: [all-start] minmax(ms(0), ms(1))
+                        [content-start] minmax(240px, 1fr)
+                        [content-end] minmax(ms(0), ms(1)) [all-end];
   grid-auto-rows: min-content;
 
   & > * {
