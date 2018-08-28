@@ -24,14 +24,8 @@ export default Service.extend({
 
   fetch() {
     return resolve().then(() => {
-      if (!this.uid) {
-        this.set('model', null);
-        return null;
-      }
-
-      if (this.model) {
-        return this.model;
-      }
+      if (!this.uid) return null;
+      if (this.model) return this.model;
 
       return this.get('store')
         .findRecord('user', this.uid)

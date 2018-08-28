@@ -1,31 +1,27 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { Promise } from 'rsvp';
+import { resolve } from 'rsvp';
 
 export default Service.extend({
   session: service(),
   store: service(),
 
   isAuthenticated: computed.readOnly('session.isAuthenticated'),
+  groupName: computed.readOnly('session.data.group'),
   model: null,
 
-  groupName: computed('isAuthenticated', function() {
-    return this.isAuthenticated
-      ? this.getWithDefault('session.data.group', '')
-      : '';
-  }),
+  init() {
+    this._super(...arguments);
+    this.session.on('invalidationSucceeded', () => {
+      this.set('model', null);
+    });
+  },
 
   fetch() {
-    return new Promise(res => {
-      if (!this.groupName) {
-        this.set('model', null);
-        return res(null);
-      }
-
-      if (this.model) {
-        return res(this.model);
-      }
+    return resolve().then(() => {
+      if (!this.groupName) return null;
+      if (this.model) return this.model;
 
       return this.get('store')
         .query('group', {
@@ -35,7 +31,7 @@ export default Service.extend({
         .then(_group => {
           const group = _group.firstObject;
           this.set('model', group);
-          return res(group);
+          return group;
         });
     });
   },
