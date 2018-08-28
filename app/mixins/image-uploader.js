@@ -34,8 +34,6 @@ export default Mixin.create({
       .then(() =>
         hash(
           IMAGE_SIZES.reduce((acc, cur) => {
-            console.log(cur);
-
             acc[cur] = this._processImageUpload(file, cur);
             return acc;
           }, {})

@@ -10,6 +10,7 @@ const sessionStub = Service.extend({
       uid: '1',
     },
   })),
+  on: () => false,
 });
 
 const user = {
