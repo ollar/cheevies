@@ -34,7 +34,7 @@ export default Component.extend({
     invalidate() {
       return this.session
         .invalidate()
-        .then(() => this.get('router').transitionTo('login'));
+        .then(() => this.get('router').transitionTo('logout'));
     },
   },
 });
