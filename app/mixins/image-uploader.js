@@ -3,7 +3,8 @@ import { hash, resolve } from 'rsvp';
 import { inject as service } from '@ember/service';
 import imageResize from 'image-resize-util/utils/image-resize';
 
-const IMAGE_SIZES = [32, 64, 128, 256, 512];
+// const IMAGE_SIZES = [32, 64, 128, 256, 512];
+const IMAGE_SIZES = [64, 128, 256, 512];
 
 export default Mixin.create({
   fileStorage: service(),
@@ -33,6 +34,8 @@ export default Mixin.create({
       .then(() =>
         hash(
           IMAGE_SIZES.reduce((acc, cur) => {
+            console.log(cur);
+
             acc[cur] = this._processImageUpload(file, cur);
             return acc;
           }, {})
