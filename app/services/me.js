@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { resolve } from 'rsvp';
 
 export default Service.extend({
   session: service(),
@@ -14,22 +15,29 @@ export default Service.extend({
       : '';
   }),
 
+  init() {
+    this._super(...arguments);
+    this.session.on('invalidationSucceeded', () => {
+      this.set('model', null);
+    });
+  },
+
   fetch() {
-    return new Promise(res => {
+    return resolve().then(() => {
       if (!this.uid) {
         this.set('model', null);
-        return res(null);
+        return null;
       }
 
       if (this.model) {
-        return res(this.model);
+        return this.model;
       }
 
-      this.get('store')
+      return this.get('store')
         .findRecord('user', this.uid)
         .then(user => {
           this.set('model', user);
-          return res(user);
+          return user;
         });
     });
   },

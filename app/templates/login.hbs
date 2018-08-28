@@ -41,7 +41,7 @@
   {{else}}
   <section test-id="group-select-section">
     <div class="user-image-wrapper">
-      {{icon-image data=myModel image=(get me.model.image-set '128') _size=128}}
+      {{icon-image data=myModel image=myImage _size=128}}
       <button class="icon-button" data-test-id="invalidate-button" {{action 'invalidate'}}>
         {{svg-icon _name="x" _size=20}}
       </button>

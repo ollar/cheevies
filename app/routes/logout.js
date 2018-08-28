@@ -1,14 +1,18 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
 
 export default Route.extend({
   session: service(),
-  beforeModel(transition) {
-    transition.abort();
+  beforeModel() {
+    return run(() => {
+      this.store.unloadAll();
 
-    this.store.unloadAll();
-    return this.get('session')
-      .invalidate()
-      .then(() => this.get('router').transitionTo('login'));
+      run(() => {
+        this.get('session')
+          .invalidate()
+          .then(() => this.get('router').transitionTo('login'));
+      });
+    });
   },
 });

@@ -9,6 +9,7 @@ export default Controller.extend({
   me: service(),
 
   myModel: computed.readOnly('me.model'),
+  myImage: computed.readOnly('myModel.image-set.128'),
 
   init() {
     this._super(...arguments);
