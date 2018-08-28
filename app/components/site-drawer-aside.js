@@ -6,7 +6,6 @@ import { resolve } from 'rsvp';
 
 export default Component.extend({
   me: service(),
-  session: service(),
   myGroup: service(),
   router: service(),
   avatar: computed.readOnly('me.model.image-set'),
@@ -32,9 +31,7 @@ export default Component.extend({
       this.get('router').transitionTo('index.create-cheevie');
     },
     invalidate() {
-      return this.session
-        .invalidate()
-        .then(() => this.get('router').transitionTo('logout'));
+      return this.get('router').transitionTo('logout');
     },
   },
 });
