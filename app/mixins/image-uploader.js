@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { hash, resolve } from 'rsvp';
+import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import imageResize from 'image-resize-util/utils/image-resize';
 
@@ -43,8 +43,7 @@ export default Mixin.create({
         const imageSet = this.store.createRecord('image-set');
         imageSet.setProperties(_hash);
         this._model.set('image-set', imageSet);
-        this._model.save();
-        imageSet.save();
+        return all([imageSet.save(), this._model.save()]);
       })
       .catch(err =>
         this.send('notify', {
@@ -60,9 +59,8 @@ export default Mixin.create({
       .then(imageSet => {
         if (!imageSet) return resolve();
         const _imageSet = this.store.peekRecord('image-set', imageSet.id);
-        _imageSet.destroyRecord();
-        this._model.set('image-set', null);
-        return this._model.save();
+        this._model.set('image-set', '');
+        return all([this._model.save(), _imageSet.destroyRecord()]);
       })
       .catch(e => {
         throw e;

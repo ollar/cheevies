@@ -46,5 +46,8 @@ module.exports = function(defaults) {
   app.import('node_modules/particles.js/particles.js');
   app.import('vendor/shims/particles.js');
 
+  app.import('node_modules/hammerjs/hammer.min.js');
+  app.import('vendor/shims/hammerjs.js');
+
   return app.toTree();
 };

@@ -1,6 +1,7 @@
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import ImageUploadMixin from '../../mixins/image-uploader';
+import { all, resolve } from 'rsvp';
 
 export default Controller.extend(ImageUploadMixin, {
   _model: computed.alias('model.cheevie'),
@@ -19,25 +20,27 @@ export default Controller.extend(ImageUploadMixin, {
 
   actions: {
     updateCheevie() {
-      return new Promise(resolve => {
-        if (this._file) {
-          return resolve(this._uploadImage(this._file));
-        }
+      return resolve()
+        .then(() => {
+          if (this._file) {
+            return this._uploadImage(this._file);
+          }
 
-        return resolve();
-      }).then(() => {
-        const group = this.get('model.myGroup');
-        const model = this.get('_model');
+          return true;
+        })
+        .then(() => {
+          // console.log(2);
 
-        model.set('group', group);
+          const group = this.get('model.myGroup');
+          const model = this.get('_model');
 
-        model.save();
-        group.get('cheevies').pushObject(model);
-
-        group.save();
-
-        this.transitionToRoute('index');
-      });
+          model.set('group', group);
+          group.get('cheevies').pushObject(model);
+          return all([model.save(), group.save()]).then(() => {
+            // console.log(4);
+            this.transitionToRoute('index');
+          });
+        });
     },
     goBack() {
       this._model.deleteRecord();
