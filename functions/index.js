@@ -25,6 +25,21 @@ exports.removeImageFileOnModelDestroy = functions.database
     return false;
   });
 
+exports.removeImageSetOnCheevieModelDestroy = functions.database
+  .ref('/cheevies/{id}')
+  .onDelete(snapshot => {
+    const cheevie = snapshot.val();
+    const imageSet = cheevie['image-set'];
+
+    if (imageSet) {
+      return admin
+        .database()
+        .ref('/imageSets/' + imageSet)
+        .remove();
+    }
+    return false;
+  });
+
 exports.removeImageModelsOnImageSetModelDestroy = functions.database
   .ref('/imageSets/{setId}')
   .onDelete(snapshot => {

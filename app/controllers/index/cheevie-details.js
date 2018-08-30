@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
 import { inject as service } from '@ember/service';
-import { Promise } from 'rsvp';
+import { resolve, all } from 'rsvp';
 
 export default Controller.extend(ImageUploadMixin, {
   showMode: true,
@@ -76,11 +76,9 @@ export default Controller.extend(ImageUploadMixin, {
       if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
         const group = this.myGroup.get('model');
         const model = this.get('model');
-        return new Promise(resolve =>
-          resolve(group.get('cheevies').removeObject(model))
-        )
-          .then(() => group.save())
-          .then(() => model.destroyRecord())
+        return resolve()
+          .then(() => group.get('cheevies').removeObject(model))
+          .then(() => all([group.save(), model.destroyRecord()]))
           .then(() => {
             this.restoreMode();
             this.transitionToRoute('index');
