@@ -1,10 +1,14 @@
 import Mixin from '@ember/object/mixin';
 import Hammer from 'hammerjs';
+import { htmlSafe } from '@ember/string';
 
 export default Mixin.create({
   classNameBindings: ['dragged:is-dragged'],
+  attributeBindings: ['style', 'lang'],
 
   dragged: false,
+  style: htmlSafe(''),
+  cachedStyle: htmlSafe(''),
 
   init() {
     this._super(...arguments);
@@ -17,20 +21,38 @@ export default Mixin.create({
   handlePanStart(ev) {
     this.set('dragged', true);
     ev.preventDefault();
-    this.element.style.left = ev.center.x + 'px';
-    this.element.style.top = ev.center.y + 'px';
+
+    this.set('cachedStyle', this.element.getAttribute('style'));
+
+    this.set(
+      'style',
+      htmlSafe(`${this.cachedStyle};
+        left: ${ev.center.x}px;
+        top: ${ev.center.y}px;
+      `)
+    );
   },
 
   handlePanEnd(ev) {
     this.set('dragged', false);
     ev.preventDefault();
-    this.element.style.left = '';
-    this.element.style.top = '';
+    ev.srcEvent.stopPropagation();
+
+    this.set('cachedStyle', htmlSafe(''));
+    this.set('style', htmlSafe(''));
   },
 
   handlePanMove(ev) {
     ev.preventDefault();
-    this.element.style.transform = `translate(${ev.deltaX}px, ${ev.deltaY}px)`;
+
+    this.set(
+      'style',
+      htmlSafe(
+        `${this.cachedStyle}; transform: translate(${ev.deltaX}px, ${
+          ev.deltaY
+        }px)`
+      )
+    );
   },
 
   didInsertElement() {
