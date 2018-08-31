@@ -4,7 +4,7 @@ import { htmlSafe } from '@ember/string';
 
 export default Mixin.create({
   classNameBindings: ['dragged:is-dragged'],
-  attributeBindings: ['style', 'lang'],
+  attributeBindings: ['style'],
 
   dragged: false,
   style: htmlSafe(''),
@@ -21,16 +21,12 @@ export default Mixin.create({
   handlePanStart(ev) {
     this.set('dragged', true);
     ev.preventDefault();
+    // console.log(window.getComputedStyle(this.element).transform);
+    // console.log(window.getComputedStyle(this.element));
 
     this.set('cachedStyle', this.element.getAttribute('style'));
 
-    this.set(
-      'style',
-      htmlSafe(`${this.cachedStyle};
-        left: ${ev.center.x}px;
-        top: ${ev.center.y}px;
-      `)
-    );
+    // console.log(ev.deltaX, ev.deltaY);
   },
 
   handlePanEnd(ev) {
@@ -38,12 +34,14 @@ export default Mixin.create({
     ev.preventDefault();
     ev.srcEvent.stopPropagation();
 
+    this.set('style', htmlSafe(`${this.cachedStyle}`));
     this.set('cachedStyle', htmlSafe(''));
-    this.set('style', htmlSafe(''));
   },
 
   handlePanMove(ev) {
     ev.preventDefault();
+
+    // console.log(ev);
 
     this.set(
       'style',
@@ -58,11 +56,9 @@ export default Mixin.create({
   didInsertElement() {
     this._super(...arguments);
 
-    this.hammerManager = new Hammer.Manager(this.element, { domEvents: true });
+    this.hammerManager = new Hammer.Manager(this.element);
 
-    this.hammerManager.add(
-      new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 0 })
-    );
+    this.hammerManager.add(new Hammer.Pan({ direction: Hammer.DIRECTION_ALL }));
 
     this.hammerManager.on('panstart', this.handlePanStart);
     this.hammerManager.on('panend', this.handlePanEnd);
