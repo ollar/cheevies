@@ -49,7 +49,7 @@ export default Controller.extend(ImageUploadMixin, {
     },
 
     removeImage() {
-      return this._removeImage();
+      return this._removeImage(true);
     },
 
     refuseCheevie(cheevie) {

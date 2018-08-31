@@ -56,7 +56,7 @@ export default Controller.extend(ImageUploadMixin, {
           _file: '',
         });
       }
-      return this._removeImage();
+      return this._removeImage(true);
     },
     updateCheevie() {
       return new Promise(resolve => {

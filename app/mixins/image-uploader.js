@@ -53,14 +53,18 @@ export default Mixin.create({
       );
   },
 
-  _removeImage() {
+  _removeImage(saveModel = false) {
     return this._model
       .get('image-set')
       .then(imageSet => {
         if (!imageSet) return resolve();
         const _imageSet = this.store.peekRecord('image-set', imageSet.id);
+        const promises = [_imageSet.destroyRecord()];
         this._model.set('image-set', '');
-        return all([this._model.save(), _imageSet.destroyRecord()]);
+
+        if (saveModel) promises.push(this._model.save());
+
+        return all(promises);
       })
       .catch(e => {
         throw e;
