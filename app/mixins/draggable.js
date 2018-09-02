@@ -1,5 +1,14 @@
 import Mixin from '@ember/object/mixin';
-import Hammer from 'hammerjs';
+import Hammer, {
+  DIRECTION_ALL,
+  DIRECTION_NONE,
+  DIRECTION_LEFT,
+  DIRECTION_RIGHT,
+  DIRECTION_UP,
+  DIRECTION_DOWN,
+  DIRECTION_HORIZONTAL,
+  DIRECTION_VERTICAL,
+} from 'hammerjs';
 import { htmlSafe } from '@ember/string';
 
 export default Mixin.create({
@@ -9,6 +18,19 @@ export default Mixin.create({
   dragged: false,
   style: htmlSafe(''),
   cachedStyle: htmlSafe(''),
+  initialTransform: [0, 0],
+
+  DIRECTION_ALL: DIRECTION_ALL,
+  DIRECTION_NONE: DIRECTION_NONE,
+  DIRECTION_LEFT: DIRECTION_LEFT,
+  DIRECTION_RIGHT: DIRECTION_RIGHT,
+  DIRECTION_UP: DIRECTION_UP,
+  DIRECTION_DOWN: DIRECTION_DOWN,
+  DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
+  DIRECTION_VERTICAL: DIRECTION_VERTICAL,
+
+  panDirection: Hammer.DIRECTION_ALL,
+  maxDistance: 100,
 
   init() {
     this._super(...arguments);
@@ -18,15 +40,38 @@ export default Mixin.create({
     this.handlePanMove = this.handlePanMove.bind(this);
   },
 
+  onPanEnvComplete() {
+    this.set('style', htmlSafe(`${this.cachedStyle}`));
+  },
+
   handlePanStart(ev) {
     this.set('dragged', true);
     ev.preventDefault();
-    // console.log(window.getComputedStyle(this.element).transform);
-    // console.log(window.getComputedStyle(this.element));
+    const { transform } = window.getComputedStyle(this.element);
 
+    this.set(
+      'initialTransform',
+      transform
+        .replace(/[a-z()]/g, '')
+        .split(', ')
+        .slice(-2)
+        .map(i => Number(i))
+    );
     this.set('cachedStyle', this.element.getAttribute('style'));
+  },
 
-    // console.log(ev.deltaX, ev.deltaY);
+  handlePanMove(ev) {
+    ev.preventDefault();
+
+    if (ev.distance > this.maxDistance) return true;
+
+    this.set(
+      'style',
+      htmlSafe(
+        `${this.cachedStyle}; transform: translate(${this.initialTransform[0] +
+          ev.deltaX}px, ${this.initialTransform[1] + ev.deltaY}px)`
+      )
+    );
   },
 
   handlePanEnd(ev) {
@@ -34,23 +79,7 @@ export default Mixin.create({
     ev.preventDefault();
     ev.srcEvent.stopPropagation();
 
-    this.set('style', htmlSafe(`${this.cachedStyle}`));
-    this.set('cachedStyle', htmlSafe(''));
-  },
-
-  handlePanMove(ev) {
-    ev.preventDefault();
-
-    // console.log(ev);
-
-    this.set(
-      'style',
-      htmlSafe(
-        `${this.cachedStyle}; transform: translate(${ev.deltaX}px, ${
-          ev.deltaY
-        }px)`
-      )
-    );
+    this.onPanEnvComplete();
   },
 
   didInsertElement() {
@@ -58,10 +87,19 @@ export default Mixin.create({
 
     this.hammerManager = new Hammer.Manager(this.element);
 
-    this.hammerManager.add(new Hammer.Pan({ direction: Hammer.DIRECTION_ALL }));
+    this.hammerManager.add(
+      new Hammer.Pan({
+        direction: this.panDirection,
+      })
+    );
 
     this.hammerManager.on('panstart', this.handlePanStart);
     this.hammerManager.on('panend', this.handlePanEnd);
     this.hammerManager.on('pan', this.handlePanMove);
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.hammerManager.destroy();
   },
 });
