@@ -29,8 +29,10 @@ export default Mixin.create({
   DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
   DIRECTION_VERTICAL: DIRECTION_VERTICAL,
 
-  panDirection: Hammer.DIRECTION_ALL,
-  maxDistance: 100,
+  panDirection() {
+    return Hammer.DIRECTION_ALL;
+  },
+  maxDistance: 1000,
 
   init() {
     this._super(...arguments);
@@ -63,15 +65,30 @@ export default Mixin.create({
   handlePanMove(ev) {
     ev.preventDefault();
 
-    if (ev.distance > this.maxDistance) return true;
+    // this.set(
+    //   'style',
+    //   htmlSafe(
+    //     `${this.cachedStyle}; transform: translate(${this.initialTransform[0] +
+    //       ev.deltaX}px, ${this.initialTransform[1] + ev.deltaY}px)`
+    //   )
+    // );
 
     this.set(
       'style',
       htmlSafe(
-        `${this.cachedStyle}; transform: translate(${this.initialTransform[0] +
-          ev.deltaX}px, ${this.initialTransform[1] + ev.deltaY}px)`
+        `${this.cachedStyle};
+        transform: translate(
+          ${this.initialTransform[0] +
+            Math.sign(ev.deltaX) *
+              Math.min(Math.abs(ev.deltaX), this.maxDistance)}px,
+          ${this.initialTransform[1] +
+            Math.sign(ev.deltaY) *
+              Math.min(Math.abs(ev.deltaY), this.maxDistance)}px
+        )`
       )
     );
+
+    this.set('previousStyle', this.get('style'));
   },
 
   handlePanEnd(ev) {
@@ -89,7 +106,7 @@ export default Mixin.create({
 
     this.hammerManager.add(
       new Hammer.Pan({
-        direction: this.panDirection,
+        direction: this.panDirection(),
       })
     );
 

@@ -6,6 +6,11 @@ import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 
 export default Component.extend(HaoticMoveMixin, DraggableMixin, {
+  maxDistance: 50,
+  // panDirection() {
+  //   return this.DIRECTION_HORIZONTAL;
+  // },
+
   myGroup: service('my-group'),
 
   cheevies: computed('model.cheevies.[]', function() {
