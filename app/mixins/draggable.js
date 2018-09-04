@@ -1,5 +1,8 @@
 import Mixin from '@ember/object/mixin';
-import Hammer, {
+import Hammer from 'hammerjs';
+import { htmlSafe } from '@ember/string';
+
+const {
   DIRECTION_ALL,
   DIRECTION_NONE,
   DIRECTION_LEFT,
@@ -8,8 +11,7 @@ import Hammer, {
   DIRECTION_DOWN,
   DIRECTION_HORIZONTAL,
   DIRECTION_VERTICAL,
-} from 'hammerjs';
-import { htmlSafe } from '@ember/string';
+} = Hammer;
 
 export default Mixin.create({
   classNameBindings: ['dragged:is-dragged'],
@@ -30,7 +32,7 @@ export default Mixin.create({
   DIRECTION_VERTICAL: DIRECTION_VERTICAL,
 
   panDirection() {
-    return Hammer.DIRECTION_ALL;
+    return this.DIRECTION_ALL;
   },
   maxDistance: 1000,
 

@@ -7,9 +7,9 @@ import DS from 'ember-data';
 
 export default Component.extend(HaoticMoveMixin, DraggableMixin, {
   maxDistance: 50,
-  // panDirection() {
-  //   return this.DIRECTION_HORIZONTAL;
-  // },
+  panDirection() {
+    return this.DIRECTION_RIGHT;
+  },
 
   myGroup: service('my-group'),
 
