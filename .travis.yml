@@ -1,23 +1,24 @@
 language: node_js
 node_js:
-- '8'
+  - '8'
 sudo: false
 dist: trusty
 addons:
   chrome: stable
 cache:
   directories:
-  - "$HOME/.npm"
+    - '$HOME/.npm'
 env:
   global:
-  - JOBS=1
+    - JOBS=1
 before_install:
-- npm config set spin false
+  - npm config set spin false
 script:
-- npm run lint:js
-- npm test
+  - npm run lint:hbs
+  - npm run lint:js
+  - npm test
 after_success:
-- cd functions
-- npm i
-- cd ..
-- ember deploy production
+  - cd functions
+  - npm i
+  - cd ..
+  - ember deploy production
