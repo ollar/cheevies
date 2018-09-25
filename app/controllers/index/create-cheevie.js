@@ -29,17 +29,14 @@ export default Controller.extend(ImageUploadMixin, {
           return true;
         })
         .then(() => {
-          // console.log(2);
-
           const group = this.get('model.myGroup');
           const model = this.get('_model');
 
           model.set('group', group);
           group.get('cheevies').pushObject(model);
-          return all([model.save(), group.save()]).then(() => {
-            // console.log(4);
-            this.transitionToRoute('index');
-          });
+          return all([model.save(), group.save()]).then(() =>
+            this.transitionToRoute('index')
+          );
         });
     },
     goBack() {
