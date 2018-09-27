@@ -1,16 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import HaoticMoveMixin from '../mixins/haotic-move';
-import DraggableMixin from '../mixins/draggable';
 import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 
-export default Component.extend(HaoticMoveMixin, DraggableMixin, {
-    maxDistance: 50,
-    panDirection() {
-        return this.DIRECTION_ALL;
-    },
-
+export default Component.extend(HaoticMoveMixin, {
     myGroup: service('my-group'),
 
     cheevies: computed('model.cheevies.[]', function() {

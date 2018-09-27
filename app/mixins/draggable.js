@@ -53,14 +53,19 @@ export default Mixin.create({
         ev.preventDefault();
         const { transform } = window.getComputedStyle(this.element);
 
-        this.set(
-            'initialTransform',
-            transform
-                .replace(/[a-z()]/g, '')
-                .split(', ')
-                .slice(-2)
-                .map(i => Number(i))
-        );
+        if (transform === 'none') {
+            this.set('initialTransform', [0, 0]);
+        } else {
+            this.set(
+                'initialTransform',
+                transform
+                    .replace(/[a-z()]/g, '')
+                    .split(', ')
+                    .slice(-2)
+                    .map(i => Number(i))
+            );
+        }
+
         this.set('cachedStyle', this.element.getAttribute('style'));
         this.set('previousMoveX', this.initialTransform[0]);
         this.set('previousMoveY', this.initialTransform[1]);
@@ -73,14 +78,17 @@ export default Mixin.create({
     handlePanMove(ev) {
         ev.preventDefault();
 
-        const moveX =
+        const moveX = () =>
             (ev.direction & this.panDirection()) === ev.direction
                 ? this.initialTransform[0] + this.calcDelta(ev.deltaX)
                 : this.previousMoveX;
-        const moveY =
+        const moveY = () =>
             (ev.direction & this.panDirection()) === ev.direction
                 ? this.initialTransform[1] + this.calcDelta(ev.deltaY)
                 : this.previousMoveY;
+
+        console.log(ev.direction, this.panDirection());
+        console.log((ev.direction & this.panDirection()) === ev.direction);
 
         this.set(
             'style',
@@ -89,20 +97,20 @@ export default Mixin.create({
                 transform: translate(
                     ${
                         (this.panDirection() | this.DIRECTION_HORIZONTAL) === this.panDirection()
-                            ? moveX
+                            ? moveX()
                             : this.previousMoveX
                     }px,
                     ${
                         (this.panDirection() | this.DIRECTION_VERTICAL) === this.panDirection()
-                            ? moveY
+                            ? moveY()
                             : this.previousMoveY
                     }px
                 )`
             )
         );
 
-        this.set('previousMoveX', moveX);
-        this.set('previousMoveY', moveY);
+        this.set('previousMoveX', moveX());
+        this.set('previousMoveY', moveY());
     },
 
     handlePanEnd(ev) {

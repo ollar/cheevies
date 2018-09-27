@@ -10,6 +10,10 @@
   height: calc(100vh - 50px);
   overflow: auto;
 
+  &.is-dragged {
+    transition: none;
+  }
+
   &.cheevies {
     transform: translate(-50%, 0);
   }
