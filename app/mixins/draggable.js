@@ -87,8 +87,8 @@ export default Mixin.create({
                 ? this.initialTransform[1] + this.calcDelta(ev.deltaY)
                 : this.previousMoveY;
 
-        console.log(ev.direction, this.panDirection());
-        console.log((ev.direction & this.panDirection()) === ev.direction);
+        // console.log(ev.direction, this.panDirection());
+        // console.log((ev.direction & this.panDirection()) === ev.direction);
 
         this.set(
             'style',
