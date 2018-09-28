@@ -11,10 +11,12 @@ export default Component.extend(DraggableMixin, {
 
         const moveX = this.initialTransform[0] - this.previousMoveX;
 
-        if (moveX > 0) {
-            this.setActivePage('cheevies');
-        } else {
-            this.setActivePage('users');
+        if (Math.abs(moveX) > 50) {
+            if (moveX > 0) {
+                this.setActivePage('cheevies');
+            } else {
+                this.setActivePage('users');
+            }
         }
     },
 });
