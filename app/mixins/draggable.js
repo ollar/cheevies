@@ -87,30 +87,24 @@ export default Mixin.create({
                 ? this.initialTransform[1] + this.calcDelta(ev.deltaY)
                 : this.previousMoveY;
 
-        // console.log(ev.direction, this.panDirection());
-        // console.log((ev.direction & this.panDirection()) === ev.direction);
+        const allowedHorizontal =
+            (this.panDirection() | this.DIRECTION_HORIZONTAL) === this.panDirection();
+        const allowedVertical =
+            (this.panDirection() | this.DIRECTION_VERTICAL) === this.panDirection();
 
         this.set(
             'style',
             htmlSafe(
                 `${this.cachedStyle};
                 transform: translate(
-                    ${
-                        (this.panDirection() | this.DIRECTION_HORIZONTAL) === this.panDirection()
-                            ? moveX()
-                            : this.previousMoveX
-                    }px,
-                    ${
-                        (this.panDirection() | this.DIRECTION_VERTICAL) === this.panDirection()
-                            ? moveY()
-                            : this.previousMoveY
-                    }px
+                    ${allowedHorizontal ? moveX() : this.previousMoveX}px,
+                    ${allowedVertical ? moveY() : this.previousMoveY}px
                 )`
             )
         );
 
-        this.set('previousMoveX', moveX());
-        this.set('previousMoveY', moveY());
+        if (allowedHorizontal) this.set('previousMoveX', moveX());
+        if (allowedVertical) this.set('previousMoveY', moveY());
     },
 
     handlePanEnd(ev) {

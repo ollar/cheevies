@@ -1,5 +1,8 @@
 {{#particles-container}}
-{{#index-sections-wrapper class="sections-wrapper {{activePage}}"}}
+{{#index-sections-wrapper
+    class=(add "sections-wrapper " activePage)
+    setActivePage=(action 'setActivePage')
+}}
   <section class="users-list grid-wrapper-2">
     {{#link-to 'profile' model.me}}
       {{user-in-list user=model.me class="is-me"}}

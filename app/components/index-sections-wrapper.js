@@ -1,10 +1,21 @@
 import Component from '@ember/component';
 import DraggableMixin from '../mixins/draggable';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend(DraggableMixin, {
     panDirection() {
         return this.DIRECTION_HORIZONTAL;
     },
 
-    onPanEnvComplete() {},
+    onPanEnvComplete() {
+        this._super();
+
+        const moveX = Math.abs(this.initialTransform[0]) - Math.abs(this.previousMoveX);
+
+        if (moveX < 0) {
+            this.setActivePage('cheevies');
+        } else {
+            this.setActivePage('users');
+        }
+    },
 });
