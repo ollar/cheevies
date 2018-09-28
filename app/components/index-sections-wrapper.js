@@ -9,9 +9,9 @@ export default Component.extend(DraggableMixin, {
     onPanEnvComplete() {
         this._super();
 
-        const moveX = Math.abs(this.initialTransform[0]) - Math.abs(this.previousMoveX);
+        const moveX = this.initialTransform[0] - this.previousMoveX;
 
-        if (moveX < 0) {
+        if (moveX > 0) {
             this.setActivePage('cheevies');
         } else {
             this.setActivePage('users');
