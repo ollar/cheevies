@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import DraggableMixin from '../mixins/draggable';
-import { htmlSafe } from '@ember/string';
 
 export default Component.extend(DraggableMixin, {
     panDirection() {
