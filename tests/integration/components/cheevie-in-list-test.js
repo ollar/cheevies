@@ -1,39 +1,59 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-import { run } from '@ember/runloop';
-
-moduleForComponent(
-  'cheevie-in-list',
-  'Integration | Component | cheevie in list',
-  {
-    integration: true,
-  }
-);
-
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  var cheevie;
-
-  run(() => {
-    run(() => {
-      cheevie = {
-        'image-set': {
-          64: {
-            url: 'some url',
-          },
+const cheevie = {
+    name: 'test cheevie',
+    'image-set': {
+        64: {
+            url: 'image_url_64',
         },
-      };
+        128: {
+            url: 'image_url_128',
+        },
+        256: {
+            url: 'image_url_256',
+        },
+        512: {
+            url: 'image_url_512',
+        },
+    },
+};
 
-      this.set('cheevie', cheevie);
+module('Integration | Component | cheevie in list', function(hooks) {
+    setupRenderingTest(hooks);
 
-      // Template block usage:
-      this.render(hbs`{{cheevie-in-list cheevie=cheevie}}`);
-      assert.equal(this.$('.icon-image img').attr('height'), '64');
-      assert.equal(this.$('.icon-image img').attr('width'), '64');
-      assert.equal(this.$('.icon-image img').attr('src'), 'some url');
+    test('it renders without image', async function(assert) {
+        const _cheevie = Object.assign({}, { name: 'test cheevie' });
+        this.set('cheevie', _cheevie);
+
+        await render(hbs`{{cheevie-in-list cheevie=cheevie}}`);
+
+        assert.equal(this.element.querySelector('.icon-image').textContent.trim(), 'TC');
     });
-  });
+
+    test('it renders with image', async function(assert) {
+        this.set('cheevie', cheevie);
+
+        await render(hbs`{{cheevie-in-list cheevie=cheevie}}`);
+
+        assert.ok(this.element.querySelector('.icon-image picture'));
+        assert.equal(this.element.querySelectorAll('.icon-image source').length, 3);
+
+        assert.equal(
+            this.element.querySelectorAll('.icon-image source')[0].getAttribute('srcset'),
+            'image_url_64'
+        );
+
+        assert.equal(
+            this.element.querySelectorAll('.icon-image source')[1].getAttribute('srcset'),
+            'image_url_128'
+        );
+
+        assert.equal(
+            this.element.querySelectorAll('.icon-image source')[2].getAttribute('srcset'),
+            'image_url_256'
+        );
+    });
 });
