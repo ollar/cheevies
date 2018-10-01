@@ -19,5 +19,13 @@ export default Component.extend(HaoticMoveMixin, {
     }),
 
     classNames: ['user-in-list'],
-    avatar: computed.readOnly('user.image-set.128'),
+    imageSet: computed.readOnly('user.image-set'),
+    image: computed('imageSet.{}', function() {
+        if (!this.get('imageSet.128')) return null;
+        return {
+            sm: this.get('imageSet.128'),
+            md: this.get('imageSet.256'),
+            lg: this.get('imageSet.512'),
+        };
+    }),
 });

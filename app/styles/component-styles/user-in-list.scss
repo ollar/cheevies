@@ -1,6 +1,11 @@
 & {
   position: relative;
   transition: transform 0.3s;
+  @include size(128px);
+
+  @include sm() {
+    @include size(256px);
+  };
 }
 
 &.is-me {
@@ -24,5 +29,10 @@
 }
 
 .icon-image {
-  padding: 2px;
+  padding: 3px;
+  @include size(100%);
+}
+
+picture, img {
+    @include size(100%);
 }

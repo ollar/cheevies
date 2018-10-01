@@ -3,7 +3,15 @@ import { computed } from '@ember/object';
 // import HaoticMoveMixin from '../mixins/haotic-move';
 
 export default Component.extend(
-  /*HaoticMoveMixin,*/ {
-    image: computed.readOnly('cheevie.image-set.64'),
-  }
+    /*HaoticMoveMixin,*/ {
+        imageSet: computed.readOnly('cheevie.image-set'),
+        image: computed('imageSet.{}', function() {
+            if (!this.get('imageSet.64')) return null;
+            return {
+                sm: this.get('imageSet.64'),
+                md: this.get('imageSet.128'),
+                lg: this.get('imageSet.256'),
+            };
+        }),
+    }
 );

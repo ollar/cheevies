@@ -41,6 +41,10 @@
   padding: 0 ms(0);
 }
 
+.cheevie-in-list {
+    @include size(64px);
+}
+
 .add-cheevie-wrapper {
   color: white;
   text-align: center;

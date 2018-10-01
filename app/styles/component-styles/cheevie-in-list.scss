@@ -1,3 +1,18 @@
+& {
+    position: relative;
+    transition: transform 0.3s;
+    @include size(64px);
+
+    @include sm() {
+      @include size(128px);
+    };
+}
+
 .icon-image {
   padding: 3px;
+    @include size(100%);
+}
+
+img, picture {
+    @include size(100%);
 }
