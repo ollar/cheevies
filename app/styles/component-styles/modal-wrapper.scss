@@ -43,6 +43,22 @@ figure {
   position: relative;
 }
 
+&.is-busy .modal-content{
+    overflow: hidden;
+
+    &:after {
+        content: '';
+        position: absolute;
+        @include size(100%);
+
+        animation: linear backgrounds 5s infinite;
+        background-image: linear-gradient(111deg, #8a2387 16.67%, #e94057 16.67%, #e94057 33.33%, #f27121 33.33%, #f27121 50%, #8a2387 50%, #8a2387 66.67%, #e94057 66.67%, #e94057 83.33%, #f27121 83.33%, #f27121 100%);
+        background-size: 128.54px 334.85px;
+        opacity: 0.4;
+        z-index: 10;
+    }
+}
+
 .images-drop-area,
 figure.image {
   grid-column: all;

@@ -1,9 +1,10 @@
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import ImageUploadMixin from '../../mixins/image-uploader';
+import BusyMixin from '../../mixins/busy-loader';
 import { all, resolve } from 'rsvp';
 
-export default Controller.extend(ImageUploadMixin, {
+export default Controller.extend(ImageUploadMixin, BusyMixin, {
     _model: computed.alias('model.cheevie'),
     _file: null,
     _image: computed('_file', function() {
@@ -20,6 +21,7 @@ export default Controller.extend(ImageUploadMixin, {
 
     actions: {
         updateCheevie() {
+            this.setBusy(true);
             return resolve()
                 .then(() => {
                     if (this._file) {
@@ -37,7 +39,8 @@ export default Controller.extend(ImageUploadMixin, {
                     return all([model.save(), group.save()]).then(() =>
                         this.transitionToRoute('index')
                     );
-                });
+                })
+                .finally(() => this.setBusy(false));
         },
         goBack() {
             this._model.deleteRecord();
