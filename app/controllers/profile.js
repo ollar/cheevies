@@ -15,7 +15,7 @@ export default Controller.extend(ImageUploadMixin, {
     userId: computed.readOnly('model.id'),
     myId: computed.readOnly('me.model.id'),
 
-    cheevies: computed('model.cheevies.[]', function() {
+    _cheevies: computed('model.cheevies.[]', function() {
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
@@ -24,6 +24,10 @@ export default Controller.extend(ImageUploadMixin, {
                     this.model.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 ),
         });
+    }),
+
+    cheevies: computed('_cheevies.isFulfilled', function() {
+        return this._cheevies;
     }),
 
     _uploadPath(image) {
