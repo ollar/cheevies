@@ -1,11 +1,18 @@
-{{#modal-wrapper goBack=(action 'goBack')}}
+{{#modal-wrapper goBack=(action 'goBack') class=(if _image 'has-image' 'no-image')}}
   {{#if (eq showMode)}}
     <button class="icon-button mode-toggle is-info" {{action 'toggleMode'}}>
       {{svg-icon _name="edit" _size=24}}
     </button>
-    <figure class="image">
-      <img src={{_image.url}}>
-    </figure>
+
+    {{#if _image}}
+        <figure class="image">
+        <img src={{_image.url}}>
+        </figure>
+    {{else}}
+        <div class="image-placeholder">
+          {{svg-icon _name="image" _size=48}}
+        </div>
+    {{/if}}
 
     <h1 class="title">
       {{model.name}}

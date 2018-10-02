@@ -9,6 +9,24 @@
   z-index: 200;
 }
 
+figure {
+    min-height: 30vh;
+}
+
+.image-placeholder {
+    height: 30vh;
+    position: relative;
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        stroke-width: 1px;
+        pointer-events: none;
+      }
+}
+
 .modal-background {
   background: rgba(5, 7, 14, 0.7);
   position: absolute;
