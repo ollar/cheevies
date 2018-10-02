@@ -1,18 +1,22 @@
 <section class="content-wrapper {{if isMe 'is-me'}}">
 <div class="user-image-wrapper">
-  {{#images-drop-area
-    images=model.imageUrl
-    uploadImage=(action 'uploadImage')
-  }}
-    {{icon-image data=this.model image=avatar class="user-image"}}
-    {{#if isMe}}
-      {{#if model.imageUrl}}
-        <button class="icon-image delete" {{action 'removeImage'}}>
-          {{svg-icon _name="x" _size=24}}
-        </button>
-      {{/if}}
-    {{/if}}
-  {{/images-drop-area}}
+    {{#unless isMe}}
+        {{icon-image data=this.model image=avatar class="user-image"}}
+    {{else}}
+        {{#images-drop-area
+            images=model.imageUrl
+            uploadImage=(action 'uploadImage')
+        }}
+        {{icon-image data=this.model image=avatar class="user-image"}}
+        {{#if isMe}}
+            {{#if model.imageUrl}}
+            <button class="icon-image delete" {{action 'removeImage'}}>
+                {{svg-icon _name="x" _size=24}}
+            </button>
+            {{/if}}
+        {{/if}}
+        {{/images-drop-area}}
+    {{/unless}}
 
   <div class="experience">
     {{cheevie-exp cheevies}}
