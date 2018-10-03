@@ -51,13 +51,15 @@
   transition: 0.3s;
 }
 
-input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   display: block;
   width: 100%;
   background-color: transparent;
   position: relative;
   z-index: 1;
-  color: #FF008A !important;
+  color: #FF008A;
   text-align: center;
   border: none !important;
 
@@ -69,6 +71,10 @@ input {
     & ~ .background {
       opacity: 0;
       transform: scaleX(0);
+    }
+
+    & ~ .submit-button {
+        color: #fff;
     }
   }
 
@@ -119,7 +125,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background: linear-gradient(257.08deg, #0075FF 5.93%, #4838FF 93.69%);
   }
 
-  input, a {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"], a {
     color: #0f00b6;
   }
 }
@@ -130,4 +138,28 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   a {
     color: inherit;
   }
+}
+
+.field{
+    position: relative;
+}
+
+.submit-button {
+    @include size(40px);
+    padding: 10px;
+    line-height: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+  color: #FF008A;
+}
+
+.group-select-section {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    .submit-button {
+        color: #0075FF;
+    }
 }

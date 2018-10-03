@@ -38,11 +38,11 @@
         {{input class="input" id="password" type="password" placeholder=" " value=model.password}}
         <div class="placeholder">{{t 'form.password.placeholder'}}</div>
         <div class="background"></div>
-      </div>
-    </div>
 
-    <div class="field">
-      <button hidden class="button is-link" type="submit">{{t 'register.buttons.submit'}}</button>
+        <button type="submit" class="submit-button icon-button">
+            {{svg-icon _name="arrow-right" _size=20}}
+        </button>
+      </div>
     </div>
   </form>
 </section>
@@ -62,11 +62,11 @@
             {{input class="input" id="group" type="text" placeholder=" " value=model.group}}
             <div class="placeholder">{{t 'form.group.placeholder'}}</div>
             <div class="background"></div>
-        </div>
-    </div>
 
-    <div class="control">
-      <button hidden type="submit" class="button is-link">{{t 'login.buttons.submit'}}</button>
+            <button type="submit" class="submit-button icon-button">
+                {{svg-icon _name="arrow-right" _size=20}}
+            </button>
+        </div>
     </div>
   </form>
 </section>

@@ -49,15 +49,17 @@
 }
 
 
-input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   display: block;
   width: 100%;
   background-color: transparent;
   position: relative;
   z-index: 1;
-  color: #FF008A !important;
+  color: #FF008A;
   text-align: center;
-  border: none !important;
+  border: none;
 
   &:placeholder-shown {
     & ~ .placeholder {
@@ -67,6 +69,10 @@ input {
     & ~ .background {
       opacity: 0;
       transform: scaleX(0);
+    }
+
+    & ~ .submit-button {
+        color: #fff;
     }
   }
 
@@ -112,4 +118,19 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   a {
     color: inherit;
   }
+}
+
+.field{
+    position: relative;
+}
+
+.submit-button {
+    @include size(40px);
+    padding: 10px;
+    line-height: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    color: #FF008A;
 }
