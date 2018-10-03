@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import DraggableMixin from '../mixins/draggable';
+import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
 export default Component.extend(DraggableMixin, {
     panDirection() {
