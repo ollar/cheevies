@@ -1,18 +1,34 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  me: service(),
-  model() {
-    return this.get('me').fetch();
-  },
+import { hash } from 'rsvp';
 
-  actions: {
-    willTransition() {
-      const model = this.model();
-      model.set('unseenCheevies', []);
-      model.save();
-      return true;
+export default Route.extend({
+    me: service(),
+    myGroup: service('my-group'),
+
+    model() {
+        if (!this.get('myGroup.groupName')) return {};
+
+        return hash({
+            myGroup: this.myGroup.fetch(),
+            me: this.me.fetch(),
+        })
+            .then(({ myGroup, me }) => ({
+                availableCheevies: myGroup.get('cheevies'),
+                unseenCheevies: me.get('unseenCheevies'),
+            }))
+            .then(({ availableCheevies, unseenCheevies }) =>
+                unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
+            );
     },
-  },
+
+    actions: {
+        willTransition() {
+            const model = this.me.model;
+            model.set('unseenCheevies', []);
+            model.save();
+            return true;
+        },
+    },
 });

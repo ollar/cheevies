@@ -1,13 +1,15 @@
-{{#modal-wrapper goBack=(action 'goBack')}}
+{{#modal-wrapper goBack=(action 'goBack') class="new-cheevies"}}
 
 <h1 class="title">
   {{t 'index.new-cheevies.title'}}
 </h1>
 
-<div class="columns is-mobile is-centered is-multiline">
-  {{#each model.unseenCheevies as |cheevie|}}
-    {{cheevie-in-list cheevie=cheevie class="is-inline-block has-text-centered"}}
+<div class="new-cheevies-wrapper">
+  {{#each model as |cheevie|}}
+    {{cheevie-in-list cheevie=cheevie class="cards-view"}}
   {{/each}}
 </div>
 
 {{/modal-wrapper}}
+
+{{props-container}}

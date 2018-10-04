@@ -113,3 +113,19 @@ figure.image {
     background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
   }
 }
+
+&.new-cheevies {
+    .title {
+        text-align: center;
+    }
+
+    .modal-content {
+        background: transparent;
+        justify-content: center;
+    }
+}
+
+.new-cheevies-wrapper {
+    margin: 20vh 0;
+    justify-self: center;
+}

@@ -16,3 +16,8 @@
 img, picture {
     @include size(100%);
 }
+
+&.cards-view {
+    display: inline-block;
+    margin-left: -50px;
+}
