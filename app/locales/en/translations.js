@@ -91,7 +91,7 @@ export default {
             linkText: 'Create new cheevie',
         },
         'new-cheevies': {
-            title: "Hooray! You've got new cheevie!",
+            title: "Hooray! You've got new cheevies!",
         },
     },
 

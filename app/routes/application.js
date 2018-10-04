@@ -1,9 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
 
 export default Route.extend({
     notify: service(),
     me: service(),
+    myGroup: service('my-group'),
     firebaseApp: service(),
 
     init() {
@@ -29,9 +31,21 @@ export default Route.extend({
                         text: err.toString(),
                     });
                 });
-            if (this.get('me.model').get('unseenCheevies.length')) {
-                this.transitionTo('index.new-cheevies');
-            }
+
+            hash({
+                myGroup: this.myGroup.fetch(),
+                me: this.me.fetch(),
+            })
+                .then(({ myGroup, me }) => ({
+                    availableCheevies: myGroup.get('cheevies'),
+                    unseenCheevies: me.get('unseenCheevies'),
+                }))
+                .then(({ availableCheevies, unseenCheevies }) =>
+                    unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
+                )
+                .then(unseenCheevies => {
+                    if (unseenCheevies.length) this.transitionTo('index.new-cheevies');
+                });
         }
 
         messaging.onMessage(payload => {

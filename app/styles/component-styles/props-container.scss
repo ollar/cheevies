@@ -1,13 +1,46 @@
 & {
-    position: fixed;
+    position: absolute;
     top: 100%;
     z-index: 999;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    display: none;
 }
 
 svg {
-    transition: transform 1s;
+    position: absolute;
+
+    &[name="anchor"] {
+        stroke: #FF0000;
+    }
+
+    &[name="bell"] {
+        stroke: #4838FF;
+    }
+
+    &[name="camera"] {
+        stroke: #1D2349;
+    }
+
+    &[name="film"] {
+        stroke: #CD04FF;
+    }
+
+    &[name="headphones"] {
+        stroke: #BA0064;
+    }
+
+    &[name="heart"] {
+        stroke: #0075FF;
+    }
+
+    &[name="scissors"] {
+        stroke: #FF5C00;
+    }
+
+    &[name="star"] {
+        stroke: #FFEC87;
+    }
+
+    &[name="zap"] {
+        stroke: #FF008A;
+    }
 }
