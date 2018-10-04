@@ -1,10 +1,11 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
+import BusyMixin from '../../mixins/busy-loader';
 import { inject as service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 
-export default Controller.extend(ImageUploadMixin, {
+export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
     myGroup: service('my-group'),
 
@@ -59,18 +60,22 @@ export default Controller.extend(ImageUploadMixin, {
             return this._removeImage(true);
         },
         updateCheevie() {
-            return new Promise(resolve => {
-                if (this._file) {
-                    return resolve(this._uploadImage(this._file));
-                }
+            this.setBusy(true);
 
-                return resolve();
-            })
+            return resolve()
+                .then(() => {
+                    if (this._file) {
+                        return this._uploadImage(this._file);
+                    }
+
+                    return true;
+                })
                 .then(() => this.get('model').save())
                 .then(() => {
                     this.restoreMode();
                     this.send('goBack');
-                });
+                })
+                .finally(() => this.setBusy(false));
         },
         deleteCheevie() {
             if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {

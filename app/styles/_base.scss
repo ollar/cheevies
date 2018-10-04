@@ -92,37 +92,6 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
-.images-drop-area {
-  position: relative;
-
-  #file-input {
-    position: absolute;
-    opacity: 0;
-    top: 0; left: 0; right: 0; bottom: 0;
-  }
-
-  .drop-area {
-    height: 30vh;
-
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      stroke-width: 1px;
-      pointer-events: none;
-    }
-  }
-
-  .delete {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    @include size(auto);
-  }
-}
-
 .empty-placeholder {
   grid-column: 2 / 6 !important;
   text-align: center;
