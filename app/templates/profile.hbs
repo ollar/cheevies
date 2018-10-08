@@ -1,5 +1,5 @@
 <section class="content-wrapper {{if isMe 'is-me'}}">
-<div class="user-image-wrapper">
+<div class="user-image-wrapper {{if busy 'busy'}}">
     {{#unless isMe}}
         {{icon-image data=this.model image=avatar class="user-image"}}
     {{else}}

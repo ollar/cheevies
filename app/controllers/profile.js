@@ -2,11 +2,12 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ImageUploadMixin from '../mixins/image-uploader';
+import BusyMixin from '../mixins/busy-loader';
 import Popper from 'popper';
 import $ from 'jquery';
 import DS from 'ember-data';
 
-export default Controller.extend(ImageUploadMixin, {
+export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
     myGroup: service(),
 
@@ -14,6 +15,8 @@ export default Controller.extend(ImageUploadMixin, {
 
     userId: computed.readOnly('model.id'),
     myId: computed.readOnly('me.model.id'),
+
+    _model: computed.alias('model'),
 
     _cheevies: computed('model.cheevies.[]', function() {
         return DS.PromiseArray.create({
@@ -55,7 +58,11 @@ export default Controller.extend(ImageUploadMixin, {
 
             if (!file || file.type.indexOf('image') < 0) return;
 
-            return this._uploadImage(file);
+            this.setBusy(true);
+
+            return this._uploadImage(file).finally(() => {
+                this.setBusy(false);
+            });
         },
 
         removeImage() {
