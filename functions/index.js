@@ -106,6 +106,10 @@ exports.onAddCheevie = functions.database
                     // image: cheevie.imageUrl,
                     icon:
                         'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/firefox-general-128-128.png?alt=media&token=30387e8a-25d1-468c-89cb-f6a28cca5bde',
+                    onclick: function(ev) {
+                        var app = ev.target.result;
+                        app.launch();
+                    },
                 },
             };
 
