@@ -1,13 +1,19 @@
 & {
-  border-radius: 100%;
-  overflow: hidden;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
     border-radius: 100%;
-    object-fit: cover;
-  }
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include size(100%);
+    padding: 3px;
+
+    img {
+        border-radius: 100%;
+        object-fit: cover;
+    }
+
+    img, picture {
+        @include size(100%);
+    }
 }

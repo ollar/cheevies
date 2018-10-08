@@ -27,12 +27,3 @@
   bottom: 0;
   background: linear-gradient(225deg, #FF0000 0%, #7D0000 100%);
 }
-
-.icon-image {
-  padding: 3px;
-  @include size(100%);
-}
-
-picture, img {
-    @include size(100%);
-}

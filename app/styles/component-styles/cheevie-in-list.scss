@@ -9,12 +9,7 @@
 }
 
 .icon-image {
-  padding: 3px;
-    @include size(100%);
-}
-
-img, picture {
-    @include size(100%);
+    padding: 3px;
 }
 
 &.cards-view {

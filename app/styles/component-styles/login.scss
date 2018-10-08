@@ -103,7 +103,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .icon-image {
     margin: auto;
     background: linear-gradient(257.08deg, #0075FF 5.93%, #4838FF 93.69%);
-    padding: 2px;
+
+    @include size(128px);
+
+    @include sm() {
+        @include size(256px);
+    };
   }
 
   .icon-button {

@@ -40,7 +40,7 @@
   {{else}}
   <section class="group-select-section" test-id="group-select-section">
     <div class="user-image-wrapper">
-      {{icon-image data=myModel image=myImage _size=128}}
+      {{icon-image data=myModel image=myImage class="user-avatar"}}
       <button class="icon-button" data-test-id="invalidate-button" {{action 'invalidate'}}>
         {{svg-icon _name="x" _size=20}}
       </button>
@@ -54,7 +54,7 @@
           <div class="placeholder">{{t 'form.group.placeholder'}}</div>
           <div class="background"></div>
 
-          <button type="submit" class="submit-button icon-button">
+            <button type="submit" class="submit-button icon-button">
                 {{svg-icon _name="arrow-right" _size=20}}
             </button>
         </div>
