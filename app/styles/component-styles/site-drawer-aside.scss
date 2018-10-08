@@ -1,0 +1,57 @@
+.avatar {
+    overflow: hidden;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+
+    .icon-image {
+        border-radius: 0;
+        padding: 0 0 3px;
+        box-sizing: border-box;
+    }
+
+    img {
+        border-radius: 0;
+    }
+}
+
+.info {
+    padding-top: 28px;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-name {
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0 0 30px;
+  }
+
+  .cheevies-list {
+    padding: 0 ms(0);
+  }
+
+  .cheevie-in-list {
+      @include size(64px);
+  }
+
+  .add-cheevie-wrapper {
+    color: white;
+    text-align: center;
+    padding: ms(0) 0 0;
+    margin-top: auto;
+
+    svg {
+      stroke-width: 1px;
+    }
+
+    .add-cheevie-text {
+      display: block;
+      font-size: 10px;
+      margin-top: -5px;
+      line-height: 1;
+    }
+  }

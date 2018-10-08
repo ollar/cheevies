@@ -8,7 +8,15 @@ export default Component.extend({
     me: service(),
     myGroup: service(),
     router: service(),
-    avatar: computed.readOnly('me.model.image-set'),
+
+    imageSet: computed.readOnly('me.model.image-set'),
+    image: computed('imageSet.{}', function() {
+        if (!this.get('imageSet.128')) return null;
+        return {
+            sm: this.get('imageSet.256'),
+            md: this.get('imageSet.512'),
+        };
+    }),
 
     cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function() {
         return DS.PromiseArray.create({
