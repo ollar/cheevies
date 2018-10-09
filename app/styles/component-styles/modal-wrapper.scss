@@ -28,10 +28,15 @@ figure {
 }
 
 .modal-background {
-  background: rgba(5, 7, 14, 0.7);
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   grid-column: all;
+  transition: 0.3s;
+  background: transparent;
+}
+
+&.is-active .modal-background{
+    background: rgba(5, 7, 14, 0.7);
 }
 
 .modal-content {
