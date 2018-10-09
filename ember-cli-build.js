@@ -11,7 +11,7 @@ module.exports = function(defaults) {
     let app = new EmberApp(defaults, {
         // Add options here
         'ember-cli-critical': {
-            enabled: IS_PROD,
+            enabled: false,
         },
         'ember-service-worker': {
             enabled: IS_PROD,
