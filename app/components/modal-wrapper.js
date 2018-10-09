@@ -13,4 +13,13 @@ export default Component.extend(BusyMixin, {
 
         later(() => this.set('isActive', true), 100);
     },
+
+    actions: {
+        goBack() {
+            this.set('isActive', false);
+            later(() => {
+                if (this.goBack && this.goBack.call) this.goBack();
+            }, 300);
+        },
+    },
 });
