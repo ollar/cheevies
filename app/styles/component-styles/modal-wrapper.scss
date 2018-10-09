@@ -97,6 +97,12 @@ figure.image {
 .modal-close {
   right: 0;
   left: auto;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+&.is-active .modal-close{
+    opacity: 1;
 }
 
 .cheevie-delete {
