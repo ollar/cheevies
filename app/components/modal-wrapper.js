@@ -10,8 +10,9 @@ export default Component.extend(BusyMixin, {
 
     didInsertElement() {
         this._super(...arguments);
-
-        later(() => this.set('isActive', true), 100);
+        later(() => {
+            if (!this.isDestroyed) this.set('isActive', true);
+        }, 100);
     },
 
     actions: {
