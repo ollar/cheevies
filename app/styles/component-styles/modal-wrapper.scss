@@ -41,6 +41,14 @@ figure {
   margin-top: 55px;
   margin-bottom: 55px;
   position: relative;
+  transform: translate(0, 100px);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+&.is-active .modal-content{
+    transform: translate(0, 0) !important;
+    opacity: 1;
 }
 
 &.is-busy .modal-content{
@@ -125,4 +133,14 @@ figure.image {
 .new-cheevies-wrapper {
     margin: 20vh 0;
     justify-self: center;
+}
+
+&.give-cheevie-modal {
+    .modal-content {
+        transform: translate(0, 100%);
+        grid-column: all;
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
