@@ -103,10 +103,9 @@ exports.onAddCheevie = functions.database
                 notification: {
                     title: "Hooray! You've got new cheevie",
                     body: `"${cheevie.name}" is yours!`,
-                    // image: cheevie.imageUrl,
                     icon:
                         'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/firefox-general-128-128.png?alt=media&token=30387e8a-25d1-468c-89cb-f6a28cca5bde',
-                    clickAction: 'Cheevies',
+                    clickAction: 'https://cheevies.club',
                 },
             };
 

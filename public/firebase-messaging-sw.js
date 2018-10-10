@@ -5,12 +5,12 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/4.8.2/firebase-messaging.js');
 
 var config = {
-  apiKey: "AIzaSyDpGDsbRoqDolu4g6fXwBO53wP6F7it6QQ",
-  authDomain: "cheevies-jerk.firebaseapp.com",
-  databaseURL: "https://cheevies-jerk.firebaseio.com",
-  projectId: "cheevies-jerk",
-  storageBucket: "cheevies-jerk.appspot.com",
-  messagingSenderId: "819055703445"
+    apiKey: 'AIzaSyDpGDsbRoqDolu4g6fXwBO53wP6F7it6QQ',
+    authDomain: 'cheevies-jerk.firebaseapp.com',
+    databaseURL: 'https://cheevies-jerk.firebaseio.com',
+    projectId: 'cheevies-jerk',
+    storageBucket: 'cheevies-jerk.appspot.com',
+    messagingSenderId: '819055703445',
 };
 
 firebase.initializeApp(config);
@@ -21,16 +21,18 @@ const messaging = firebase.messaging();
 // implement this optional method.
 // [START background_handler]
 messaging.setBackgroundMessageHandler(function(payload) {
-  // Customize notification here
+    // Customize notification here
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+        title: payload.notification.title,
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+    };
 
-  console.log('aaa');
-
-  const notificationTitle = payload.notification.title;
-  const notificationOptions = {
-    body: payload.notification.body,
-    icon: '/manifest_icons/icon_192.png',
-    badge: '/manifest_icons/icon_192.png',
-  };
-
-  return self.registration.showNotification(notificationTitle, notificationOptions);
+    return self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+// self.addEventListener('notificationclick', function(event) {
+//     event.notification.close();
+//     event.waitUntil(event.target.launch());
+// });
