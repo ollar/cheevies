@@ -1,6 +1,6 @@
 & {
   @include center-wrapper;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -28,7 +28,7 @@ figure {
 }
 
 .modal-background {
-  position: absolute;
+    position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   grid-column: all;
   transition: 0.3s;
@@ -138,11 +138,11 @@ figure.image {
     .modal-content {
         background: transparent;
         justify-content: center;
+        pointer-events: none;
     }
 }
 
 .new-cheevies-wrapper {
-    margin: 20vh 0;
     justify-self: center;
 }
 
