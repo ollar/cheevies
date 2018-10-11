@@ -7,63 +7,67 @@ import { resolve } from 'rsvp';
 import { testGroup, cheevieModel, meStub } from './common-stubs';
 
 const sessionStub = Service.extend({
-  isAuthenticated: false,
-  data: computed(() => ({ authenticated: {} })),
+    isAuthenticated: false,
+    data: computed(() => ({ authenticated: {} })),
 });
 
 const storeStub = Service.extend({
-  cheevieModel: cheevieModel.create(),
-  testGroup: testGroup.create(),
-  query() {
-    return resolve([this.testGroup]);
-  },
+    cheevieModel: cheevieModel.create(),
+    testGroup: testGroup.create(),
+    query() {
+        return resolve([this.testGroup]);
+    },
 
-  createRecord() {
-    return this.cheevieModel;
-  },
+    createRecord() {
+        return this.cheevieModel;
+    },
+
+    peekAll() {
+        return [];
+    },
 });
 
 const myGroupStub = Service.extend({
-  groupName: 'test',
-  model: testGroup.create(),
-  fetch() {
-    return resolve(this.model);
-  },
+    groupName: 'test',
+    model: testGroup.create(),
+    fetch() {
+        return resolve(this.model);
+    },
 });
 
 module('Acceptance | index', function(hooks) {
-  setupApplicationTest(hooks);
+    setupApplicationTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.owner.register('service:session', sessionStub);
-    this.owner.register('service:my-group', myGroupStub);
-    this.owner.register('service:me', meStub);
-    this.owner.register('service:store-test', storeStub);
-    this.owner.inject('route:index', 'store', 'service:store-test');
-  });
+    hooks.beforeEach(function() {
+        this.owner.register('service:session', sessionStub);
+        this.owner.register('service:my-group', myGroupStub);
+        this.owner.register('service:me', meStub);
+        this.owner.register('service:store-test', storeStub);
+        this.owner.inject('route:index', 'store', 'service:store-test');
+    });
 
-  test('visiting / unsigned should redirect to /login', async function(assert) {
-    await visit('/');
+    test('visiting / unsigned should redirect to /login', async function(assert) {
+        await visit('/');
 
-    await settled();
+        await settled();
 
-    assert.equal(currentURL(), '/login');
-  });
+        assert.equal(currentURL(), '/login');
+    });
 
-  test('visiting / signed but no group should redirect to /login', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
+    test('visiting / signed but no group should redirect to /login', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
 
-    await visit('/');
+        await visit('/');
 
-    assert.equal(currentURL(), '/login');
-  });
+        assert.equal(currentURL(), '/login');
+    });
 
-  test('visiting / signed and has group should stay on index', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
-    this.owner.lookup('service:session').set('data.group', 'true');
+    test('visiting / signed and has group should stay on index', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
+        this.owner.lookup('service:session').set('data.group', 'true');
 
-    await visit('/');
+        await visit('/');
 
-    assert.equal(currentURL(), '/');
-  });
+        assert.equal(currentURL(), '/');
+    });
 });

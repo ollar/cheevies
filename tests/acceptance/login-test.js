@@ -1,13 +1,5 @@
 import { module, test, skip } from 'qunit';
-import {
-  visit,
-  currentURL,
-  fillIn,
-  triggerEvent,
-  settled,
-  click,
-  find,
-} from '@ember/test-helpers';
+import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { resolve } from 'rsvp';
@@ -16,116 +8,117 @@ import sinon from 'sinon';
 import { myGroupStub, meStub, testGroup } from './common-stubs';
 
 const storeStub = Service.extend({
-  query(modelType, options) {
-    const group = testGroup.create({
-      id: 'mygroup',
-      name: 'test',
-      users: [{ id: 'me' }],
-      cheevies: [],
-    });
+    query(modelType, options) {
+        const group = testGroup.create({
+            id: 'mygroup',
+            name: 'test',
+            users: [{ id: 'me' }],
+            cheevies: [],
+        });
 
-    const group2 = testGroup.create({
-      id: 'notmygroup',
-      name: 'test',
-      users: [{ id: 'not me' }],
-      cheevies: [],
-    });
+        const group2 = testGroup.create({
+            id: 'notmygroup',
+            name: 'test',
+            users: [{ id: 'not me' }],
+            cheevies: [],
+        });
 
-    return resolve(options.equalTo === 'mygroup' ? [group] : [group2]);
-  },
+        return resolve(options.equalTo === 'mygroup' ? [group] : [group2]);
+    },
+
+    peekAll() {
+        return [];
+    },
 });
 
 module('Acceptance | login', function(hooks) {
-  setupApplicationTest(hooks);
+    setupApplicationTest(hooks);
 
-  hooks.beforeEach(function() {
-    const sessionService = this.owner.lookup('service:session');
+    hooks.beforeEach(function() {
+        const sessionService = this.owner.lookup('service:session');
 
-    sinon.stub(sessionService, 'authenticate').callsFake(() => {
-      sessionService.set('isAuthenticated', true);
-      return resolve();
+        sinon.stub(sessionService, 'authenticate').callsFake(() => {
+            sessionService.set('isAuthenticated', true);
+            return resolve();
+        });
+
+        this.owner.register('service:store-test', storeStub);
+        this.owner.register('service:me', meStub);
+        this.owner.register('service:my-group', myGroupStub);
+
+        this.owner.inject('controller:login', 'store', 'service:store-test');
+        this.owner.inject('route:index', 'store', 'service:store-test');
     });
 
-    this.owner.register('service:store-test', storeStub);
-    this.owner.register('service:me', meStub);
-    this.owner.register('service:my-group', myGroupStub);
+    test('visiting /login unsigned should stay on login', async function(assert) {
+        await visit('/login');
 
-    this.owner.inject('controller:login', 'store', 'service:store-test');
-    this.owner.inject('route:index', 'store', 'service:store-test');
-  });
+        assert.equal(currentURL(), '/login');
+    });
 
-  test('visiting /login unsigned should stay on login', async function(assert) {
-    await visit('/login');
+    test('visiting /login signed but no group should stay on login', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
 
-    assert.equal(currentURL(), '/login');
-  });
+        await visit('/login');
 
-  test('visiting /login signed but no group should stay on login', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
+        assert.equal(currentURL(), '/login');
+    });
 
-    await visit('/login');
+    test('visiting /login signed and has group should redirect to index', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
+        this.owner.lookup('service:session').set('data.group', 'true');
 
-    assert.equal(currentURL(), '/login');
-  });
+        await visit('/login');
 
-  test('visiting /login signed and has group should redirect to index', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
-    this.owner.lookup('service:session').set('data.group', 'true');
+        assert.equal(currentURL(), '/');
+    });
 
-    await visit('/login');
+    test('fill login form should show group form', async function(assert) {
+        await visit('/login');
 
-    assert.equal(currentURL(), '/');
-  });
+        await fillIn('#email', 'test@test.test');
+        await fillIn('#password', '1111111');
+        await triggerEvent('form', 'submit');
 
-  test('fill login form should show group form', async function(assert) {
-    await visit('/login');
+        assert.ok(find('[test-id="group-select-section"]'));
+    });
 
-    await fillIn('#email', 'test@test.test');
-    await fillIn('#password', '1111111');
-    await triggerEvent('form', 'submit');
+    test('after setting group should login', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
 
-    assert.ok(find('[test-id="group-select-section"]'));
-  });
+        await visit('/login');
 
-  test('after setting group should login', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
+        await fillIn('#group', 'mygroup');
+        await triggerEvent('form', 'submit');
 
-    await visit('/login');
+        await settled();
 
-    await fillIn('#group', 'mygroup');
-    await triggerEvent('form', 'submit');
+        assert.equal(currentURL(), '/');
+    });
 
-    await settled();
+    skip('after setting wrong group should not login', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
 
-    assert.equal(currentURL(), '/');
-  });
+        await visit('/login');
 
-  skip('after setting wrong group should not login', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
+        await fillIn('#group', 'wrongGroup');
+        await triggerEvent('form', 'submit');
 
-    await visit('/login');
+        await settled();
 
-    await fillIn('#group', 'wrongGroup');
-    await triggerEvent('form', 'submit');
+        assert.equal(currentURL(), '/login');
+    });
 
-    await settled();
+    test('test invalidate', async function(assert) {
+        this.owner.lookup('service:session').set('isAuthenticated', true);
 
-    assert.equal(currentURL(), '/login');
-  });
+        await visit('/login');
 
-  test('test invalidate', async function(assert) {
-    this.owner.lookup('service:session').set('isAuthenticated', true);
+        await click('[data-test-id="invalidate-button"]');
 
-    await visit('/login');
+        await settled();
 
-    await click('[data-test-id="invalidate-button"]');
-
-    await settled();
-
-    assert.ok(
-      this.owner.lookup('service:session').get('isAuthenticated'),
-      false
-    );
-    assert.notOk(this.owner.lookup('service:session').get('data.group'));
-  });
+        assert.ok(this.owner.lookup('service:session').get('isAuthenticated'), false);
+        assert.notOk(this.owner.lookup('service:session').get('data.group'));
+    });
 });
