@@ -12,6 +12,11 @@ body > .ember-view {
   min-height: 100vh;
 }
 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
 header {
   position: fixed;
   top: 0;

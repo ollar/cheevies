@@ -22,7 +22,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     afterModel() {
         const imageSets = this.store.peekAll('image-set');
         imageSets.forEach(_is =>
-            _is.eachRelationship(key => requestIdleCallback(() => _is.get(key)))
+            _is.eachRelationship(key => requestAnimationFrame(() => _is.get(key)))
         );
     },
 });
