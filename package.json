@@ -26,7 +26,6 @@
         "ember-cli": "~3.4.1",
         "ember-cli-app-version": "^3.2.0",
         "ember-cli-babel": "^6.16.0",
-        "ember-cli-critical": "^0.1.1",
         "ember-cli-dependency-checker": "^3.0.0",
         "ember-cli-deploy": "^1.0.2",
         "ember-cli-deploy-build": "^1.1.1",
@@ -65,15 +64,14 @@
         "node": "6.* || 8.* || >= 10.*"
     },
     "dependencies": {
-        "images-drop-area-component": "0.0.3",
-        "image-resize-util": "0.0.5",
-        "site-drawer-component": "0.0.1",
-        "ember-service-worker-cache-first": "^0.6.2",
+        "draggable-mixin": "*",
         "feather-icons": "^4.7.3",
+        "image-resize-util": "0.0.5",
+        "images-drop-area-component": "0.0.3",
         "normalize.css": "^8.0.0",
         "particles.js": "^2.0.0",
         "popper.js": "^1.14.3",
-        "web-animation-middleware": "^1.0.2",
-        "draggable-mixin": "*"
+        "site-drawer-component": "0.0.1",
+        "web-animation-middleware": "^1.0.2"
     }
 }

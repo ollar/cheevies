@@ -10,16 +10,13 @@ const IS_TEST = environment === 'test';
 module.exports = function(defaults) {
     let app = new EmberApp(defaults, {
         // Add options here
-        'ember-cli-critical': {
-            enabled: false,
-        },
         'ember-service-worker': {
             enabled: IS_PROD,
             versionStrategy: 'every-build',
         },
-        'esw-cache-first': {
-            patterns: ['https://firebasestorage.googleapis.com/(.+)'],
-        },
+        // 'esw-cache-first': {
+        //     patterns: ['https://firebasestorage.googleapis.com/(.+)'],
+        // },
         'asset-cache': {
             include: ['assets/**/*', 'images/**/*'],
         },
