@@ -81,6 +81,21 @@ export default {
         },
     },
 
+    settings: {
+        title: 'Settings',
+        form: {
+            pushNotifications: {
+                label: 'Push notifications',
+            },
+            sounds: {
+                label: 'Sounds',
+            },
+            animations: {
+                label: 'Animations',
+            },
+        },
+    },
+
     nav: {
         home: 'Home',
         profile: 'Profile',

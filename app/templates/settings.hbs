@@ -1,0 +1,47 @@
+<div class="center-wrapper">
+    <h1 class="title">{{t 'settings.title'}}</h1>
+    <form>
+        <label class="field checkbox-wrapper" for={{pushNotifications}}>
+            <input
+                type="checkbox"
+                name="pushNotifications"
+                id={{pushNotifications}}
+                checked={{model.pushNotifications}}
+                onchange={{action 'updatePushNotifications' value='target.checked'}}>
+
+            <div class="checkbox-value"></div>
+
+            <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
+        </label>
+
+        {{!-- <label class="field checkbox-wrapper" for={{sounds}}>
+            <input
+                type="checkbox"
+                name="sounds"
+                id={{sounds}}
+                checked={{model.sounds}}
+                onchange={{action 'updateModel'}}>
+
+            <div class="checkbox-value"></div>
+
+            <span class="text">{{t 'settings.form.sounds.label'}}</span>
+        </label>
+
+        <label class="field checkbox-wrapper" for={{animations}}>
+            <input
+                type="checkbox"
+                name="animations"
+                id={{animations}}
+                checked={{model.animations}}
+                onchange={{action 'updateModel'}}>
+
+            <div class="checkbox-value"></div>
+
+            <span class="text">{{t 'settings.form.animations.label'}}</span>
+        </label> --}}
+    </form>
+
+
+    {{outlet}}
+
+</div>

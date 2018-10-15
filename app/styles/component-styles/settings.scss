@@ -1,0 +1,8 @@
+.center-wrapper {
+    padding-top: 70px;
+    @include center-wrapper;
+}
+
+.title {
+    margin-bottom: ms(0);
+}

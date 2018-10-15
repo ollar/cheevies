@@ -32,6 +32,10 @@
 {{yield}}
 
 <footer class="drawer-footer">
+    {{#link-to 'settings'}}
+        {{svg-icon _name="settings" _size=24}}
+    {{/link-to}}
+
   <button class="icon-button" {{action 'invalidate'}}>
     {{svg-icon _name="log-out" _size=24}}
   </button>
