@@ -6,7 +6,6 @@ export default Route.extend({
     notify: service(),
     me: service(),
     myGroup: service('my-group'),
-    firebaseApp: service(),
 
     init() {
         this._super(...arguments);
@@ -14,46 +13,20 @@ export default Route.extend({
     },
 
     afterModel() {
-        const messaging = this.get('firebaseApp').messaging();
-        const _this = this;
-
-        if (this.get('me.model')) {
-            messaging
-                .requestPermission()
-                .then(() => messaging.getToken())
-                .then(token => {
-                    this.get('me.model').set('fcmToken', token);
-                    this.get('me.model').save();
-                })
-                .catch(err => {
-                    this.send('notify', {
-                        type: 'error',
-                        text: err.toString(),
-                    });
-                });
-
-            hash({
-                myGroup: this.myGroup.fetch(),
-                me: this.me.fetch(),
-            })
-                .then(({ myGroup, me }) => ({
-                    availableCheevies: myGroup.get('cheevies'),
-                    unseenCheevies: me.get('unseenCheevies'),
-                }))
-                .then(({ availableCheevies, unseenCheevies }) =>
-                    unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
-                )
-                .then(unseenCheevies => {
-                    if (unseenCheevies.length) this.transitionTo('index.new-cheevies');
-                });
-        }
-
-        messaging.onMessage(payload => {
-            _this.send('notify', {
-                type: 'info',
-                text: payload.notification.body,
+        hash({
+            myGroup: this.myGroup.fetch(),
+            me: this.me.fetch(),
+        })
+            .then(({ myGroup, me }) => ({
+                availableCheevies: myGroup.get('cheevies'),
+                unseenCheevies: me.get('unseenCheevies'),
+            }))
+            .then(({ availableCheevies, unseenCheevies }) =>
+                unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
+            )
+            .then(unseenCheevies => {
+                if (unseenCheevies.length) this.transitionTo('index.new-cheevies');
             });
-        });
     },
     model() {
         return this.me.fetch();
