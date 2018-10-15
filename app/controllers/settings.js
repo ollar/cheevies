@@ -5,6 +5,12 @@ export default Controller.extend({
     firebaseApp: service(),
     me: service(),
 
+    _modelSave() {
+        const model = this.model;
+        model.set('updated', Date.now());
+        return model.save();
+    },
+
     actions: {
         updatePushNotifications(val) {
             const messaging = this.get('firebaseApp').messaging();
@@ -31,7 +37,7 @@ export default Controller.extend({
 
                 promise.then(() => {
                     this.model.set('pushNotifications', val);
-                    this.model.save();
+                    this._modelSave();
                 });
             }
         },
@@ -40,7 +46,7 @@ export default Controller.extend({
             const { name, checked } = e.target;
 
             this.model.set(name, checked);
-            this.model.save();
+            this._modelSave();
         },
     },
 });
