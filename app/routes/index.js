@@ -16,6 +16,10 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 me: this.me.fetch(),
                 users: group.get('users'),
                 cheevies: group.get('cheevies'),
+                settings: this.store.query('settings', {
+                    orderBy: 'user',
+                    equalTo: this.me.model.id,
+                }),
             })
         );
     },
