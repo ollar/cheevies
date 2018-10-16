@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend(AuthenticatedRouteMixin, {
     me: service(),
+    settings: service(),
     myGroup: service('my-group'),
     firebaseApp: service(),
 
@@ -16,10 +17,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 me: this.me.fetch(),
                 users: group.get('users'),
                 cheevies: group.get('cheevies'),
-                settings: this.store.query('settings', {
-                    orderBy: 'user',
-                    equalTo: this.me.model.id,
-                }),
+                settings: this.settings.fetch(),
             })
         );
     },
@@ -33,7 +31,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
         const messaging = this.get('firebaseApp').messaging();
         const _this = this;
 
-        if (this.get('me.model')) {
+        if (this.get('me.model') && this.settings.get('pushNotifications')) {
             messaging
                 .requestPermission()
                 .then(() => messaging.getToken())
@@ -42,6 +40,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
                     this.get('me.model').save();
                 })
                 .catch(err => {
+                    this.settings.set('pushNotifications', false);
+                    this.settings.save();
+
                     this.send('notify', {
                         type: 'error',
                         text: err.toString(),

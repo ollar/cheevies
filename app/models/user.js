@@ -13,5 +13,5 @@ export default DS.Model.extend({
     created: DS.attr('number'),
     groups: DS.hasMany('group'),
 
-    // settings: DS.belongsTo('settings'),
+    settings: DS.belongsTo('settings'),
 });
