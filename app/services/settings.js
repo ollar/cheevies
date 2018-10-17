@@ -40,4 +40,10 @@ export default Service.extend({
             });
         });
     },
+
+    save() {
+        const model = this.model;
+        model.set('updated', Date.now());
+        return model.save();
+    },
 });

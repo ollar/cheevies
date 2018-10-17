@@ -24,7 +24,7 @@ export default Service.extend({
 
     fetch() {
         return resolve().then(() => {
-            if (!this.uid) return null;
+            if (!this.uid) throw new Error('session.data.authenticated.uid not filled');
             if (this.model) return this.model;
 
             return this.get('store')
