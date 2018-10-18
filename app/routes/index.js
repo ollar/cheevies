@@ -34,7 +34,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
         const messaging = this.get('firebaseApp').messaging();
         const _this = this;
 
-        if (this.get('me.model') && this.settingsModel.get('pushNotifications')) {
+        // TODO: consider remove it from here
+        if (0 && this.get('me.model') && this.settingsModel.get('pushNotifications')) {
             messaging
                 .requestPermission()
                 .then(() => messaging.getToken())
