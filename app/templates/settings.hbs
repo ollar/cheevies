@@ -39,6 +39,21 @@
 
             <span class="text">{{t 'settings.form.animations.label'}}</span>
         </label> --}}
+
+        {{#if installStandalone.deferredPrompt}}
+            <label class="field checkbox-wrapper" for={{standaloneApp}}>
+                <input
+                    type="checkbox"
+                    name="standaloneApp"
+                    id={{standaloneApp}}
+                    checked={{false}}
+                    onchange={{action 'promptInstallStandalone'}}>
+
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.standaloneApp.label'}}</span>
+            </label>
+        {{/if}}
     </form>
 
 

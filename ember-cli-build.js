@@ -14,13 +14,9 @@ module.exports = function(defaults) {
             enabled: IS_PROD,
             versionStrategy: 'every-build',
         },
-        // 'esw-cache-first': {
-        //     patterns: ['https://firebasestorage.googleapis.com/(.+)'],
-        // },
         'asset-cache': {
             include: ['assets/**/*', 'images/**/*'],
         },
-
         hinting: IS_TEST,
         tests: IS_TEST,
         'ember-cli-babel': {

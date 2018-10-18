@@ -93,6 +93,9 @@ export default {
             animations: {
                 label: 'Animations',
             },
+            standaloneApp: {
+                label: 'Install App on Homescreen',
+            },
         },
     },
 

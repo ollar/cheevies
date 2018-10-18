@@ -12,6 +12,8 @@ export default Controller.extend({
         return this.get('firebaseApp').messaging();
     }),
 
+    installStandalone: service('install-standalone'),
+
     _modelSave() {
         return this.settings.save();
     },
@@ -60,6 +62,10 @@ export default Controller.extend({
 
             this.model.set(name, checked);
             this._modelSave();
+        },
+
+        promptInstallStandalone() {
+            this.installStandalone.showPrompt();
         },
     },
 });
