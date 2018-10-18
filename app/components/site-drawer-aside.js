@@ -19,6 +19,7 @@ export default Component.extend({
     }),
 
     cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function() {
+        if (!this.get('myGroup.groupName')) return;
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
