@@ -74,5 +74,9 @@ export default Controller.extend({
         promptInstallStandalone() {
             this.installStandalone.showPrompt();
         },
+
+        reloadApp() {
+            window.location.reload();
+        },
     },
 });

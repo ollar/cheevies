@@ -96,6 +96,10 @@ export default {
             standaloneApp: {
                 label: 'Install App on Homescreen',
             },
+
+            reloadApp: {
+                text: 'Reload App',
+            },
         },
     },
 

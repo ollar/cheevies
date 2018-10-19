@@ -1,6 +1,10 @@
 .center-wrapper {
     padding-top: 70px;
+    padding-bottom: 50px;
     @include center-wrapper;
+    grid-template-rows: min-content 1fr 50px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .title {
