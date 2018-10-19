@@ -25,7 +25,7 @@ export default Controller.extend({
 
         return promise.then(() => {
             this.get('me.model').set('fcmToken', '');
-            return this._modelSave();
+            return this.get('me.model').save();
         });
     },
 
@@ -53,6 +53,13 @@ export default Controller.extend({
                 promise.then(() => {
                     this.model.set('pushNotifications', val);
                     this._modelSave();
+                });
+
+                this.messaging.onMessage(payload => {
+                    this.send('notify', {
+                        type: 'info',
+                        text: payload.notification.body,
+                    });
                 });
             }
         },
