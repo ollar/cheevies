@@ -146,3 +146,36 @@
     background: none;
     transition: background 0.3s;
 }
+
+button {
+    /* Structure */
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: #fff;
+    border: none rgba(0, 0, 0, 0);
+    background-color: #f00;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+/* Firefox: Get rid of the inner focus border */
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+button:active {
+    background-color: #CD04FF;
+}
