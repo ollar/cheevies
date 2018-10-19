@@ -8,6 +8,7 @@ import { resolve, all } from 'rsvp';
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
     myGroup: service('my-group'),
+    activity: service(),
 
     _model: computed.alias('model'),
 
@@ -71,6 +72,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                     return true;
                 })
                 .then(() => this.get('model').save())
+                .then(() =>
+                    this.activity.send({
+                        cheevie: this.get('_model'),
+                        action: 'updateCheevie',
+                    })
+                )
                 .then(() => {
                     this.restoreMode();
                     this.send('goBack');

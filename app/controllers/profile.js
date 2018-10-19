@@ -10,6 +10,7 @@ import DS from 'ember-data';
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
     myGroup: service(),
+    activity: service(),
 
     openPopper: '',
 
@@ -71,7 +72,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         refuseCheevie(cheevie) {
             this.model.get('cheevies').removeObject(cheevie);
-            this.model.save();
+            this.model.save().then(() =>
+                this.activity.send({
+                    cheevie,
+                    action: 'refuseCheevie',
+                })
+            );
         },
 
         closeCheevieDetails() {

@@ -3,8 +3,10 @@ import Controller from '@ember/controller';
 import ImageUploadMixin from '../../mixins/image-uploader';
 import BusyMixin from '../../mixins/busy-loader';
 import { all, resolve } from 'rsvp';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
+    activity: service(),
     _model: computed.alias('model.cheevie'),
     _file: null,
     _image: computed('_file', function() {
@@ -40,6 +42,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                         this.transitionToRoute('index')
                     );
                 })
+                .then(() =>
+                    this.activity.send({
+                        cheevie: this.get('_model'),
+                        action: 'createCheevie',
+                    })
+                )
                 .finally(() => this.setBusy(false));
         },
         goBack() {

@@ -5,12 +5,14 @@ export default Service.extend({
     me: service(),
     myGroup: service('my-group'),
 
-    pushActivity(data) {
+    send({ action, text, cheevie }) {
         const activity = this.store.createRecord('activity', {
             group: this.myGroup.model,
             user: this.me.model,
+            cheevie: cheevie,
             created: Date.now(),
-            data,
+            action,
+            text,
         });
 
         return activity.save();
