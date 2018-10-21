@@ -1,0 +1,15 @@
+& {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.activity-action {
+    margin: 0 15px;
+}
+
+.date {
+    font-style: italic;
+    color: fade-out(#fff, 0.5);
+    margin-right: ms(0);
+}

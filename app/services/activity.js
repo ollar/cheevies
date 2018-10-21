@@ -5,6 +5,15 @@ export default Service.extend({
     me: service(),
     myGroup: service('my-group'),
 
+    fetch() {
+        return this.myGroup.fetch().then(() =>
+            this.store.query('activity', {
+                orderBy: 'group',
+                equalTo: this.myGroup.model.id,
+            })
+        );
+    },
+
     send({ action, text, cheevie }) {
         const activity = this.store.createRecord('activity', {
             group: this.myGroup.model,

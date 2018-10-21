@@ -1,0 +1,19 @@
+<div class="date">
+{{date}}
+</div>
+{{!-- user --}}
+{{#link-to 'profile' user}}
+    {{icon-image data=user image=userImage class="user-icon"}}
+{{/link-to}}
+
+{{!-- action --}}
+<div class="activity-action">
+    {{t (add 'activity.actions.' _data.action)}}
+</div>
+
+{{!-- cheevie --}}
+<div class="activity-cheevie">
+    {{icon-image data=cheevie image=cheevieImage class="cheevie-icon"}}
+</div>
+
+{{yield}}

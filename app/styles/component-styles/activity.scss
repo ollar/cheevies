@@ -1,0 +1,22 @@
+.center-wrapper {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    @include center-wrapper;
+    grid-template-rows: min-content 1fr 50px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.activities-list {
+    display: block;
+    margin: ms(1) 0;
+}
+
+.user-icon,
+.cheevie-icon {
+    @include size(32px);
+
+    @include sm() {
+      @include size(64px);
+    };
+}

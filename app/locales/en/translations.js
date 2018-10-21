@@ -103,6 +103,16 @@ export default {
         },
     },
 
+    activity: {
+        title: 'Current Activity',
+        empty: 'No Current Activities',
+        actions: {
+            giveCheevie: 'gave cheevie',
+            createCheevie: 'created cheevie',
+            updateCheevie: 'updated cheevie',
+        },
+    },
+
     nav: {
         home: 'Home',
         profile: 'Profile',
@@ -117,7 +127,7 @@ export default {
         },
     },
 
-    'no-cheevies-placeholder': 'There are no cheevies yet, but you are the best',
+    'no-cheevies-placeholder': 'There are no cheevies yet, maybe you can create one?',
 
     footer_message: 'Made with ♥ 2017',
 };

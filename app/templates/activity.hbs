@@ -1,7 +1,15 @@
-{{#each model as |activity|}}
-    {{!-- {{a}} --}}
-{{else}}
-    {{t 'activity.message.no-activity'}}
-{{/each}}
+<div class="center-wrapper">
+    <h1 class="title">
+        {{t 'activity.title'}}
+    </h1>
 
-{{outlet}}
+    <div class="activities-list">
+        {{#each model as |activity|}}
+            {{activity-list-item _data=activity}}
+        {{else}}
+            <p class="empty">{{t 'activity.empty'}}</p>
+        {{/each}}
+    </div>
+
+    {{outlet}}
+</div>
