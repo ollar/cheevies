@@ -105,7 +105,7 @@ export default {
 
     activity: {
         title: 'Current Activity',
-        empty: 'No Current Activities',
+        empty: 'No New Activity',
         actions: {
             giveCheevie: 'gave cheevie',
             createCheevie: 'created cheevie',
