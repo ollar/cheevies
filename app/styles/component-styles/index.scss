@@ -9,6 +9,7 @@
   transition: transform 0.3s;
   height: calc(100vh - 50px);
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   &.is-dragged {
     transition: none;

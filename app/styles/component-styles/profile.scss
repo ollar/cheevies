@@ -7,6 +7,7 @@
   @include center-wrapper;
   height: calc(100vh - 50px);
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   &.is-me {
     height: 100vh;

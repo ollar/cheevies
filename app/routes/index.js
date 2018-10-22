@@ -19,7 +19,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
             hash({
                 me: this.me.fetch(),
                 users: group.get('users'),
+                // users: this.store.query('user', {
+                //     orderBy: 'group',
+                //     equalTo: group.id,
+                // }),
                 cheevies: group.get('cheevies'),
+                // cheevies: this.store.query('cheevie', {
+                //     orderBy: 'group',
+                //     equalTo: group.id,
+                // }),
                 settings: this.settings.fetch(),
             })
         );
