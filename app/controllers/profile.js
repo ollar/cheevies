@@ -6,6 +6,7 @@ import BusyMixin from '../mixins/busy-loader';
 import Popper from 'popper';
 import $ from 'jquery';
 import DS from 'ember-data';
+import { schedule } from '@ember/runloop';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
@@ -100,8 +101,10 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             $('.item-hint').hide();
             $(popper).show();
 
-            this.popper = new Popper(reference, popper);
-            this.set('openPopper', cheevie.id);
+            schedule('render', () => {
+                this.popper = new Popper(reference, popper);
+                this.set('openPopper', cheevie.id);
+            });
         },
 
         showCheeviesPicker() {

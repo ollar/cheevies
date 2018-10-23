@@ -23,11 +23,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 //     orderBy: 'group',
                 //     equalTo: group.id,
                 // }),
-                cheevies: group.get('cheevies'),
-                // cheevies: this.store.query('cheevie', {
-                //     orderBy: 'group',
-                //     equalTo: group.id,
-                // }),
+                // cheevies: group.get('cheevies'),
+                cheevies: this.store.query('cheevie', {
+                    orderBy: 'group',
+                    equalTo: group.id,
+                }),
                 settings: this.settings.fetch(),
             })
         );
@@ -36,10 +36,12 @@ export default Route.extend(AuthenticatedRouteMixin, {
     afterModel() {
         const imageSets = this.store.peekAll('image-set');
 
-        later(() => {
-            imageSets.forEach(_is =>
-                _is.eachRelationship(key => requestAnimationFrame(() => _is.get(key)))
-            );
-        }, 1000);
+        later(
+            () =>
+                imageSets.forEach(_is =>
+                    _is.eachRelationship(key => requestAnimationFrame(() => _is.get(key)))
+                ),
+            3000
+        );
     },
 });

@@ -5,7 +5,7 @@
 
     <div class="activities-list">
         {{#each model as |activity|}}
-            {{activity-list-item _data=activity}}
+            {{activity-list-item _data=activity class="activity-list-item"}}
         {{else}}
             <p class="empty">{{t 'activity.empty'}}</p>
         {{/each}}
