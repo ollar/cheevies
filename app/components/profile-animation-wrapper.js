@@ -23,28 +23,19 @@ export default Component.extend({
         schedule('afterRender', () => {
             var $iconImage = document.querySelector('.user-image');
             var $name = document.querySelector('.name');
-            var $cheevies = document.querySelectorAll('.cheevie-wrapper');
+            var $cheevies = document.querySelectorAll('.cheevies');
 
             $iconImage.style.scale = '';
             $iconImage.style.opacity = '';
             $name.style.opacity = '';
 
             this.tline
-                .from($iconImage, 0.3, { scale: 1.2, opacity: 0 })
-                .from($name, 0.3, { opacity: 0 })
-                .staggerFromTo(
-                    $cheevies,
-                    0.3,
-                    {
-                        scale: 0,
-                        opacity: 0,
-                    },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                    },
-                    0.016
-                );
+                .from($iconImage, 0.2, { scale: 1.2, opacity: 0 })
+                .from($name, 0.1, { opacity: 0 })
+                .from($cheevies, 0.2, {
+                    scale: 0.8,
+                    opacity: 0,
+                });
         });
     },
 
