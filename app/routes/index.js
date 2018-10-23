@@ -19,15 +19,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
             hash({
                 me: this.me.fetch(),
                 users: group.get('users'),
-                // users: this.store.query('user', {
-                //     orderBy: 'group',
-                //     equalTo: group.id,
-                // }),
-                // cheevies: group.get('cheevies'),
-                cheevies: this.store.query('cheevie', {
-                    orderBy: 'group',
-                    equalTo: group.id,
-                }),
+                cheevies: group.get('cheevies'),
                 settings: this.settings.fetch(),
             })
         );
@@ -35,6 +27,23 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     afterModel() {
         const imageSets = this.store.peekAll('image-set');
+
+        if (this.me.model) {
+            hash({
+                myGroup: this.myGroup.fetch(),
+                me: this.me.fetch(),
+            })
+                .then(({ myGroup, me }) => ({
+                    availableCheevies: myGroup.get('cheevies'),
+                    unseenCheevies: me.get('unseenCheevies'),
+                }))
+                .then(({ availableCheevies, unseenCheevies }) =>
+                    unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
+                )
+                .then(unseenCheevies => {
+                    if (unseenCheevies.length) this.transitionTo('index.new-cheevies');
+                });
+        }
 
         later(
             () =>
