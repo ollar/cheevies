@@ -19,7 +19,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
     _model: computed.alias('model'),
 
-    _cheevies: computed('model.cheevies.[]', function() {
+    _cheeviesPromise: computed('model.cheevies.[]', function() {
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
@@ -30,8 +30,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         });
     }),
 
-    cheevies: computed('_cheevies.isFulfilled', function() {
-        return this._cheevies;
+    cheevies: computed('_cheeviesPromise.isFulfilled', function() {
+        return this._cheeviesPromise;
     }),
 
     _uploadPath(image) {
