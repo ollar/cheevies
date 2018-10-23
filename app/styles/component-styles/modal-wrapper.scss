@@ -32,12 +32,7 @@ figure {
     position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   grid-column: all;
-  transition: 0.3s;
-  background: transparent;
-}
-
-&.is-active .modal-background{
-    background: rgba(5, 7, 14, 0.7);
+  background: rgba(5, 7, 14, 0.7);
 }
 
 .modal-content {
@@ -47,14 +42,6 @@ figure {
   margin-top: 55px;
   margin-bottom: 55px;
   position: relative;
-  transform: translate(0, 50px);
-  opacity: 0;
-  transition: 0.3s ease-in-out;
-}
-
-&.is-active .modal-content{
-    transform: translate(0, 0) !important;
-    opacity: 1;
 }
 
 &.is-busy .modal-content{
@@ -98,12 +85,6 @@ figure.image {
 .modal-close {
   right: 0;
   left: auto;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-&.is-active .modal-close{
-    opacity: 1;
 }
 
 .cheevie-delete {

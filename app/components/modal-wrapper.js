@@ -1,26 +1,40 @@
 import Component from '@ember/component';
 import BusyMixin from '../mixins/busy-loader';
-import { later } from '@ember/runloop';
+
+import { TweenLite } from 'gsap';
+import { Power4 } from 'gsap/easing';
 
 export default Component.extend(BusyMixin, {
     classNames: ['modal'],
-    classNameBindings: ['isActive:is-active'],
 
-    isActive: false,
+    animationDuration: 0.3,
 
     didInsertElement() {
         this._super(...arguments);
-        later(() => {
-            if (!this.isDestroyed) this.set('isActive', true);
-        }, 100);
+
+        TweenLite.from('.modal-content', this.animationDuration, {
+            y: 20,
+            opacity: 0,
+            ease: Power4.easeOut,
+        });
+        TweenLite.from('.modal-background,.modal-close', this.animationDuration, {
+            opacity: 0,
+        });
     },
 
     actions: {
         goBack() {
-            this.set('isActive', false);
-            later(() => {
-                if (this.goBack && this.goBack.call) this.goBack();
-            }, 300);
+            TweenLite.to('.modal-content', this.animationDuration, {
+                y: 20,
+                opacity: 0,
+                onComplete: () => {
+                    if (this.goBack && this.goBack.call) this.goBack();
+                },
+                ease: Power4.easeOut,
+            });
+            TweenLite.to('.modal-background,.modal-close', this.animationDuration, {
+                opacity: 0,
+            });
         },
     },
 });

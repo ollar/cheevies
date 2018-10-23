@@ -50,9 +50,9 @@ module.exports = function(environment) {
         'ember-cli-mirage': {
             enabled: false,
         },
-        'ember-gsap': {
-            core: ['TweenLite', 'TimelineLite', 'CSSPlugin', 'AttrPlugin'],
-        },
+        // 'ember-gsap': {
+        //     core: ['TweenLite', 'TimelineLite', 'CSSPlugin', 'AttrPlugin', 'easing'],
+        // },
     };
 
     if (environment === 'development') {
