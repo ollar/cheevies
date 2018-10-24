@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { schedule } from '@ember/runloop';
+import { schedule, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
@@ -35,10 +35,13 @@ export default Controller.extend({
                 })
             )
             .then(() =>
-                this.activity.send({
-                    user: this.myModel,
-                    action: 'registered',
-                })
+                later(
+                    () =>
+                        this.activity.send({
+                            action: 'registered',
+                        }),
+                    2000
+                )
             )
             .then(() => {
                 schedule('routerTransitions', () => this.transitionToRoute('index'));

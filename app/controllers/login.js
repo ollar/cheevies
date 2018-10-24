@@ -42,7 +42,6 @@ export default Controller.extend({
             )
             .then(() =>
                 this.activity.send({
-                    user: this.myModel,
                     action: 'logged',
                 })
             )
