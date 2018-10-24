@@ -102,6 +102,11 @@ export default {
                 text: 'Reload App',
             },
         },
+
+        feedback: {
+            subject: 'Feedback to Cheevies App',
+            linkText: 'Send me a feedback',
+        },
     },
 
     activity: {
