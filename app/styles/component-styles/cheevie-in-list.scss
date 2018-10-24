@@ -15,4 +15,5 @@
 &.cards-view {
     display: inline-block;
     margin-left: -50px;
+    @include size(128px);
 }
