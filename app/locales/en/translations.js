@@ -105,7 +105,7 @@ export default {
 
         feedback: {
             subject: 'Feedback to Cheevies App',
-            linkText: 'Send me a feedback',
+            linkText: 'Send a feedback',
         },
     },
 
