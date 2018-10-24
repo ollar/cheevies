@@ -110,6 +110,7 @@ export default {
             giveCheevie: 'gave cheevie',
             createCheevie: 'created cheevie',
             updateCheevie: 'updated cheevie',
+            refuseCheevie: 'refused cheevie',
         },
     },
 

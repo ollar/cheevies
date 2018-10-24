@@ -4,13 +4,15 @@ import { TimelineLite } from 'gsap';
 import { Power4 } from 'gsap/easing';
 
 export default Component.extend({
+    init() {
+        this._super(...arguments);
+        this.tline = new TimelineLite();
+    },
     shuffleProps() {
         const height = document.body.scrollHeight;
         const width = document.body.scrollWidth;
 
-        const tline = new TimelineLite();
-
-        tline
+        this.tline
             .from('.title', 0.3, {
                 scale: 1.2,
             })
@@ -53,5 +55,10 @@ export default Component.extend({
         this._super(...arguments);
 
         this.shuffleProps();
+    },
+
+    willDestroyElement() {
+        this._super(...arguments);
+        this.tline.kill();
     },
 });
