@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { schedule, scheduleOnce } from '@ember/runloop';
 import { observer } from '@ember/object';
 
 import { TimelineLite } from 'gsap';
@@ -17,15 +16,12 @@ export default Component.extend({
         });
     },
 
-    cheeviesLoaded: observer('_cheeviesPromise.length', function() {
-        if (this._cheeviesPromise.isFulfilled)
-            scheduleOnce('afterRender', () => {
-                this._runAnimation();
-            });
+    cheeviesLoaded: observer('_cheeviesPromise.length', '_cheeviesPromise.isFulfilled', function() {
+        if (this._cheeviesPromise.isFulfilled) this._runAnimation();
     }),
 
     _runAnimation() {
-        schedule('afterRender', () => this.tline.play());
+        if (!this.tline.isActive()) this.tline.play();
     },
 
     didInsertElement() {

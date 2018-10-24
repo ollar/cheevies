@@ -5,92 +5,107 @@ import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 
 export default Controller.extend({
-  me: service(),
-  session: service(),
+    me: service(),
+    session: service(),
+    activity: service(),
 
-  myModel: computed('session.isAuthenticated', function() {
-    return this.me.model;
-  }),
+    myModel: computed.alias('me.model'),
 
-  init() {
-    this._super(...arguments);
+    init() {
+        this._super(...arguments);
 
-    this.onSuccess = this.onSuccess.bind(this);
-    this.onError = this.onError.bind(this);
-    this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
-  },
-
-  onRegisterSuccess() {
-    return this.me.fetch().then(() => {
-      this.myModel.set('name', this.model.name);
-      return this.myModel.save();
-    });
-  },
-
-  onSuccess() {
-    return resolve()
-      .then(() =>
-        this.send('notify', {
-          type: 'success',
-          text: this.get('i18n').t('signup.success_message'),
-        })
-      )
-      .then(() => {
-        schedule('routerTransitions', () => this.transitionToRoute('index'));
-      });
-  },
-
-  onError(err) {
-    return this.send('notify', {
-      type: 'error',
-      text: err.message,
-    });
-  },
-
-  actions: {
-    handleRegister() {
-      if (this.model.validate({ except: ['group'] })) {
-        this.model
-          .signUp()
-          .then(() =>
-            this.session.authenticate('authenticator:firebase', {
-              email: this.get('model.email'),
-              password: this.get('model.password'),
-            })
-          )
-          .then(this.onRegisterSuccess, this.onError);
-      }
+        this.onSuccess = this.onSuccess.bind(this);
+        this.onError = this.onError.bind(this);
+        this.onRegisterSuccess = this.onRegisterSuccess.bind(this);
     },
 
-    selectGroup() {
-      if (this.model.validate({ except: ['name', 'password', 'email'] })) {
-        return this.store
-          .query('group', {
-            orderBy: 'name',
-            equalTo: this.model.group,
-          })
-          .then(groups => {
-            var group =
-              groups.length > 0
-                ? // group exists
-                  groups.firstObject
-                : // group not exists
-                  this.store.createRecord('group', { name: this.model.group });
-
-            group.get('users').addObject(this.myModel);
-            this.myModel.get('groups').addObject(group);
-            group.save();
-            this.myModel.save();
-
-            this.get('session').set('data.group', group.name);
-            return true;
-          })
-          .then(this.onSuccess, this.onError);
-      }
+    onRegisterSuccess() {
+        return this.me.fetch().then(() => {
+            this.myModel.set('name', this.model.name);
+            return this.myModel.save();
+        });
     },
 
-    invalidate() {
-      return this.get('session').invalidate();
+    onSuccess() {
+        return resolve()
+            .then(() =>
+                this.send('notify', {
+                    type: 'success',
+                    text: this.get('i18n').t('register.success_message'),
+                })
+            )
+            .then(() =>
+                this.activity.send({
+                    user: this.myModel,
+                    action: 'registered',
+                })
+            )
+            .then(() => {
+                schedule('routerTransitions', () => this.transitionToRoute('index'));
+            });
     },
-  },
+
+    onError(err) {
+        return this.send('notify', {
+            type: 'error',
+            text: err.message,
+        });
+    },
+
+    actions: {
+        handleRegister() {
+            if (this.model.validate({ except: ['group'] })) {
+                this.model
+                    .signUp()
+                    .then(() =>
+                        this.session.authenticate('authenticator:firebase', {
+                            email: this.get('model.email'),
+                            password: this.get('model.password'),
+                        })
+                    )
+                    .then(this.onRegisterSuccess, this.onError);
+            }
+        },
+
+        selectGroup() {
+            if (this.model.validate({ except: ['name', 'password', 'email'] })) {
+                return this.me
+                    .fetch()
+                    .then(model => {
+                        model.set('name', this.model.get('name'));
+                        return model.save();
+                    })
+                    .then(() =>
+                        this.store
+                            .query('group', {
+                                orderBy: 'name',
+                                equalTo: this.model.group,
+                            })
+                            .then(groups => {
+                                var group =
+                                    groups.length > 0
+                                        ? // group exists
+                                          groups.firstObject
+                                        : // group not exists
+                                          this.store.createRecord('group', {
+                                              name: this.model.group,
+                                          });
+
+                                group.get('users').addObject(this.myModel);
+                                this.myModel.get('groups').addObject(group);
+                                group.save();
+                                this.myModel.save();
+
+                                this.get('session').set('data.group', group.name);
+                                return true;
+                            })
+                            .then(this.onSuccess, this.onError)
+                    );
+            }
+        },
+
+        invalidate() {
+            return this.get('session').invalidate();
+        },
+    },
 });

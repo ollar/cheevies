@@ -129,6 +129,8 @@ figure.image {
 }
 
 &.give-cheevie-modal {
+    grid-auto-rows: auto;
+
     .modal-content {
         grid-column: all;
         margin-bottom: 0;

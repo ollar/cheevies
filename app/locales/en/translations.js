@@ -15,6 +15,7 @@ export default {
             submit: 'Sign up',
         },
         title: 'Register',
+        success_message: 'Welcome aboard',
     },
 
     form: {
@@ -111,6 +112,8 @@ export default {
             createCheevie: 'created cheevie',
             updateCheevie: 'updated cheevie',
             refuseCheevie: 'refused cheevie',
+            logged: 'logged in',
+            registered: 'signed up, hooray!',
         },
     },
 

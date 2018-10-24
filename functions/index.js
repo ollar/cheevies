@@ -64,7 +64,7 @@ exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
         .database()
         .ref('/users/' + uid)
         .set({
-            name: displayName,
+            name: displayName || 'newb',
             email,
             created: Date.now(),
         });

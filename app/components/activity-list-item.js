@@ -24,6 +24,6 @@ export default Component.extend({
 
     date: computed('_data.created', function() {
         const d = new Date(this._data.created);
-        return `${d.getUTCDate()}.${d.getUTCMonth() + 1}`;
+        return `${d.getUTCDate()}.${d.getUTCMonth() + 1} - ${d.getHours()}:${d.getMinutes()}`;
     }),
 });

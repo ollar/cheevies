@@ -4,6 +4,8 @@ import { TimelineLite } from 'gsap';
 import { Power4 } from 'gsap/easing';
 
 export default Component.extend({
+    classNames: ['props-container'],
+
     init() {
         this._super(...arguments);
         this.tline = new TimelineLite();
@@ -27,7 +29,7 @@ export default Component.extend({
                 0.1
             )
             .staggerFromTo(
-                'svg',
+                '.props-container svg',
                 1,
                 {
                     opacity: 0,

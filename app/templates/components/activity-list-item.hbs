@@ -2,9 +2,11 @@
 {{date}}
 </div>
 {{!-- user --}}
-{{#link-to 'profile' user}}
-    {{icon-image data=user image=userImage class="user-icon"}}
-{{/link-to}}
+{{#if user}}
+    {{#link-to 'profile' user}}
+        {{icon-image data=user image=userImage class="user-icon"}}
+    {{/link-to}}
+{{/if}}
 
 {{!-- action --}}
 <div class="activity-action">
@@ -12,8 +14,10 @@
 </div>
 
 {{!-- cheevie --}}
-<div class="activity-cheevie">
-    {{icon-image data=cheevie image=cheevieImage class="cheevie-icon"}}
-</div>
+{{#if cheevie}}
+    <div class="activity-cheevie">
+        {{icon-image data=cheevie image=cheevieImage class="cheevie-icon"}}
+    </div>
+{{/if}}
 
 {{yield}}

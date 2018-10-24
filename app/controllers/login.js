@@ -7,6 +7,7 @@ import { resolve } from 'rsvp';
 export default Controller.extend({
     session: service(),
     me: service(),
+    activity: service(),
 
     myModel: computed.readOnly('me.model'),
     imageSet: computed.readOnly('myModel.image-set'),
@@ -37,6 +38,12 @@ export default Controller.extend({
                 this.send('notify', {
                     type: 'info',
                     text: this.get('i18n').t('messages.welcome_default'),
+                })
+            )
+            .then(() =>
+                this.activity.send({
+                    user: this.myModel,
+                    action: 'logged',
                 })
             )
             .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')));
@@ -70,6 +77,9 @@ export default Controller.extend({
                             .trim(),
                     })
                     .then(groups => {
+                        // If user already created he can not create new group for now
+                        // TODO create new group method
+
                         // if (!groups.length) {
                         //   return this.onError({
                         //     message: this.get('i18n').t('login.messages.no_such_group'),
