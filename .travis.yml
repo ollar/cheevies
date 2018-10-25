@@ -14,8 +14,8 @@ env:
 before_install:
     - npm config set spin false
 script:
-    - npm run lint:js
-    - npm test
+    # - npm run lint:js
+    # - npm test
 after_success:
     - cd functions
     - npm i
