@@ -25,3 +25,4 @@ node_modules/
 
 # dev
 .env
+.firebase/
