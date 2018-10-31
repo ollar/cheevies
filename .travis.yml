@@ -17,6 +17,7 @@ script:
     - npm run lint:js
     - npm test
 after_success:
+    - chmod +x ./patch_version.sh
     - ./patch_version.sh
 before_deploy:
     - cd functions
