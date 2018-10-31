@@ -5,7 +5,7 @@ import Service from '@ember/service';
 import { resolve } from 'rsvp';
 
 import sinon from 'sinon';
-import { myGroupStub, meStub, testGroup } from './common-stubs';
+import { myGroupStub, meStub, testGroup, activityStub } from './common-stubs';
 
 const storeStub = Service.extend({
     query(modelType, options) {
@@ -45,6 +45,7 @@ module('Acceptance | login', function(hooks) {
         this.owner.register('service:store-test', storeStub);
         this.owner.register('service:me', meStub);
         this.owner.register('service:my-group', myGroupStub);
+        this.owner.register('service:activity', activityStub);
 
         this.owner.inject('controller:login', 'store', 'service:store-test');
         this.owner.inject('route:index', 'store', 'service:store-test');

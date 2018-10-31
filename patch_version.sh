@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "git push"
 git config --global user.email "travis@travis-ci.org"

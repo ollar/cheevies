@@ -4,7 +4,14 @@ import { setupApplicationTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
-import { testGroup, cheevieModel, myGroupStub, meStub } from './common-stubs';
+import {
+    testGroup,
+    cheevieModel,
+    myGroupStub,
+    meStub,
+    settingsStub,
+    activityStub,
+} from './common-stubs';
 
 const sessionServiceStub = Service.extend({
     isAuthenticated: true,
@@ -36,6 +43,8 @@ module('Acceptance | create cheevie', function(hooks) {
         this.owner.register('service:session', sessionServiceStub);
         this.owner.register('service:store-test', storeStub);
         this.owner.register('service:my-group', myGroupStub);
+        this.owner.register('service:settings', settingsStub);
+        this.owner.register('service:activity', activityStub);
         this.owner.register('service:me', meStub);
         this.owner.inject('route:index', 'store', 'service:store-test');
         this.owner.inject('route:index.create-cheevie', 'store', 'service:store-test');

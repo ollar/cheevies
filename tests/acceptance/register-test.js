@@ -5,7 +5,7 @@ import Service from '@ember/service';
 import { resolve } from 'rsvp';
 import sinon from 'sinon';
 import { A } from '@ember/array';
-import { myGroupStub, testGroup, meStub } from './common-stubs';
+import { myGroupStub, testGroup, meStub, activityStub } from './common-stubs';
 
 const groupStub = testGroup.create();
 
@@ -33,6 +33,7 @@ module('Acceptance | register', function(hooks) {
         this.owner.register('service:store-test', storeStub);
         this.owner.register('service:me', meStub);
         this.owner.register('service:my-group', myGroupStub);
+        this.owner.register('service:activity', activityStub);
 
         this.owner.inject('controller:register', 'store', 'service:store-test');
         this.owner.inject('route:index', 'store', 'service:store-test');

@@ -3,24 +3,30 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
+import { Promise } from 'rsvp';
+
 module('Integration | Component | profile-animation-wrapper', function(hooks) {
-  setupRenderingTest(hooks);
+    setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    test('it renders', async function(assert) {
+        // Set any properties with this.set('myProperty', 'value');
+        // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{profile-animation-wrapper}}`);
+        const _cheeviesPromise = new Promise(res => res());
 
-    assert.equal(this.element.textContent.trim(), '');
+        this.set('_cheeviesPromise', _cheeviesPromise);
 
-    // Template block usage:
-    await render(hbs`
-      {{#profile-animation-wrapper}}
-        template block text
-      {{/profile-animation-wrapper}}
-    `);
+        await render(hbs`{{profile-animation-wrapper _cheeviesPromise=_cheeviesPromise}}`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
-  });
+        assert.equal(this.element.textContent.trim(), '');
+
+        // Template block usage:
+        await render(hbs`
+            {{#profile-animation-wrapper _cheeviesPromise=_cheeviesPromise}}
+                template block text
+            {{/profile-animation-wrapper}}
+        `);
+
+        assert.equal(this.element.textContent.trim(), 'template block text');
+    });
 });

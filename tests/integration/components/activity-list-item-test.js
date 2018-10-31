@@ -4,23 +4,20 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | activity-list-item', function(hooks) {
-  setupRenderingTest(hooks);
+    setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    test('it renders', async function(assert) {
+        const _data = {
+            created: Date.now(),
+            action: 'giveCheevie',
+            group: 'test',
+            text: '',
+        };
 
-    await render(hbs`{{activity-list-item}}`);
+        this.set('_data', _data);
 
-    assert.equal(this.element.textContent.trim(), '');
+        await render(hbs`{{activity-list-item _data=_data class="activity-list-item"}}`);
 
-    // Template block usage:
-    await render(hbs`
-      {{#activity-list-item}}
-        template block text
-      {{/activity-list-item}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
-  });
+        assert.ok(this.element.textContent.trim().match(/\d*.gave cheevie/));
+    });
 });
