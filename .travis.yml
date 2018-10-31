@@ -14,10 +14,12 @@ env:
 before_install:
     - npm config set spin false
 script:
-    # - npm run lint:js
-    # - npm test
+    - npm run lint:js
+    - npm test
 after_success:
+    - sh patch_version.sh
+before_deploy:
     - cd functions
     - npm i
-    - cd ..
+delpoy:
     - ember deploy production
