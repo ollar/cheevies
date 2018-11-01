@@ -25,4 +25,5 @@ before_deploy:
     - cd ..
 deploy:
     provider: script
+    skip_cleanup: true
     script: deploy_production.sh

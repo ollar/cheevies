@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ember deploy production
+ember deploy production --verbose
