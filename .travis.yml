@@ -22,6 +22,7 @@ after_success:
 before_deploy:
     - cd functions
     - npm i
+    - cd ..
 deploy:
     provider: script
     script: deploy_production.sh
