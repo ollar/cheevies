@@ -5,11 +5,6 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/4.8.2/firebase-messaging.js');
 
 var config = {
-    apiKey: 'AIzaSyDpGDsbRoqDolu4g6fXwBO53wP6F7it6QQ',
-    authDomain: 'cheevies-jerk.firebaseapp.com',
-    databaseURL: 'https://cheevies-jerk.firebaseio.com',
-    projectId: 'cheevies-jerk',
-    storageBucket: 'cheevies-jerk.appspot.com',
     messagingSenderId: '819055703445',
 };
 
