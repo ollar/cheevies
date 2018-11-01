@@ -24,4 +24,5 @@ before_deploy:
     - npm i
 deploy:
     provider: script
-    script: ember deploy production
+    skip_cleanup: true
+    script: node_modules/.bin/ember deploy production
