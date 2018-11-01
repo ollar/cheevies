@@ -26,4 +26,4 @@ before_deploy:
 deploy:
     provider: script
     skip_cleanup: true
-    script: sh $TRAVIS_BUILD_DIR/ember deploy production --verbose
+    script: $TRAVIS_BUILD_DIR/ember deploy production --verbose
