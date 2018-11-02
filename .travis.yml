@@ -17,7 +17,6 @@ script:
     - npm run lint:js
     - npm test
 after_success:
-    - chmod +x ./patch_version.sh
     - ./patch_version.sh
 before_deploy:
     - cd functions
@@ -25,5 +24,4 @@ before_deploy:
     - cd ..
 deploy:
     provider: script
-    skip_cleanup: true
     script: $TRAVIS_BUILD_DIR/deploy_production.sh
