@@ -9,6 +9,20 @@ const {
     storageBucket,
     projectId,
     messagingSenderId,
+
+    apiKeyDev,
+    authDomainDev,
+    databaseURLDev,
+    storageBucketDev,
+    projectIdDev,
+    messagingSenderIdDev,
+
+    apiKeyTest,
+    authDomainTest,
+    databaseURLTest,
+    storageBucketTest,
+    projectIdTest,
+    messagingSenderIdTest,
 } = process.env;
 
 module.exports = function(environment) {
@@ -61,6 +75,15 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS = true;
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+        ENV.firebase = {
+            apiKey: apiKeyDev,
+            authDomain: authDomainDev,
+            databaseURL: databaseURLDev,
+            storageBucket: storageBucketDev,
+            projectId: projectIdDev,
+            messagingSenderId: messagingSenderIdDev,
+        };
     }
 
     if (environment === 'test') {
@@ -73,6 +96,15 @@ module.exports = function(environment) {
 
         ENV.APP.rootElement = '#ember-testing';
         ENV.APP.autoboot = false;
+
+        ENV.firebase = {
+            apiKey: apiKeyTest,
+            authDomain: authDomainTest,
+            databaseURL: databaseURLTest,
+            storageBucket: storageBucketTest,
+            projectId: projectIdTest,
+            messagingSenderId: messagingSenderIdTest,
+        };
     }
 
     if (environment === 'production') {
