@@ -61,9 +61,6 @@ module.exports = function(environment) {
         i18n: {
             defaultLocale: 'en',
         },
-        'ember-cli-mirage': {
-            enabled: false,
-        },
         // 'ember-gsap': {
         //     core: ['TweenLite', 'TimelineLite', 'CSSPlugin', 'AttrPlugin', 'easing'],
         // },

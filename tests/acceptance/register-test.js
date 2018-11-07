@@ -3,8 +3,8 @@ import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@
 import { setupApplicationTest } from 'ember-qunit';
 
 const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
 const testGroup = 'testGroup';
+const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
 
 module('Acceptance | register', function(hooks) {
     setupApplicationTest(hooks);
@@ -30,7 +30,7 @@ module('Acceptance | register', function(hooks) {
     test('visiting /register signed and has group should redirect to index', async function(assert) {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', 'testGroup');
+        session.set('data.group', testGroup);
 
         await visit('/register');
 
@@ -53,7 +53,7 @@ module('Acceptance | register', function(hooks) {
         await fillIn('#password', '123123123');
         await triggerEvent('form', 'submit');
 
-        await sleep(2000);
+        await sleep(4000);
 
         assert.ok(find('[test-id="group-select-section"]'));
     });

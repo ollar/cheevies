@@ -1,78 +1,58 @@
-import { module, test } from 'qunit';
-import { visit, currentURL, fillIn, settled, click, triggerEvent } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
-import Service from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import { module, test, skip } from 'qunit';
 import {
-    testGroup,
-    cheevieModel,
-    myGroupStub,
-    meStub,
-    settingsStub,
-    activityStub,
-} from './common-stubs';
+    visit,
+    currentURL,
+    fillIn,
+    settled,
+    click,
+    triggerEvent,
+    getContext,
+} from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-const sessionServiceStub = Service.extend({
-    isAuthenticated: true,
-    data: computed(() => ({
-        group: 'tester',
-        authenticated: {},
-    })),
-});
+import { run } from '@ember/runloop';
 
-const storeStub = Service.extend({
-    cheevieModel: cheevieModel.create(),
-    testGroup: testGroup.create(),
-    query() {
-        return resolve([this.testGroup]);
-    },
-
-    createRecord() {
-        return this.cheevieModel;
-    },
-    peekAll() {
-        return [];
-    },
-});
+const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
+const testGroup = 'testGroup';
+const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
 
 module('Acceptance | create cheevie', function(hooks) {
     setupApplicationTest(hooks);
 
-    hooks.beforeEach(function() {
-        this.owner.register('service:session', sessionServiceStub);
-        this.owner.register('service:store-test', storeStub);
-        this.owner.register('service:my-group', myGroupStub);
-        this.owner.register('service:settings', settingsStub);
-        this.owner.register('service:activity', activityStub);
-        this.owner.register('service:me', meStub);
-        this.owner.inject('route:index', 'store', 'service:store-test');
-        this.owner.inject('route:index.create-cheevie', 'store', 'service:store-test');
+    hooks.beforeEach(async function() {
+        window.localStorage.clear();
+
+        const session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+        session.set('data.group', testGroup);
     });
 
-    test('visiting /create-cheevie', async function(assert) {
+    skip('visiting /create-cheevie', async function(assert) {
         await visit('/create-cheevie');
 
         assert.equal(currentURL(), '/create-cheevie');
     });
 
     test('it creates cheevie model and adds it to the group', async function(assert) {
-        const cheevieModel = this.owner.lookup('service:store-test').cheevieModel;
-        const testGroup = this.owner.lookup('service:my-group').model;
-
         await visit('/create-cheevie');
+        const group = this.owner.lookup('service:my-group');
+        const cheevieModel = this.owner.lookup('controller:index.create-cheevie').model.cheevie;
 
         await fillIn('#name', 'test-cheevie-name');
         await click('label[for="high"]');
         await fillIn('#description', 'test-cheevie-description');
-
         await triggerEvent('form', 'submit');
-        await settled();
+
+        await sleep(1000);
 
         assert.equal(cheevieModel.get('name'), 'test-cheevie-name');
         assert.equal(cheevieModel.power, 'high');
         assert.equal(cheevieModel.description, 'test-cheevie-description');
 
-        assert.ok(testGroup.cheevies.length === 1);
+        let groupCheevies = await group.model.get('cheevies');
+        groupCheevies = groupCheevies.map(g => g.id);
+
+        // cheevie added in group
+        assert.ok(groupCheevies.indexOf(cheevieModel.id) > -1);
     });
 });
