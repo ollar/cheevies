@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
 import BusyMixin from '../../mixins/busy-loader';
 import { inject as service } from '@ember/service';
-import { resolve, all } from 'rsvp';
+import { resolve } from 'rsvp';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
