@@ -23,6 +23,14 @@ before_deploy:
     - npm i
     - cd ..
 deploy:
-    provider: script
-    skip_cleanup: true
-    script: $TRAVIS_BUILD_DIR/deploy_production.sh
+    - provider: script
+      skip_cleanup: true
+      script: $TRAVIS_BUILD_DIR/deploy_production.sh production
+      on:
+          branch: master
+
+    - provider: script
+      skip_cleanup: true
+      script: $TRAVIS_BUILD_DIR/deploy_production.sh development
+      on:
+          branch: dev

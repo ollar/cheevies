@@ -11,7 +11,9 @@ export default Component.extend(HaoticMoveMixin, {
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
-                .then(myGroup => myGroup.get('cheevies'))
+                .then(myGroup =>
+                    myGroup.get('cheevies').then(cheevies => cheevies.filter(c => !c.deleted))
+                )
                 .then(availableCheevies =>
                     this.user.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 ),

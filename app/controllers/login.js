@@ -2,14 +2,14 @@ import Controller from '@ember/controller';
 import { schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import { all, resolve } from 'rsvp';
 
 export default Controller.extend({
     session: service(),
     me: service(),
     activity: service(),
 
-    myModel: computed.readOnly('me.model'),
+    myModel: computed.alias('me.model'),
     imageSet: computed.readOnly('myModel.image-set'),
     myImage: computed('imageSet.{}', function() {
         if (!this.get('imageSet.64')) return null;
@@ -68,61 +68,43 @@ export default Controller.extend({
         },
         selectGroup() {
             if (this.model.validate({ except: ['email', 'password'] })) {
-                return this.store
-                    .query('group', {
-                        orderBy: 'name',
-                        equalTo: this.getWithDefault('model.group', '')
-                            .toLowerCase()
-                            .trim(),
-                    })
-                    .then(groups => {
-                        // If user already created he can not create new group for now
-                        // TODO create new group method
+                return this.me
+                    .fetch()
+                    .then(() =>
+                        this.store
+                            .query('group', {
+                                orderBy: 'name',
+                                equalTo: this.getWithDefault('model.group', '')
+                                    // .toLowerCase()  // todo: check this
+                                    .trim(),
+                            })
+                            .then(groups => {
+                                // If user already created he can not create new group for now
+                                // TODO create new group method
 
-                        // if (!groups.length) {
-                        //   return this.onError({
-                        //     message: this.get('i18n').t('login.messages.no_such_group'),
-                        //   });
-                        // }
-                        //
+                                // if (!groups.length) {
+                                //   return this.onError({
+                                //     message: this.get('i18n').t('login.messages.no_such_group'),
+                                //   });
+                                // }
+                                //
 
-                        var group =
-                            groups.length > 0
-                                ? // group exists
-                                  groups.firstObject
-                                : // group not exists
-                                  this.store.createRecord('group', {
-                                      name: this.model.group,
-                                  });
+                                var group =
+                                    groups.length > 0
+                                        ? // group exists
+                                          groups.firstObject
+                                        : // group not exists
+                                          this.store.createRecord('group', {
+                                              name: this.model.group,
+                                          });
 
-                        group.get('users').addObject(this.myModel);
-                        this.myModel.get('groups').addObject(group);
-                        return group
-                            .save()
-                            .then(() => this.myModel.save())
-                            .then(() => this.get('session').set('data.group', group.name))
-                            .then(() =>
-                                group.reload({
-                                    adapterOptions: {
-                                        shouldReloadAll: true,
-                                        shouldReloadRecord: true,
-                                    },
-                                })
-                            );
-
-                        // const myUid = this.get('me.model.id');
-
-                        // if (myGroup.users.map(_u => _u.id).indexOf(myUid) > -1) {
-                        //   this.get('session').set('data.group', myGroup.id);
-                        //   return this.onSuccess();
-                        // } else {
-                        //   return this.onError({
-                        //     message: this.get('i18n').t(
-                        //       'login.messages.you_are_not_in_group'
-                        //     ),
-                        //   });
-                        // }
-                    })
+                                group.get('users').addObject(this.myModel);
+                                this.myModel.get('groups').addObject(group);
+                                return all([group.save(), this.myModel.save()])
+                                    .then(() => this.get('session').set('data.group', group.name))
+                                    .then(() => group.reload());
+                            })
+                    )
                     .then(this.onSuccess, this.onError);
             }
         },

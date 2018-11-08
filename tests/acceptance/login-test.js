@@ -1,54 +1,28 @@
 import { module, test, skip } from 'qunit';
-import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
+import {
+    visit,
+    currentURL,
+    fillIn,
+    triggerEvent,
+    settled,
+    waitFor,
+    click,
+    find,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import Service from '@ember/service';
-import { resolve } from 'rsvp';
 
-import sinon from 'sinon';
-import { myGroupStub, meStub, testGroup, activityStub } from './common-stubs';
+// todo: move to configs
+const email = 'tester@test.com';
+const password = '123123123';
+const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
 
-const storeStub = Service.extend({
-    query(modelType, options) {
-        const group = testGroup.create({
-            id: 'mygroup',
-            name: 'test',
-            users: [{ id: 'me' }],
-            cheevies: [],
-        });
-
-        const group2 = testGroup.create({
-            id: 'notmygroup',
-            name: 'test',
-            users: [{ id: 'not me' }],
-            cheevies: [],
-        });
-
-        return resolve(options.equalTo === 'mygroup' ? [group] : [group2]);
-    },
-
-    peekAll() {
-        return [];
-    },
-});
+const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
 
 module('Acceptance | login', function(hooks) {
     setupApplicationTest(hooks);
 
     hooks.beforeEach(function() {
-        const sessionService = this.owner.lookup('service:session');
-
-        sinon.stub(sessionService, 'authenticate').callsFake(() => {
-            sessionService.set('isAuthenticated', true);
-            return resolve();
-        });
-
-        this.owner.register('service:store-test', storeStub);
-        this.owner.register('service:me', meStub);
-        this.owner.register('service:my-group', myGroupStub);
-        this.owner.register('service:activity', activityStub);
-
-        this.owner.inject('controller:login', 'store', 'service:store-test');
-        this.owner.inject('route:index', 'store', 'service:store-test');
+        window.localStorage.clear();
     });
 
     test('visiting /login unsigned should stay on login', async function(assert) {
@@ -66,37 +40,40 @@ module('Acceptance | login', function(hooks) {
     });
 
     test('visiting /login signed and has group should redirect to index', async function(assert) {
-        this.owner.lookup('service:session').set('isAuthenticated', true);
-        this.owner.lookup('service:session').set('data.group', 'true');
+        let session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+        session.set('data.group', 'testGroup');
 
         await visit('/login');
-
         assert.equal(currentURL(), '/');
     });
 
     test('fill login form should show group form', async function(assert) {
         await visit('/login');
 
-        await fillIn('#email', 'test@test.test');
-        await fillIn('#password', '1111111');
+        await fillIn('#email', email);
+        await fillIn('#password', password);
         await triggerEvent('form', 'submit');
+        await waitFor('[test-id="group-select-section"]');
 
         assert.ok(find('[test-id="group-select-section"]'));
     });
 
     test('after setting group should login', async function(assert) {
-        this.owner.lookup('service:session').set('isAuthenticated', true);
+        let session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
 
         await visit('/login');
 
-        await fillIn('#group', 'mygroup');
+        await fillIn('#group', 'testGroup');
         await triggerEvent('form', 'submit');
 
-        await settled();
+        await sleep(2000);
 
         assert.equal(currentURL(), '/');
     });
 
+    // todo: fix this logic
     skip('after setting wrong group should not login', async function(assert) {
         this.owner.lookup('service:session').set('isAuthenticated', true);
 

@@ -125,6 +125,12 @@ export default {
     nav: {
         home: 'Home',
         profile: 'Profile',
+        'forgot-password': 'Reset Password',
+    },
+
+    'reset-password': {
+        success_message: 'Recovery message sent, keep calm and wait for help',
+        error_message: 'Bad weather, resque squad failed to launch',
     },
 
     index: {
@@ -137,6 +143,7 @@ export default {
     },
 
     'no-cheevies-placeholder': 'There are no cheevies yet, maybe you can create one?',
+    'you-have-no-cheevies-yet': 'You have no cheevies yet, but you are the best!',
 
     footer_message: 'Made with ♥ 2017',
 };
