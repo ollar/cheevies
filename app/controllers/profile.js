@@ -24,7 +24,9 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
-                .then(myGroup => myGroup.get('cheevies'))
+                .then(myGroup =>
+                    myGroup.get('cheevies').then(cheevies => cheevies.filter(c => !c.deleted))
+                )
                 .then(availableCheevies =>
                     this.model.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 ),

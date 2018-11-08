@@ -31,8 +31,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     restoreMode() {
         this.setProperties({
             _file: '',
+            showMode: true,
         });
-        this.set('showMode', true);
     },
 
     actions: {
@@ -86,11 +86,11 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
         deleteCheevie() {
             if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
-                const group = this.myGroup.get('model');
                 const model = this.get('model');
+                model.set('deleted', true);
+
                 return resolve()
-                    .then(() => group.get('cheevies').removeObject(model))
-                    .then(() => all([group.save(), model.destroyRecord()]))
+                    .then(() => model.save())
                     .then(() => {
                         this.restoreMode();
                         this.transitionToRoute('index');

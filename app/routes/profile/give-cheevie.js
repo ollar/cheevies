@@ -8,7 +8,10 @@ export default Route.extend({
     model() {
         return hash({
             user: this.modelFor('profile'),
-            cheevies: this.myGroup.fetch().then(group => group.get('cheevies')),
+            cheevies: this.myGroup
+                .fetch()
+                .then(group => group.get('cheevies'))
+                .then(cheevies => cheevies.filter(c => !c.deleted)),
         }).then(({ user, cheevies }) => {
             const userCheevies = user.get('cheevies');
             return {

@@ -25,7 +25,9 @@ export default Component.extend({
                 .fetch()
                 .then(myGroup => {
                     if (!myGroup) return resolve([]);
-                    return myGroup.get('cheevies');
+                    return myGroup
+                        .get('cheevies')
+                        .then(cheevies => cheevies.filter(c => !c.deleted));
                 })
                 .then(availableCheevies =>
                     this.getWithDefault('me.model.cheevies', []).filter(

@@ -19,7 +19,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
             hash({
                 me: this.me.fetch(),
                 users: group.get('users'),
-                cheevies: group.get('cheevies'),
+                cheevies: group.get('cheevies').then(cheevies => cheevies.filter(c => !c.deleted)),
                 settings: this.settings.fetch(),
             })
         );
@@ -34,7 +34,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 me: this.me.fetch(),
             })
                 .then(({ myGroup, me }) => ({
-                    availableCheevies: myGroup.get('cheevies'),
+                    availableCheevies: myGroup
+                        .get('cheevies')
+                        .then(cheevies => cheevies.filter(c => !c.deleted)),
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
                 .then(({ availableCheevies, unseenCheevies }) =>

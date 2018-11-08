@@ -21,6 +21,13 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         return `cheevies/${this._model.id}/${image.width}/${image.name}`;
     },
 
+    _clearFile() {
+        if (this._file) {
+            window.URL.revokeObjectURL(this._file);
+            this.set('_file', '');
+        }
+    },
+
     actions: {
         updateCheevie() {
             this.setBusy(true);
@@ -48,13 +55,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                         action: 'createCheevie',
                     })
                 )
+                .then(() => this._clearFile())
                 .finally(() => this.setBusy(false));
         },
         goBack() {
             this._model.deleteRecord();
-            this.setProperties({
-                _file: '',
-            });
+            this._clearFile();
             this.transitionToRoute('index');
         },
         uploadImage(files) {
@@ -64,9 +70,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         removeImage() {
-            this.setProperties({
-                _file: '',
-            });
+            this._clearFile();
         },
     },
 });
