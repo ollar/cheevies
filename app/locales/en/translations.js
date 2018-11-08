@@ -125,6 +125,12 @@ export default {
     nav: {
         home: 'Home',
         profile: 'Profile',
+        'forgot-password': 'Reset Password',
+    },
+
+    'reset-password': {
+        success_message: 'Recovery message sent, keep calm and wait for help',
+        error_message: 'Bad weather, resque squad failed to launch',
     },
 
     index: {
