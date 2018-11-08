@@ -1,16 +1,6 @@
 import { module, test, skip } from 'qunit';
-import {
-    visit,
-    currentURL,
-    fillIn,
-    settled,
-    click,
-    triggerEvent,
-    getContext,
-} from '@ember/test-helpers';
+import { visit, currentURL, fillIn, click, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-
-import { run } from '@ember/runloop';
 
 const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
 const testGroup = 'testGroup';
