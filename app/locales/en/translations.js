@@ -137,6 +137,7 @@ export default {
     },
 
     'no-cheevies-placeholder': 'There are no cheevies yet, maybe you can create one?',
+    'you-have-no-cheevies-yet': 'You have no cheevies yet, but you are the best!',
 
     footer_message: 'Made with ♥ 2017',
 };
