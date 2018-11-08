@@ -1,4 +1,4 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, click, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -17,7 +17,7 @@ module('Acceptance | create cheevie', function(hooks) {
         session.set('data.group', testGroup);
     });
 
-    skip('visiting /create-cheevie', async function(assert) {
+    test('visiting /create-cheevie', async function(assert) {
         await visit('/create-cheevie');
 
         assert.equal(currentURL(), '/create-cheevie');
