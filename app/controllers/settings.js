@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
+import { getOwner } from '@ember/application';
 
 export default Controller.extend({
     firebaseApp: service(),
@@ -13,6 +14,9 @@ export default Controller.extend({
     }),
 
     installStandalone: service('install-standalone'),
+    version: computed(function() {
+        return getOwner(this).application.version;
+    }),
 
     _modelSave() {
         return this.settings.save();
