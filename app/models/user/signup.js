@@ -42,7 +42,7 @@ export default DS.Model.extend(Validator, {
                     .database()
                     .ref('/users/' + newUser.uid)
                     .set({
-                        name: this.name,
+                        created: Date.now(),
                     })
             );
     },
