@@ -12,6 +12,11 @@ export default DS.Model.extend(Validator, {
     email: DS.attr('string'),
     group: DS.attr('string'),
 
+    init() {
+        this._super(...arguments);
+        this._createUserMode = this._createUserMode.bind(this);
+    },
+
     validations: computed(() => ({
         name: {
             presence: true,
@@ -31,20 +36,22 @@ export default DS.Model.extend(Validator, {
         },
     })),
 
+    _createUserMode(newUser) {
+        // this is needed to have user model on screen
+        return firebase
+            .database()
+            .ref('/users/' + newUser.uid)
+            .set({
+                name: this.name || newUser.displayName,
+                email: newUser.email,
+                created: Date.now(),
+            });
+    },
+
     signUp() {
         return firebase
             .auth()
             .createUserWithEmailAndPassword(this.get('email'), this.get('password'))
-            .then(newUser =>
-                // this is needed to have user model on screen
-                // rest of model is filled on server
-                firebase
-                    .database()
-                    .ref('/users/' + newUser.uid)
-                    .set({
-                        name: this.name,
-                        created: Date.now(),
-                    })
-            );
+            .then(this._createUserMode);
     },
 });
