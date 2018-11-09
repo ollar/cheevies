@@ -10,6 +10,7 @@ module.exports = function(deployTarget) {
         build: {},
         firebase: {
             deployToken,
+            appName: 'default',
             // deployToken: process.env.FIREBASE_TOKEN (if .env stuff is your style)
         },
         // include other plugin configuration that applies to all deploy targets here
