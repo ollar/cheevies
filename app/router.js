@@ -23,6 +23,7 @@ Router.map(function() {
     this.route('settings');
     this.route('activity');
     this.route('reset-password', { path: '/oh-oh-reset-password' });
+    this.route('handle-firebase-reset-password', { path: '/__/auth/action' });
 });
 
 export default Router;
