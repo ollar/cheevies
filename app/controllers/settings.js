@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 import { getOwner } from '@ember/application';
+import { schedule } from '@ember/runloop';
 
 export default Controller.extend({
     firebaseApp: service(),
@@ -80,7 +81,12 @@ export default Controller.extend({
         },
 
         reloadApp() {
-            window.location.reload();
+            schedule('afterRender', () => {
+                this.transitionToRoute('index');
+                schedule('routerTransitions', () => {
+                    window.location.reload();
+                });
+            });
         },
     },
 });
