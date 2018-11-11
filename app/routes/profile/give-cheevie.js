@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
-import getGroupCheevies from '../utils/get-group-cheevies';
+import getGroupCheevies from '../../utils/get-group-cheevies';
 
 export default Route.extend({
     myGroup: service(),
