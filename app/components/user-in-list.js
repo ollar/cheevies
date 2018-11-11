@@ -4,6 +4,8 @@ import HaoticMoveMixin from '../mixins/haotic-move';
 import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 
+import getGroupCheevies from '../utils/get-group-cheevies';
+
 export default Component.extend(HaoticMoveMixin, {
     myGroup: service('my-group'),
 
@@ -11,9 +13,7 @@ export default Component.extend(HaoticMoveMixin, {
         return DS.PromiseArray.create({
             promise: this.get('myGroup')
                 .fetch()
-                .then(myGroup =>
-                    myGroup.get('cheevies').then(cheevies => cheevies.filter(c => !c.deleted))
-                )
+                .then(getGroupCheevies)
                 .then(availableCheevies =>
                     this.user.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 ),
