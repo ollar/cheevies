@@ -8,7 +8,7 @@ const Group = EmberObject.extend({
     cheevies: resolve([]),
 });
 
-module('Unit | Utility | get-group-cheevies', function(hooks) {
+module('Unit | Utility | get-group-cheevies', function() {
     // Replace this with your real tests.
     test('it works', async function(assert) {
         const group = Group.create();
