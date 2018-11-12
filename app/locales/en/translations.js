@@ -146,4 +146,16 @@ export default {
     'you-have-no-cheevies-yet': 'You have no cheevies yet, but you are the best!',
 
     footer_message: 'Made with ♥ 2017',
+
+    share: {
+        cheevie: {
+            title: 'Wow, look at that',
+            text: 'I have "{{cheevie}}" in my collection!',
+        },
+
+        messages: {
+            success: 'Successfully shared',
+            error: 'Failed to share',
+        },
+    },
 };
