@@ -6,6 +6,10 @@
   grid-template-columns: 1.5em auto 1.5em;
   grid-template-rows: minmax(0, 35%) minmax(0, 1fr) 50px;
   height: 100vh;
+
+  &.is-dragged {
+      transition: none;
+  }
 }
 
 .drawer-footer {
