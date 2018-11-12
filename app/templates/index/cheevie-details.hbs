@@ -6,7 +6,10 @@
 
     {{#if _image}}
         <figure class="image">
-        <img src={{_image.url}}>
+        {{#cached-image _src=_image.url as |_cs|}}
+            <img src={{_cs}}>
+        {{/cached-image}}
+
         </figure>
     {{else}}
         <div class="image-placeholder">
