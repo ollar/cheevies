@@ -34,7 +34,7 @@ export default Component.extend(DraggableMixin, {
         const moveX = this.initialTransform[0] - this.previousMoveX;
         if (Math.abs(moveX) > 150) {
             if (moveX > 0) {
-                this.toggleDrawer(); // close it
+                this.closeDrawer(); // close it
             }
         }
         this._super(...arguments);
