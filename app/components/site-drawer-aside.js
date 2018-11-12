@@ -4,6 +4,8 @@ import { computed } from '@ember/object';
 import DS from 'ember-data';
 import { resolve } from 'rsvp';
 
+import getGroupCheevies from '../utils/get-group-cheevies';
+
 export default Component.extend({
     me: service(),
     myGroup: service(),
@@ -25,9 +27,7 @@ export default Component.extend({
                 .fetch()
                 .then(myGroup => {
                     if (!myGroup) return resolve([]);
-                    return myGroup
-                        .get('cheevies')
-                        .then(cheevies => cheevies.filter(c => !c.deleted));
+                    return getGroupCheevies(myGroup);
                 })
                 .then(availableCheevies =>
                     this.getWithDefault('me.model.cheevies', []).filter(
