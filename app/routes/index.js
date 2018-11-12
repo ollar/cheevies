@@ -11,6 +11,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     me: service(),
     settings: service(),
     myGroup: service('my-group'),
+    cachedImage: service(),
 
     settingsModel: computed.alias('settings.model'),
 
@@ -50,7 +51,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
         later(
             () =>
                 imageSets.forEach(_is =>
-                    _is.eachRelationship(key => requestAnimationFrame(() => _is.get(key)))
+                    _is.eachRelationship(key =>
+                        requestAnimationFrame(() =>
+                            _is.get(key).then(image => this.cachedImage.getCachedSrc(image.url))
+                        )
+                    )
                 ),
             3000
         );
