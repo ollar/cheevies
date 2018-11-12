@@ -130,6 +130,7 @@ figure.image {
 
 &.give-cheevie-modal {
     grid-auto-rows: auto;
+    align-items: flex-end;
 
     .modal-content {
         grid-column: all;

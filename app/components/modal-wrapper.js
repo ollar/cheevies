@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import BusyMixin from '../mixins/busy-loader';
 
 import { TweenLite } from 'gsap';
-import { Power4 } from 'gsap/easing';
+import { Power2 } from 'gsap/easing';
 
 export default Component.extend(BusyMixin, {
     classNames: ['modal'],
@@ -13,16 +13,16 @@ export default Component.extend(BusyMixin, {
         this._super(...arguments);
 
         if (this.giveCheevieModal) {
-            TweenLite.from('.modal-content', this.animationDuration * 2, {
+            TweenLite.from('.modal-content', this.animationDuration, {
                 y: '100%',
                 opacity: 0,
-                ease: Power4.easeOut,
+                ease: Power2.easeOut,
             });
         } else {
             TweenLite.from('.modal-content', this.animationDuration, {
                 y: 20,
                 opacity: 0,
-                ease: Power4.easeOut,
+                ease: Power2.easeOut,
             });
         }
         TweenLite.from('.modal-background,.modal-close', this.animationDuration, {
@@ -36,18 +36,18 @@ export default Component.extend(BusyMixin, {
                 if (this.goBack && this.goBack.call) this.goBack();
             };
             if (this.giveCheevieModal) {
-                TweenLite.to('.modal-content', this.animationDuration * 2, {
+                TweenLite.to('.modal-content', this.animationDuration, {
                     y: '100%',
                     opacity: 0,
                     onComplete,
-                    ease: Power4.easeIn,
+                    ease: Power2.easeIn,
                 });
             } else {
                 TweenLite.to('.modal-content', this.animationDuration, {
                     y: 20,
                     opacity: 0,
                     onComplete,
-                    ease: Power4.easeOut,
+                    ease: Power2.easeIn,
                 });
             }
             TweenLite.to('.modal-background,.modal-close', this.animationDuration, {

@@ -1,7 +1,7 @@
 <a class="modal-background" {{action 'goBack'}}></a>
-<div class="modal-content">
+{{#modal-content goBack=(action 'goBack') giveCheevieModal=giveCheevieModal}}
   {{yield}}
-</div>
+{{/modal-content}}
 <button class="icon-button modal-close" aria-label="close" {{action 'goBack'}}>
   {{svg-icon _name="x" _size=24}}
 </button>
