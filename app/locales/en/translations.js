@@ -149,8 +149,8 @@ export default {
 
     share: {
         cheevie: {
-            title: 'Wow, look at that',
-            text: 'I have "{{cheevie}}" in my collection!',
+            title: 'Cheevie App',
+            text: 'I have "{{cheevie}}" cheevie in my collection!',
         },
 
         messages: {
