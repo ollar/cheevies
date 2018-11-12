@@ -1,14 +1,15 @@
 import Service from '@ember/service';
 import { getOwner } from '@ember/application';
+import { getWithDefault, computed } from '@ember/object';
 
 export default Service.extend({
-    appName() {
-        return getOwner(this).application.name;
-    },
+    appName: computed(function() {
+        return getWithDefault(getOwner(this), 'application.name', '');
+    }),
 
     getCachedSrc(_src) {
         if (!_src) return;
-        const filePath = `${this.appName()}::${_src}`;
+        const filePath = `${this.appName}::${_src}`;
 
         if (localStorage.getItem(filePath)) return localStorage.getItem(filePath);
 

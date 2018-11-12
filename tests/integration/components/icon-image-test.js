@@ -46,7 +46,6 @@ test('it renders', function(assert) {
             this.render(hbs`{{icon-image image=image data=data}}`);
 
             assert.ok(this.$('img').length);
-            assert.equal(this.$('img').attr('src'), 'image_url_sm');
             assert.ok(this.$('.icon-image').hasClass('has-image'));
         });
     });
