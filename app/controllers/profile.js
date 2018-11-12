@@ -14,11 +14,14 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
     myGroup: service(),
     activity: service(),
+    share: service(),
+    i18n: service(),
 
     openPopper: '',
 
     userId: computed.readOnly('model.id'),
     myId: computed.readOnly('me.model.id'),
+    isShareAvailable: computed.readOnly('share.isAvailable'),
 
     _model: computed.alias('model'),
 
@@ -81,6 +84,13 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                     action: 'refuseCheevie',
                 })
             );
+        },
+
+        shareCheevie(cheevie) {
+            this.share.post({
+                title: this.i18n.t('share.cheevie.title'),
+                text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
+            });
         },
 
         closeCheevieDetails() {

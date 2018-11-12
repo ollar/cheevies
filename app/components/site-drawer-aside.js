@@ -5,8 +5,9 @@ import DS from 'ember-data';
 import { resolve } from 'rsvp';
 
 import getGroupCheevies from '../utils/get-group-cheevies';
+import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
-export default Component.extend({
+export default Component.extend(DraggableMixin, {
     me: service(),
     myGroup: service(),
     router: service(),
@@ -19,6 +20,25 @@ export default Component.extend({
             md: this.get('imageSet.512'),
         };
     }),
+
+    panDirection() {
+        return this.DIRECTION_HORIZONTAL;
+    },
+
+    handlePanMove(ev) {
+        if (this.initialTransform[0] + ev.deltaX >= 300) return;
+        this._super(ev);
+    },
+
+    onPanEnvComplete() {
+        const moveX = this.initialTransform[0] - this.previousMoveX;
+        if (Math.abs(moveX) > 150) {
+            if (moveX > 0) {
+                this.closeDrawer(); // close it
+            }
+        }
+        this._super(...arguments);
+    },
 
     cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function() {
         if (!this.get('myGroup.groupName')) return;
