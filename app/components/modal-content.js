@@ -17,6 +17,7 @@ export default Component.extend(DraggableMixin, {
         const moveY = this.initialTransform[1] - this.previousMoveY;
         if (Math.abs(moveY) > 50) {
             this.goBack();
+            return;
         }
 
         this._super(...arguments);

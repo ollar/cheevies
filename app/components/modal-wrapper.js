@@ -44,7 +44,7 @@ export default Component.extend(BusyMixin, {
                 });
             } else {
                 TweenLite.to('.modal-content', this.animationDuration, {
-                    y: 20,
+                    // y: 20,
                     opacity: 0,
                     onComplete,
                     ease: Power2.easeIn,

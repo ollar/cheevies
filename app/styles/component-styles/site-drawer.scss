@@ -9,6 +9,10 @@
 
   &.is-dragged {
       transition: none;
+
+      .info {
+          overflow: hidden;
+      }
   }
 }
 
