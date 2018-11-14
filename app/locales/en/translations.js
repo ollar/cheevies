@@ -41,6 +41,8 @@ export default {
         welcome_google: 'Yep, sending data to ANB',
         welcome_github: 'All your repos belongs to us!',
         delete_cheevie_check: 'Are you sure?',
+        app_init_error:
+            "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
     },
 
     buttons: {
