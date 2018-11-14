@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  name: DS.attr('string'),
-  cheevies: DS.hasMany('cheevie'),
-  users: DS.hasMany('user'),
+    name: DS.attr('string'),
+    cheevies: DS.hasMany('cheevie'),
+    users: DS.hasMany('user'),
+    locked: DS.attr('boolean', { defaultValue: false }),
 });
