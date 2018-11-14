@@ -3,6 +3,8 @@ import { getOwner } from '@ember/application';
 import { getWithDefault, computed } from '@ember/object';
 
 export default Service.extend({
+    caches: computed(() => ({})),
+
     init() {
         this._super(...arguments);
         const blob = new Blob(
@@ -35,9 +37,9 @@ export default Service.extend({
         const blobUrl = URL.createObjectURL(blob);
         this.worker = new Worker(blobUrl);
 
-        this.worker.onmessage = function({ data }) {
+        this.worker.onmessage = ({ data }) => {
             const { filePath, base64data } = data;
-            localStorage.setItem(filePath, base64data);
+            this.caches[filePath] = base64data;
         };
     },
 
@@ -48,7 +50,7 @@ export default Service.extend({
     getCachedSrc(_src) {
         if (!_src) return;
         const filePath = `${this.appName}::${_src}`;
-        if (localStorage.getItem(filePath)) return localStorage.getItem(filePath);
+        if (this.caches[filePath]) return this.caches[filePath];
         this.worker.postMessage({ _src, filePath });
         return _src;
     },
