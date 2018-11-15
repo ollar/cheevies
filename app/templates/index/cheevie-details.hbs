@@ -1,4 +1,9 @@
-{{#modal-wrapper goBack=(action 'goBack') class=(if _image 'has-image' 'no-image') busy=busy}}
+{{#modal-wrapper
+    goBack=(action 'goBack')
+    class=(if _image 'has-image' 'no-image')
+    busy=busy
+    disableDrag=editMode
+}}
   {{#if (eq showMode)}}
     <button class="icon-button mode-toggle is-info" {{action 'toggleMode'}}>
       {{svg-icon _name="edit" _size=24}}
