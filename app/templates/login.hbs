@@ -50,7 +50,13 @@
       <div class="field">
         <label class="label" for="group">{{t 'form.group.label'}}</label>
         <div class="control">
-          {{input class="input" id="group" placeholder=' ' value=model.group}}
+          {{input
+            class="input"
+            id="group"
+            placeholder=' '
+            value=model.group
+            autocapitalize='off'
+            autocomplete="off"}}
           <div class="placeholder">{{t 'form.group.placeholder'}}</div>
           <div class="background"></div>
 
