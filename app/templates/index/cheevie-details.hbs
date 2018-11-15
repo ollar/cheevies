@@ -6,9 +6,7 @@
 
     {{#if _image}}
         <figure class="image">
-        {{#cached-image _src=_image.url as |_cs|}}
-            <img src={{_cs}}>
-        {{/cached-image}}
+        <img src={{_image.url}}>
 
         </figure>
     {{else}}

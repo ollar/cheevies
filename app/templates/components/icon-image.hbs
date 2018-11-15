@@ -1,20 +1,9 @@
 {{#if image}}
     <picture>
-        {{#cached-image _src=image.sm.url as |_cs|}}
-            <source media="(max-width: 18em)" srcset={{_cs}}>
-        {{/cached-image}}
-
-        {{#cached-image _src=image.md.url as |_cs|}}
-            <source media="(min-width: 18em)" srcset={{_cs}}>
-        {{/cached-image}}
-
-        {{#cached-image _src=image.lg.url as |_cs|}}
-            <source media="(min-width: 35.5em)" srcset={{_cs}}>
-        {{/cached-image}}
-
-        {{#cached-image _src=image.sm.url as |_cs|}}
-            <img src={{_cs}} alt={{altText}} />
-        {{/cached-image}}
+        <source media="(max-width: 18em)" srcset={{image.sm.url}}>
+        <source media="(min-width: 18em)" srcset={{image.md.url}}>
+        <source media="(min-width: 35.5em)" srcset={{image.lg.url}}>
+        <img src={{image.sm.url}} alt={{altText}} />
     </picture>
 {{else}}
   <span>{{initials}}</span>

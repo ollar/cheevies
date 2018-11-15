@@ -62,11 +62,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         later(
             () =>
-                imageSets.forEach(_is =>
-                    _is.eachRelationship(key =>
-                        requestAnimationFrame(() =>
-                            _is.get(key).then(image => this.cachedImage.getCachedSrc(image.url))
-                        )
+                imageSets.forEach(imageSet =>
+                    imageSet.eachRelationship(key =>
+                        imageSet
+                            .get(key)
+                            .then(imageModel => this.cachedImage.getCachedSrc(imageModel.url))
                     )
                 ),
             3000
