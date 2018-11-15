@@ -12,7 +12,7 @@ export default Component.extend(
         id: computed('cheevie.id', function() {
             return [this.cheevie.id];
         }),
-        myCheevies: computed(function() {
+        myCheevies: computed('me.model', function() {
             return this.me.model.cheevies.mapBy('id');
         }),
         _isMineArr: computed.intersect('id', 'myCheevies'),
