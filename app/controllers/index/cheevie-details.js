@@ -7,6 +7,7 @@ import { resolve } from 'rsvp';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
+    editMode: computed.not('showMode'),
     myGroup: service('my-group'),
     activity: service(),
 

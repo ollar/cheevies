@@ -5,8 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @include size(100%);
     padding: 3px;
+
+    background: linear-gradient(210deg, var(--backgroundColour0), var(--backgroundColour1));
+    @include size(100%);
 
     img {
         border-radius: 100%;

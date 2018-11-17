@@ -40,6 +40,32 @@ section {
   margin-top: 40vh;
 }
 
+.cheevies-list {
+    .icon-image {
+        &.is-mine {
+            position: relative;
+            overflow: visible;
+
+            &:after {
+                content: '';
+                transform: rotate(210deg);
+                position: absolute;
+                @include size(100%);
+                left: 0; top: 0;
+                border-radius: 100%;
+                box-shadow: -5px 0 20px var(--backgroundColour0),
+                            5px 0 20px var(--backgroundColour1);
+
+                animation-name: glowing;
+                animation-iteration-count: infinite;
+                animation-duration: 5s;
+                animation-fill-mode: both;
+                animation-timing-function: ease;
+            }
+        }
+    }
+}
+
 footer {
   color: #fff;
   height: 50px;
@@ -57,4 +83,18 @@ footer {
       }
     }
   }
+}
+
+@keyframes glowing {
+    from {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.95);
+    }
 }

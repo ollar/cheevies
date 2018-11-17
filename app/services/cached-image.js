@@ -1,3 +1,9 @@
+/**
+ * this service is wip now
+ * used to precache images
+ * some parts could be rewritten
+ */
+
 import Service from '@ember/service';
 import { getOwner } from '@ember/application';
 import { getWithDefault, computed } from '@ember/object';
@@ -35,9 +41,9 @@ export default Service.extend({
         const blobUrl = URL.createObjectURL(blob);
         this.worker = new Worker(blobUrl);
 
-        this.worker.onmessage = function({ data }) {
+        this.worker.onmessage = ({ data }) => {
             const { filePath, base64data } = data;
-            localStorage.setItem(filePath, base64data);
+            this.handleWorkerMessage({ filePath, base64data });
         };
     },
 
@@ -48,10 +54,15 @@ export default Service.extend({
     getCachedSrc(_src) {
         if (!_src) return;
         const filePath = `${this.appName}::${_src}`;
-        if (localStorage.getItem(filePath)) return localStorage.getItem(filePath);
+
+        // check if image is cached and return cache if true
+        // if (this.caches[filePath]) return this.caches[filePath];
+
         this.worker.postMessage({ _src, filePath });
         return _src;
     },
+
+    handleWorkerMessage() {},
 
     destroy() {
         URL.revokeObjectURL(this.worker);

@@ -22,8 +22,14 @@ export default Component.extend({
         };
     }),
 
+    _normalizeNumber(_n) {
+        return ('0' + _n).slice(-2);
+    },
+
     date: computed('_data.created', function() {
         const d = new Date(this._data.created);
-        return `${d.getUTCDate()}.${d.getUTCMonth() + 1} - ${d.getHours()}:${d.getMinutes()}`;
+        return `${this._normalizeNumber(
+            d.getUTCDate()
+        )}.${this._normalizeNumber(d.getUTCMonth() + 1)} - ${this._normalizeNumber(d.getHours())}:${this._normalizeNumber(d.getMinutes())}`;
     }),
 });

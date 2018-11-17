@@ -12,20 +12,32 @@ export default Route.extend(AuthenticatedRouteMixin, {
     settings: service(),
     myGroup: service('my-group'),
     cachedImage: service(),
+    i18n: service(),
 
     settingsModel: computed.alias('settings.model'),
 
     model() {
         if (!this.get('myGroup.groupName')) return {};
 
-        return this.myGroup.fetch().then(group =>
-            hash({
-                me: this.me.fetch(),
-                users: group.get('users'),
-                cheevies: getGroupCheevies(group),
-                settings: this.settings.fetch(),
-            })
-        );
+        return this.myGroup
+            .fetch()
+            .then(group =>
+                hash({
+                    me: this.me.fetch(),
+                    users: group.get('users'),
+                    cheevies: getGroupCheevies(group),
+                    settings: this.settings.fetch(),
+                })
+            )
+            .catch(() => this.onModelError());
+    },
+
+    onModelError() {
+        this.transitionTo('logout');
+        this.send('notify', {
+            type: 'error',
+            text: this.i18n.t('messages.app_init_error'),
+        });
     },
 
     afterModel() {
@@ -50,11 +62,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         later(
             () =>
-                imageSets.forEach(_is =>
-                    _is.eachRelationship(key =>
-                        requestAnimationFrame(() =>
-                            _is.get(key).then(image => this.cachedImage.getCachedSrc(image.url))
-                        )
+                imageSets.forEach(imageSet =>
+                    imageSet.eachRelationship(key =>
+                        imageSet
+                            .get(key)
+                            .then(imageModel => this.cachedImage.getCachedSrc(imageModel.url))
                     )
                 ),
             3000
