@@ -3,7 +3,7 @@ import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
 export default Component.extend(DraggableMixin, {
     classNames: ['modal-content'],
-    classNameBindings: ['panX:pan-x'],
+    classNameBindings: ['panAuto:pan-auto'],
 
     panDirection() {
         return this.DIRECTION_VERTICAL;
@@ -11,10 +11,10 @@ export default Component.extend(DraggableMixin, {
 
     handlePanStart(ev) {
         const elWrapper = this.element.parentElement;
-        if (elWrapper.scrollTop === 0 && ev.direction === this.DIRECTION_DOWN) {
-            this.set('panX', true);
+        if (elWrapper.scrollTop === 0 && ev.direction === this.DIRECTION_UP) {
+            this.set('panAuto', true);
         } else {
-            this.set('panX', false);
+            this.set('panAuto', false);
         }
         this._super(...arguments);
     },

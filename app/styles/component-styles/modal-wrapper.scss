@@ -142,10 +142,9 @@ figure.image {
         margin-bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        touch-action: auto !important;
 
-        &.pan-x{
-            touch-action: pan-x !important;
+        &.pan-auto{
+            touch-action: auto !important;
         }
     }
 }
