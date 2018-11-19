@@ -180,3 +180,87 @@ button::-moz-focus-inner {
 button:active {
     background-color: #CD04FF;
 }
+
+.control {
+    --bgColour1: #ccc;
+    --bgColour2: #ccc;
+    --textColour: #000;
+
+    background: linear-gradient(257.08deg, var(--bgColour1) 5.93%, var(--bgColour2) 93.69%);
+    border-radius: 35px;
+    z-index: 100;
+    position: relative;
+
+    .submit-button {
+        @include size(40px);
+        padding: 10px;
+        line-height: 1;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        color: var(--textColour);
+    }
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+}
+
+.background {
+  background-color: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  border-radius: 35px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  &:placeholder-shown {
+    & ~ .placeholder {
+      opacity: 1;
+    }
+
+    & ~ .background {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    & ~ .submit-button {
+        color: #fff;
+    }
+  }
+
+  &:focus {
+    & ~ .placeholder {
+      opacity: 0;
+    }
+
+    & ~ .background {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: transparent !important;
+  -webkit-transition-delay: 1s;
+  -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+}

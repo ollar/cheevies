@@ -1,0 +1,38 @@
+& {
+    background-color: #fff;
+    a {
+      color: #FF008A;
+    }
+}
+
+.center-wrapper {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    z-index: 1;
+}
+
+.control {
+    --bgColour1: #0075FF;
+    --bgColour2: #4838FF;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"], a {
+    --textColour: #0f00b6;
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    color: var(--textColour);
+    text-align: center;
+    border: none;
+}
+
+.submit-button {
+    --textColour: #0f00b6;
+}

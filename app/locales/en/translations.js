@@ -128,6 +128,7 @@ export default {
         home: 'Home',
         profile: 'Profile',
         'forgot-password': 'Reset Password',
+        'create-group': 'Create Group',
     },
 
     'reset-password': {
