@@ -42,10 +42,14 @@ figure {
   margin-top: 55px;
   margin-bottom: 55px;
   position: relative;
-  transition: transform 0.3s;
+//   transition: transform 0.3s;
 
-    &.is-dragged {
-        transition: none;
+//     &.is-dragged {
+//         transition: none;
+//     }
+
+    &.pan-auto{
+        touch-action: auto !important;
     }
 }
 
@@ -142,9 +146,5 @@ figure.image {
         margin-bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-
-        &.pan-auto{
-            touch-action: auto !important;
-        }
     }
 }

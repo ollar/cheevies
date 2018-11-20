@@ -3,7 +3,7 @@ import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
 export default Component.extend(DraggableMixin, {
     classNames: ['modal-content'],
-    classNameBindings: ['panAuto:pan-auto'],
+    classNameBindings: ['panAuto:pan-auto', 'disableDrag:pan-auto'],
 
     panDirection() {
         return this.DIRECTION_VERTICAL;

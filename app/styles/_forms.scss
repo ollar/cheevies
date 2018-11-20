@@ -182,8 +182,8 @@ button:active {
 }
 
 .control {
-    --bgColour1: #ccc;
-    --bgColour2: #ccc;
+    --bgColour1: transparent;
+    --bgColour2: transparent;
     --textColour: #000;
 
     background: linear-gradient(257.08deg, var(--bgColour1) 5.93%, var(--bgColour2) 93.69%);

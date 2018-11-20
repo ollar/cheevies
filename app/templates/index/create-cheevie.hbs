@@ -1,4 +1,8 @@
-{{#modal-wrapper goBack=(action 'goBack') busy=busy}}
+{{#modal-wrapper
+    goBack=(action 'goBack')
+    busy=busy
+    disableDrag=true
+}}
     {{#images-drop-area
       images=_model.images-set
       uploadImage=(action 'uploadImage')
