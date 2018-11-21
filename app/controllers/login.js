@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { all, resolve } from 'rsvp';
+import { resolve } from 'rsvp';
 
 export default Controller.extend({
     session: service(),

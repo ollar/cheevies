@@ -1,5 +1,14 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
+import {
+    visit,
+    currentURL,
+    fillIn,
+    triggerEvent,
+    settled,
+    waitFor,
+    click,
+    find,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
@@ -81,25 +90,21 @@ module('Acceptance | register', function(hooks) {
         assert.equal(currentURL(), '/');
     });
 
-    // todo: dev lock group logic and rewrite
-    test('after selecting group >> GROUP NOT EXISTS >> should add user to group and redirect to index', async function(assert) {
+    test('after selecting group >> GROUP NOT EXISTS >> should show error message and fail', async function(assert) {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        const me = this.owner.lookup('service:me');
 
-        const _group = testGroup + '1';
+        const _group = testGroup + Math.random() * 1000;
 
         await visit('/register');
         await fillIn('#group', _group);
         await triggerEvent('form', 'submit');
 
-        await sleep(2000);
+        await waitFor('.callout.error', {
+            timeout: 3000,
+        });
 
-        const myGroups = me.model.groups;
-        const myGroup = myGroups.find(g => g.name === _group);
-        assert.ok(myGroup.users.firstObject.id === me.model.id);
-
-        assert.equal(currentURL(), '/');
+        assert.equal(currentURL(), '/register');
     });
 
     test('test invalidate', async function(assert) {

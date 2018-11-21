@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { schedule, later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import { resolve, all } from 'rsvp';
 
 export default Controller.extend({
     me: service(),
@@ -85,22 +85,19 @@ export default Controller.extend({
                                 equalTo: this.model.group,
                             })
                             .then(groups => {
-                                var group =
-                                    groups.length > 0
-                                        ? // group exists
-                                          groups.firstObject
-                                        : // group not exists
-                                          this.store.createRecord('group', {
-                                              name: this.model.group,
-                                          });
+                                if (!groups.length) {
+                                    throw new Error(
+                                        this.get('i18n').t('login.messages.no_such_group')
+                                    );
+                                }
+
+                                var group = groups.firstObject;
 
                                 group.get('users').addObject(this.myModel);
                                 this.myModel.get('groups').addObject(group);
-                                group.save();
-                                this.myModel.save();
 
                                 this.get('session').set('data.group', group.name);
-                                return true;
+                                return all([group.save(), this.myModel.save()]);
                             })
                             .then(this.onSuccess, this.onError)
                     );
