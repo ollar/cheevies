@@ -8,8 +8,6 @@ import $ from 'jquery';
 import DS from 'ember-data';
 import { schedule } from '@ember/runloop';
 
-import getGroupCheevies from '../utils/get-group-cheevies';
-
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
     myGroup: service(),
@@ -27,9 +25,9 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
     _cheeviesPromise: computed('model.cheevies.[]', function() {
         return DS.PromiseArray.create({
-            promise: this.get('myGroup')
+            promise: this.myGroup
                 .fetch()
-                .then(getGroupCheevies)
+                .then(() => this.myGroup.cheevies)
                 .then(availableCheevies =>
                     this.model.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 ),

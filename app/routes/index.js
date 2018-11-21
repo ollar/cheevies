@@ -5,8 +5,6 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { later } from '@ember/runloop';
 
-import getGroupCheevies from '../utils/get-group-cheevies';
-
 export default Route.extend(AuthenticatedRouteMixin, {
     me: service(),
     settings: service(),
@@ -25,7 +23,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
-                    cheevies: getGroupCheevies(group),
                     settings: this.settings.fetch(),
                 })
             )
@@ -49,7 +46,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 me: this.me.fetch(),
             })
                 .then(({ myGroup, me }) => ({
-                    availableCheevies: getGroupCheevies(myGroup),
+                    availableCheevies: this.myGroup.cheevies,
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
                 .then(({ availableCheevies, unseenCheevies }) =>
