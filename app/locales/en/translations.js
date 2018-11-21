@@ -7,6 +7,10 @@ export default {
             register: 'Sign up',
         },
         title: 'Login',
+        messages: {
+            no_such_group:
+                "Can't find a group. Please check typing and try again. Group name is case sensitive.",
+        },
     },
 
     register: {
