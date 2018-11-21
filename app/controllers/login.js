@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { all, resolve } from 'rsvp';
+import { resolve } from 'rsvp';
 
 export default Controller.extend({
     session: service(),
@@ -68,44 +68,26 @@ export default Controller.extend({
         },
         selectGroup() {
             if (this.model.validate({ except: ['email', 'password'] })) {
-                return this.me
-                    .fetch()
-                    .then(() =>
-                        this.store
-                            .query('group', {
-                                orderBy: 'name',
-                                equalTo: this.getWithDefault('model.group', '')
-                                    // .toLowerCase()  // todo: check this
-                                    .trim(),
-                            })
-                            .then(groups => {
-                                // If user already created he can not create new group for now
-                                // TODO create new group method
+                return this.me.fetch().then(() =>
+                    this.store
+                        .query('group', {
+                            orderBy: 'name',
+                            equalTo: this.getWithDefault('model.group', '')
+                                // .toLowerCase()  // todo: check this
+                                .trim(),
+                        })
+                        .then(groups => {
+                            if (!groups.length) {
+                                throw new Error(this.get('i18n').t('login.messages.no_such_group'));
+                            }
 
-                                // if (!groups.length) {
-                                //   return this.onError({
-                                //     message: this.get('i18n').t('login.messages.no_such_group'),
-                                //   });
-                                // }
-                                //
+                            var group = groups.firstObject;
+                            this.get('session').set('data.group', group.name);
 
-                                var group =
-                                    groups.length > 0
-                                        ? // group exists
-                                          groups.firstObject
-                                        : // group not exists
-                                          this.store.createRecord('group', {
-                                              name: this.model.group,
-                                          });
-
-                                group.get('users').addObject(this.myModel);
-                                this.myModel.get('groups').addObject(group);
-                                return all([group.save(), this.myModel.save()])
-                                    .then(() => this.get('session').set('data.group', group.name))
-                                    .then(() => group.reload());
-                            })
-                    )
-                    .then(this.onSuccess, this.onError);
+                            return group.reload();
+                        })
+                        .then(this.onSuccess, this.onError)
+                );
             }
         },
         invalidate() {

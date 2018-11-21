@@ -78,14 +78,16 @@
   </form>
 </section>
 {{/unless}}
-
-  <div class="text-center-wrapper login-link-wrapper">
-    {{t 'or'}} {{link-to (t 'register.buttons.login') 'login'}}
-  </div>
 </div>
 
 {{/register-svg-bg}}
 
 <div class="text-center-wrapper reset-password">
-    {{link-to (t 'nav.forgot-password') 'reset-password'}}
+    {{#unless session.isAuthenticated}}
+        {{link-to (t 'register.buttons.login') 'login'}}
+        {{t 'or'}}
+        {{link-to (t 'nav.forgot-password') 'reset-password'}}
+    {{else}}
+        {{link-to (t 'nav.create-group') 'create-group'}}
+    {{/unless}}
 </div>

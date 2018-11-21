@@ -82,10 +82,15 @@ export default Controller.extend({
 
         reloadApp() {
             schedule('afterRender', () => {
-                this.transitionToRoute('index');
-                schedule('routerTransitions', () => {
-                    window.location.reload();
-                });
+                window.caches
+                    .keys()
+                    .then(keys => keys.forEach(key => caches.delete(key)))
+                    .finally(() => {
+                        this.transitionToRoute('index');
+                        schedule('routerTransitions', () => {
+                            window.location.reload();
+                        });
+                    });
             });
         },
     },

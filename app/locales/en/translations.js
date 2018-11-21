@@ -7,6 +7,10 @@ export default {
             register: 'Sign up',
         },
         title: 'Login',
+        messages: {
+            no_such_group:
+                "Can't find a group. Please check typing and try again. Group name is case sensitive.",
+        },
     },
 
     register: {
@@ -43,6 +47,7 @@ export default {
         delete_cheevie_check: 'Are you sure?',
         app_init_error:
             "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
+        group_already_exist: 'Such group already exist. Please find another name',
     },
 
     buttons: {
@@ -128,6 +133,7 @@ export default {
         home: 'Home',
         profile: 'Profile',
         'forgot-password': 'Reset Password',
+        'create-group': 'Create Group',
     },
 
     'reset-password': {
@@ -159,5 +165,10 @@ export default {
             success: 'Successfully shared',
             error: 'Failed to share',
         },
+    },
+
+    create_group: {
+        success_message: 'Congratulations! Group created successfully.',
+        error_message: 'Oops, error. Group seems to lose its way.',
     },
 };

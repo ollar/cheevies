@@ -18,6 +18,8 @@ export default Service.extend({
         });
     },
 
+    cheevies: computed.filterBy('model.cheevies', 'deleted', false),
+
     fetch() {
         return resolve().then(() => {
             if (!this.groupName) throw new Error('session.data.group not filled');

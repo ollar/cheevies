@@ -1,4 +1,4 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import {
     visit,
     currentURL,
@@ -73,16 +73,18 @@ module('Acceptance | login', function(hooks) {
         assert.equal(currentURL(), '/');
     });
 
-    // todo: fix this logic
-    skip('after setting wrong group should not login', async function(assert) {
-        this.owner.lookup('service:session').set('isAuthenticated', true);
+    test('after setting wrong group should not login', async function(assert) {
+        let session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
 
         await visit('/login');
 
         await fillIn('#group', 'wrongGroup');
         await triggerEvent('form', 'submit');
 
-        await settled();
+        await waitFor('.callout.error', {
+            timeout: 3000,
+        });
 
         assert.equal(currentURL(), '/login');
     });

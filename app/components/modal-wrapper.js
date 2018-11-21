@@ -32,23 +32,55 @@ export default Component.extend(BusyMixin, {
 
     actions: {
         goBack() {
+            const elY = () => {
+                var y = 0;
+
+                return element => {
+                    if (!y) {
+                        y = window
+                            .getComputedStyle(element)
+                            .transform.replace(/[a-z()]/g, '')
+                            .split(', ')
+                            .slice(-1)[0];
+                    }
+                    return y;
+                };
+            };
+
+            const Y = elY();
             const onComplete = () => {
                 if (this.goBack && this.goBack.call) this.goBack();
             };
             if (this.giveCheevieModal) {
-                TweenLite.to('.modal-content', this.animationDuration, {
-                    y: '100%',
-                    opacity: 0,
-                    onComplete,
-                    ease: Power2.easeIn,
-                });
+                TweenLite.fromTo(
+                    '.modal-content',
+                    this.animationDuration,
+                    {
+                        y: (index, element) => Y(element),
+                        opacity: 1,
+                    },
+                    {
+                        y: '100%',
+                        opacity: 0,
+                        onComplete,
+                        ease: Power2.easeIn,
+                    }
+                );
             } else {
-                TweenLite.to('.modal-content', this.animationDuration, {
-                    // y: 20,
-                    opacity: 0,
-                    onComplete,
-                    ease: Power2.easeIn,
-                });
+                TweenLite.fromTo(
+                    '.modal-content',
+                    this.animationDuration / 2,
+                    {
+                        y: (index, element) => Y(element),
+                        opacity: 1,
+                    },
+                    {
+                        y: '+=20',
+                        opacity: 0,
+                        onComplete,
+                        ease: Power2.easeIn,
+                    }
+                );
             }
             TweenLite.to('.modal-background,.modal-close', this.animationDuration, {
                 opacity: 0,

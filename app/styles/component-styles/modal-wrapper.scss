@@ -42,6 +42,15 @@ figure {
   margin-top: 55px;
   margin-bottom: 55px;
   position: relative;
+//   transition: transform 0.3s;
+
+//     &.is-dragged {
+//         transition: none;
+//     }
+
+    &.pan-auto{
+        touch-action: auto !important;
+    }
 }
 
 &.is-busy .modal-content{

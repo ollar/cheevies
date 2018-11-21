@@ -4,7 +4,6 @@ import { computed } from '@ember/object';
 import DS from 'ember-data';
 import { resolve } from 'rsvp';
 
-import getGroupCheevies from '../utils/get-group-cheevies';
 import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
 export default Component.extend(DraggableMixin, {
@@ -43,11 +42,11 @@ export default Component.extend(DraggableMixin, {
     cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function() {
         if (!this.get('myGroup.groupName')) return;
         return DS.PromiseArray.create({
-            promise: this.get('myGroup')
+            promise: this.myGroup
                 .fetch()
                 .then(myGroup => {
                     if (!myGroup) return resolve([]);
-                    return getGroupCheevies(myGroup);
+                    return this.myGroup.cheevies;
                 })
                 .then(availableCheevies =>
                     this.getWithDefault('me.model.cheevies', []).filter(
