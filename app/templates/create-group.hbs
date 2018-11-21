@@ -11,25 +11,29 @@
             {{/each}}
         </ul>
 
-        <form {{action 'selectGroup' on="submit"}} novalidate>
-        <div class="field">
-            <label class="label" for="group">{{t 'form.group.label'}}</label>
-            <div class="control">
-            {{input
-                class="input"
-                id="group"
-                placeholder=' '
-                value=model.group
-                autocapitalize='off'
-                autocomplete="off"}}
-            <div class="placeholder">{{t 'form.group.placeholder'}}</div>
-            <div class="background"></div>
+        <form {{action 'createGroup' on="submit"}} novalidate>
+            <div class="field">
+                <label class="label" for="group">{{t 'form.group.label'}}</label>
+                <div class="control">
+                {{input
+                    class="input"
+                    id="name"
+                    placeholder=' '
+                    value=model.name
+                    autocapitalize='off'
+                    autocomplete="off"}}
+                <div class="placeholder">{{t 'form.group.placeholder'}}</div>
+                <div class="background"></div>
 
-                <button type="submit" class="submit-button icon-button">
-                    {{svg-icon _name="arrow-right" _size=20}}
-                </button>
+                    <button type="submit" class="submit-button icon-button">
+                        {{svg-icon _name="arrow-right" _size=20}}
+                    </button>
+                </div>
             </div>
-        </div>
+
+            <div class="field">
+                <a href="" {{action 'cancel'}}>{{t 'buttons.cancel'}}</a>
+            </div>
         </form>
 
         {{outlet}}

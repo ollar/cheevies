@@ -43,6 +43,7 @@ export default {
         delete_cheevie_check: 'Are you sure?',
         app_init_error:
             "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
+        group_already_exist: 'Such group already exist. Please find another name',
     },
 
     buttons: {
@@ -160,5 +161,10 @@ export default {
             success: 'Successfully shared',
             error: 'Failed to share',
         },
+    },
+
+    create_group: {
+        success_message: 'Congratulations! Group created successfully.',
+        error_message: 'Oops, error. Group seems to lose its way.',
     },
 };

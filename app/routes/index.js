@@ -45,7 +45,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 myGroup: this.myGroup.fetch(),
                 me: this.me.fetch(),
             })
-                .then(({ myGroup, me }) => ({
+                .then(({ me }) => ({
                     availableCheevies: this.myGroup.cheevies,
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
