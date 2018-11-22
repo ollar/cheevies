@@ -10,6 +10,8 @@ export default {
         messages: {
             no_such_group:
                 "Can't find a group. Please check typing and try again. Group name is case sensitive.",
+            group_is_locked:
+                'This group is private. You can ask member to send you invitation link.',
         },
     },
 
