@@ -122,9 +122,11 @@ module('Acceptance | login', function(hooks) {
         await fillIn('#group', 'testgrouplocked');
         await triggerEvent('form', 'submit');
 
-        await waitFor('.callout.error', {
-            timeout: 4000,
-        });
+        // await waitFor('.callout.error', {
+        //     timeout: 4000,
+        // });
+
+        await sleep(4000);
 
         assert.equal(currentURL(), '/login');
     });

@@ -106,9 +106,11 @@ module('Acceptance | register', function(hooks) {
         await fillIn('#group', 'testgrouplocked');
         await triggerEvent('form', 'submit');
 
-        await waitFor('.callout.error', {
-            timeout: 4000,
-        });
+        // await waitFor('.callout.error', {
+        //     timeout: 4000,
+        // });
+
+        await sleep(4000);
 
         assert.equal(currentURL(), '/register');
     });
@@ -125,9 +127,11 @@ module('Acceptance | register', function(hooks) {
         await fillIn('#group', _group);
         await triggerEvent('form', 'submit');
 
-        await waitFor('.callout.error', {
-            timeout: 3000,
-        });
+        // await waitFor('.callout.error', {
+        //     timeout: 4000,
+        // });
+
+        await sleep(4000);
 
         assert.equal(currentURL(), '/register');
     });
