@@ -83,7 +83,7 @@ module('Acceptance | login', function(hooks) {
         await triggerEvent('form', 'submit');
 
         await waitFor('.callout.error', {
-            timeout: 3000,
+            timeout: 4000,
         });
 
         assert.equal(currentURL(), '/login');
@@ -100,7 +100,7 @@ module('Acceptance | login', function(hooks) {
         await fillIn('#group', 'testgrouppublic');
         await triggerEvent('form', 'submit');
 
-        await sleep(2000);
+        await sleep(3000);
 
         assert.equal(myGroup.groupName, 'testgrouppublic');
         assert.ok(myGroup.model.users.indexOf(me.model) > -1);
@@ -123,7 +123,7 @@ module('Acceptance | login', function(hooks) {
         await triggerEvent('form', 'submit');
 
         await waitFor('.callout.error', {
-            timeout: 3000,
+            timeout: 4000,
         });
 
         assert.equal(currentURL(), '/login');

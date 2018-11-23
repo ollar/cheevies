@@ -85,14 +85,25 @@ export default Controller.extend({
                                 equalTo: this.model.group,
                             })
                             .then(groups => {
+                                // 1. No groups found
                                 if (!groups.length) {
                                     throw new Error(
                                         this.get('i18n').t('login.messages.no_such_group')
                                     );
                                 }
 
+                                // 2. Group found
                                 var group = groups.firstObject;
 
+                                // 2.1 You are not in group
+                                // Group is locked -> show error
+                                if (group.locked) {
+                                    throw new Error(
+                                        this.get('i18n').t('login.messages.group_is_locked')
+                                    );
+                                }
+
+                                // Group is public -> pass
                                 group.get('users').addObject(this.myModel);
                                 this.myModel.get('groups').addObject(group);
 

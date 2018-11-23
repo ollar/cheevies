@@ -67,28 +67,53 @@ module('Acceptance | register', function(hooks) {
         assert.ok(find('[test-id="group-select-section"]'));
     });
 
-    test('after selecting group >> GROUP EXISTS >> should add user to group and redirect to index', async function(assert) {
+    // =========================================================================
+    // ============================================================ GROUP EXISTS
+
+    test('after selecting group >> GROUP EXISTS >> GROUP IS PUBLIC >> should add user to group and redirect to index', async function(assert) {
         const me = this.owner.lookup('service:me');
 
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
 
         await visit('/register');
-        await fillIn('#group', testGroup);
+        await fillIn('#group', 'testgrouppublic');
         await triggerEvent('form', 'submit');
 
-        await sleep(2000);
+        await sleep(3000);
 
         // user is saved to group
         const myGroups = me.model.groups;
-        const myGroup = myGroups.find(g => g.name === testGroup);
+        const myGroup = myGroups.find(g => g.name === 'testgrouppublic');
         assert.ok(myGroup.users.firstObject.id === me.model.id);
 
         // group is saved to user
         assert.ok(me.model.groups.map(_g => _g.id).indexOf(myGroup.id) > -1);
 
         assert.equal(currentURL(), '/');
+
+        myGroup.set('users', []);
+        me.model.groups.removeObject(myGroup.model);
+        await myGroup.save();
+        await me.model.save();
     });
+
+    test('after selecting group >> GROUP EXISTS >> GROUP IS PRIVATE >> should show error message and fail', async function(assert) {
+        const session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+
+        await visit('/register');
+        await fillIn('#group', 'testgrouplocked');
+        await triggerEvent('form', 'submit');
+
+        await waitFor('.callout.error', {
+            timeout: 4000,
+        });
+
+        assert.equal(currentURL(), '/register');
+    });
+
+    // =========================================================================
 
     test('after selecting group >> GROUP NOT EXISTS >> should show error message and fail', async function(assert) {
         const session = this.owner.lookup('service:session');
