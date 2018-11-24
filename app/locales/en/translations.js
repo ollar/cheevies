@@ -59,6 +59,7 @@ export default {
         edit: 'Edit',
         sign_out: 'Sign out',
         delete: 'Delete',
+        save: 'Save',
     },
 
     'create-cheevie': {
@@ -117,6 +118,16 @@ export default {
 
             reloadApp: {
                 text: 'Reload App',
+            },
+
+            name: {
+                label: 'Group name',
+                placeholder: 'Type group name',
+            },
+
+            code: {
+                label: 'Invitation code',
+                placeholder: 'Type group invitation code',
             },
         },
 

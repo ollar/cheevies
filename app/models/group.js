@@ -5,4 +5,5 @@ export default DS.Model.extend({
     cheevies: DS.hasMany('cheevie'),
     users: DS.hasMany('user'),
     locked: DS.attr('boolean', { defaultValue: false }),
+    code: DS.attr('string', { defaultValue: '0000' }),
 });

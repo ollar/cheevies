@@ -5,12 +5,12 @@
             {{t 'settings.subtitle.general'}}
         </h2>
 
-        <form>
-            <label class="field checkbox-wrapper" for={{pushNotifications}}>
+        <form {{action 'updateModel' on="change"}} novalidate>
+            <label class="field checkbox-wrapper" for="pushNotifications">
                 <input
                     type="checkbox"
                     name="pushNotifications"
-                    id={{pushNotifications}}
+                    id="pushNotifications"
                     checked={{model.pushNotifications}}
                     onchange={{action 'updatePushNotifications' value='target.checked'}}>
 
@@ -19,26 +19,24 @@
                 <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
             </label>
 
-            {{!-- <label class="field checkbox-wrapper" for={{sounds}}>
-                <input
+            {{!-- <label class="field checkbox-wrapper" for="sounds">
+                {{input
                     type="checkbox"
                     name="sounds"
-                    id={{sounds}}
-                    checked={{model.sounds}}
-                    onchange={{action 'updateModel'}}>
+                    id="sounds"
+                    checked=model.sounds}}
 
                 <div class="checkbox-value"></div>
 
                 <span class="text">{{t 'settings.form.sounds.label'}}</span>
             </label>
 
-            <label class="field checkbox-wrapper" for={{animations}}>
-                <input
+            <label class="field checkbox-wrapper" for="animations">
+                {{input
                     type="checkbox"
                     name="animations"
-                    id={{animations}}
-                    checked={{model.animations}}
-                    onchange={{action 'updateModel'}}>
+                    id="animations"
+                    checked=model.animations}}
 
                 <div class="checkbox-value"></div>
 
@@ -51,20 +49,54 @@
         <h2>
             {{t 'settings.subtitle.group-settings'}}
         </h2>
-        <form>
-            <label class="field checkbox-wrapper" for={{sounds}}>
-                <input
+        <form {{action 'updateGroup' on="submit"}} novalidate>
+            <div class="field">
+                <label class="" for="name">{{t 'settings.form.name.label'}}</label>
+                <div class="control">
+                    {{input
+                        class="input"
+                        data-test-id="name"
+                        id="name"
+                        type="text"
+                        placeholder=(t 'settings.form.name.placeholder')
+                        autocapitalize='off'
+                        autocomplete="off"
+                        value=groupModel.name}}
+                </div>
+            </div>
+
+            <label class="field checkbox-wrapper" for="locked">
+                {{input
                     type="checkbox"
                     name="locked"
-                    id={{locked}}
-                    checked={{groupModel.locked}}
-                    onchange={{action 'updateGroup'}}>
+                    id="locked"
+                    checked=groupModel.locked}}
 
                 <div class="checkbox-value"></div>
 
                 <span class="text">{{t 'settings.form.locked.label'}}</span>
             </label>
 
+            <div class="field">
+                <label class="" for="code">{{t 'settings.form.code.label'}}</label>
+                <div class="control">
+                    {{input
+                        class="input"
+                        data-test-id="code"
+                        id="code"
+                        type="text"
+                        placeholder=(t 'settings.form.code.placeholder')
+                        autocapitalize='off'
+                        autocomplete="off"
+                        value=groupModel.code}}
+                </div>
+            </div>
+
+            {{#if groupModel.hasDirtyAttributes}}
+                <button type="submit" class="submit-button">
+                    {{t 'buttons.save'}}
+                </button>
+            {{/if}}
         </form>
 
     </section>

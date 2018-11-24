@@ -72,17 +72,11 @@ export default Controller.extend({
             }
         },
 
-        updateModel(e) {
-            const { name, checked } = e.target;
-
-            this.model.set(name, checked);
+        updateModel() {
             this._modelSave();
         },
 
-        updateGroup(e) {
-            const { name, checked } = e.target;
-
-            this.groupModel.set(name, checked);
+        updateGroup() {
             this.groupModel.save();
         },
 
