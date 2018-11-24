@@ -1,14 +1,5 @@
 import { module, test } from 'qunit';
-import {
-    visit,
-    currentURL,
-    fillIn,
-    triggerEvent,
-    settled,
-    // waitFor,
-    click,
-    find,
-} from '@ember/test-helpers';
+import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
