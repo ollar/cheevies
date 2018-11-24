@@ -8,7 +8,10 @@ import { schedule } from '@ember/runloop';
 export default Controller.extend({
     firebaseApp: service(),
     me: service(),
+    myGroup: service(),
     settings: service(),
+
+    groupModel: computed.alias('myGroup.model'),
 
     messaging: computed(function() {
         return this.get('firebaseApp').messaging();
@@ -74,6 +77,13 @@ export default Controller.extend({
 
             this.model.set(name, checked);
             this._modelSave();
+        },
+
+        updateGroup(e) {
+            const { name, checked } = e.target;
+
+            this.groupModel.set(name, checked);
+            this.groupModel.save();
         },
 
         promptInstallStandalone() {

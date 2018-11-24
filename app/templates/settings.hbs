@@ -1,45 +1,73 @@
 <div class="center-wrapper">
     <h1 class="title">{{t 'settings.title'}}</h1>
-    <form>
-        <label class="field checkbox-wrapper" for={{pushNotifications}}>
-            <input
-                type="checkbox"
-                name="pushNotifications"
-                id={{pushNotifications}}
-                checked={{model.pushNotifications}}
-                onchange={{action 'updatePushNotifications' value='target.checked'}}>
+    <section class="general">
+        <h2>
+            {{t 'settings.subtitle.general'}}
+        </h2>
 
-            <div class="checkbox-value"></div>
+        <form>
+            <label class="field checkbox-wrapper" for={{pushNotifications}}>
+                <input
+                    type="checkbox"
+                    name="pushNotifications"
+                    id={{pushNotifications}}
+                    checked={{model.pushNotifications}}
+                    onchange={{action 'updatePushNotifications' value='target.checked'}}>
 
-            <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
-        </label>
+                <div class="checkbox-value"></div>
 
-        {{!-- <label class="field checkbox-wrapper" for={{sounds}}>
-            <input
-                type="checkbox"
-                name="sounds"
-                id={{sounds}}
-                checked={{model.sounds}}
-                onchange={{action 'updateModel'}}>
+                <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
+            </label>
 
-            <div class="checkbox-value"></div>
+            {{!-- <label class="field checkbox-wrapper" for={{sounds}}>
+                <input
+                    type="checkbox"
+                    name="sounds"
+                    id={{sounds}}
+                    checked={{model.sounds}}
+                    onchange={{action 'updateModel'}}>
 
-            <span class="text">{{t 'settings.form.sounds.label'}}</span>
-        </label>
+                <div class="checkbox-value"></div>
 
-        <label class="field checkbox-wrapper" for={{animations}}>
-            <input
-                type="checkbox"
-                name="animations"
-                id={{animations}}
-                checked={{model.animations}}
-                onchange={{action 'updateModel'}}>
+                <span class="text">{{t 'settings.form.sounds.label'}}</span>
+            </label>
 
-            <div class="checkbox-value"></div>
+            <label class="field checkbox-wrapper" for={{animations}}>
+                <input
+                    type="checkbox"
+                    name="animations"
+                    id={{animations}}
+                    checked={{model.animations}}
+                    onchange={{action 'updateModel'}}>
 
-            <span class="text">{{t 'settings.form.animations.label'}}</span>
-        </label> --}}
-    </form>
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.animations.label'}}</span>
+            </label> --}}
+        </form>
+    </section>
+
+    <section class="group-settings">
+        <h2>
+            {{t 'settings.subtitle.group-settings'}}
+        </h2>
+        <form>
+            <label class="field checkbox-wrapper" for={{sounds}}>
+                <input
+                    type="checkbox"
+                    name="locked"
+                    id={{locked}}
+                    checked={{groupModel.locked}}
+                    onchange={{action 'updateGroup'}}>
+
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.locked.label'}}</span>
+            </label>
+
+        </form>
+
+    </section>
 
     <div class="buttons-wrapper">
         {{#if installStandalone.deferredPrompt}}

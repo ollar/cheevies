@@ -93,6 +93,10 @@ export default {
 
     settings: {
         title: 'Settings',
+        subtitle: {
+            general: 'General',
+            'group-settings': 'Group Settings',
+        },
         form: {
             pushNotifications: {
                 label: 'Push notifications',
@@ -105,6 +109,10 @@ export default {
             },
             standaloneApp: {
                 label: 'Install App on Homescreen',
+            },
+
+            locked: {
+                label: 'Locked',
             },
 
             reloadApp: {
