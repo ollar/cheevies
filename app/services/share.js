@@ -29,13 +29,26 @@ export default Service.extend({
         });
     },
 
+    emailFallBack({ title, text, url = window.location.href }) {
+        return new Promise(res => {
+            const sharer = window.open(
+                `mailto:newuser@here.com?subject=${title}&body=${text} ==> ${url}`
+            );
+
+            return sharer;
+        });
+    },
+
     post({ title, text, url = window.location.href }) {
-        return navigator
-            .share({
-                title,
-                text,
-                url,
-            })
-            .then(this.onSuccess, this.onError);
+        return new Promise((res, rej) => {
+            let sharer = this.isAvailable
+                ? navigator.share({
+                      title,
+                      text,
+                      url,
+                  })
+                : this.emailFallBack({ title, text, url });
+            return sharer.then(res, rej);
+        });
     },
 });

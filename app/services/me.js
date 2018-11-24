@@ -27,12 +27,10 @@ export default Service.extend({
             if (!this.uid) throw new Error('session.data.authenticated.uid not filled');
             if (this.model) return this.model;
 
-            return this.get('store')
-                .findRecord('user', this.uid)
-                .then(user => {
-                    this.set('model', user);
-                    return user;
-                });
+            return this.store.findRecord('user', this.uid).then(user => {
+                this.set('model', user);
+                return user;
+            });
         });
     },
 

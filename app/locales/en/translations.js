@@ -135,6 +135,15 @@ export default {
             subject: 'Feedback to Cheevies App',
             linkText: 'Send a feedback',
         },
+
+        group: {
+            invitation: {
+                title: 'Invitation to Cheevie App group',
+                text: '{{sender}} asks you to join the {{group}} group',
+                success: 'Invitation sent',
+                error: 'Post office is closed, sorry',
+            },
+        },
     },
 
     activity: {
