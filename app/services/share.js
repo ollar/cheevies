@@ -1,19 +1,10 @@
-import Service, { inject as service } from '@ember/service';
+import Service from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Service.extend({
-    i18n: service(),
-
     isAvailable: computed(function() {
         return Boolean(navigator.share);
     }),
-
-    init() {
-        this._super(...arguments);
-
-        this.onSuccess = this.onSuccess.bind(this);
-        this.onError = this.onError.bind(this);
-    },
 
     emailFallBack({ title, text, url = window.location.href }) {
         return new Promise(() => {
@@ -25,7 +16,7 @@ export default Service.extend({
     },
 
     post({ title, text, url = window.location.href }) {
-        return new Promise((res, rej) => {
+        return new Promise(() => {
             let sharer = this.isAvailable
                 ? navigator.share({
                       title,
@@ -33,7 +24,7 @@ export default Service.extend({
                       url,
                   })
                 : this.emailFallBack({ title, text, url });
-            return sharer.then(res, rej);
+            return sharer;
         });
     },
 });
