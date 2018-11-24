@@ -15,26 +15,11 @@ export default Service.extend({
         this.onError = this.onError.bind(this);
     },
 
-    onSuccess() {
-        return this.send('notify', {
-            type: 'success',
-            text: this.i18n.t('share.messages.success'),
-        });
-    },
-
-    onError() {
-        return this.send('notify', {
-            type: 'error',
-            text: this.i18n.t('share.messages.error'),
-        });
-    },
-
     emailFallBack({ title, text, url = window.location.href }) {
-        return new Promise(res => {
+        return new Promise(() => {
             const sharer = window.open(
                 `mailto:newuser@here.com?subject=${title}&body=${text} ==> ${url}`
             );
-
             return sharer;
         });
     },
