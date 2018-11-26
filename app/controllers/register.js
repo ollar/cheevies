@@ -20,10 +20,19 @@ export default Controller.extend({
     },
 
     onRegisterSuccess() {
-        return this.me.fetch().then(() => {
-            this.myModel.set('name', this.model.name);
-            return this.myModel.save();
-        });
+        return this.me
+            .fetch()
+            .then(() => {
+                this.myModel.set('name', this.model.name);
+                return this.myModel.save();
+            })
+            .then(() => {
+                const joinGroupModel = this.store.peekAll('join-group').firstObject;
+                if (joinGroupModel)
+                    return this.transitionToRoute('join-group', joinGroupModel['group_id'], {
+                        queryParams: joinGroupModel.queryParams,
+                    });
+            });
     },
 
     onSuccess() {

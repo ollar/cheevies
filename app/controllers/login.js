@@ -29,7 +29,13 @@ export default Controller.extend({
     },
 
     passwordSignInSuccess() {
-        return this.me.fetch();
+        return this.me.fetch().then(() => {
+            const joinGroupModel = this.store.peekAll('join-group').firstObject;
+            if (joinGroupModel)
+                this.transitionToRoute('join-group', joinGroupModel['group_id'], {
+                    queryParams: joinGroupModel.queryParams,
+                });
+        });
     },
 
     onSuccess() {

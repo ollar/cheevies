@@ -201,4 +201,13 @@ export default {
         success_message: 'Congratulations! Group created successfully.',
         error_message: 'Oops, error. Group seems to lose its way.',
     },
+
+    'join-group': {
+        messages: {
+            'attempt-signin': 'Please sign in to join the group.',
+            broken_link: 'Oops, seems your invitation link is invalid',
+            access_code_wrong: 'Dah, access code is broken',
+            success: 'Welcome, to {{groupName}} group, {{username}}!',
+        },
+    },
 };
