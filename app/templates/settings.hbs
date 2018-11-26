@@ -50,9 +50,11 @@
             <span>
                 {{t 'settings.subtitle.group-settings'}}
             </span>
-            <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
-                {{svg-icon _name="share-2" _size=18}}
-            </button>
+            {{#unless groupModel.hasDirtyAttributes}}
+                <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
+                    {{svg-icon _name="share-2" _size=18}}
+                </button>
+            {{/unless}}
         </h2>
         <form {{action 'updateGroup' on="submit"}} novalidate>
             <div class="field">
