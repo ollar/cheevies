@@ -9,8 +9,7 @@ const user = {
 };
 
 // todo: move to configs
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const testGroup = 'testGroup';
+import { testgroup, uid } from '../../consts';
 
 module('Integration | Component | user-in-list', function(hooks) {
     setupRenderingTest(hooks);
@@ -18,7 +17,7 @@ module('Integration | Component | user-in-list', function(hooks) {
     hooks.beforeEach(async function() {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', testGroup);
+        session.set('data.group', testgroup);
     });
 
     test('it renders without image', async function(assert) {

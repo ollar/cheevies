@@ -1,10 +1,8 @@
 import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, click, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const testGroup = 'testGroup';
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
+import { testgroup, uid } from '../consts';
+import { sleep } from '../utils';
 
 module('Acceptance | create cheevie', function(hooks) {
     setupApplicationTest(hooks);
@@ -14,7 +12,7 @@ module('Acceptance | create cheevie', function(hooks) {
 
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', testGroup);
+        session.set('data.group', testgroup);
     });
 
     test('visiting /create-cheevie', async function(assert) {

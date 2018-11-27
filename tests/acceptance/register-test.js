@@ -2,9 +2,8 @@ import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const testGroup = 'testGroup';
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
+import { testgroup, uid } from '../consts';
+import { sleep } from '../utils';
 
 module('Acceptance | register', function(hooks) {
     setupApplicationTest(hooks);
@@ -30,7 +29,7 @@ module('Acceptance | register', function(hooks) {
     test('visiting /register signed and has group should redirect to index', async function(assert) {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', testGroup);
+        session.set('data.group', testgroup);
 
         await visit('/register');
 
@@ -112,7 +111,7 @@ module('Acceptance | register', function(hooks) {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
 
-        const _group = testGroup + Math.random() * 1000;
+        const _group = testgroup + Math.random() * 1000;
 
         await visit('/register');
         await fillIn('#group', _group);

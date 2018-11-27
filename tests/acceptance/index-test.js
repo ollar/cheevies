@@ -2,9 +2,7 @@ import { module, test } from 'qunit';
 import { visit, currentURL, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-// todo: move to configs
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const testGroup = 'testGroup';
+import { testgroup, uid } from '../consts';
 
 module('Acceptance | index', function(hooks) {
     setupApplicationTest(hooks);
@@ -28,7 +26,7 @@ module('Acceptance | index', function(hooks) {
     test('visiting / signed and has group should stay on index', async function(assert) {
         const session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', testGroup);
+        session.set('data.group', testgroup);
 
         await visit('/');
 

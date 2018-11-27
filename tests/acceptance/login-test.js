@@ -11,12 +11,8 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-// todo: move to configs
-const email = 'tester@test.com';
-const password = '123123123';
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
+import { testgroup, uid, email, password } from '../consts';
+import { sleep } from '../utils';
 
 module('Acceptance | login', function(hooks) {
     setupApplicationTest(hooks);
@@ -42,7 +38,7 @@ module('Acceptance | login', function(hooks) {
     test('visiting /login signed and has group should redirect to index', async function(assert) {
         let session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', 'testGroup');
+        session.set('data.group', testgroup);
 
         await visit('/login');
         assert.equal(currentURL(), '/');
@@ -65,7 +61,7 @@ module('Acceptance | login', function(hooks) {
 
         await visit('/login');
 
-        await fillIn('#group', 'testGroup');
+        await fillIn('#group', testgroup);
         await triggerEvent('form', 'submit');
 
         await sleep(2000);
