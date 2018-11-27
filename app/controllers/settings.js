@@ -83,7 +83,9 @@ export default Controller.extend({
         },
 
         updateGroup() {
-            this.groupModel.save();
+            if (this.groupModel.validate()) {
+                this.groupModel.save();
+            }
         },
 
         promptInstallStandalone() {

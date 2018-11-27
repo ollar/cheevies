@@ -204,7 +204,7 @@ export default {
 
     'join-group': {
         messages: {
-            'attempt-signin': 'Please sign in to join the group.',
+            'attempt-signin': 'Please introduce yourself to join the group.',
             broken_link: 'Oops, seems your invitation link is invalid',
             access_code_wrong: 'Dah, access code is broken',
             success: 'Welcome, to {{groupName}} group, {{username}}!',

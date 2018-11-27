@@ -56,6 +56,13 @@
                 </button>
             {{/unless}}
         </h2>
+        <ul class="form-errors">
+            {{#each groupModel.errors as |error|}}
+            <li>
+                {{error.attribute}}: {{error.message}}
+            </li>
+            {{/each}}
+        </ul>
         <form {{action 'updateGroup' on="submit"}} novalidate>
             <div class="field">
                 <label class="" for="name">{{t 'settings.form.name.label'}}</label>
