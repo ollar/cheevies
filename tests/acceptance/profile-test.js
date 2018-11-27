@@ -1,13 +1,19 @@
-import { module, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
+import { testgroup, uid } from '../consts';
+
 module('Acceptance | profile', function(hooks) {
-  setupApplicationTest(hooks);
+    setupApplicationTest(hooks);
 
-  skip('visiting /profile', async function(assert) {
-    await visit('/profile');
+    test('visiting /profile', async function(assert) {
+        const session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+        session.set('data.group', testgroup);
 
-    assert.equal(currentURL(), '/profile');
-  });
+        await visit(`/profile/${uid}`);
+
+        assert.equal(currentURL(), `/profile/${uid}`);
+    });
 });
