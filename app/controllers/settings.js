@@ -8,7 +8,12 @@ import { schedule } from '@ember/runloop';
 export default Controller.extend({
     firebaseApp: service(),
     me: service(),
+    myGroup: service(),
     settings: service(),
+    share: service(),
+    i18n: service(),
+
+    groupModel: computed.alias('myGroup.model'),
 
     messaging: computed(function() {
         return this.get('firebaseApp').messaging();
@@ -35,7 +40,11 @@ export default Controller.extend({
     },
 
     actions: {
-        updatePushNotifications(val) {
+        updatePushNotifications(e) {
+            const val = e.target.checked;
+            e.preventDefault();
+            e.stopPropagation();
+
             if (this.get('me.model')) {
                 const promise = val
                     ? this.messaging
@@ -69,15 +78,44 @@ export default Controller.extend({
             }
         },
 
-        updateModel(e) {
-            const { name, checked } = e.target;
-
-            this.model.set(name, checked);
+        updateModel() {
             this._modelSave();
+        },
+
+        updateGroup() {
+            if (this.groupModel.validate()) {
+                this.groupModel.save();
+            }
         },
 
         promptInstallStandalone() {
             this.installStandalone.showPrompt();
+        },
+
+        inviteGroup() {
+            return this.share
+                .post({
+                    title: this.i18n.t('settings.group.invitation.title'),
+                    text: this.i18n.t('settings.group.invitation.text', {
+                        sender: this.me.model.name,
+                        group: this.groupModel.name,
+                    }),
+                    url: `${window.location.origin}/join/${this.groupModel.id}?code=${
+                        this.groupModel.code
+                    }`,
+                })
+                .then(
+                    () =>
+                        this.send('notify', {
+                            type: 'success',
+                            text: this.i18n.t('settings.group.invitation.success'),
+                        }),
+                    () =>
+                        this.send('notify', {
+                            type: 'error',
+                            text: this.i18n.t('settings.group.invitation.error'),
+                        })
+                );
         },
 
         reloadApp() {

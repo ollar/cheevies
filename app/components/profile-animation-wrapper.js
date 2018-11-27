@@ -11,7 +11,8 @@ export default Component.extend({
         this.tline = new TimelineLite({
             paused: true,
             onComplete() {
-                document.querySelector('.cheevies').removeAttribute('style');
+                const cheevies = document.querySelector('.cheevies');
+                if (cheevies) cheevies.removeAttribute('style');
             },
         });
     },

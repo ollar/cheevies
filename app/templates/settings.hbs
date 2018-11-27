@@ -1,45 +1,119 @@
 <div class="center-wrapper">
     <h1 class="title">{{t 'settings.title'}}</h1>
-    <form>
-        <label class="field checkbox-wrapper" for={{pushNotifications}}>
-            <input
-                type="checkbox"
-                name="pushNotifications"
-                id={{pushNotifications}}
-                checked={{model.pushNotifications}}
-                onchange={{action 'updatePushNotifications' value='target.checked'}}>
+    <section class="general">
+        <h2>
+            {{t 'settings.subtitle.general'}}
+        </h2>
 
-            <div class="checkbox-value"></div>
+        <form {{action 'updateModel' on="change"}} novalidate>
+            <label class="field checkbox-wrapper" for="pushNotifications">
+                <input
+                    type="checkbox"
+                    name="pushNotifications"
+                    id="pushNotifications"
+                    checked={{model.pushNotifications}}
+                    onchange={{action 'updatePushNotifications'}}>
 
-            <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
-        </label>
+                <div class="checkbox-value"></div>
 
-        {{!-- <label class="field checkbox-wrapper" for={{sounds}}>
-            <input
-                type="checkbox"
-                name="sounds"
-                id={{sounds}}
-                checked={{model.sounds}}
-                onchange={{action 'updateModel'}}>
+                <span class="text">{{t 'settings.form.pushNotifications.label'}}</span>
+            </label>
 
-            <div class="checkbox-value"></div>
+            {{!-- <label class="field checkbox-wrapper" for="sounds">
+                {{input
+                    type="checkbox"
+                    name="sounds"
+                    id="sounds"
+                    checked=model.sounds}}
 
-            <span class="text">{{t 'settings.form.sounds.label'}}</span>
-        </label>
+                <div class="checkbox-value"></div>
 
-        <label class="field checkbox-wrapper" for={{animations}}>
-            <input
-                type="checkbox"
-                name="animations"
-                id={{animations}}
-                checked={{model.animations}}
-                onchange={{action 'updateModel'}}>
+                <span class="text">{{t 'settings.form.sounds.label'}}</span>
+            </label>
 
-            <div class="checkbox-value"></div>
+            <label class="field checkbox-wrapper" for="animations">
+                {{input
+                    type="checkbox"
+                    name="animations"
+                    id="animations"
+                    checked=model.animations}}
 
-            <span class="text">{{t 'settings.form.animations.label'}}</span>
-        </label> --}}
-    </form>
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.animations.label'}}</span>
+            </label> --}}
+        </form>
+    </section>
+
+    <section class="group-settings">
+        <h2>
+            <span>
+                {{t 'settings.subtitle.group-settings'}}
+            </span>
+            {{#unless groupModel.hasDirtyAttributes}}
+                <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
+                    {{svg-icon _name="share-2" _size=18}}
+                </button>
+            {{/unless}}
+        </h2>
+        <ul class="form-errors">
+            {{#each groupModel.errors as |error|}}
+            <li>
+                {{error.attribute}}: {{error.message}}
+            </li>
+            {{/each}}
+        </ul>
+        <form {{action 'updateGroup' on="submit"}} novalidate>
+            <div class="field">
+                <label class="" for="name">{{t 'settings.form.name.label'}}</label>
+                <div class="control">
+                    {{input
+                        class="input"
+                        data-test-id="name"
+                        id="name"
+                        type="text"
+                        placeholder=(t 'settings.form.name.placeholder')
+                        autocapitalize='off'
+                        autocomplete="off"
+                        value=groupModel.name}}
+                </div>
+            </div>
+
+            <label class="field checkbox-wrapper" for="locked">
+                {{input
+                    type="checkbox"
+                    name="locked"
+                    id="locked"
+                    checked=groupModel.locked}}
+
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.locked.label'}}</span>
+            </label>
+
+            <div class="field">
+                <label class="" for="code">{{t 'settings.form.code.label'}}</label>
+                <div class="control">
+                    {{input
+                        class="input"
+                        data-test-id="code"
+                        id="code"
+                        type="text"
+                        placeholder=(t 'settings.form.code.placeholder')
+                        autocapitalize='off'
+                        autocomplete="off"
+                        value=groupModel.code}}
+                </div>
+            </div>
+
+            {{#if groupModel.hasDirtyAttributes}}
+                <button type="submit" class="submit-button">
+                    {{t 'buttons.save'}}
+                </button>
+            {{/if}}
+        </form>
+
+    </section>
 
     <div class="buttons-wrapper">
         {{#if installStandalone.deferredPrompt}}

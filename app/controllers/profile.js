@@ -85,10 +85,26 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         shareCheevie(cheevie) {
-            this.share.post({
-                title: this.i18n.t('share.cheevie.title'),
-                text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
-            });
+            const onSuccess = () => {
+                return this.send('notify', {
+                    type: 'success',
+                    text: this.i18n.t('share.messages.success'),
+                });
+            };
+
+            const onError = () => {
+                return this.send('notify', {
+                    type: 'error',
+                    text: this.i18n.t('share.messages.error'),
+                });
+            };
+
+            this.share
+                .post({
+                    title: this.i18n.t('share.cheevie.title'),
+                    text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
+                })
+                .then(() => onSuccess(), () => onError());
         },
 
         closeCheevieDetails() {

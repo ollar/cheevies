@@ -10,6 +10,8 @@ export default {
         messages: {
             no_such_group:
                 "Can't find a group. Please check typing and try again. Group name is case sensitive.",
+            group_is_locked:
+                'This group is private. You can ask member to send you invitation link.',
         },
     },
 
@@ -57,6 +59,7 @@ export default {
         edit: 'Edit',
         sign_out: 'Sign out',
         delete: 'Delete',
+        save: 'Save',
     },
 
     'create-cheevie': {
@@ -91,6 +94,10 @@ export default {
 
     settings: {
         title: 'Settings',
+        subtitle: {
+            general: 'General',
+            'group-settings': 'Group Settings',
+        },
         form: {
             pushNotifications: {
                 label: 'Push notifications',
@@ -105,14 +112,37 @@ export default {
                 label: 'Install App on Homescreen',
             },
 
+            locked: {
+                label: 'Locked',
+            },
+
             reloadApp: {
                 text: 'Reload App',
+            },
+
+            name: {
+                label: 'Group name',
+                placeholder: 'Type group name',
+            },
+
+            code: {
+                label: 'Invitation code',
+                placeholder: 'Type group invitation code',
             },
         },
 
         feedback: {
             subject: 'Feedback to Cheevies App',
             linkText: 'Send a feedback',
+        },
+
+        group: {
+            invitation: {
+                title: 'Invitation to Cheevie App group',
+                text: '{{sender}} asks you to join the {{group}} group',
+                success: 'Invitation sent',
+                error: 'Post office is closed, sorry',
+            },
         },
     },
 
@@ -170,5 +200,14 @@ export default {
     create_group: {
         success_message: 'Congratulations! Group created successfully.',
         error_message: 'Oops, error. Group seems to lose its way.',
+    },
+
+    'join-group': {
+        messages: {
+            'attempt-signin': 'Please introduce yourself to join the group.',
+            broken_link: 'Oops, seems your invitation link is invalid',
+            access_code_wrong: 'Dah, access code is broken',
+            success: 'Welcome, to {{groupName}} group, {{username}}!',
+        },
     },
 };

@@ -2,9 +2,8 @@ import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, triggerEvent, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-const testGroup = 'testGroup';
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
+import { testgroup, uid } from '../consts';
+import { sleep } from '../utils';
 
 module('Acceptance | create group', function(hooks) {
     setupApplicationTest(hooks);
@@ -25,7 +24,7 @@ module('Acceptance | create group', function(hooks) {
     test('type existing group should show error and fail', async function(assert) {
         await visit('/create-group');
 
-        await fillIn('#name', testGroup);
+        await fillIn('#name', testgroup);
         await triggerEvent('form', 'submit');
 
         await waitFor('.callout.error', {
@@ -38,7 +37,7 @@ module('Acceptance | create group', function(hooks) {
     test('type new group should add user to group and transition to index', async function(assert) {
         await visit('/create-group');
 
-        await fillIn('#name', testGroup + Math.random() * 1000);
+        await fillIn('#name', testgroup + Math.random() * 1000);
         await triggerEvent('form', 'submit');
 
         await sleep(3000);

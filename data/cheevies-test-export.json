@@ -1,0 +1,52 @@
+{
+    "groups": {
+        "testgroup": {
+            "locked": false,
+            "name": "testgroup",
+            "users": {
+                "aOku4UacsDeWnb5qezWOuw4EKvl2": true
+            }
+        },
+        "testgrouplocked": {
+            "locked": true,
+            "name": "testgrouplocked"
+        },
+        "testgrouppublic": {
+            "locked": false,
+            "name": "testgrouppublic"
+        }
+    },
+    "settings": {
+        "-LQjObfdWL9Z_8CqpzL9": {
+            "animations": true,
+            "pushNotifications": false,
+            "sounds": false,
+            "user": "aOku4UacsDeWnb5qezWOuw4EKvl2"
+        }
+    },
+    "users": {
+        "aOku4UacsDeWnb5qezWOuw4EKvl2": {
+            "created": 1541538103471,
+            "email": "tester@test.com",
+            "groups": {
+                "testgroup": true
+            },
+            "settings": "-LQjObfdWL9Z_8CqpzL9"
+        },
+        "k6SYQPZvLOhWuTCzRq11LvTf7172": {
+            "created": 1541618314177,
+            "email": "test@test.test",
+            "name": "newb"
+        },
+        "nWiD7OGiUeVmgEYvZywEzh4G7963": {
+            "created": 1543270865215,
+            "email": "test@test118.94061745039663.test",
+            "name": "newb"
+        },
+        "w0wBNcq7GrbqW1F6XMXtL1n3g8J3": {
+            "created": 1543271277760,
+            "email": "test@test626.4243306485262.test",
+            "name": "newb"
+        }
+    }
+}

@@ -11,12 +11,8 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-// todo: move to configs
-const email = 'tester@test.com';
-const password = '123123123';
-const uid = 'aOku4UacsDeWnb5qezWOuw4EKvl2';
-
-const sleep = (timeout = 1000) => new Promise(res => setTimeout(() => res(), timeout));
+import { testgroup, uid, email, password } from '../consts';
+import { sleep } from '../utils';
 
 module('Acceptance | login', function(hooks) {
     setupApplicationTest(hooks);
@@ -42,7 +38,7 @@ module('Acceptance | login', function(hooks) {
     test('visiting /login signed and has group should redirect to index', async function(assert) {
         let session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
-        session.set('data.group', 'testGroup');
+        session.set('data.group', testgroup);
 
         await visit('/login');
         assert.equal(currentURL(), '/');
@@ -65,7 +61,7 @@ module('Acceptance | login', function(hooks) {
 
         await visit('/login');
 
-        await fillIn('#group', 'testGroup');
+        await fillIn('#group', testgroup);
         await triggerEvent('form', 'submit');
 
         await sleep(2000);
@@ -73,7 +69,7 @@ module('Acceptance | login', function(hooks) {
         assert.equal(currentURL(), '/');
     });
 
-    test('after setting wrong group should not login', async function(assert) {
+    test('after setting wrong group and group does not exist - should NOT login', async function(assert) {
         let session = this.owner.lookup('service:session');
         await session.authenticate('authenticator:test', { uid });
 
@@ -82,9 +78,49 @@ module('Acceptance | login', function(hooks) {
         await fillIn('#group', 'wrongGroup');
         await triggerEvent('form', 'submit');
 
-        await waitFor('.callout.error', {
-            timeout: 3000,
-        });
+        await sleep(4000);
+
+        assert.equal(currentURL(), '/login');
+    });
+
+    test('after setting wrong group and group is public - should add to group and login', async function(assert) {
+        const myGroup = this.owner.lookup('service:my-group');
+        const me = this.owner.lookup('service:me');
+
+        let session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+
+        await visit('/login');
+        await fillIn('#group', 'testgrouppublic');
+        await triggerEvent('form', 'submit');
+
+        await sleep(3000);
+
+        assert.equal(myGroup.groupName, 'testgrouppublic');
+        assert.ok(myGroup.model.users.indexOf(me.model) > -1);
+        assert.ok(me.model.groups.indexOf(myGroup.model) > -1);
+        assert.equal(currentURL(), '/');
+
+        myGroup.model.set('users', []);
+        me.model.groups.removeObject(myGroup.model);
+        await myGroup.model.save();
+        await me.model.save();
+    });
+
+    test('after setting wrong group and group is locked - should NOT login', async function(assert) {
+        let session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
+
+        await visit('/login');
+
+        await fillIn('#group', 'testgrouplocked');
+        await triggerEvent('form', 'submit');
+
+        // await waitFor('.callout.error', {
+        //     timeout: 4000,
+        // });
+
+        await sleep(4000);
 
         assert.equal(currentURL(), '/login');
     });
@@ -100,5 +136,21 @@ module('Acceptance | login', function(hooks) {
 
         assert.ok(this.owner.lookup('service:session').get('isAuthenticated'), false);
         assert.notOk(this.owner.lookup('service:session').get('data.group'));
+    });
+
+    test('optimistic login flow', async function(assert) {
+        await visit('/login');
+
+        await fillIn('#email', email);
+        await fillIn('#password', password);
+        await triggerEvent('form', 'submit');
+        await waitFor('[test-id="group-select-section"]');
+
+        await fillIn('#group', testgroup);
+        await triggerEvent('form', 'submit');
+
+        await sleep(2000);
+
+        assert.equal(currentURL(), '/');
     });
 });
