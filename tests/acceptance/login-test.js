@@ -137,4 +137,20 @@ module('Acceptance | login', function(hooks) {
         assert.ok(this.owner.lookup('service:session').get('isAuthenticated'), false);
         assert.notOk(this.owner.lookup('service:session').get('data.group'));
     });
+
+    test('optimistic login flow', async function(assert) {
+        await visit('/login');
+
+        await fillIn('#email', email);
+        await fillIn('#password', password);
+        await triggerEvent('form', 'submit');
+        await waitFor('[test-id="group-select-section"]');
+
+        await fillIn('#group', testgroup);
+        await triggerEvent('form', 'submit');
+
+        await sleep(2000);
+
+        assert.equal(currentURL(), '/');
+    });
 });

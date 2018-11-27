@@ -1,8 +1,17 @@
-import { module, test } from 'qunit';
-import { visit, currentURL, fillIn, triggerEvent, settled, click, find } from '@ember/test-helpers';
+import { module, test, skip } from 'qunit';
+import {
+    visit,
+    currentURL,
+    fillIn,
+    triggerEvent,
+    settled,
+    click,
+    find,
+    waitFor,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import { testgroup, uid } from '../consts';
+import { testgroup, uid, email, password } from '../consts';
 import { sleep } from '../utils';
 
 module('Acceptance | register', function(hooks) {
@@ -44,7 +53,7 @@ module('Acceptance | register', function(hooks) {
         assert.ok(find('[test-id="group-select-section"]'));
     });
 
-    test('after register success group select form should appear', async function(assert) {
+    skip('after register success group select form should appear', async function(assert) {
         await visit('/register');
 
         await fillIn('#name', 'tester');
@@ -135,5 +144,26 @@ module('Acceptance | register', function(hooks) {
 
         assert.ok(this.owner.lookup('service:session').get('isAuthenticated'), false);
         assert.notOk(this.owner.lookup('service:session').get('data.group'));
+    });
+
+    // =========================================================================
+    // ============================================================== Flow tests
+
+    test('optimistic register flow', async function(assert) {
+        await visit('/register');
+
+        await fillIn('#name', 'tester');
+        await fillIn('#email', email + Math.floor(Math.random() * 1000));
+        await fillIn('#password', password);
+        await triggerEvent('form', 'submit');
+
+        await waitFor('[test-id="group-select-section"]', { timeout: 4000 });
+
+        await fillIn('#group', testgroup);
+        await triggerEvent('form', 'submit');
+
+        await sleep(2000);
+
+        assert.equal(currentURL(), '/');
     });
 });
