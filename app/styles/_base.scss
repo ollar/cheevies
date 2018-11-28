@@ -1,3 +1,7 @@
+html {
+    touch-action: manipulation;
+}
+
 body {
   font-family: $font-family;
   font-size: $font-size;

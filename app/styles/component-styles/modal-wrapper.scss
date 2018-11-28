@@ -47,10 +47,6 @@ figure {
 //     &.is-dragged {
 //         transition: none;
 //     }
-
-    &.pan-auto{
-        touch-action: auto !important;
-    }
 }
 
 &.is-busy .modal-content{
