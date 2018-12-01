@@ -1,4 +1,4 @@
-.ember-view {
+// .ember-view {
   form {
     .label {
       @include nigel;
@@ -114,7 +114,7 @@
       opacity: 1;
     }
   }
-}
+// }
 
 .form-errors {
     color: #FF0000;
@@ -263,4 +263,26 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: transparent !important;
   -webkit-transition-delay: 1s;
   -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+}
+
+.pretty-button {
+    --bgColour1: transparent;
+    --bgColour2: transparent;
+    --textColour: #fff;
+
+    border-radius: 35px;
+    display: block;
+    width: 100%;
+    background: linear-gradient(257.08deg, var(--bgColour1) 5.93%, var(--bgColour2) 93.69%);
+    color: var(--textColour);
+
+    &.google {
+        --bgColour1: #DB4437;
+        --bgColour2: #F4B400;
+    }
+
+    &.facebook {
+        --bgColour1: #8b9dc3;
+        --bgColour2: #3b5998;
+    }
 }

@@ -6,6 +6,10 @@ export default DS.Model.extend({
     email: DS.attr('string'),
     fcmToken: DS.attr('string'),
 
+    providerId: DS.attr('string', { defaultValue: 'email' }),
+    accessToken: DS.attr('string'),
+    photoURL: DS.attr('string'),
+
     cheevies: DS.hasMany('cheevie'),
     unseenCheevies: DS.hasMany('cheevie'),
     badges: DS.hasMany('badge'),

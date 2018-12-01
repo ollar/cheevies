@@ -13,71 +13,74 @@
     {{/each}}
   </ul>
   {{#unless session.isAuthenticated}}
-  <section class="section container credentials-section" test-id="credentials-section">
-    <form {{action 'passwordSignIn' on="submit"}} autocomplete="off" novalidate>
-      <div class="field">
-        <label class="label" for="email">{{t 'form.email.label'}}</label>
-        <div class="control">
-          {{input autocomplete="off" class="input" id="email" type="email" placeholder=" " value=model.email}}
-          <div class="placeholder">{{t 'form.email.placeholder'}}</div>
-          <div class="background"></div>
+    <section class="section container credentials-section" test-id="credentials-section">
+        <form {{action 'passwordSignIn' on="submit"}} autocomplete="off" novalidate>
+        <div class="field">
+            <label class="label" for="email">{{t 'form.email.label'}}</label>
+            <div class="control">
+            {{input autocomplete="off" class="input" id="email" type="email" placeholder=" " value=model.email}}
+            <div class="placeholder">{{t 'form.email.placeholder'}}</div>
+            <div class="background"></div>
+            </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label" for="password">{{t 'form.password.label'}}</label>
-        <div class="control">
-          {{input autocomplete="off" class="input" type="password" id="password" placeholder=" " value=model.password}}
-          <div class="placeholder">{{t 'form.password.placeholder'}}</div>
-          <div class="background"></div>
-            <button type="submit" class="submit-button icon-button">
-                {{svg-icon _name="arrow-right" _size=20}}
-            </button>
+        <div class="field">
+            <label class="label" for="password">{{t 'form.password.label'}}</label>
+            <div class="control">
+            {{input autocomplete="off" class="input" type="password" id="password" placeholder=" " value=model.password}}
+            <div class="placeholder">{{t 'form.password.placeholder'}}</div>
+            <div class="background"></div>
+                <button type="submit" class="submit-button icon-button">
+                    {{svg-icon _name="arrow-right" _size=20}}
+                </button>
+            </div>
         </div>
-      </div>
-    </form>
-  </section>
+        </form>
+    </section>
+
   {{else}}
-  <section class="group-select-section" test-id="group-select-section">
-    <div class="user-image-wrapper">
-      {{icon-image data=myModel image=myImage class="user-avatar"}}
-      <button class="icon-button" data-test-id="invalidate-button" {{action 'invalidate'}}>
-        {{svg-icon _name="x" _size=20}}
-      </button>
-    </div>
-
-    <form {{action 'selectGroup' on="submit"}} novalidate>
-      <div class="field">
-        <label class="label" for="group">{{t 'form.group.label'}}</label>
-        <div class="control">
-          {{input
-            class="input"
-            id="group"
-            placeholder=' '
-            value=model.group
-            autocapitalize='off'
-            autocomplete="off"}}
-          <div class="placeholder">{{t 'form.group.placeholder'}}</div>
-          <div class="background"></div>
-
-            <button type="submit" class="submit-button icon-button">
-                {{svg-icon _name="arrow-right" _size=20}}
-            </button>
+    <section class="group-select-section" test-id="group-select-section">
+        <div class="user-image-wrapper">
+        {{icon-image data=myModel image=myImage class="user-avatar"}}
+        <button class="icon-button" data-test-id="invalidate-button" {{action 'invalidate'}}>
+            {{svg-icon _name="x" _size=20}}
+        </button>
         </div>
-      </div>
-    </form>
-  </section>
+
+        <form {{action 'selectGroup' on="submit"}} novalidate>
+        <div class="field">
+            <label class="label" for="group">{{t 'form.group.label'}}</label>
+            <div class="control">
+            {{input
+                class="input"
+                id="group"
+                placeholder=' '
+                value=model.group
+                autocapitalize='off'
+                autocomplete="off"}}
+            <div class="placeholder">{{t 'form.group.placeholder'}}</div>
+            <div class="background"></div>
+
+                <button type="submit" class="submit-button icon-button">
+                    {{svg-icon _name="arrow-right" _size=20}}
+                </button>
+            </div>
+        </div>
+        </form>
+    </section>
   {{/unless}}
 </div>
 
 {{/login-svg-bg}}
 
 <div class="text-center-wrapper reset-password">
-  {{#unless session.isAuthenticated}}
-    {{link-to (t 'login.buttons.register') 'register'}}
-    {{t 'or'}}
-    {{link-to (t 'nav.forgot-password') 'reset-password'}}
-  {{else}}
-    {{link-to (t 'nav.create-group') 'create-group'}}
-  {{/unless}}
+    {{#unless session.isAuthenticated}}
+            {{link-to (t 'login.buttons.register') 'register'}}
+            {{t 'or'}}
+            {{link-to (t 'nav.forgot-password') 'reset-password'}}
+            {{t 'or'}}
+            {{link-to (t 'nav.back-to-future') 'login-social'}}
+    {{else}}
+        {{link-to (t 'nav.create-group') 'create-group'}}
+    {{/unless}}
 </div>

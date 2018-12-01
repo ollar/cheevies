@@ -60,6 +60,8 @@ export default {
         sign_out: 'Sign out',
         delete: 'Delete',
         save: 'Save',
+        google: 'Google',
+        facebook: 'Facebook',
     },
 
     'create-cheevie': {
@@ -164,6 +166,8 @@ export default {
         profile: 'Profile',
         'forgot-password': 'Reset Password',
         'create-group': 'Create Group',
+        'back-to-future': 'Back to Future',
+        oldschool: 'Oldschool',
     },
 
     'reset-password': {
