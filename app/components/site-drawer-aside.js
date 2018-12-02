@@ -1,8 +1,14 @@
 import Component from 'site-drawer-component/components/site-drawer-aside';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import {
+    inject as service
+} from '@ember/service';
+import {
+    computed
+} from '@ember/object';
 import DS from 'ember-data';
-import { resolve } from 'rsvp';
+import {
+    resolve
+} from 'rsvp';
 
 import DraggableMixin from 'draggable-mixin/mixins/draggable';
 
@@ -12,7 +18,7 @@ export default Component.extend(DraggableMixin, {
     router: service(),
 
     imageSet: computed.readOnly('me.model.image-set'),
-    image: computed('imageSet.{}', function() {
+    image: computed('imageSet.{}', function () {
         if (!this.get('imageSet.128')) return null;
         return {
             sm: this.get('imageSet.256'),
@@ -39,7 +45,7 @@ export default Component.extend(DraggableMixin, {
         this._super(...arguments);
     },
 
-    cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function() {
+    cheevies: computed('me.model.cheevies.[]', 'myGroup.groupName', function () {
         if (!this.get('myGroup.groupName')) return;
         return DS.PromiseArray.create({
             promise: this.myGroup
@@ -61,7 +67,7 @@ export default Component.extend(DraggableMixin, {
             this.get('router').transitionTo('index.create-cheevie');
         },
         invalidate() {
-            return this.get('router').transitionTo('logout');
+            return this.get('router').transitionTo('wardrobe.sign-out');
         },
     },
 });

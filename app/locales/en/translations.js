@@ -8,10 +8,8 @@ export default {
         },
         title: 'Login',
         messages: {
-            no_such_group:
-                "Can't find a group. Please check typing and try again. Group name is case sensitive.",
-            group_is_locked:
-                'This group is private. You can ask member to send you invitation link.',
+            no_such_group: "Can't find a group. Please check typing and try again.",
+            group_is_locked: 'This group is private. You can ask member to send you invitation link.',
         },
     },
 
@@ -47,9 +45,9 @@ export default {
         welcome_google: 'Yep, sending data to ANB',
         welcome_github: 'All your repos belongs to us!',
         delete_cheevie_check: 'Are you sure?',
-        app_init_error:
-            "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
+        app_init_error: "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
         group_already_exist: 'Such group already exist. Please find another name',
+        'email-auth-required': 'This account exists with email authentification method. Please sign in with email to link accounts'
     },
 
     buttons: {
@@ -60,6 +58,8 @@ export default {
         sign_out: 'Sign out',
         delete: 'Delete',
         save: 'Save',
+        google: 'Google',
+        facebook: 'Facebook',
     },
 
     'create-cheevie': {
@@ -164,6 +164,8 @@ export default {
         profile: 'Profile',
         'forgot-password': 'Reset Password',
         'create-group': 'Create Group',
+        'back-to-future': 'Social Sign-in',
+        oldschool: 'Email Sign-in',
     },
 
     'reset-password': {

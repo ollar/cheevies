@@ -1,0 +1,35 @@
+& {
+    background-color: #fff;
+    a {
+      color: #FF008A;
+    }
+}
+
+.buttons-wrapper {
+    margin: ms(1) 0;
+}
+
+.logo-wrapper {
+    text-align: center;
+}
+
+.center-wrapper {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    z-index: 1;
+}
+
+.text-center-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 0 ms(1);
+
+    a {
+        color: #fff;
+    }
+}
