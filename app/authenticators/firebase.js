@@ -20,7 +20,7 @@ export default Base.extend({
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(res => {
-                if (model.pendingCred) {
+                if (model && model.pendingCred) {
                     res.link(model.pendingCred);
                 }
                 return {
