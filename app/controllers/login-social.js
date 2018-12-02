@@ -9,6 +9,8 @@ export default Controller.extend({
         const { providerId, accessToken } = credential;
         const { email, displayName, photoURL, uid } = user;
 
+        console.log(credential, user);
+
         return this.store
             .findRecord('user', uid)
             .catch(() => {
