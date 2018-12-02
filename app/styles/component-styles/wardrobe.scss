@@ -1,7 +1,8 @@
 & {
     background-color: #fff;
+
     a {
-      color: #FF008A;
+        color: #FF008A;
     }
 }
 
@@ -46,11 +47,11 @@ input {
     z-index: 1;
 
     a {
-      color: inherit;
+        color: inherit;
     }
 }
 
-.field{
+.field {
     position: relative;
 }
 
@@ -63,41 +64,48 @@ input {
     padding: 0 0 ms(1);
 
     .icon-image {
-      margin: auto;
-      background: linear-gradient(257.08deg, #0075FF 5.93%, #4838FF 93.69%);
+        margin: auto;
+        background: linear-gradient(257.08deg, #0075FF 5.93%, #4838FF 93.69%);
 
-      @include size(128px);
+        @include size(128px);
 
-      @include sm() {
-          @include size(256px);
-      };
+        @include sm() {
+            @include size(256px);
+        }
+
+        ;
     }
 
     .icon-button {
-      position: absolute;
-      top: 10px;
-      left: calc(30% - 15px);
-      height: 24px;
-      width: 24px;
-      line-height: 24px;
-      border-radius: 100%;
-      color: #4838FF;
-      border: 2px solid;
-      background-color: white;
+        position: absolute;
+        top: 10px;
+        left: calc(30% - 15px);
+        height: 24px;
+        width: 24px;
+        line-height: 24px;
+        border-radius: 100%;
+        color: #4838FF;
+        border: 2px solid;
+        background-color: white;
     }
-  }
+}
 
 .is-authenticated {
     .control {
-      --bgColour1: #0075FF;
-      --bgColour2: #4838FF;
+        --bgColour1: #0075FF;
+        --bgColour2: #4838FF;
     }
 
-    input, a {
-      --textColour: #0f00b6;
+    input,
+    a {
+        --textColour: #0f00b6;
     }
 
     .submit-button {
         --textColour: #0075FF;
     }
+}
+
+.social-buttons-wrapper {
+    margin: ms(1) 0;
 }
