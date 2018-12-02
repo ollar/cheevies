@@ -6,6 +6,7 @@ import {
 
 export default Route.extend(UnauthenticatedRouteMixin, {
     session: service(),
+    me: service(),
 
     beforeModel(transition) {
         if (!this.session.isAuthenticated) {
@@ -19,6 +20,10 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     actions: {
+        activate() {
+            this.me.fetch();
+        },
+
         willTransition() {
             this.get('controller.model').destroyRecord();
             return true;

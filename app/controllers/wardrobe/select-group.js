@@ -30,7 +30,6 @@ export default Controller.extend({
 
     init() {
         this._super(...arguments);
-        // this.me.fetch();
 
         this.onSuccess = this.onSuccess.bind(this);
         this.onError = this.onError.bind(this);

@@ -39,17 +39,6 @@ module('Acceptance | wardrobe/select-group', function (hooks) {
         assert.equal(currentURL(), '/wardrobe/select-group');
     });
 
-    test('after setting group should login', async function (assert) {
-        await visit('/wardrobe/select-group');
-
-        await fillIn('#group', testgroup);
-        await triggerEvent('form', 'submit');
-
-        await sleep(2000);
-
-        assert.equal(currentURL(), '/');
-    });
-
     test('after setting wrong group and group does not exist - should NOT login', async function (assert) {
         await visit('/wardrobe/select-group');
 
@@ -106,5 +95,20 @@ module('Acceptance | wardrobe/select-group', function (hooks) {
 
         assert.ok(this.owner.lookup('service:session').get('isAuthenticated'), false);
         assert.notOk(this.owner.lookup('service:session').get('data.group'));
+    });
+
+    // =============================================================================================
+    // =============================================================================================
+    // =============================================================================================
+
+    test('optimistic flow', async function (assert) {
+        await visit('/wardrobe/select-group');
+
+        await fillIn('#group', testgroup);
+        await triggerEvent('form', 'submit');
+
+        await sleep(2000);
+
+        assert.equal(currentURL(), '/');
     });
 });
