@@ -14,6 +14,8 @@ export default DS.Model.extend(Validator, {
     type: DS.attr('string'),
 
     firebase: service('firebase-app'),
+    router: service(),
+
     validations: computed(() => ({
         email: {
             presence: true,
@@ -35,31 +37,30 @@ export default DS.Model.extend(Validator, {
             // The provider account's email address.
             this.set('email', error.email);
             // Get sign-in methods for this email.
-            firebase.auth.fetchSignInMethodsForEmail(this.email).then(function (methods) {
+            return firebase.auth.fetchSignInMethodsForEmail(this.email).then(function (methods) {
                 // If the user has several sign-in methods,
                 // the first method in the list will be the "recommended" method to use.
                 switch (methods[0]) {
                     case 'password':
-                        // implement password signin
+                        this.send('notify', {
+                            type: 'error',
+                            text: 'messages.email-auth-required',
+                        });
 
-                        // var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-                        // auth.signInWithEmailAndPassword(email, password)
-                        //     .then(function(user) {
-                        //         // Step 4a.
-                        //         return user.link(pendingCred);
-                        //     })
-                        //     .then(function() {
-                        //         // Google account successfully linked to the existing Firebase user.
-                        //         goToApp();
-                        //     });
-                        return;
+                        return this.router.transitionTo('wardrobe.sign-in');
 
-                    case 'facebook':
-                        // return this.send('facebookSignIn');
-                        return;
+                    case 'facebook.com':
+                        return this.facebookSignIn().then(({
+                            user
+                        }) => user.linkAndRetrieveDataWithCredential(this.pendingCred));
+
+                    case 'google.com':
+                        return this.googleSignIn().then(({
+                            user
+                        }) => user.linkAndRetrieveDataWithCredential(this.pendingCred));
 
                     default:
-                        break;
+                        throw error;
                 }
             });
         }

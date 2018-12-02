@@ -1,5 +1,7 @@
 import Base from 'ember-simple-auth/authenticators/base';
-import { inject as service } from '@ember/service';
+import {
+    inject as service
+} from '@ember/service';
 
 export default Base.extend({
     session: service(),
@@ -9,11 +11,22 @@ export default Base.extend({
         return Promise.resolve(data);
     },
 
-    authenticate({ email, password }) {
+    authenticate({
+        email,
+        password,
+        model
+    }) {
         return this.firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then(res => ({ uid: res.uid }));
+            .then(res => {
+                if (model.pendingCred) {
+                    res.link(model.pendingCred);
+                }
+                return {
+                    uid: res.uid
+                }
+            });
     },
 
     invalidate() {

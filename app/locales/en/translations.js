@@ -47,6 +47,7 @@ export default {
         delete_cheevie_check: 'Are you sure?',
         app_init_error: "Oops, seems we failed to launch. That's definitely Henry's fault. Please try again",
         group_already_exist: 'Such group already exist. Please find another name',
+        'email-auth-required': 'This account exists with email authentification method. Please sign in with email to link accounts'
     },
 
     buttons: {

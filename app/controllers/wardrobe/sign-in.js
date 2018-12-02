@@ -51,6 +51,7 @@ export default Controller.extend({
                     .authenticate('authenticator:firebase', {
                         email: this.get('model.email'),
                         password: this.get('model.password'),
+                        model: this.model,
                     })
                     .then(this.onSuccess, this.onError);
             }
