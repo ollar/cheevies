@@ -24,7 +24,7 @@ import {
     sleep
 } from '../../utils';
 
-module('Acceptance | wardrobe/sign in', function (hooks) {
+module('Acceptance | wardrobe/sign-in', function (hooks) {
     setupApplicationTest(hooks);
 
     hooks.beforeEach(function () {
