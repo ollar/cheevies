@@ -9,6 +9,7 @@ import {
 export default Controller.extend({
     session: service(),
     me: service(),
+    activity: service(),
 
     init() {
         this._super(...arguments);
@@ -26,6 +27,11 @@ export default Controller.extend({
                         queryParams: joinGroupModel.queryParams,
                     });
             })
+            .then(() =>
+                this.activity.send({
+                    action: 'logged',
+                })
+            )
             .then(() => schedule('routerTransitions', () =>
                 this.transitionToRoute('wardrobe.select-group')
             ));

@@ -6,13 +6,15 @@ import {
     computed
 } from '@ember/object';
 import {
-    schedule
+    schedule,
+    later
 } from '@ember/runloop';
 
 export default Controller.extend({
     session: service(),
     me: service(),
     myModel: computed.alias('me.model'),
+    activity: service(),
 
     init() {
         this._super(...arguments);
@@ -35,6 +37,15 @@ export default Controller.extend({
                         queryParams: joinGroupModel.queryParams,
                     });
             })
+            .then(() =>
+                later(
+                    () =>
+                    this.activity.send({
+                        action: 'registered',
+                    }),
+                    2000
+                )
+            )
             .then(() => schedule('routerTransitions', () =>
                 this.transitionToRoute('wardrobe.select-group')
             ))

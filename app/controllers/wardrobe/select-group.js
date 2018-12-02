@@ -16,7 +16,6 @@ import {
 export default Controller.extend({
     me: service(),
     session: service(),
-    activity: service(),
 
     myModel: computed.alias('me.model'),
     imageSet: computed.readOnly('myModel.image-set'),
@@ -43,11 +42,6 @@ export default Controller.extend({
                 this.send('notify', {
                     type: 'info',
                     text: this.get('i18n').t('messages.welcome_default'),
-                })
-            )
-            .then(() =>
-                this.activity.send({
-                    action: 'logged',
                 })
             )
             .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')));
