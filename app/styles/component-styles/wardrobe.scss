@@ -86,3 +86,18 @@ input {
       background-color: white;
     }
   }
+
+.is-authenticated {
+    .control {
+      --bgColour1: #0075FF;
+      --bgColour2: #4838FF;
+    }
+
+    input, a {
+      --textColour: #0f00b6;
+    }
+
+    .submit-button {
+        --textColour: #0075FF;
+    }
+}

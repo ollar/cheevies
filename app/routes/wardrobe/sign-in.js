@@ -17,11 +17,4 @@ export default Route.extend(UnauthenticatedRouteMixin, {
             type: 'email',
         });
     },
-
-    actions: {
-        willTransition() {
-            this.get('controller.model').destroyRecord();
-            return true;
-        },
-    },
 });
