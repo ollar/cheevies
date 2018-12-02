@@ -1,1 +1,26 @@
-{{outlet}}
+<div class="center-wrapper">
+    <div class="logo-wrapper">
+        <img src="/images/Logo.svg" alt="">
+    </div>
+
+    <div class="buttons-wrapper">
+        <div class="field">
+            <button class="pretty-button google" {{action 'googleSignIn'}}>
+                {{t 'buttons.google'}}
+            </button>
+        </div>
+
+        <div class="field">
+            <button class="pretty-button facebook" {{action 'facebookSignIn'}}>
+                {{t 'buttons.facebook'}}
+            </button>
+        </div>
+    </div>
+
+    {{outlet}}
+
+</div>
+
+<div class="text-center-wrapper">
+    {{link-to (t 'nav.oldschool') 'wardrobe.sign-in'}}
+</div>

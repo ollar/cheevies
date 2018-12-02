@@ -163,8 +163,8 @@ export default {
         profile: 'Profile',
         'forgot-password': 'Reset Password',
         'create-group': 'Create Group',
-        'back-to-future': 'Back to Future',
-        oldschool: 'Oldschool',
+        'back-to-future': 'Social Sign-in',
+        oldschool: 'Email Sign-in',
     },
 
     'reset-password': {

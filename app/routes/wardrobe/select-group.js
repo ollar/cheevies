@@ -9,7 +9,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
     beforeModel(transition) {
         if (!this.session.isAuthenticated) {
-            this.transitionTo('wardrobe.sign-in');
+            this.transitionTo('wardrobe.social-sign-in');
             transition.abort();
         }
     },
