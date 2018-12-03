@@ -49,9 +49,9 @@ exports.removeImageModelsOnImageSetModelDestroy = functions.database
             return Promise.all(
                 Object.keys(imageSet).map(setKey =>
                     admin
-                        .database()
-                        .ref('/images/' + imageSet[setKey])
-                        .remove()
+                    .database()
+                    .ref('/images/' + imageSet[setKey])
+                    .remove()
                 )
             );
         }
@@ -73,12 +73,29 @@ exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
 });
 
 exports.removeUserModelOnDelete = functions.auth.user().onDelete(user => {
-    var { uid } = user;
+    var {
+        uid
+    } = user;
     return admin
         .database()
         .ref('/users/' + uid)
         .remove();
 });
+
+exports.removeUserFromGroupOnUserDelete = functions.database
+    .ref('/users/{userId}')
+    .onDelete((snapshot, event) => {
+        const userId = event.params.userId;
+        const user = snapshot.val();
+
+        if (user.groups) Object.keys(user.groups).forEach(group => {
+            console.log('group', group);
+            admin
+                .database()
+                .ref('/groups/' + group + '/users/' + userId)
+                .remove();
+        });
+    });
 
 exports.onAddCheevie = functions.database
     .ref('/users/{userId}/cheevies/{cheevieId}')
@@ -105,8 +122,7 @@ exports.onAddCheevie = functions.database
                 notification: {
                     title: "Hooray! You've got new cheevie",
                     body: `"${cheevie.name}" is yours!`,
-                    icon:
-                        'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/firefox-general-128-128.png?alt=media&token=30387e8a-25d1-468c-89cb-f6a28cca5bde',
+                    icon: 'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/firefox-general-128-128.png?alt=media&token=30387e8a-25d1-468c-89cb-f6a28cca5bde',
                     clickAction: 'https://cheevies.club',
                 },
             };
