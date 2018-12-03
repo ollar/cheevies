@@ -3,7 +3,7 @@
     {{#each model.cheevies as |cheevie|}}
       <div class="cheevie-item has-text-centered">
         <div {{action 'pickCheevie' cheevie on="click"}}>
-          {{cheevie-in-list cheevie=cheevie}}
+          {{cheevie-in-list cheevie=cheevie id=cheevie.id}}
         </div>
       </div>
     {{else}}
