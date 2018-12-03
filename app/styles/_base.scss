@@ -1,6 +1,6 @@
 html {
     touch-action: manipulation;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 body {
@@ -140,4 +140,12 @@ h6 {
 
 .hidden {
     @include nigel;
+}
+
+.center-wrapper {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    @include center-wrapper;
+    min-height: 100vh;
+    box-sizing: border-box;
 }

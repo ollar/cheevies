@@ -1,16 +1,8 @@
-.center-wrapper {
-    padding-top: 70px;
-    padding-bottom: 50px;
-    @include center-wrapper;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
 .title {
     margin-bottom: ms(0);
 }
 
-.buttons-wrapper{
+.buttons-wrapper {
     margin-top: ms(2);
 
     button {

@@ -43,6 +43,7 @@ Router.map(function () {
       this.route('sign-out');
       this.route('social-sign-in');
   });
+  this.route('terms-and-conditions');
 });
 
 export default Router;

@@ -17,6 +17,9 @@
     transform: translate(-50%, -50%);
     width: 250px;
     z-index: 1;
+    display: block;
+    min-height: 0;
+    padding: 0;
 }
 
 .control {
