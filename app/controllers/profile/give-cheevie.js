@@ -12,8 +12,10 @@ export default Controller.extend({
 
         pickCheevie(cheevie) {
             let _this = this;
+            let $cheevie = document.getElementById(cheevie.id);
             let tline = new TimelineLite({
                 onComplete() {
+                    $cheevie.parentElement.parentElement.remove();
                     const user = _this.model.user;
                     user.get('cheevies').pushObject(cheevie);
                     user.save().then(() =>
@@ -26,9 +28,7 @@ export default Controller.extend({
                 },
             });
 
-            tline
-                .to(`#${cheevie.id}`, 0.2, { y: -100, scale: 1.2 })
-                .to(`#${cheevie.id}`, 0.2, { opacity: 0 });
+            tline.to($cheevie, 0.2, { y: -100, scale: 1.2 }).to($cheevie, 0.2, { opacity: 0 });
         },
     },
 });

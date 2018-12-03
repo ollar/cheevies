@@ -13,6 +13,7 @@ export default Component.extend(
             return [this.cheevie.id];
         }),
         myCheevies: computed('me.model', function() {
+            if (!this.me.model) return [];
             return this.me.model.cheevies.mapBy('id');
         }),
         _isMineArr: computed.intersect('_id', 'myCheevies'),
