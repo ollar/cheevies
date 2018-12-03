@@ -1,50 +1,31 @@
-import {
-    module,
-    test,
-    skip
-} from 'qunit';
-import {
-    visit,
-    currentURL,
-    fillIn,
-    triggerEvent,
-} from '@ember/test-helpers';
-import {
-    setupApplicationTest
-} from 'ember-qunit';
+import { module, test, skip } from 'qunit';
+import { visit, currentURL, fillIn, triggerEvent } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-import {
-    testgroup,
-    uid,
-    email,
-    password
-} from '../../consts';
-import {
-    sleep
-} from '../../utils';
+import { testgroup, uid, email, password } from '../../consts';
+import { sleep } from '../../utils';
 
-module('Acceptance | wardrobe/sign-up', function (hooks) {
+module('Acceptance | wardrobe/sign-up', function(hooks) {
     setupApplicationTest(hooks);
 
-    test('visiting /wardrobe/sign-up', async function (assert) {
+    test('visiting /wardrobe/sign-up', async function(assert) {
         await visit('/wardrobe/sign-up');
 
         assert.equal(currentURL(), '/wardrobe/sign-up');
     });
 
-    test('visiting /wardrobe/sign-up signed but no group should redirect to select-group', async function (assert) {
-        this.owner.lookup('service:session').set('isAuthenticated', true);
+    test('visiting /wardrobe/sign-up signed but no group should redirect to select-group', async function(assert) {
+        const session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
 
         await visit('/wardrobe/sign-up');
 
         assert.equal(currentURL(), '/wardrobe/select-group');
     });
 
-    skip('visiting /wardrobe/sign-up signed and has group should redirect to index', async function (assert) {
+    skip('visiting /wardrobe/sign-up signed and has group should redirect to index', async function(assert) {
         const session = this.owner.lookup('service:session');
-        await session.authenticate('authenticator:test', {
-            uid
-        });
+        await session.authenticate('authenticator:test', { uid });
         session.set('data.group', testgroup);
 
         await visit('/wardrobe/sign-up');
@@ -55,7 +36,7 @@ module('Acceptance | wardrobe/sign-up', function (hooks) {
     // =============================================================================================
     // ======================================================================= optimistic flow tests
 
-    test('optimistic register flow', async function (assert) {
+    test('optimistic register flow', async function(assert) {
         await visit('/wardrobe/sign-up');
 
         await fillIn('#name', 'tester');
@@ -63,7 +44,7 @@ module('Acceptance | wardrobe/sign-up', function (hooks) {
         await fillIn('#password', password);
         await triggerEvent('form', 'submit');
 
-        await sleep(2000);
+        await sleep(4000);
 
         assert.equal(currentURL(), '/wardrobe/select-group');
     });
