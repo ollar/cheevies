@@ -14,7 +14,7 @@ export default Component.extend(BusyMixin, {
         this.set('noTransition', true);
 
         const onComplete = () => {
-            this.set('noTransition', false);
+            if (!this.isDestroyed || !this.isDestroying) this.set('noTransition', false);
         };
 
         if (this.giveCheevieModal) {
@@ -58,8 +58,10 @@ export default Component.extend(BusyMixin, {
 
             const Y = elY();
             const onComplete = () => {
-                this.set('noTransition', false);
-                if (this.goBack && this.goBack.call) this.goBack();
+                if (!this.isDestroyed || !this.isDestroying) {
+                    this.set('noTransition', false);
+                    if (this.goBack && this.goBack.call) this.goBack();
+                }
             };
             if (this.giveCheevieModal) {
                 TweenLite.fromTo(
