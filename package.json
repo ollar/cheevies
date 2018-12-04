@@ -65,7 +65,7 @@
         "node": "6.* || 8.* || >= 10.*"
     },
     "dependencies": {
-        "draggable-mixin": "0.0.5",
+        "draggable-mixin": "0.0.7",
         "feather-icons": "^4.7.3",
         "image-resize-util": "0.0.5",
         "images-drop-area-component": "0.0.3",

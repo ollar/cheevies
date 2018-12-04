@@ -1,18 +1,26 @@
 import Component from '@ember/component';
 import DraggableMixin from 'draggable-mixin/mixins/draggable';
+import { htmlSafe } from '@ember/string';
+
 export default Component.extend(DraggableMixin, {
     classNames: ['modal-content'],
-    // classNameBindings: ['panAuto:pan-auto', 'disableDrag:pan-auto'],
+    threshold: 100,
+
+    panDirection() {
+        return this.DIRECTION_VERTICAL;
+    },
 
     didInsertElement() {
         this._super(...arguments);
         this.elWrapper = this.element.parentElement;
-        this.elWrapperOffsetHeight = this.elWrapper.offsetHeight;
-        this.elementOffsetHeight = this.element.offsetHeight;
+        const { marginTop } = window.getComputedStyle(this.element);
+        this.set('marginTop', parseInt(marginTop));
     },
 
-    panDirection() {
-        return this.DIRECTION_VERTICAL;
+    handlePanStart() {
+        this.elWrapperOffsetHeight = this.elWrapper.offsetHeight;
+        this.elementOffsetHeight = this.element.offsetHeight;
+        this._super(...arguments);
     },
 
     handlePanMove(ev) {
@@ -20,10 +28,10 @@ export default Component.extend(DraggableMixin, {
         const moveY = transformY + ev.deltaY;
 
         // if modal content is bigger than wrapper
-        if (this.elementOffsetHeight + 55 > this.elWrapperOffsetHeight) {
+        if (this.elementOffsetHeight + this.marginTop > this.elWrapperOffsetHeight) {
             if (
                 this.giveCheevieModal &&
-                this.elementOffsetHeight + moveY + 55 < this.elWrapperOffsetHeight
+                this.elementOffsetHeight + moveY + this.marginTop < this.elWrapperOffsetHeight
             )
                 return ev;
         } else {
@@ -34,36 +42,72 @@ export default Component.extend(DraggableMixin, {
     },
 
     onPanEnvComplete() {
-        this.elWrapper = this.element.parentElement;
-
         //remove it maybe
         if (this.disableDrag) return;
 
         const transformY = this.initialTransform[1];
         const moveY = transformY - this.previousMoveY;
 
-        // pan down
-        if (-transformY + moveY < 0) {
-            if (Math.abs(-transformY + moveY) > 100) {
-                this.goBack();
-                return;
-            }
-        }
-
-        if (this.giveCheevieModal) return;
-
-        // pan up
-        // if modal content is bigger than wrapper
-        if (this.elementOffsetHeight + 55 > this.elWrapperOffsetHeight) {
-            if (this.elementOffsetHeight - this.previousMoveY - this.elWrapperOffsetHeight > 200) {
-                this.goBack();
-                return;
+        if (this.giveCheevieModal) {
+            // Give cheevie modal ==============================================
+            if (this.elementOffsetHeight + this.marginTop < this.elWrapperOffsetHeight) {
+                // modal content is smaller than wrapper =======================
+                if (Math.abs(-transformY + moveY) > this.threshold) {
+                    return this.goBack();
+                } else {
+                    return this._super(...arguments);
+                }
+            } else {
+                // modal content is bigger than wrapper ========================
+                if (-transformY + moveY < 0) {
+                    // pan down
+                    if (Math.abs(-transformY + moveY) > this.threshold) {
+                        return this.goBack();
+                    } else {
+                        return this._super(...arguments);
+                    }
+                }
             }
         } else {
-            if (-transformY + moveY > 0) {
-                if (Math.abs(-transformY + moveY) > 100) {
-                    this.goBack();
-                    return;
+            // Usual modal =====================================================
+            if (this.elementOffsetHeight + this.marginTop < this.elWrapperOffsetHeight) {
+                // modal content is smaller than wrapper =======================
+                if (Math.abs(-transformY + moveY) > this.threshold) {
+                    return this.goBack();
+                } else {
+                    return this._super(...arguments);
+                }
+            } else {
+                // modal content is bigger than wrapper ========================
+                if (-transformY + moveY < 0) {
+                    // pan down
+                    if (Math.abs(-transformY + moveY) > this.threshold) {
+                        return this.goBack();
+                    } else {
+                        return this._super(...arguments);
+                    }
+                } else {
+                    // pan up
+                    let pannedY = this.elementOffsetHeight - transformY + moveY;
+                    let bottomIsVisible = pannedY > this.elWrapperOffsetHeight;
+
+                    if (bottomIsVisible && pannedY < this.elWrapperOffsetHeight + this.threshold) {
+                        return this.set(
+                            'style',
+                            htmlSafe(
+                                `${this.cachedStyle} transform: translate(0px, ${this
+                                    .elWrapperOffsetHeight -
+                                    this.elementOffsetHeight -
+                                    this.marginTop -
+                                    10}px)`
+                            )
+                        );
+                    } else if (
+                        bottomIsVisible &&
+                        pannedY > this.elWrapperOffsetHeight + this.threshold
+                    ) {
+                        return this.goBack();
+                    }
                 }
             }
         }
