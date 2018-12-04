@@ -1,13 +1,7 @@
 import Controller from '@ember/controller';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    schedule
-} from '@ember/runloop';
-import {
-    all
-} from 'rsvp';
+import { inject as service } from '@ember/service';
+import { schedule } from '@ember/runloop';
+import { all } from 'rsvp';
 import firebase from 'firebase';
 
 export default Controller.extend({
@@ -20,20 +14,9 @@ export default Controller.extend({
         this.onError = this.onError.bind(this);
     },
 
-    onSuccess({
-        credential,
-        user
-    }) {
-        const {
-            providerId,
-            accessToken
-        } = credential;
-        const {
-            email,
-            displayName,
-            photoURL,
-            uid
-        } = user;
+    onSuccess({ credential, user }) {
+        const { providerId, accessToken } = credential;
+        const { email, displayName, photoURL, uid } = user;
 
         return this.store
             .findRecord('user', uid)
@@ -48,28 +31,28 @@ export default Controller.extend({
                         '64': image,
                         '128': image,
                         '256': image,
-                        '512': image
+                        '512': image,
                     });
                 }
                 return all([
                     firebase
-                    .database()
-                    .ref('/users/' + uid)
-                    .set({
-                        name: displayName || 'newb',
-                        email: email,
-                        providerId,
-                        'image-set': imageSet ? imageSet.id : '',
-                        accessToken,
-                        created: Date.now(),
-                    }),
+                        .database()
+                        .ref('/users/' + uid)
+                        .set({
+                            name: displayName || 'newb',
+                            email: email,
+                            providerId,
+                            'image-set': imageSet ? imageSet.id : '',
+                            accessToken,
+                            created: Date.now(),
+                        }),
                     image ? image.save() : Promise.resolve(),
                     imageSet ? imageSet.save() : Promise.resolve(),
                 ]);
             })
             .then(() => {
                 this.session.authenticate('authenticator:social', {
-                    uid
+                    uid,
                 });
             })
             .then(() =>
@@ -77,9 +60,18 @@ export default Controller.extend({
                     action: 'logged',
                 })
             )
-            .then(() =>
-                schedule('routerTransitions', () => this.transitionToRoute('wardrobe.select-group'))
-            )
+            .then(() => {
+                const joinGroupModel = this.store.peekAll('join-group').firstObject;
+                if (joinGroupModel) {
+                    this.transitionToRoute('join-group', joinGroupModel['group_id'], {
+                        queryParams: joinGroupModel.queryParams,
+                    });
+                } else {
+                    schedule('routerTransitions', () =>
+                        this.transitionToRoute('wardrobe.select-group')
+                    );
+                }
+            });
     },
 
     onError(error) {
@@ -91,14 +83,10 @@ export default Controller.extend({
 
     actions: {
         googleSignIn() {
-            return this.model
-                .googleSignIn()
-                .then(this.onSuccess, this.onError);
+            return this.model.googleSignIn().then(this.onSuccess, this.onError);
         },
         facebookSignIn() {
-            return this.model
-                .facebookSignIn()
-                .then(this.onSuccess, this.onError);
+            return this.model.facebookSignIn().then(this.onSuccess, this.onError);
         },
     },
 });
