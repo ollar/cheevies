@@ -11,18 +11,25 @@ export default Component.extend(BusyMixin, {
 
     didInsertElement() {
         this._super(...arguments);
+        this.set('noTransition', true);
+
+        const onComplete = () => {
+            this.set('noTransition', false);
+        };
 
         if (this.giveCheevieModal) {
             TweenLite.from('.modal-content', this.animationDuration, {
                 y: '100%',
                 opacity: 0,
                 ease: Power2.easeOut,
+                onComplete,
             });
         } else {
             TweenLite.from('.modal-content', this.animationDuration, {
                 y: 20,
                 opacity: 0,
                 ease: Power2.easeOut,
+                onComplete,
             });
         }
         TweenLite.from('.modal-background,.modal-close', this.animationDuration, {
@@ -32,6 +39,8 @@ export default Component.extend(BusyMixin, {
 
     actions: {
         goBack() {
+            this.set('noTransition', true);
+
             const elY = () => {
                 var y = 0;
 
@@ -49,6 +58,7 @@ export default Component.extend(BusyMixin, {
 
             const Y = elY();
             const onComplete = () => {
+                this.set('noTransition', false);
                 if (this.goBack && this.goBack.call) this.goBack();
             };
             if (this.giveCheevieModal) {

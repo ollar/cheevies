@@ -6,6 +6,7 @@
     height: calc(100vh - 50px);
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    min-height: 0;
 
     &.is-me {
         height: 100vh;
