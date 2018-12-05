@@ -30,7 +30,9 @@ module.exports = function(environment) {
         modulePrefix: 'cheevies-jerk',
         environment,
         rootURL: '/',
+        // rootURL: '',
         locationType: 'auto',
+        // locationType: 'hash',
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build

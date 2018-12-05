@@ -6,9 +6,6 @@
 /dist/
 /tmp/
 
-# dependencies
-/bower_components/
-
 # misc
 /coverage/
 
@@ -20,3 +17,6 @@
 # firebase
 /public/firebase-messaging-sw.js
 /functions/
+
+# cordova
+/cordova-app/
