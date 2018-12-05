@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, fillIn, triggerEvent, waitFor } from '@ember/test-helpers';
+import { visit, currentURL, fillIn, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { testgroup, uid } from '../consts';
@@ -26,10 +26,7 @@ module('Acceptance | create group', function(hooks) {
 
         await fillIn('#name', testgroup);
         await triggerEvent('form', 'submit');
-
-        // await waitFor('.callout.error', {
-        //     timeout: 3000,
-        // });
+        await sleep(3000);
 
         assert.equal(currentURL(), '/create-group');
     });
