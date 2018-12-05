@@ -18,8 +18,8 @@ export default Component.extend(DraggableMixin, {
     },
 
     handlePanStart() {
-        this.elWrapperOffsetHeight = this.elWrapper.offsetHeight;
-        this.elementOffsetHeight = this.element.offsetHeight;
+        this.elWrapperHeight = this.elWrapper.offsetHeight;
+        this.elementHeight = this.element.offsetHeight;
         this._super(...arguments);
     },
 
@@ -28,10 +28,10 @@ export default Component.extend(DraggableMixin, {
         const moveY = transformY + ev.deltaY;
 
         // if modal content is bigger than wrapper
-        if (this.elementOffsetHeight + this.marginTop > this.elWrapperOffsetHeight) {
+        if (this.elementHeight + this.marginTop > this.elWrapperHeight) {
             if (
                 this.giveCheevieModal &&
-                this.elementOffsetHeight + moveY + this.marginTop < this.elWrapperOffsetHeight
+                this.elementHeight + moveY + this.marginTop < this.elWrapperHeight
             )
                 return ev;
         } else {
@@ -47,21 +47,23 @@ export default Component.extend(DraggableMixin, {
 
         const transformY = this.initialTransform[1];
         const moveY = transformY - this.previousMoveY;
+        const resultMoveY = -transformY + moveY;
+        const elRect = this.element.getBoundingClientRect();
 
         if (this.giveCheevieModal) {
             // Give cheevie modal ==============================================
-            if (this.elementOffsetHeight + this.marginTop < this.elWrapperOffsetHeight) {
+            if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
-                if (Math.abs(-transformY + moveY) > this.threshold) {
+                if (Math.abs(resultMoveY) > this.threshold) {
                     return this.goBack();
                 } else {
                     return this._super(...arguments);
                 }
             } else {
                 // modal content is bigger than wrapper ========================
-                if (-transformY + moveY < 0) {
+                if (resultMoveY < 0) {
                     // pan down
-                    if (Math.abs(-transformY + moveY) > this.threshold) {
+                    if (Math.abs(resultMoveY) > this.threshold) {
                         return this.goBack();
                     } else {
                         return this._super(...arguments);
@@ -70,42 +72,38 @@ export default Component.extend(DraggableMixin, {
             }
         } else {
             // Usual modal =====================================================
-            if (this.elementOffsetHeight + this.marginTop < this.elWrapperOffsetHeight) {
+            if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
-                if (Math.abs(-transformY + moveY) > this.threshold) {
+                if (Math.abs(resultMoveY) > this.threshold) {
                     return this.goBack();
                 } else {
                     return this._super(...arguments);
                 }
             } else {
                 // modal content is bigger than wrapper ========================
-                if (-transformY + moveY < 0) {
+                if (resultMoveY < 0) {
                     // pan down
-                    if (Math.abs(-transformY + moveY) > this.threshold) {
+                    if (Math.abs(resultMoveY) > this.threshold) {
                         return this.goBack();
                     } else {
                         return this._super(...arguments);
                     }
                 } else {
                     // pan up
-                    let pannedY = this.elementOffsetHeight - transformY + moveY;
-                    let bottomIsVisible = pannedY > this.elWrapperOffsetHeight;
+                    let pannedY = this.elWrapperHeight + resultMoveY;
+                    let elResultHeight = this.elementHeight + this.marginTop;
+                    let bottomIsVisible = pannedY > elResultHeight;
 
-                    if (bottomIsVisible && pannedY < this.elWrapperOffsetHeight + this.threshold) {
+                    if (bottomIsVisible && pannedY < elResultHeight + this.threshold) {
                         return this.set(
                             'style',
                             htmlSafe(
-                                `${this.cachedStyle} transform: translate(0px, ${this
-                                    .elWrapperOffsetHeight -
-                                    this.elementOffsetHeight -
-                                    this.marginTop -
+                                `${this.cachedStyle} transform: translate(0px, ${-elResultHeight +
+                                    this.elWrapperHeight -
                                     10}px)`
                             )
                         );
-                    } else if (
-                        bottomIsVisible &&
-                        pannedY > this.elWrapperOffsetHeight + this.threshold
-                    ) {
+                    } else if (bottomIsVisible && pannedY > elResultHeight + this.threshold) {
                         return this.goBack();
                     }
                 }
