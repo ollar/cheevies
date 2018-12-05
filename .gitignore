@@ -28,3 +28,4 @@ node_modules/
 .firebase/
 cordova-app/platforms
 cordova-app/plugins
+cordova-app/www
