@@ -27,9 +27,9 @@ module('Acceptance | create group', function(hooks) {
         await fillIn('#name', testgroup);
         await triggerEvent('form', 'submit');
 
-        await waitFor('.callout.error', {
-            timeout: 3000,
-        });
+        // await waitFor('.callout.error', {
+        //     timeout: 3000,
+        // });
 
         assert.equal(currentURL(), '/create-group');
     });
