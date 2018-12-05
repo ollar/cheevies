@@ -9,13 +9,14 @@ export default Component.extend(
         me: service(),
         imageSet: computed.readOnly('cheevie.image-set'),
 
-        id: computed('cheevie.id', function() {
+        _id: computed('cheevie.id', function() {
             return [this.cheevie.id];
         }),
         myCheevies: computed('me.model', function() {
+            if (!this.me.model) return [];
             return this.me.model.cheevies.mapBy('id');
         }),
-        _isMineArr: computed.intersect('id', 'myCheevies'),
+        _isMineArr: computed.intersect('_id', 'myCheevies'),
         isMine: computed.notEmpty('_isMineArr'),
 
         image: computed('imageSet.{}', function() {

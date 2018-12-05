@@ -26,3 +26,5 @@ node_modules/
 # dev
 .env
 .firebase/
+cordova-app/platforms
+cordova-app/plugins

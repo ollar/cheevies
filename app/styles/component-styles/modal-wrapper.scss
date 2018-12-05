@@ -1,13 +1,13 @@
 & {
-  @include center-wrapper;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: auto;
-  z-index: 200;
-  -webkit-overflow-scrolling: touch;
+    @include center-wrapper;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 200;
+    -webkit-overflow-scrolling: touch;
 }
 
 figure {
@@ -25,35 +25,35 @@ figure {
         transform: translate(-50%, -50%);
         stroke-width: 1px;
         pointer-events: none;
-      }
+    }
 }
 
 .modal-background {
     position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  grid-column: all;
-  background: rgba(5, 7, 14, 0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    grid-column: all;
+    background: rgba(5, 7, 14, 0.7);
 }
 
 .modal-content {
-  background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
-  @include center-wrapper;
-  border-radius: 10px;
-  margin-top: 55px;
-  margin-bottom: 55px;
-  position: relative;
-//   transition: transform 0.3s;
+    background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
+    @include center-wrapper;
+    border-radius: 10px;
+    margin-top: 55px;
+    margin-bottom: 55px;
+    position: relative;
+    transition: transform 0.2s;
 
-//     &.is-dragged {
-//         transition: none;
-//     }
-
-    &.pan-auto{
-        touch-action: auto !important;
+    &.no-transition,
+    &.is-dragged {
+        transition: none;
     }
 }
 
-&.is-busy .modal-content{
+&.is-busy .modal-content {
     overflow: hidden;
 
     &:after {
@@ -62,63 +62,64 @@ figure {
         position: absolute;
         opacity: 0.4;
         z-index: 10;
-        top: 0; left: 0;
+        top: 0;
+        left: 0;
     }
 }
 
 .images-drop-area,
 figure.image {
-  grid-column: all;
+    grid-column: all;
 }
 
 figure.image {
-  margin: 0 0 ms(2);
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
+    margin: 0 0 ms(2);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
 
-  img {
-    display: block;
-    width: 100%;
-  }
+    img {
+        display: block;
+        width: 100%;
+    }
 }
 
 .icon-button {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  z-index: 11;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    z-index: 11;
 }
 
 .modal-close {
-  right: 0;
-  left: auto;
+    right: 0;
+    left: auto;
 }
 
 .cheevie-delete {
-  color: #f00;
-  right: 0;
-  left: auto;
+    color: #f00;
+    right: 0;
+    left: auto;
 }
 
 .title,
 .description {
-  margin: 0 0 ms(1, 16px);
+    margin: 0 0 ms(1, 16px);
 }
 
 .control {
-  text-align: center;
+    text-align: center;
 
-  .button {
-    width: 34px;
-    height: 34px;
-    border: none;
-    padding: 4px;
-    color: white;
-    border-radius: 100%;
-    background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
-  }
+    .button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        padding: 4px;
+        color: white;
+        border-radius: 100%;
+        background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
+    }
 }
 
 &.new-cheevies {

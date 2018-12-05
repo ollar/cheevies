@@ -1,5 +1,9 @@
 <a class="modal-background" {{action 'goBack'}}></a>
-{{#modal-content goBack=(action 'goBack') giveCheevieModal=giveCheevieModal disableDrag=disableDrag}}
+{{#modal-content
+    goBack=(action 'goBack')
+    giveCheevieModal=giveCheevieModal
+    disableDrag=disableDrag
+    class=(if noTransition 'no-transition')}}
   {{yield}}
 {{/modal-content}}
 <button class="icon-button modal-close" aria-label="close" {{action 'goBack'}}>

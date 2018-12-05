@@ -12,15 +12,16 @@ module('Acceptance | index', function(hooks) {
 
         await settled();
 
-        assert.equal(currentURL(), '/login');
+        assert.equal(currentURL(), '/wardrobe/social-sign-in');
     });
 
-    test('visiting / signed but no group should redirect to /login', async function(assert) {
-        this.owner.lookup('service:session').set('isAuthenticated', true);
+    test('visiting / signed but no group should redirect to /select-group', async function(assert) {
+        const session = this.owner.lookup('service:session');
+        await session.authenticate('authenticator:test', { uid });
 
         await visit('/');
 
-        assert.equal(currentURL(), '/login');
+        assert.equal(currentURL(), '/wardrobe/select-group');
     });
 
     test('visiting / signed and has group should stay on index', async function(assert) {

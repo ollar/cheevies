@@ -58,17 +58,19 @@ exports.removeImageModelsOnImageSetModelDestroy = functions.database
         return false;
     });
 
-// exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
-//     var { uid, email, displayName } = user;
-//     return admin
-//         .database()
-//         .ref('/users/' + uid)
-//         .set({
-//             name: displayName || 'newb',
-//             email,
-//             created: Date.now(),
-//         });
-// });
+exports.createUserModelOnSignUp = functions.auth.user().onCreate(user => {
+    console.log(user);
+
+    //     var { uid, email, displayName } = user;
+    //     return admin
+    //         .database()
+    //         .ref('/users/' + uid)
+    //         .set({
+    //             name: displayName || 'newb',
+    //             email,
+    //             created: Date.now(),
+    //         });
+});
 
 exports.removeUserModelOnDelete = functions.auth.user().onDelete(user => {
     var { uid } = user;
@@ -77,6 +79,22 @@ exports.removeUserModelOnDelete = functions.auth.user().onDelete(user => {
         .ref('/users/' + uid)
         .remove();
 });
+
+exports.removeUserFromGroupOnUserDelete = functions.database
+    .ref('/users/{userId}')
+    .onDelete((snapshot, event) => {
+        const userId = event.params.userId;
+        const user = snapshot.val();
+
+        if (user.groups)
+            Object.keys(user.groups).forEach(group => {
+                console.log('group', group);
+                admin
+                    .database()
+                    .ref('/groups/' + group + '/users/' + userId)
+                    .remove();
+            });
+    });
 
 exports.onAddCheevie = functions.database
     .ref('/users/{userId}/cheevies/{cheevieId}')

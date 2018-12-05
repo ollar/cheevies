@@ -26,7 +26,7 @@ export default Route.extend({
                 type: 'info',
                 text: this.get('i18n').t('join-group.messages.attempt-signin'),
             });
-            this.transitionTo('register');
+            this.transitionTo('wardrobe.social-sign-in');
             transition.abort();
             return;
         }

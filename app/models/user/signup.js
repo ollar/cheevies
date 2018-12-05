@@ -1,7 +1,11 @@
 import DS from 'ember-data';
 import Validator from '../../mixins/model-validator';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+import {
+    computed
+} from '@ember/object';
+import {
+    inject as service
+} from '@ember/service';
 import firebase from 'firebase';
 
 export default DS.Model.extend(Validator, {
@@ -10,7 +14,6 @@ export default DS.Model.extend(Validator, {
     name: DS.attr('string'),
     password: DS.attr('string'),
     email: DS.attr('string'),
-    group: DS.attr('string'),
 
     init() {
         this._super(...arguments);
@@ -30,9 +33,6 @@ export default DS.Model.extend(Validator, {
         email: {
             presence: true,
             email: true,
-        },
-        group: {
-            presence: true,
         },
     })),
 

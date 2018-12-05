@@ -1,17 +1,17 @@
 {{#modal-wrapper goBack=(action 'goBack') class="give-cheevie-modal" giveCheevieModal=true}}
-  <div class="cheevies grid-wrapper-3">
-    {{#each model.cheevies as |cheevie|}}
-      <div class="cheevie-item has-text-centered">
-        <div {{action 'pickCheevie' cheevie on="click"}}>
-          {{cheevie-in-list cheevie=cheevie}}
-        </div>
-      </div>
-    {{else}}
-      <div class="empty-placeholder">
-        {{t 'no-cheevies-placeholder'}}
-      </div>
-    {{/each}}
-  </div>
+    <div class="cheevies grid-wrapper-3">
+        {{#each model.cheevies as |cheevie|}}
+            <div class="cheevie-item has-text-centered">
+                <div {{action 'pickCheevie' cheevie on="click"}}>
+                    {{cheevie-in-list cheevie=cheevie id=cheevie.id}}
+                </div>
+            </div>
+        {{else}}
+            <div class="empty-placeholder">
+                {{t 'no-cheevies-placeholder'}}
+            </div>
+        {{/each}}
+    </div>
 {{/modal-wrapper}}
 
 {{outlet}}
