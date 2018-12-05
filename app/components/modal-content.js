@@ -48,7 +48,7 @@ export default Component.extend(DraggableMixin, {
         const transformY = this.initialTransform[1];
         const moveY = transformY - this.previousMoveY;
         const resultMoveY = -transformY + moveY;
-        const elRect = this.element.getBoundingClientRect();
+        // const elRect = this.element.getBoundingClientRect();
 
         if (this.giveCheevieModal) {
             // Give cheevie modal ==============================================
