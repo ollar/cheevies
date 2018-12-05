@@ -90,11 +90,12 @@ export default Component.extend(DraggableMixin, {
                     }
                 } else {
                     // pan up
-                    let pannedY = this.elWrapperHeight + resultMoveY;
+                    // let pannedY = this.elWrapperHeight + resultMoveY;
                     let elResultHeight = this.elementHeight + this.marginTop;
-                    let bottomIsVisible = pannedY > elResultHeight;
+                    let bottomOffset = resultMoveY - elResultHeight + this.elWrapperHeight;
+                    let bottomIsVisible = bottomOffset > 0;
 
-                    if (bottomIsVisible && pannedY < elResultHeight + this.threshold) {
+                    if (bottomIsVisible && bottomOffset < this.threshold) {
                         return this.set(
                             'style',
                             htmlSafe(
@@ -103,7 +104,7 @@ export default Component.extend(DraggableMixin, {
                                     10}px)`
                             )
                         );
-                    } else if (bottomIsVisible && pannedY > elResultHeight + this.threshold) {
+                    } else if (bottomIsVisible && bottomOffset > this.threshold) {
                         return this.goBack();
                     }
                 }
