@@ -36,9 +36,6 @@ Router.map(function() {
     this.route('reset-password', {
         path: '/oh-oh-reset-password',
     });
-    this.route('handle-firebase-reset-password', {
-        path: '/__/auth/*',
-    });
     this.route('create-group');
     this.route('join-group', {
         path: '/join/:group_id',
