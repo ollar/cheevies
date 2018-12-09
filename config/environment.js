@@ -110,5 +110,10 @@ module.exports = function(environment) {
         // here you can enable a production-specific feature
     }
 
+    if (environment === 'cordova') {
+        ENV.rootURL = '';
+        ENV.locationType = 'hash';
+    }
+
     return ENV;
 };
