@@ -1,6 +1,6 @@
 {
     "name": "cheevies-jerk",
-    "version": "1.0.257",
+    "version": "1.0.258",
     "private": true,
     "description": "Small description for cheevies-jerk goes here",
     "repository": "",
@@ -19,7 +19,7 @@
     "devDependencies": {
         "@ember/jquery": "^0.5.2",
         "@ember/optional-features": "^0.6.3",
-        "avatar-icon-component": "0.0.2",
+        "avatar-icon-component": "0.0.6",
         "broccoli-asset-rev": "^2.7.0",
         "dotenv": "^6.0.0",
         "ember-ajax": "^3.1.0",
