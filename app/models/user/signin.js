@@ -66,7 +66,12 @@ export default DS.Model.extend(Validator, {
         throw error;
     },
 
+    _prepareSignInFlow() {
+        window.localStorage.setItem('awaitForSignInRedirect', true);
+    },
+
     googleSignIn() {
+        this._prepareSignInFlow();
         return this.firebase
             .auth()
             .signInWithRedirect(new firebase.auth.GoogleAuthProvider())
@@ -74,6 +79,7 @@ export default DS.Model.extend(Validator, {
     },
 
     facebookSignIn() {
+        this._prepareSignInFlow();
         return this.firebase
             .auth()
             .signInWithRedirect(new firebase.auth.FacebookAuthProvider())

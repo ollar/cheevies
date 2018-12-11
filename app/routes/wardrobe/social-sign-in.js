@@ -20,15 +20,17 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     activate() {
-        firebase
-            .auth()
-            .getRedirectResult()
-            .then(result => {
-                this.controllerFor(this.routeName).onSuccess(result);
-            })
-            .catch(error => {
-                this.controllerFor(this.routeName).onError(error);
-            });
+        if (window.localStorage.getItem('awaitForSignInRedirect')) {
+            firebase
+                .auth()
+                .getRedirectResult()
+                .then(result => {
+                    this.controllerFor(this.routeName).onSuccess(result);
+                })
+                .catch(error => {
+                    this.controllerFor(this.routeName).onError(error);
+                });
+        }
     },
 
     actions: {

@@ -19,6 +19,8 @@ export default Controller.extend({
         const { providerId, accessToken } = credential;
         const { email, displayName, photoURL, uid } = user;
 
+        window.localStorage.removeItem('awaitForSignInRedirect');
+
         return this.store
             .findRecord('user', uid)
             .catch(() => {
