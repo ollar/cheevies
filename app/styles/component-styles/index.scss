@@ -1,43 +1,43 @@
 & {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .sections-wrapper {
-  width: 200vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  transition: transform 0.3s;
-  height: calc(100vh - 50px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+    width: 200vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: transform 0.3s;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
-  &.is-dragged {
-    transition: none;
-  }
+    &.is-dragged {
+        transition: none;
+    }
 
-  &.cheevies {
-    transform: translate(-50%, 0);
-  }
+    &.cheevies {
+        transform: translate(-50%, 0);
+    }
 }
 
 section {
-  padding: 50px 0 ms(0);
-  width: 100vw;
-  box-sizing: border-box;
+    padding: 50px 0 ms(0);
+    width: 100vw;
+    box-sizing: border-box;
 }
 
 .users-list {
-  a:nth-child(2n - 1) {
-    .cheevies-counter {
-      left: auto;
-      right: 0;
+    a:nth-child(2n - 1) {
+        .cheevies-counter {
+            left: auto;
+            right: 0;
+        }
     }
-  }
 }
 
 .empty-placeholder {
-  align-self: flex-start;
-  margin-top: 40vh;
+    align-self: flex-start;
+    margin-top: 40vh;
 }
 
 .cheevies-list {
@@ -48,13 +48,14 @@ section {
 
             &:after {
                 content: '';
-                transform: rotate(210deg);
+                transform: rotate(210deg) scale(1);
                 position: absolute;
                 @include size(100%);
-                left: 0; top: 0;
+                left: 0;
+                top: 0;
                 border-radius: 100%;
                 box-shadow: -5px 0 20px var(--backgroundColour0),
-                            5px 0 20px var(--backgroundColour1);
+                    5px 0 20px var(--backgroundColour1);
 
                 animation-name: glowing;
                 animation-iteration-count: infinite;
@@ -67,34 +68,34 @@ section {
 }
 
 footer {
-  color: #fff;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #05070E;
+    color: #fff;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #05070E;
 
-  button {
-    margin: 0 ms(0);
+    button {
+        margin: 0 ms(0);
 
-    &.active {
-      svg {
-        stroke-width: 3px;
-      }
+        &.active {
+            svg {
+                stroke-width: 3px;
+            }
+        }
     }
-  }
 }
 
 @keyframes glowing {
     from {
-        transform: scale(0.95);
+        transform: rotate(210deg) scale(0.95);
     }
 
     50% {
-        transform: scale(1);
+        transform: rotate(210deg) scale(1);
     }
 
     to {
-        transform: scale(0.95);
+        transform: rotate(210deg) scale(0.95);
     }
 }
