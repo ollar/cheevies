@@ -51,6 +51,8 @@ export default {
         group_already_exist: 'Such group already exist. Please find another name',
         'email-auth-required':
             'This account exists with email authentification method. Please sign in with email to link accounts',
+        screen_width_warning:
+            'This app is optimized for mobile devices. It is recommended to install it as a standalone app for better user experience.',
     },
 
     buttons: {

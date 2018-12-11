@@ -1,3 +1,11 @@
+<ul class="form-errors">
+    {{#each _model.errors as |error|}}
+    <li>
+        {{error.attribute}}: {{error.message}}
+    </li>
+    {{/each}}
+</ul>
+
 <form {{action 'updateCheevie' on="submit"}}>
   <div class="field">
     <label class="label" for="name">{{t 'create-cheevie.form.name.label'}}</label>

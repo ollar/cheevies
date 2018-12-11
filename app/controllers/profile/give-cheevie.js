@@ -1,9 +1,12 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import { TimelineLite } from 'gsap';
 
 export default Controller.extend({
     activity: service(),
+
+    cheevies: computed.alias('model.cheevies'),
 
     actions: {
         goBack() {
@@ -15,7 +18,11 @@ export default Controller.extend({
             let $cheevie = document.getElementById(cheevie.id);
             let tline = new TimelineLite({
                 onComplete() {
-                    $cheevie.parentElement.parentElement.remove();
+                    _this.set(
+                        'cheevies',
+                        _this.model.cheevies.filter(_cheevie => _cheevie.id !== cheevie.id)
+                    );
+
                     const user = _this.model.user;
                     user.get('cheevies').pushObject(cheevie);
                     user.save().then(() =>

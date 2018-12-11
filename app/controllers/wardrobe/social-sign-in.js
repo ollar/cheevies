@@ -15,8 +15,11 @@ export default Controller.extend({
     },
 
     onSuccess({ credential, user }) {
+        if (!credential || !user) return;
         const { providerId, accessToken } = credential;
         const { email, displayName, photoURL, uid } = user;
+
+        window.localStorage.removeItem('awaitForSignInRedirect');
 
         return this.store
             .findRecord('user', uid)

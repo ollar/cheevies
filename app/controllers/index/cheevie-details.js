@@ -62,6 +62,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             return this._removeImage(true);
         },
         updateCheevie() {
+            if (!this._model.validate()) return;
+
             this.setBusy(true);
 
             return resolve()

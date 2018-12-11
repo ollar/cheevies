@@ -27,6 +27,11 @@ module.exports = function(defaults) {
         },
     });
 
+    if (environment === 'cordova') {
+        app.options.minifyCSS.enabled = true;
+        app.options.minifyJS.enabled = true;
+    }
+
     app.import('node_modules/normalize.css/normalize.css');
     app.import('node_modules/feather-icons/dist/feather-sprite.svg');
 
