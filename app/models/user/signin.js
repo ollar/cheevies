@@ -69,14 +69,14 @@ export default DS.Model.extend(Validator, {
     googleSignIn() {
         return this.firebase
             .auth()
-            .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+            .signInWithRedirect(new firebase.auth.GoogleAuthProvider())
             .catch(e => this.handleSocialError(e));
     },
 
     facebookSignIn() {
         return this.firebase
             .auth()
-            .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+            .signInWithRedirect(new firebase.auth.FacebookAuthProvider())
             .catch(e => this.handleSocialError(e));
     },
 });
