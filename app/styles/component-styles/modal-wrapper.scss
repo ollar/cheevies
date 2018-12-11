@@ -42,10 +42,13 @@ figure {
     background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
     @include center-wrapper;
     border-radius: 10px;
+    margin: auto;
     margin-top: 55px;
     margin-bottom: 55px;
     position: relative;
     transition: transform 0.2s;
+    max-width: 600px;
+    width: 100%;
 
     &.no-transition,
     &.is-dragged {
@@ -147,5 +150,6 @@ figure.image {
         margin-bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        max-width: 100%;
     }
 }
