@@ -7,7 +7,7 @@ cache:
 
 stages:
     - test
-    - before_deploy
+    - patch_version
     - deploy
 
 test:
@@ -22,15 +22,25 @@ test:
         - npm test
     retry: 2
 
-prepare_to_deploy:
-    stage: before_deploy
+patch_version:
+    stage: patch_version
+    when: on_success
     script:
-        - cd functions
-        - npm i
-        - cd ..
+        - echo "git push"
+        - git config --global user.email "runner@gitlab-ci.org"
+        - git config --global user.name "Duffy runner"
+        # - git checkout ${CI_COMMIT_REF_NAME}
+
+        - npm version patch -m "Version up to %s [skip ci]"
+
+        - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/${CI_COMMIT_REF_SLUG}
 
 deploy_production:
     stage: deploy
+    before_script:
+        - cd functions
+        - npm i
+        - cd ..
     script: ember deploy production --verbose
     # CI_PROJECT_DIR
     only:
@@ -39,6 +49,10 @@ deploy_production:
 
 deploy_development:
     stage: deploy
+    before_script:
+        - cd functions
+        - npm i
+        - cd ..
     script: ember deploy development --verbose
     only:
         refs:
