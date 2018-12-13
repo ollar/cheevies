@@ -2,25 +2,20 @@ image: node:10
 
 cache:
     paths:
-        - '$HOME/.npm'
+        - $HOME/.npm
         - node_modules
 
 stages:
-    - prepare
-    - build
     - test
     - before_deploy
     - deploy
 
-prepare:
-    stage: prepare
-    script:
+test:
+    before_script:
         - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
         - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         - apt-get update && apt-get install -y google-chrome-stable
         - npm i
-
-test:
     stage: test
     script:
         - npm run lint:js
