@@ -28,3 +28,15 @@ prepare_to_deploy:
         - cd functions
         - npm i
         - cd ..
+
+deploy:
+    - stage: deploy
+      script: ember deploy production --verbose
+      # CI_PROJECT_DIR
+      only:
+          refs: master
+
+    - stage: deploy
+      script: ember deploy development --verbose
+      only:
+          refs: dev
