@@ -29,11 +29,11 @@ patch_version:
         - echo "git push"
         - git config --global user.email "runner@gitlab-ci.org"
         - git config --global user.name "Duffy runner"
-        # - git checkout ${CI_COMMIT_REF_NAME}
+        - git checkout ${CI_COMMIT_REF_NAME}
 
         - npm version patch -m "Version up to %s [skip ci]"
 
-        - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/${CI_COMMIT_REF_SLUG}
+        - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_PATH_SLUG} HEAD:${CI_COMMIT_REF_NAME}
 
 deploy_production:
     stage: deploy
