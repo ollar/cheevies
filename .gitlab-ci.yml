@@ -1,5 +1,26 @@
+image: node:10
+
 stages:
     - prepare
     - build
     - test
+    - before_deploy
     - deploy
+
+prepare:
+    stage: prepare
+    script:
+        - npm i
+
+test:
+    stage: test
+    script:
+        - npm run lint:js
+        - npm test
+
+prepare_to_deploy:
+    stage: before_deploy
+    script:
+        - cd functions
+        - npm i
+        - cd ..
