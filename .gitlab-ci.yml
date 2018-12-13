@@ -1,5 +1,10 @@
 image: node:10
 
+cache:
+    paths:
+        - '$HOME/.npm'
+        - node_modules
+
 stages:
     - prepare
     - build
