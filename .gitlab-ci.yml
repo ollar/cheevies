@@ -33,7 +33,6 @@ patch_version:
 
         - npm version patch -m "Version up to %s [skip ci]"
 
-        # - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_PATH_SLUG} HEAD:${CI_COMMIT_REF_NAME}
         - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ollar/cheevies.git HEAD:${CI_COMMIT_REF_NAME}
 
 deploy_production:
@@ -42,7 +41,7 @@ deploy_production:
         - cd functions
         - npm i
         - cd ..
-    script: ember deploy production --verbose
+    script: ./node_modules/.bin/ember deploy production --verbose
     # CI_PROJECT_DIR
     only:
         refs:
@@ -54,7 +53,7 @@ deploy_development:
         - cd functions
         - npm i
         - cd ..
-    script: ember deploy development --verbose
+    script: ./node_modules/.bin/ember deploy development --verbose
     only:
         refs:
             - dev
