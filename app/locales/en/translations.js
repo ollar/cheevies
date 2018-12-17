@@ -113,6 +113,9 @@ export default {
             animations: {
                 label: 'Animations',
             },
+            iconsDescription: {
+                label: 'Icons Descriptions',
+            },
             standaloneApp: {
                 label: 'Install App on Homescreen',
             },

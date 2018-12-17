@@ -149,3 +149,11 @@ h6 {
     min-height: 100vh;
     box-sizing: border-box;
 }
+
+.icons-description-hidden {
+    [class*="__svg-icon"] {
+        .title {
+            @include nigel();
+        }
+    }
+}
