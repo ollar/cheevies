@@ -8,6 +8,9 @@ export default DS.Model.extend(Validator, {
     users: DS.hasMany('user'),
     locked: DS.attr('boolean', { defaultValue: false }),
     code: DS.attr('string', { defaultValue: '0000' }),
+    author: DS.belongsTo('user', { inverse: null }),
+    moderators: DS.hasMany('user', { inverse: null }),
+    policy: DS.attr(''),
 
     validations: computed(() => ({
         name: {
