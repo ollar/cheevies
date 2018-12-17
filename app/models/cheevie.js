@@ -7,6 +7,7 @@ export default DS.Model.extend(Validator, {
 
     'image-set': DS.belongsTo('image-set'),
     group: DS.belongsTo(),
+    author: DS.belongsTo('user', { inverse: null }),
     name: DS.attr('string'),
     description: DS.attr('string'),
     power: DS.attr('string', { defaultValue: 'low' }),

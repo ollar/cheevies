@@ -7,6 +7,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     activity: service(),
+    me: service(),
     _model: computed.alias('model.cheevie'),
     _file: null,
     _image: computed('_file', function() {
@@ -46,6 +47,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                     const model = this.get('_model');
 
                     model.set('group', group);
+                    model.set('author', this.me.model);
                     group.get('cheevies').pushObject(model);
                     return all([model.save(), group.save()]).then(() =>
                         this.transitionToRoute('index')
