@@ -218,6 +218,25 @@ export default {
         },
     },
 
+    icons: {
+        close: 'Close',
+        edit: 'Edit',
+        back: 'Back',
+        menu: 'Menu',
+        cancel: 'Cancel',
+        remove: 'Remove',
+        add_image: 'Add image',
+        settings: 'Settings',
+        activity: 'Activity',
+        sign_out: 'Sign Out',
+        users: 'Users',
+        cheevies: 'Cheevies',
+        refuse: 'Refuse',
+        share: 'Share',
+        reward: 'Reward',
+        invite: 'Invite',
+    },
+
     'TERMS-OF-SERVICE': {
         title: 'TERMS OF SERVICE',
         text: `OVERVIEW

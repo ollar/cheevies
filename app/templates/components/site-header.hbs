@@ -1,10 +1,10 @@
 {{#if isIndex}}
 <button class="drawer-toggle-button icon-button" {{action 'toggleDrawer'}}>
-  {{svg-icon _size=24 _name="menu"}}
+  {{svg-icon _size=24 _name="menu" _title=(t 'icons.menu') class="h-center bottom"}}
 </button>
 {{else}}
 <button class="drawer-toggle-button icon-button" {{action 'goBack'}}>
-  {{svg-icon _size=24 _name="chevron-left"}}
+  {{svg-icon _size=24 _name="chevron-left" _title=(t 'icons.back') class="h-center bottom"}}
 </button>
 {{/if}}
 

@@ -33,9 +33,9 @@
 
 <footer>
   <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{action 'setActivePage' 'users'}}>
-    {{svg-icon _name="users" _size=24}}
+    {{svg-icon _name="users" _size=24 _title=(t 'icons.users') class="bottom h-center"}}
   </button>
   <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{action 'setActivePage' 'cheevies'}}>
-    {{svg-icon _name="star" _size=24}}
+    {{svg-icon _name="star" _size=24 _title=(t 'icons.cheevies') class="bottom h-center"}}
   </button>
 </footer>

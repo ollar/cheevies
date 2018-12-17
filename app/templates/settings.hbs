@@ -52,7 +52,7 @@
             </span>
             {{#unless groupModel.hasDirtyAttributes}}
                 <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
-                    {{svg-icon _name="share-2" _size=18}}
+                    {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
                 </button>
             {{/unless}}
         </h2>

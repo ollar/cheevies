@@ -6,7 +6,7 @@
 }}
   {{#if (eq showMode)}}
     <button class="icon-button mode-toggle is-info" {{action 'toggleMode'}}>
-      {{svg-icon _name="edit" _size=24}}
+      {{svg-icon _name="edit" _size=24 _title=(t 'icons.edit') class="h-center bottom"}}
     </button>
 
     {{#if _image}}
@@ -29,10 +29,10 @@
     </div>
   {{else}}
     <button class="icon-button mode-toggle" {{action 'toggleMode'}}>
-      {{svg-icon _name="chevron-left" _size=24}}
+      {{svg-icon _name="chevron-left" _size=24 _title=(t 'icons.cancel') class="h-center bottom"}}
     </button>
     <button class="icon-button cheevie-delete" {{action 'deleteCheevie'}}>
-      {{svg-icon _name="trash-2" _size=24}}
+      {{svg-icon _name="trash-2" _size=24 _title=(t 'icons.remove') class="h-center bottom"}}
     </button>
 
     {{#images-drop-area
@@ -44,11 +44,11 @@
         </figure>
 
         <button class="icon-button delete" {{action 'removeImage'}}>
-          {{svg-icon _name="x" _size=48}}
+          {{svg-icon _name="x" _size=48 _title=(t 'icons.remove') class="h-center bottom"}}
         </button>
       {{else}}
         <div class="drop-area">
-          {{svg-icon _name="image" _size=48}}
+          {{svg-icon _name="image" _size=48 _title=(t 'icons.add_image') class="h-center bottom"}}
         </div>
       {{/if}}
     {{/images-drop-area}}
