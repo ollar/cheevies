@@ -35,3 +35,43 @@
 section {
     margin: 0 0 ms(2);
 }
+
+.field.variants {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .description {
+        flex-basis: 100%;
+        font-size: 0.85rem;
+        font-weight: 100;
+    }
+
+    .status {
+        background: linear-gradient(210deg, var(--backgroundColour0), var(--backgroundColour1));
+
+        span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &.anarchy {
+            --backgroundColour0: #12C2E9;
+            --backgroundColour1: #00F260;
+        }
+
+        &.democracy {
+            --backgroundColour0: #4838FF;
+            --backgroundColour1: #0075FF;
+        }
+
+        &.totalitarianism {
+            --backgroundColour0: #FF0000;
+            --backgroundColour1: #CD04FF;
+        }
+    }
+}

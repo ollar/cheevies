@@ -137,6 +137,19 @@ export default {
                 label: 'Invitation code',
                 placeholder: 'Type group invitation code',
             },
+
+            policy: {
+                label: 'Group policy',
+                anarchy: 'Anarchy',
+                democracy: 'Democracy',
+                totalitarianism: 'Totalitarianism',
+            },
+
+            policy_description: {
+                anarchy: 'All participant can create or edit cheevies',
+                democracy: 'Group moderators can create or edit cheevies',
+                totalitarianism: 'Only group owner can create or edit cheevies',
+            },
         },
 
         feedback: {
@@ -237,7 +250,7 @@ export default {
         refuse: 'Refuse',
         share: 'Share',
         reward: 'Reward',
-        invite: 'Invite',
+        invite: 'Invite New Participant',
     },
 
     'TERMS-OF-SERVICE': {

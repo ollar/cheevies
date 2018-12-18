@@ -91,6 +91,30 @@
                 </div>
             </div>
 
+            <div class="field policy variants">
+                <div class="">{{t 'settings.form.policy.label'}}</div>
+
+                {{#each groupModel.policies as |policy|}}
+                    <label class="control" for={{policy}}>
+                    <input
+                        type="radio"
+                        name="power"
+                        id={{policy}}
+                        value={{policy}}
+                        checked={{eq groupModel.policy policy}}
+                        onchange={{action (mut groupModel.policy) value='target.value'}}>
+
+                    <div class="status {{policy}}">
+                        <span>{{t (add 'settings.form.policy.' policy)}}</span>
+                    </div>
+                    </label>
+                {{/each}}
+
+                <div class="description">
+                    {{t (add 'settings.form.policy_description.' groupModel.policy)}}
+                </div>
+            </div>
+
             <label class="field checkbox-wrapper" for="locked">
                 {{input
                     type="checkbox"
