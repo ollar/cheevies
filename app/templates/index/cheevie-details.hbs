@@ -4,10 +4,12 @@
     busy=busy
     disableDrag=editMode
 }}
-  {{#if (eq showMode)}}
-    <button class="icon-button mode-toggle is-info" {{action 'toggleMode'}}>
-      {{svg-icon _name="edit" _size=24 _title=(t 'icons.edit') class="h-center bottom"}}
-    </button>
+  {{#if showMode}}
+    {{#if canEditCheevie}}
+        <button class="icon-button mode-toggle is-info" {{action 'toggleMode'}}>
+        {{svg-icon _name="edit" _size=24 _title=(t 'icons.edit') class="h-center bottom"}}
+        </button>
+    {{/if}}
 
     {{#if _image}}
         <figure class="image">
