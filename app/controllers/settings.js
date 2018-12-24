@@ -40,7 +40,7 @@ export default Controller.extend({
         });
     },
 
-    userIsModerator: computed('me.model.id,groupModel.moderators', function() {
+    userIsModerator: computed('me.model.id', 'groupModel.moderators', function() {
         return userIsModerator(this.groupModel, this.me.model);
     }),
 

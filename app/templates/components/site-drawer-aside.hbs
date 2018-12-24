@@ -3,44 +3,46 @@
 </div>
 
 <div class="info">
-  <h3 class="user-name">
-    {{me.model.name}}
-  </h3>
+    <h3 class="user-name">
+        {{me.model.name}}
+    </h3>
 
-  <div class="cheevies-list">
-    <div class="grid-wrapper-3">
-      {{#each cheevies as |cheevie|}}
-        {{cheevie-in-list cheevie=cheevie class="cheevie-in-list"}}
-      {{else}}
-        <div class="empty-placeholder">
-          {{t 'you-have-no-cheevies-yet'}}
+    <div class="cheevies-list">
+        <div class="grid-wrapper-3">
+            {{#each cheevies as |cheevie|}}
+            {{cheevie-in-list cheevie=cheevie class="cheevie-in-list"}}
+            {{else}}
+            <div class="empty-placeholder">
+                {{t 'you-have-no-cheevies-yet'}}
+            </div>
+            {{/each}}
         </div>
-      {{/each}}
     </div>
-  </div>
 
-  <div class="add-cheevie-wrapper">
-    <button class="icon-button" {{action 'createCheevie'}}>
-      {{svg-icon _name="plus-circle" _size=48}}
-    </button>
-    <span class="add-cheevie-text">
-      {{t 'create-cheevie.title'}}
-    </span>
-  </div>
+    {{#if canCreateCheevie}}
+        <div class="add-cheevie-wrapper">
+            <button class="icon-button" {{action 'createCheevie'}}>
+                {{svg-icon _name="plus-circle" _size=48}}
+            </button>
+            <span class="add-cheevie-text">
+                {{t 'create-cheevie.title'}}
+            </span>
+        </div>
+    {{/if}}
 </div>
 
 {{yield}}
 
 <footer class="drawer-footer">
     {{#link-to 'settings'}}
-        {{svg-icon _name="settings" _size=24 _title=(t 'icons.settings') class="bottom h-center"}}
+    {{svg-icon _name="settings" _size=24 _title=(t 'icons.settings') class="bottom h-center"}}
     {{/link-to}}
 
     {{#link-to 'activity'}}
-        {{svg-icon _name="clock" _size=24 _title=(t 'icons.activity') class="bottom h-center"}}
+    {{svg-icon _name="clock" _size=24 _title=(t 'icons.activity') class="bottom h-center"}}
     {{/link-to}}
 
-  <button class="icon-button" {{action 'invalidate'}}>
-    {{svg-icon _name="log-out" _size=24 _title=(t 'icons.sign_out') class="bottom h-center"}}
-  </button>
+    <button class="icon-button" {{action 'invalidate'}}>
+        {{svg-icon _name="log-out" _size=24 _title=(t 'icons.sign_out') class="bottom h-center"}}
+    </button>
 </footer>
