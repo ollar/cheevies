@@ -67,6 +67,31 @@ section {
     }
 }
 
+.guide-invitation-button-wrapper {
+    --backgroundColour0: #0075FF;
+    --backgroundColour1: #4838FF;
+    position: absolute;
+    z-index: 101;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: linear-gradient(210deg, var(--backgroundColour0), var(--backgroundColour1));
+    border-radius: 10px;
+    width: 250px;
+
+    a {
+        display: block;
+        padding: ms(-1) ms(1) ms(-1) ms(0);
+        text-decoration: none;
+    }
+
+    button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+}
+
 footer {
     color: #fff;
     height: 50px;

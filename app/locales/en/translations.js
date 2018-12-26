@@ -102,6 +102,7 @@ export default {
         subtitle: {
             general: 'General',
             'group-settings': 'Group Settings',
+            additional: 'Additional',
         },
         form: {
             pushNotifications: {
@@ -187,6 +188,8 @@ export default {
         'create-group': 'Create Group',
         'back-to-future': 'Social Sign in',
         oldschool: 'Email Sign in',
+        'guide-text': 'See the guide',
+        'guide-invitation-text': 'Would you like to see the guide first?',
     },
 
     'reset-password': {

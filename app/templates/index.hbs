@@ -1,3 +1,13 @@
+{{#unless hideGuidePopup}}
+    <div class="guide-invitation-button-wrapper">
+        {{link-to (t 'nav.guide-invitation-text') 'index.guide'}}
+
+        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
+            {{svg-icon _name="x" _size=24}}
+        </button>
+    </div>
+{{/unless}}
+
 {{#particles-container}}
 {{#index-sections-wrapper
     class=(add "sections-wrapper " activePage)

@@ -11,6 +11,10 @@ export default Controller.extend({
         return this.model.users.filter(user => user.id !== this.model.me.id);
     }),
 
+    hideGuidePopup: computed(function() {
+        return window.localStorage.getItem('hideGuidePopup');
+    }),
+
     cheevies: computed.readOnly('myGroup.cheevies'),
 
     actions: {
@@ -19,6 +23,11 @@ export default Controller.extend({
         },
         setActivePage(type) {
             this.set('activePage', type);
+        },
+
+        hideGuidePopup() {
+            this.set('hideGuidePopup', true);
+            return window.localStorage.setItem('hideGuidePopup', true);
         },
     },
 });
