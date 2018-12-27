@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import DraggableMixin from 'draggable-mixin/mixins/draggable';
 import { throttle } from '@ember/runloop';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend(DraggableMixin, {
     tagName: 'ul',
@@ -19,11 +20,13 @@ export default Component.extend(DraggableMixin, {
     },
 
     _setSliderWidth() {
-        if (this.element)
+        if (this.element) {
+            this.set('slideWidth', this.elementWrapper.offsetWidth);
             this.element.style.setProperty(
                 '--computedWidth',
-                `${this.slidesNumber * this.elementWrapper.offsetWidth}px`
+                `${this.slidesNumber * this.slideWidth}px`
             );
+        }
     },
 
     didInsertElement() {
@@ -39,5 +42,24 @@ export default Component.extend(DraggableMixin, {
 
     willDestroyElement() {
         window.removeEventListener('resize', this._setSliderWidth);
+    },
+
+    onPanEnvComplete() {
+        const transformX = this.initialTransform[0];
+        const moveX = transformX - this.previousMoveX;
+
+        if (moveX > 0) {
+            if (this.activeSlide < this.slidesNumber - 1) this.incrementProperty('activeSlide');
+        } else {
+            if (this.activeSlide > 0) this.decrementProperty('activeSlide');
+        }
+
+        this.set(
+            'style',
+            htmlSafe(
+                `${this.cachedStyle} transform: translate(${-this.activeSlide *
+                    this.slideWidth}px, 0)`
+            )
+        );
     },
 });
