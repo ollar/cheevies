@@ -29,10 +29,7 @@ export default Component.extend(DraggableMixin, {
     didInsertElement() {
         this._super();
 
-        this.elementWrapper = document.createElement('div');
-        this.elementWrapper.className = 'draggable-slider-wrapper';
-        this.element.parentNode.insertBefore(this.elementWrapper, this.element);
-        this.elementWrapper.appendChild(this.element);
+        this.elementWrapper = this.element.parentNode;
 
         this.set('slidesNumber', this.element.querySelectorAll('li').length);
         this._setSliderWidth();
