@@ -11,10 +11,17 @@ export default Component.extend(DraggableMixin, {
     },
 
     didInsertElement() {
-        this._super(...arguments);
         this.elWrapper = this.element.parentElement;
         const { marginTop } = window.getComputedStyle(this.element);
         this.set('marginTop', parseInt(marginTop));
+
+        if (this.disableDrag) return;
+        this._super(...arguments);
+    },
+
+    willDestroyElement() {
+        if (this.disableDrag) return;
+        this._super(...arguments);
     },
 
     handlePanStart() {

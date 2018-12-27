@@ -1,1 +1,43 @@
-{{outlet}}
+{{#modal-wrapper
+    goBack=(action 'goBack')
+    busy=busy
+    disableDrag=true
+}}
+
+    {{#draggable-slider class="slides"}}
+        <li class="slide">
+            video
+
+            <h1 class="slide-title">
+                {{t 'slides.title.create-cheevie'}}
+            </h1>
+        </li>
+
+        <li class="slide">
+            video
+
+            <h1 class="slide-title">
+                {{t 'slides.title.edit-cheevie'}}
+            </h1>
+        </li>
+
+        <li class="slide">
+            video
+
+            <h1 class="slide-title">
+                {{t 'slides.title.present-cheevie'}}
+            </h1>
+        </li>
+
+        <li class="slide">
+            video
+
+            <h1 class="slide-title">
+                {{t 'slides.title.invite-new-pal'}}
+            </h1>
+        </li>
+    {{/draggable-slider}}
+
+    {{outlet}}
+
+{{/modal-wrapper}}

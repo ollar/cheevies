@@ -1,0 +1,17 @@
+& {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.2s;
+}
+
+&>li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    flex: 0 0 100%;
+}
+
+&.is-dragged {
+    transition: none;
+}
