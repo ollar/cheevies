@@ -256,6 +256,15 @@ export default {
         invite: 'Invite New Participant',
     },
 
+    slides: {
+        title: {
+            'create-cheevie': 'Create Cheevie',
+            'edit-cheevie': 'Edit Cheevie',
+            'present-cheevie': 'Give a Cheevie',
+            'invite-new-pal': 'Invite New Pal',
+        },
+    },
+
     'TERMS-OF-SERVICE': {
         title: 'TERMS OF SERVICE',
         text: `OVERVIEW

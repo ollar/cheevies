@@ -1,13 +1,15 @@
 {{#modal-wrapper
     goBack=(action 'goBack')
     busy=busy
-    disableDrag=true
 }}
 
     <div class="draggable-slider-wrapper">
         {{#draggable-slider class="slides"}}
             <li class="slide">
-                video
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/create-cheevie.webm'}}
+                        type="video/webm">
+                </video>
 
                 <h1 class="slide-title">
                     {{t 'slides.title.create-cheevie'}}
@@ -15,7 +17,10 @@
             </li>
 
             <li class="slide">
-                video
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/cheevie-edit.webm'}}
+                        type="video/webm">
+                </video>
 
                 <h1 class="slide-title">
                     {{t 'slides.title.edit-cheevie'}}
@@ -23,7 +28,10 @@
             </li>
 
             <li class="slide">
-                video
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/give-cheevie.webm'}}
+                        type="video/webm">
+                </video>
 
                 <h1 class="slide-title">
                     {{t 'slides.title.present-cheevie'}}
@@ -31,7 +39,10 @@
             </li>
 
             <li class="slide">
-                video
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/invite-pal.webm'}}
+                        type="video/webm">
+                </video>
 
                 <h1 class="slide-title">
                     {{t 'slides.title.invite-new-pal'}}
