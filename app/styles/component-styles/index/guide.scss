@@ -3,3 +3,13 @@ video {
     height: auto;
     margin-bottom: ms(1);
 }
+
+.draggable-slider-wrapper {
+    grid-column: all !important;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+
+    h1 {
+        margin: 0 1.5rem 1em;
+    }
+}
