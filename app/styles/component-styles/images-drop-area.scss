@@ -5,7 +5,10 @@
 #file-input {
     position: absolute;
     opacity: 0;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     z-index: 10;
 }
@@ -13,13 +16,17 @@
 .drop-area {
     height: 30vh;
 
-    svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    stroke-width: 1px;
-    pointer-events: none;
+    [class*='__svg-icon'] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        white-space: nowrap;
+
+        svg {
+            stroke-width: 1px;
+        }
     }
 }
 

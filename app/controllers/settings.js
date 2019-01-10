@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 import { getOwner } from '@ember/application';
 import { schedule } from '@ember/runloop';
+import { userIsModerator } from '../utils/user-role';
 
 export default Controller.extend({
     firebaseApp: service(),
@@ -38,6 +39,10 @@ export default Controller.extend({
             return this.get('me.model').save();
         });
     },
+
+    userIsModerator: computed('me.model.id', 'groupModel.moderators', function() {
+        return userIsModerator(this.groupModel, this.me.model);
+    }),
 
     actions: {
         updatePushNotifications(e) {

@@ -13,15 +13,6 @@ test('it renders', function(assert) {
         goBack: () => true,
     };
 
-    this.render(hbs`{{modal-wrapper goBack=(action 'goBack')}}`);
-
-    assert.equal(
-        this.$()
-            .text()
-            .trim(),
-        ''
-    );
-
     // Template block usage:
     this.render(hbs`
     {{#modal-wrapper goBack=(action 'goBack')}}

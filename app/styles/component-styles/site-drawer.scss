@@ -1,24 +1,24 @@
 .drawer {
-  background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
-    linear-gradient(180deg, #1D2349 0%, #131731 100%);
-  background-size: 100% auto;
-  display: grid;
-  grid-template-columns: 1.5em auto 1.5em;
-  grid-template-rows: minmax(0, 35%) minmax(0, 1fr) 50px;
-  height: 100vh;
+    background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
+        linear-gradient(180deg, #1D2349 0%, #131731 100%);
+    background-size: 100% auto;
+    display: grid;
+    grid-template-columns: 1.5em auto 1.5em;
+    grid-template-rows: minmax(0, 35%) minmax(0, 1fr) 50px;
+    height: 100vh;
 
-  &.is-dragged {
-      transition: none;
-  }
+    &.is-dragged {
+        transition: none;
+    }
 }
 
 .drawer-footer {
-  grid-column: 1 / 4;
-  grid-row: 3 / 4;
-  height: 50px;
-  padding: 0 ms(0);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    grid-column: 1 / 4;
+    grid-row: 3 / 4;
+    height: 48px;
+    padding: 0 ms(0);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

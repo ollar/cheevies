@@ -149,3 +149,20 @@ h6 {
     min-height: 100vh;
     box-sizing: border-box;
 }
+
+.icons-description-hidden {
+    [class*="__svg-icon"] {
+        .title {
+            @include nigel();
+        }
+    }
+}
+
+.line {
+    line-height: 1.5;
+    margin: 0 0 ms(1);
+}
+
+.draggable-slider-wrapper {
+    overflow: hidden;
+}

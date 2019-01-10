@@ -42,6 +42,18 @@
 
                 <span class="text">{{t 'settings.form.animations.label'}}</span>
             </label> --}}
+
+            <label class="field checkbox-wrapper" for="iconsDescription">
+                {{input
+                    type="checkbox"
+                    name="iconsDescription"
+                    id="iconsDescription"
+                    checked=model.iconsDescription}}
+
+                <div class="checkbox-value"></div>
+
+                <span class="text">{{t 'settings.form.iconsDescription.label'}}</span>
+            </label>
         </form>
     </section>
 
@@ -52,7 +64,7 @@
             </span>
             {{#unless groupModel.hasDirtyAttributes}}
                 <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
-                    {{svg-icon _name="share-2" _size=18}}
+                    {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
                 </button>
             {{/unless}}
         </h2>
@@ -78,6 +90,32 @@
                         value=groupModel.name}}
                 </div>
             </div>
+
+            {{#if userIsModerator}}
+                <div class="field policy variants">
+                    <div class="">{{t 'settings.form.policy.label'}}</div>
+
+                    {{#each groupModel.policies as |policy|}}
+                        <label class="control" for={{policy}}>
+                        <input
+                            type="radio"
+                            name="power"
+                            id={{policy}}
+                            value={{policy}}
+                            checked={{eq groupModel.policy policy}}
+                            onchange={{action (mut groupModel.policy) value='target.value'}}>
+
+                        <div class="status {{policy}}">
+                            <span>{{t (add 'settings.form.policy.' policy)}}</span>
+                        </div>
+                        </label>
+                    {{/each}}
+
+                    <div class="description">
+                        {{t (add 'settings.form.policy_description.' groupModel.policy)}}
+                    </div>
+                </div>
+            {{/if}}
 
             <label class="field checkbox-wrapper" for="locked">
                 {{input
@@ -115,6 +153,24 @@
 
     </section>
 
+    <section class="additional">
+        <h2>
+            <span>
+                {{t 'settings.subtitle.additional'}}
+            </span>
+        </h2>
+
+        <div class="line">
+            {{link-to (t 'nav.guide-text') 'index.guide'}}
+        </div>
+
+        <div class="line">
+            <a href="mailto:olegollar@gmail.com?subject={{t 'settings.feedback.subject'}}">
+                {{t 'settings.feedback.linkText'}}
+            </a>
+        </div>
+    </section>
+
     <div class="buttons-wrapper">
         {{#if installStandalone.deferredPrompt}}
             <button {{action 'promptInstallStandalone'}}>
@@ -125,12 +181,6 @@
         <button {{action 'reloadApp'}}>
             {{t 'settings.form.reloadApp.text'}}
         </button>
-    </div>
-
-    <div class="feedback">
-        <a href="mailto:olegollar@gmail.com?subject={{t 'settings.feedback.subject'}}">
-            {{t 'settings.feedback.linkText'}}
-        </a>
     </div>
 
     {{outlet}}

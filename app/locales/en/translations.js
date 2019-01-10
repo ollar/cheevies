@@ -102,6 +102,7 @@ export default {
         subtitle: {
             general: 'General',
             'group-settings': 'Group Settings',
+            additional: 'Additional',
         },
         form: {
             pushNotifications: {
@@ -112,6 +113,9 @@ export default {
             },
             animations: {
                 label: 'Animations',
+            },
+            iconsDescription: {
+                label: 'Icons Descriptions',
             },
             standaloneApp: {
                 label: 'Install App on Homescreen',
@@ -133,6 +137,19 @@ export default {
             code: {
                 label: 'Invitation code',
                 placeholder: 'Type group invitation code',
+            },
+
+            policy: {
+                label: 'Group policy',
+                anarchy: 'Anarchy',
+                democracy: 'Democracy',
+                totalitarianism: 'Totalitarianism',
+            },
+
+            policy_description: {
+                anarchy: 'All participant can create or edit cheevies',
+                democracy: 'Group moderators can create or edit cheevies',
+                totalitarianism: 'Only group owner can create or edit cheevies',
             },
         },
 
@@ -171,6 +188,8 @@ export default {
         'create-group': 'Create Group',
         'back-to-future': 'Social Sign in',
         oldschool: 'Email Sign in',
+        'guide-text': 'See the guide',
+        'guide-invitation-text': 'Would you like to see the guide first?',
     },
 
     'reset-password': {
@@ -215,6 +234,34 @@ export default {
             broken_link: 'Oops, seems your invitation link is invalid',
             access_code_wrong: 'Dah, access code is broken',
             success: 'Welcome to {{groupName}} group, {{username}}!',
+        },
+    },
+
+    icons: {
+        close: 'Close',
+        edit: 'Edit',
+        back: 'Back',
+        menu: 'Menu',
+        cancel: 'Cancel',
+        remove: 'Remove',
+        add_image: 'Add image',
+        settings: 'Settings',
+        activity: 'Activity',
+        sign_out: 'Sign Out',
+        users: 'Users',
+        cheevies: 'Cheevies',
+        refuse: 'Refuse',
+        share: 'Share',
+        reward: 'Reward',
+        invite: 'Invite New Participant',
+    },
+
+    slides: {
+        title: {
+            'create-cheevie': 'Create Cheevie',
+            'edit-cheevie': 'Edit Cheevie',
+            'present-cheevie': 'Give a Cheevie',
+            'invite-new-pal': 'Invite New Pal',
         },
     },
 

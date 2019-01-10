@@ -1,3 +1,13 @@
+{{#unless hideGuidePopup}}
+    <div class="guide-invitation-button-wrapper">
+        {{link-to (t 'nav.guide-invitation-text') 'index.guide'}}
+
+        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
+            {{svg-icon _name="x" _size=24}}
+        </button>
+    </div>
+{{/unless}}
+
 {{#particles-container}}
 {{#index-sections-wrapper
     class=(add "sections-wrapper " activePage)
@@ -33,9 +43,9 @@
 
 <footer>
   <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{action 'setActivePage' 'users'}}>
-    {{svg-icon _name="users" _size=24}}
+    {{svg-icon _name="users" _size=24 _title=(t 'icons.users') class="bottom h-center"}}
   </button>
   <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{action 'setActivePage' 'cheevies'}}>
-    {{svg-icon _name="star" _size=24}}
+    {{svg-icon _name="star" _size=24 _title=(t 'icons.cheevies') class="bottom h-center"}}
   </button>
 </footer>

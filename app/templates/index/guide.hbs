@@ -1,0 +1,56 @@
+{{#modal-wrapper
+    goBack=(action 'goBack')
+    busy=busy
+}}
+
+    <div class="draggable-slider-wrapper">
+        {{#draggable-slider class="slides"}}
+            <li class="slide">
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/create-cheevie.webm'}}
+                        type="video/webm">
+                </video>
+
+                <h1 class="slide-title">
+                    {{t 'slides.title.create-cheevie'}}
+                </h1>
+            </li>
+
+            <li class="slide">
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/cheevie-edit.webm'}}
+                        type="video/webm">
+                </video>
+
+                <h1 class="slide-title">
+                    {{t 'slides.title.edit-cheevie'}}
+                </h1>
+            </li>
+
+            <li class="slide">
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/give-cheevie.webm'}}
+                        type="video/webm">
+                </video>
+
+                <h1 class="slide-title">
+                    {{t 'slides.title.present-cheevie'}}
+                </h1>
+            </li>
+
+            <li class="slide">
+                <video autoplay controls loop playsinline>
+                    <source src={{get-path 'guides/invite-pal.webm'}}
+                        type="video/webm">
+                </video>
+
+                <h1 class="slide-title">
+                    {{t 'slides.title.invite-new-pal'}}
+                </h1>
+            </li>
+        {{/draggable-slider}}
+    </div>
+
+    {{outlet}}
+
+{{/modal-wrapper}}

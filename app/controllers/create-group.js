@@ -24,10 +24,10 @@ export default Controller.extend({
             });
     },
 
-    onError() {
+    onError(e) {
         return this.send('notify', {
             type: 'error',
-            text: this.i18n.t('create_group.error_message'),
+            text: e.message || this.i18n.t('create_group.error_message'),
         });
     },
 
@@ -54,10 +54,13 @@ export default Controller.extend({
                             newGroup.get('users').addObject(this.myModel);
                             this.myModel.get('groups').addObject(newGroup);
 
+                            newGroup.set('author', this.myModel);
+                            newGroup.get('moderators').addObject(this.myModel);
+
                             this.get('session').set('data.group', newGroup.name);
                             return all([newGroup.save(), this.myModel.save()]).then(
                                 () => this.onSuccess(),
-                                () => this.onError()
+                                e => this.onError(e)
                             );
                         })
                 );

@@ -5,11 +5,26 @@ import BusyMixin from '../../mixins/busy-loader';
 import { inject as service } from '@ember/service';
 import { resolve } from 'rsvp';
 
+import { userIsModerator, userIsGroupAuthor } from '../../utils/user-role';
+
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
     editMode: computed.not('showMode'),
     myGroup: service('my-group'),
     activity: service(),
+    me: service(),
+
+    myModel: computed.readOnly('me.model'),
+    groupModel: computed.readOnly('myGroup.model'),
+
+    canEditCheevie: computed('myModel.id', 'groupModel.id', function() {
+        if (!this.myModel || !this.groupModel) return false;
+        return (
+            this.groupModel.policy === 'anarchy' ||
+            userIsModerator(this.groupModel, this.myModel) ||
+            userIsGroupAuthor(this.groupModel, this.myModel)
+        );
+    }),
 
     _model: computed.alias('model'),
 

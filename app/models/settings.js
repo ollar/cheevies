@@ -7,6 +7,7 @@ export default DS.Model.extend({
 
     sounds: DS.attr('boolean', { defaultValue: false }),
     animations: DS.attr('boolean', { defaultValue: true }),
+    iconsDescription: DS.attr('boolean', { defaultValue: true }),
 
     updated: DS.attr('number'),
 });

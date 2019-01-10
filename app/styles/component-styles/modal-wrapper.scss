@@ -18,13 +18,16 @@ figure {
     height: 30vh;
     position: relative;
 
-    svg {
+    [class*='__svg-icon'] {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        stroke-width: 1px;
         pointer-events: none;
+
+        svg {
+            stroke-width: 1px;
+        }
     }
 }
 

@@ -13,11 +13,11 @@
         </figure>
 
         <button class="icon-button delete" {{action 'removeImage'}}>
-          {{svg-icon _name="x" _size=48}}
+          {{svg-icon _name="x" _size=48 _title=(t 'icons.remove') class="h-center bottom"}}
         </button>
       {{else}}
         <div class="drop-area">
-          {{svg-icon _name="image" _size=48}}
+          {{svg-icon _name="image" _size=48 _title=(t 'icons.add_image') class="h-center bottom"}}
         </div>
 
       {{/if}}
