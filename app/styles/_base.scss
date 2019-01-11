@@ -151,7 +151,7 @@ h6 {
 }
 
 .icons-description-hidden {
-    [class*="__svg-icon"] {
+    .Svg-icon {
         .title {
             @include nigel();
         }
