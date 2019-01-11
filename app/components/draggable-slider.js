@@ -48,12 +48,12 @@ export default Component.extend(DraggableMixin, {
         const transformX = this.initialTransform[0];
         const moveX = transformX - this.previousMoveX;
 
-        if (Math.abs(moveX < 100)) return this._super(...arguments);
-
-        if (moveX > 0) {
-            if (this.activeSlide < this.slidesNumber - 1) this.incrementProperty('activeSlide');
-        } else {
-            if (this.activeSlide > 0) this.decrementProperty('activeSlide');
+        if (Math.abs(moveX) > 100) {
+            if (moveX > 0) {
+                if (this.activeSlide < this.slidesNumber - 1) this.incrementProperty('activeSlide');
+            } else {
+                if (this.activeSlide > 0) this.decrementProperty('activeSlide');
+            }
         }
 
         this.set(
