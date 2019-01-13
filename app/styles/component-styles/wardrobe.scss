@@ -112,3 +112,14 @@ input {
 .social-buttons-wrapper {
     margin: ms(1) 0;
 }
+
+.is-busy {
+    @include loader;
+    position: absolute;
+    z-index: 10;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    @include size(100%);
+    grid-column: all;
+}

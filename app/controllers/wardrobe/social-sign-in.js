@@ -4,7 +4,9 @@ import { schedule } from '@ember/runloop';
 import { all } from 'rsvp';
 import firebase from 'firebase';
 
-export default Controller.extend({
+import BusyLoaderMixin from '../../mixins/busy-loader';
+
+export default Controller.extend(BusyLoaderMixin, {
     session: service(),
     activity: service(),
 
