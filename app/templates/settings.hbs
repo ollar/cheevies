@@ -7,11 +7,7 @@
 
         <form {{action 'updateModel' on="change"}} novalidate>
             <label class="field checkbox-wrapper" for="pushNotifications">
-                <input
-                    type="checkbox"
-                    name="pushNotifications"
-                    id="pushNotifications"
-                    checked={{model.pushNotifications}}
+                <input type="checkbox" name="pushNotifications" id="pushNotifications" checked={{model.pushNotifications}}
                     onchange={{action 'updatePushNotifications'}}>
 
                 <div class="checkbox-value"></div>
@@ -21,10 +17,10 @@
 
             {{!-- <label class="field checkbox-wrapper" for="sounds">
                 {{input
-                    type="checkbox"
-                    name="sounds"
-                    id="sounds"
-                    checked=model.sounds}}
+                type="checkbox"
+                name="sounds"
+                id="sounds"
+                checked=model.sounds}}
 
                 <div class="checkbox-value"></div>
 
@@ -33,10 +29,10 @@
 
             <label class="field checkbox-wrapper" for="animations">
                 {{input
-                    type="checkbox"
-                    name="animations"
-                    id="animations"
-                    checked=model.animations}}
+                type="checkbox"
+                name="animations"
+                id="animations"
+                checked=model.animations}}
 
                 <div class="checkbox-value"></div>
 
@@ -45,10 +41,10 @@
 
             <label class="field checkbox-wrapper" for="iconsDescription">
                 {{input
-                    type="checkbox"
-                    name="iconsDescription"
-                    id="iconsDescription"
-                    checked=model.iconsDescription}}
+                type="checkbox"
+                name="iconsDescription"
+                id="iconsDescription"
+                checked=model.iconsDescription}}
 
                 <div class="checkbox-value"></div>
 
@@ -57,15 +53,16 @@
         </form>
     </section>
 
+    {{#if userIsModerator}}
     <section class="group-settings">
         <h2>
             <span>
                 {{t 'settings.subtitle.group-settings'}}
             </span>
             {{#unless groupModel.hasDirtyAttributes}}
-                <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
-                    {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
-                </button>
+            <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
+                {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
+            </button>
             {{/unless}}
         </h2>
         <ul class="form-errors">
@@ -75,54 +72,48 @@
             </li>
             {{/each}}
         </ul>
+
         <form {{action 'updateGroup' on="submit"}} novalidate>
             <div class="field">
                 <label class="" for="name">{{t 'settings.form.name.label'}}</label>
                 <div class="control">
                     {{input
-                        class="input"
-                        data-test-id="name"
-                        id="name"
-                        type="text"
-                        placeholder=(t 'settings.form.name.placeholder')
-                        autocapitalize='off'
-                        autocomplete="off"
-                        value=groupModel.name}}
+                    class="input"
+                    data-test-id="name"
+                    id="name"
+                    type="text"
+                    placeholder=(t 'settings.form.name.placeholder')
+                    autocapitalize='off'
+                    autocomplete="off"
+                    value=groupModel.name}}
                 </div>
             </div>
 
-            {{#if userIsModerator}}
-                <div class="field policy variants">
-                    <div class="">{{t 'settings.form.policy.label'}}</div>
+            <div class="field policy variants">
+                <div class="">{{t 'settings.form.policy.label'}}</div>
 
-                    {{#each groupModel.policies as |policy|}}
-                        <label class="control" for={{policy}}>
-                        <input
-                            type="radio"
-                            name="power"
-                            id={{policy}}
-                            value={{policy}}
-                            checked={{eq groupModel.policy policy}}
-                            onchange={{action (mut groupModel.policy) value='target.value'}}>
+                {{#each groupModel.policies as |policy|}}
+                <label class="control" for={{policy}}>
+                    <input type="radio" name="power" id={{policy}} value={{policy}} checked={{eq groupModel.policy policy}}
+                        onchange={{action (mut groupModel.policy) value='target.value'}}>
 
-                        <div class="status {{policy}}">
-                            <span>{{t (add 'settings.form.policy.' policy)}}</span>
-                        </div>
-                        </label>
-                    {{/each}}
-
-                    <div class="description">
-                        {{t (add 'settings.form.policy_description.' groupModel.policy)}}
+                    <div class="status {{policy}}">
+                        <span>{{t (add 'settings.form.policy.' policy)}}</span>
                     </div>
+                </label>
+                {{/each}}
+
+                <div class="description">
+                    {{t (add 'settings.form.policy_description.' groupModel.policy)}}
                 </div>
-            {{/if}}
+            </div>
 
             <label class="field checkbox-wrapper" for="locked">
                 {{input
-                    type="checkbox"
-                    name="locked"
-                    id="locked"
-                    checked=groupModel.locked}}
+                type="checkbox"
+                name="locked"
+                id="locked"
+                checked=groupModel.locked}}
 
                 <div class="checkbox-value"></div>
 
@@ -133,25 +124,25 @@
                 <label class="" for="code">{{t 'settings.form.code.label'}}</label>
                 <div class="control">
                     {{input
-                        class="input"
-                        data-test-id="code"
-                        id="code"
-                        type="text"
-                        placeholder=(t 'settings.form.code.placeholder')
-                        autocapitalize='off'
-                        autocomplete="off"
-                        value=groupModel.code}}
+                    class="input"
+                    data-test-id="code"
+                    id="code"
+                    type="text"
+                    placeholder=(t 'settings.form.code.placeholder')
+                    autocapitalize='off'
+                    autocomplete="off"
+                    value=groupModel.code}}
                 </div>
             </div>
 
             {{#if groupModel.hasDirtyAttributes}}
-                <button type="submit" class="submit-button">
-                    {{t 'buttons.save'}}
-                </button>
+            <button type="submit" class="submit-button">
+                {{t 'buttons.save'}}
+            </button>
             {{/if}}
         </form>
-
     </section>
+    {{/if}}
 
     <section class="additional">
         <h2>
@@ -173,9 +164,9 @@
 
     <div class="buttons-wrapper">
         {{#if installStandalone.deferredPrompt}}
-            <button {{action 'promptInstallStandalone'}}>
-                {{t 'settings.form.standaloneApp.label'}}
-            </button>
+        <button {{action 'promptInstallStandalone'}}>
+            {{t 'settings.form.standaloneApp.label'}}
+        </button>
         {{/if}}
 
         <button {{action 'reloadApp'}}>

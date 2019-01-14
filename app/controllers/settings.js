@@ -41,7 +41,9 @@ export default Controller.extend({
     },
 
     userIsModerator: computed('me.model.id', 'groupModel.moderators', function() {
-        return userIsModerator(this.groupModel, this.me.model);
+        return (
+            this.groupModel.policy === 'anarchy' || userIsModerator(this.groupModel, this.me.model)
+        );
     }),
 
     actions: {

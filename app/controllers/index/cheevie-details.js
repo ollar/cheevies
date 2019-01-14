@@ -21,8 +21,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         if (!this.myModel || !this.groupModel) return false;
         return (
             this.groupModel.policy === 'anarchy' ||
-            userIsModerator(this.groupModel, this.myModel) ||
-            userIsGroupAuthor(this.groupModel, this.myModel)
+            userIsGroupAuthor(this.groupModel, this.myModel) ||
+            userIsModerator(this.groupModel, this.myModel)
         );
     }),
 
