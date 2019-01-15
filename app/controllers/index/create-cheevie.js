@@ -8,6 +8,8 @@ import { inject as service } from '@ember/service';
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     activity: service(),
     me: service(),
+    giphy: service(),
+
     _model: computed.alias('model.cheevie'),
     _file: null,
     _image: computed('_file', function() {
@@ -75,6 +77,10 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         removeImage() {
             this._clearFile();
+        },
+
+        giphy() {
+            console.log(this.giphy.url());
         },
     },
 });
