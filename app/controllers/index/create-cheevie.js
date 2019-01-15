@@ -80,7 +80,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         giphy() {
-            console.log(this.giphy.url());
+            this.giphy.url();
         },
     },
 });
