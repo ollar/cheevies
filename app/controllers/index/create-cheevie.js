@@ -20,6 +20,9 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         }
     }),
 
+    showOptionalMenu: false,
+    showGiphySelector: false,
+
     _uploadPath(image) {
         return `cheevies/${this._model.id}/${image.width}/${image.name}`;
     },
@@ -79,8 +82,33 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             this._clearFile();
         },
 
-        giphy() {
-            this.giphy.url();
+        chooseMethod() {
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        selectGiphy() {
+            this.toggleProperty('showGiphySelector');
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        selectUpload() {
+            this._fileInput = document.querySelector('input[type="file"]');
+            if (this._fileInput) {
+                this._fileInput.dispatchEvent(
+                    new MouseEvent('click', {
+                        view: window,
+                        bubbles: false,
+                        cancelable: true,
+                    })
+                );
+            }
+
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        closeOptionalMenu() {
+            this.set('showOptionalMenu', false);
+            this.set('showGiphySelector', false);
         },
     },
 });

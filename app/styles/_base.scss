@@ -166,3 +166,17 @@ h6 {
 .draggable-slider-wrapper {
     overflow: hidden;
 }
+
+.image-uploader-wrapper {
+    position: relative;
+
+    .image-uploader-trigger,
+    .optional-menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 11;
+    }
+}
