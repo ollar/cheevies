@@ -53,6 +53,7 @@ export default {
             'This account exists with email authentification method. Please sign in with email to link accounts',
         screen_width_warning:
             'This app is optimized for mobile devices. It is recommended to install it as a standalone app for better user experience.',
+        empty: 'Nothing here yet',
     },
 
     buttons: {
@@ -86,6 +87,12 @@ export default {
                 high: 'high',
             },
         },
+    },
+
+    'optional-menu': {
+        giphy: 'Giphy',
+        upload: 'Upload',
+        cancel: 'Cancel',
     },
 
     profile: {
@@ -262,6 +269,12 @@ export default {
             'edit-cheevie': 'Edit Cheevie',
             'present-cheevie': 'Give a Cheevie',
             'invite-new-pal': 'Invite New Pal',
+        },
+    },
+
+    'giphy-selector': {
+        input: {
+            placeholder: 'Search on giphy',
         },
     },
 

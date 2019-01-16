@@ -29,22 +29,20 @@
         {{#if showOptionalMenu}}
             <ul class="optional-menu">
                 <li {{action 'selectGiphy'}}>
-                    Giphy
+                    {{t 'optional-menu.giphy'}}
                 </li>
                 <li {{action 'selectUpload'}}>
-                    Upload
+                    {{t 'optional-menu.upload'}}
                 </li>
                 <li {{action 'closeOptionalMenu'}}>
-                    Cancel
+                    {{t 'optional-menu.cancel'}}
                 </li>
             </ul>
         {{/if}}
     </div>
 
     {{#if showGiphySelector}}
-        {{#giphy-selector}}
-            showGiphySelector
-        {{/giphy-selector}}
+        {{giphy-selector goBack=(action 'closeOptionalMenu')}}
     {{/if}}
 
     {{partial 'cheevie-edit-form'}}

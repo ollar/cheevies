@@ -1,0 +1,16 @@
+& {
+    position: relative;
+    transition: transform 0.3s;
+    @include size(64px);
+    overflow: hidden;
+    border-radius: 100%;
+
+    @include sm() {
+        @include size(128px);
+    }
+}
+
+img {
+    object-fit: cover;
+    @include size(100%);
+}

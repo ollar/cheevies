@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
+import { debounce } from '@ember/runloop';
 
 export default Service.extend({
     result: null,
@@ -13,11 +14,21 @@ export default Service.extend({
         return getOwner(this).application.giphyApiKey;
     }),
 
-    url(query = '') {
+    _url(query = '') {
         return `https://api.giphy.com/v1/gifs/search?api_key=${
             this._giphyApiKey
         }&q=${query}&limit=${this._limit}&offset=${this._offset}&rating=${this._rating}&lang=${
             this._lang
         }`;
+    },
+
+    _makeRequest(query) {
+        return fetch(this._url(query))
+            .then(res => res.json())
+            .then(result => this.set('result', result));
+    },
+
+    _getGiphies(query) {
+        return debounce(this, '_makeRequest', query, 1000);
     },
 });
