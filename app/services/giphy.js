@@ -6,7 +6,7 @@ import { debounce } from '@ember/runloop';
 export default Service.extend({
     init() {
         this._super(...arguments);
-        this.reset();
+        this.resetProperties();
     },
 
     _giphyApiKey: computed(function() {
@@ -31,7 +31,7 @@ export default Service.extend({
         return debounce(this, '_makeRequest', query, 1000);
     },
 
-    reset() {
+    resetProperties() {
         this.setProperties({
             _limit: 25,
             _offset: 0,

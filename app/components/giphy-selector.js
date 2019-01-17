@@ -16,7 +16,7 @@ export default Component.extend({
 
     willDestroyElement() {
         this.set('query', '');
-        this.giphy.reset();
+        this.giphy.resetProperties();
     },
 
     actions: {

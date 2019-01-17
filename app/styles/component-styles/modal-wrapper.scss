@@ -81,6 +81,11 @@ figure.image {
     z-index: 11;
 }
 
+.mode-toggle,
+.cheevie-delete {
+    z-index: 12;
+}
+
 .modal-close {
     right: 0;
     left: auto;
