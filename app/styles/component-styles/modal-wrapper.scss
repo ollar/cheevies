@@ -41,24 +41,6 @@ figure {
     background: rgba(5, 7, 14, 0.7);
 }
 
-.modal-content {
-    background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
-    @include center-wrapper;
-    border-radius: 10px;
-    margin: auto;
-    margin-top: 55px;
-    margin-bottom: 55px;
-    position: relative;
-    transition: transform 0.2s;
-    max-width: 600px;
-    width: 100%;
-
-    &.no-transition,
-    &.is-dragged {
-        transition: none;
-    }
-}
-
 &.is-busy .modal-content {
     overflow: hidden;
 
@@ -73,6 +55,7 @@ figure {
     }
 }
 
+.image-uploader-wrapper,
 .images-drop-area,
 figure.image {
     grid-column: all;
@@ -96,6 +79,11 @@ figure.image {
     width: 24px;
     height: 24px;
     z-index: 11;
+}
+
+.mode-toggle,
+.cheevie-delete {
+    z-index: 12;
 }
 
 .modal-close {

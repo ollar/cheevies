@@ -21,8 +21,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         if (!this.myModel || !this.groupModel) return false;
         return (
             this.groupModel.policy === 'anarchy' ||
-            userIsModerator(this.groupModel, this.myModel) ||
-            userIsGroupAuthor(this.groupModel, this.myModel)
+            userIsGroupAuthor(this.groupModel, this.myModel) ||
+            userIsModerator(this.groupModel, this.myModel)
         );
     }),
 
@@ -44,11 +44,25 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         return `cheevies/${this.model.id}/${image.width}/${image.name}`;
     },
 
-    restoreMode() {
+    resetProperties() {
         this.setProperties({
-            _file: '',
             showMode: true,
+            showOptionalMenu: false,
+            showGiphySelector: false,
+            _file: null,
+            _giphy: null,
+            // _image: null,
         });
+    },
+
+    _clearFile() {
+        if (this._file) {
+            this.set('_file', '');
+        } else if (this._giphy) {
+            this.resetProperties();
+        }
+
+        this.set('_image', null);
     },
 
     actions: {
@@ -59,7 +73,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         goBack() {
             this.model.rollbackAttributes();
-            this.restoreMode();
             this.transitionToRoute('index');
         },
 
@@ -69,11 +82,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             this.set('_file', file);
         },
         removeImage() {
-            if (this._file) {
-                return this.setProperties({
-                    _file: '',
-                });
-            }
+            this._clearFile();
             return this._removeImage(true);
         },
         updateCheevie() {
@@ -83,7 +92,9 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
             return resolve()
                 .then(() => {
-                    if (this._file) {
+                    if (this._giphy) {
+                        return this._saveGiphy(this._giphy);
+                    } else if (this._file) {
                         return this._uploadImage(this._file);
                     }
 
@@ -97,7 +108,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                     })
                 )
                 .then(() => {
-                    this.restoreMode();
                     this.send('goBack');
                 })
                 .finally(() => this.setBusy(false));
@@ -110,10 +120,47 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 return resolve()
                     .then(() => model.save())
                     .then(() => {
-                        this.restoreMode();
                         this.transitionToRoute('index');
                     });
             }
+        },
+
+        chooseMethod() {
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        selectGiphy() {
+            this.toggleProperty('showGiphySelector');
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        selectUpload() {
+            this._fileInput = document.querySelector('input[type="file"]');
+            if (this._fileInput) {
+                this._fileInput.dispatchEvent(
+                    new MouseEvent('click', {
+                        view: window,
+                        bubbles: false,
+                        cancelable: true,
+                    })
+                );
+            }
+
+            this.toggleProperty('showOptionalMenu');
+        },
+
+        closeOptionalMenu() {
+            this.set('showOptionalMenu', false);
+            this.set('showGiphySelector', false);
+        },
+
+        takeGiphy(giphy) {
+            this.setProperties({
+                _image: {
+                    url: this.getWithDefault.call(giphy, 'images.original.webp', ''),
+                },
+                _giphy: giphy,
+            });
         },
     },
 });

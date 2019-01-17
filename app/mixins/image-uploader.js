@@ -1,6 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import imageResize from 'image-resize-util/utils/image-resize';
 
 // const IMAGE_SIZES = [32, 64, 128, 256, 512];
@@ -51,6 +52,52 @@ export default Mixin.create({
                 imageSet.setProperties(_hash);
                 this._model.set('image-set', imageSet);
                 return all([imageSet.save(), this._model.save()]);
+            })
+            .catch(err =>
+                this.send('notify', {
+                    type: 'error',
+                    text: err.message,
+                })
+            );
+    },
+
+    _saveGiphy(giphy) {
+        return this._removeImage()
+            .then(() => {
+                const imageSet = this.store.createRecord('image-set');
+
+                const _hash = {
+                    64: this.store.createRecord('image', {
+                        url: get(giphy, 'images.preview_webp.url'),
+                        height: get(giphy, 'images.preview_webp.height'),
+                        width: get(giphy, 'images.preview_webp.width'),
+                        created: Date.now(),
+                    }),
+                    128: this.store.createRecord('image', {
+                        url: get(giphy, 'images.preview_webp.url'),
+                        height: get(giphy, 'images.preview_webp.height'),
+                        width: get(giphy, 'images.preview_webp.width'),
+                        created: Date.now(),
+                    }),
+                    256: this.store.createRecord('image', {
+                        url: get(giphy, 'images.downsized_medium.url'),
+                        height: get(giphy, 'images.downsized_medium.height'),
+                        width: get(giphy, 'images.downsized_medium.width'),
+                        created: Date.now(),
+                    }),
+                    512: this.store.createRecord('image', {
+                        url: get(giphy, 'images.downsized_large.url'),
+                        height: get(giphy, 'images.downsized_large.height'),
+                        width: get(giphy, 'images.downsized_large.width'),
+                        created: Date.now(),
+                    }),
+                };
+
+                const _images = Object.values(_hash).map(_image => _image.save());
+
+                imageSet.setProperties(_hash);
+                this._model.set('image-set', imageSet);
+                return all([..._images, imageSet.save(), this._model.save()]);
             })
             .catch(err =>
                 this.send('notify', {

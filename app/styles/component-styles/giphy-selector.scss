@@ -1,0 +1,43 @@
+& {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90vh;
+    background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
+    grid-column: all !important;
+    z-index: 101;
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: minmax(1em, 1.5em) 1fr minmax(1em, 1.5em);
+    border-radius: 10px;
+
+    &>* {
+        grid-column: 2 / 3;
+    }
+}
+
+.search {
+    grid-row: 1 / 2;
+    padding: ms(1) 0;
+
+    input {
+        text-align: center;
+    }
+}
+
+.giphies {
+    grid-row: 2 / 3;
+    padding: ms(1) 0;
+    overflow: auto;
+}
+
+.empty-message {
+    grid-column: 1 / 7;
+}
+
+.selector-close {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}

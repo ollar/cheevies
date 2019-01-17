@@ -1,0 +1,19 @@
+<button class="icon-button selector-close" aria-label="close" {{action 'goBack'}}>
+  {{svg-icon _name="x" _size=24 _title=(t 'icons.close') class="right v-center"}}
+</button>
+
+<div class="search">
+    {{input name="search" value=query placeholder=(t 'giphy-selector.input.placeholder') autocomplete="off"}}
+</div>
+
+<div class="giphies grid-wrapper-3">
+    {{#each giphies as |giphy|}}
+        {{giphy-selector-item data=giphy takeGiphy=(action 'takeGiphy')}}
+    {{else}}
+        <div class="empty-message">
+            {{t 'messages.empty'}}
+        </div>
+    {{/each}}
+</div>
+
+{{yield}}

@@ -166,3 +166,37 @@ h6 {
 .draggable-slider-wrapper {
     overflow: hidden;
 }
+
+.image-uploader-wrapper {
+    position: relative;
+
+    .image-uploader-trigger,
+    .optional-menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 11;
+    }
+
+    .optional-menu {
+        z-index: 13;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        border-radius: 10px;
+
+        li {
+            background-color: rgba($color: #4838FF, $alpha: .6);
+            padding: 0;
+            margin: 0;
+            display: block;
+            flex: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
