@@ -11,7 +11,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     giphy: service(),
 
     _model: computed.alias('model.cheevie'),
-    _file: null,
     _image: computed('_file', function() {
         if (this._file) {
             return {
@@ -20,8 +19,14 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         }
     }),
 
-    showOptionalMenu: false,
-    showGiphySelector: false,
+    hasChangedAttributes: computed('_model.{name,description}', '_file', function() {
+        return Boolean(Object.keys(this._model.changedAttributes()).length);
+    }),
+
+    init() {
+        this._super(...arguments);
+        this.resetProperties();
+    },
 
     _uploadPath(image) {
         return `cheevies/${this._model.id}/${image.width}/${image.name}`;
@@ -31,7 +36,19 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         if (this._file) {
             window.URL.revokeObjectURL(this._file);
             this.set('_file', '');
+        } else if (this._giphy) {
+            this.resetProperties();
         }
+    },
+
+    resetProperties() {
+        this.setProperties({
+            showOptionalMenu: false,
+            showGiphySelector: false,
+            _file: null,
+            _giphy: null,
+            _image: null,
+        });
     },
 
     actions: {
@@ -41,7 +58,9 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             this.setBusy(true);
             return resolve()
                 .then(() => {
-                    if (this._file) {
+                    if (this._giphy) {
+                        return this._saveGiphy(this._giphy);
+                    } else if (this._file) {
                         return this._uploadImage(this._file);
                     }
 
@@ -68,6 +87,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 .finally(() => this.setBusy(false));
         },
         goBack() {
+            this.send('closeOptionalMenu');
             this._model.deleteRecord();
             this._clearFile();
             this.transitionToRoute('index');
@@ -109,6 +129,15 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         closeOptionalMenu() {
             this.set('showOptionalMenu', false);
             this.set('showGiphySelector', false);
+        },
+
+        takeGiphy(giphy) {
+            this.setProperties({
+                _image: {
+                    url: this.getWithDefault.call(giphy, 'images.original.webp', ''),
+                },
+                _giphy: giphy,
+            });
         },
     },
 });

@@ -3,12 +3,12 @@
 </button>
 
 <div class="search">
-    {{input name="search" value=query placeholder=(t 'giphy-selector.input.placeholder')}}
+    {{input name="search" value=query placeholder=(t 'giphy-selector.input.placeholder') autocomplete="off"}}
 </div>
 
 <div class="giphies grid-wrapper-3">
     {{#each giphies as |giphy|}}
-        {{giphy-selector-item data=giphy}}
+        {{giphy-selector-item data=giphy takeGiphy=(action 'takeGiphy')}}
     {{else}}
         <div class="empty-message">
             {{t 'messages.empty'}}

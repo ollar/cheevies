@@ -4,11 +4,10 @@ import { computed } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
 export default Service.extend({
-    result: null,
-    _limit: 25,
-    _offset: 0,
-    _rating: 'G',
-    _lang: 'en',
+    init() {
+        this._super(...arguments);
+        this.reset();
+    },
 
     _giphyApiKey: computed(function() {
         return getOwner(this).application.giphyApiKey;
@@ -28,7 +27,17 @@ export default Service.extend({
             .then(result => this.set('result', result));
     },
 
-    _getGiphies(query) {
+    getGiphies(query) {
         return debounce(this, '_makeRequest', query, 1000);
+    },
+
+    reset() {
+        this.setProperties({
+            _limit: 25,
+            _offset: 0,
+            _rating: 'G',
+            _lang: 'en',
+            result: null,
+        });
     },
 });

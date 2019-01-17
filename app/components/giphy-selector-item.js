@@ -13,4 +13,10 @@ export default Component.extend({
     imageUrl: computed('data', function() {
         return this.getWithDefault('data.images.preview_webp.url', '');
     }),
+
+    actions: {
+        takeGiphy() {
+            this.takeGiphy(this.data);
+        },
+    },
 });

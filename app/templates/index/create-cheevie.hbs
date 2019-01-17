@@ -1,7 +1,7 @@
 {{#modal-wrapper
     goBack=(action 'goBack')
     busy=busy
-    disableDrag=true
+    disableDrag=hasChangedAttributes
 }}
 
     <div class="image-uploader-wrapper">
@@ -42,7 +42,7 @@
     </div>
 
     {{#if showGiphySelector}}
-        {{giphy-selector goBack=(action 'closeOptionalMenu')}}
+        {{giphy-selector goBack=(action 'closeOptionalMenu') takeGiphy=(action 'takeGiphy')}}
     {{/if}}
 
     {{partial 'cheevie-edit-form'}}
