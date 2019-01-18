@@ -29,12 +29,18 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     _model: computed.alias('model'),
 
     _file: null,
+    _giphy: null,
+
     image: computed.readOnly('model.image-set.512'),
 
-    _image: computed('_file', 'image', function() {
+    _image: computed('_file', '_giphy', 'image', function() {
         if (this._file) {
             return {
                 url: window.URL.createObjectURL(this._file),
+            };
+        } else if (this._giphy) {
+            return {
+                url: this.getWithDefault.call(this._giphy, 'images.original.webp', ''),
             };
         }
         return this.image;
@@ -51,7 +57,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             showGiphySelector: false,
             _file: null,
             _giphy: null,
-            // _image: null,
         });
     },
 
@@ -61,8 +66,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         } else if (this._giphy) {
             this.resetProperties();
         }
-
-        this.set('_image', null);
     },
 
     actions: {
@@ -155,12 +158,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         takeGiphy(giphy) {
-            this.setProperties({
-                _image: {
-                    url: this.getWithDefault.call(giphy, 'images.original.webp', ''),
-                },
-                _giphy: giphy,
-            });
+            this.set('_giphy', giphy);
         },
     },
 });
