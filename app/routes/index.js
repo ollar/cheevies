@@ -1,17 +1,9 @@
 import Route from '@ember/routing/route';
-import {
-    hash
-} from 'rsvp';
+import { hash } from 'rsvp';
 import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    computed
-} from '@ember/object';
-import {
-    later
-} from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+// import { later } from '@ember/runloop';
 
 export default Route.extend(AuthenticatedRouteMixin, {
     me: service(),
@@ -47,23 +39,18 @@ export default Route.extend(AuthenticatedRouteMixin, {
     },
 
     afterModel() {
-        const imageSets = this.store.peekAll('image-set');
+        // const imageSets = this.store.peekAll('image-set');
 
         if (this.me.model) {
             hash({
-                    myGroup: this.myGroup.fetch(),
-                    me: this.me.fetch(),
-                })
-                .then(({
-                    me
-                }) => ({
+                myGroup: this.myGroup.fetch(),
+                me: this.me.fetch(),
+            })
+                .then(({ me }) => ({
                     availableCheevies: this.myGroup.cheevies,
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
-                .then(({
-                        availableCheevies,
-                        unseenCheevies
-                    }) =>
+                .then(({ availableCheevies, unseenCheevies }) =>
                     unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 )
                 .then(unseenCheevies => {
@@ -71,16 +58,16 @@ export default Route.extend(AuthenticatedRouteMixin, {
                 });
         }
 
-        later(
-            () =>
-            imageSets.forEach(imageSet =>
-                imageSet.eachRelationship(key =>
-                    imageSet
-                    .get(key)
-                    .then(imageModel => this.cachedImage.getCachedSrc(imageModel.url))
-                )
-            ),
-            3000
-        );
+        // later(
+        //     () =>
+        //     imageSets.forEach(imageSet =>
+        //         imageSet.eachRelationship(key =>
+        //             imageSet
+        //             .get(key)
+        //             .then(imageModel => this.cachedImage.getCachedSrc(imageModel.url))
+        //         )
+        //     ),
+        //     3000
+        // );
     },
 });
