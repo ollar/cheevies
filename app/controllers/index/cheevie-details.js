@@ -40,7 +40,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             };
         } else if (this._giphy) {
             return {
-                url: this.getWithDefault.call(this._giphy, 'images.original.webp', ''),
+                url: this.getWithDefault.call(this._giphy, 'images.original.url', ''),
             };
         }
         return this.image;
