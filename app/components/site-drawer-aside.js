@@ -61,7 +61,7 @@ export default Component.extend(DraggableMixin, {
         });
     }),
 
-    canCreateCheevie: computed('myModel.id', 'groupModel.id', function() {
+    canCreateCheevie: computed('myModel.id', 'groupModel.{id,policy}', function() {
         if (!this.myModel || !this.groupModel) return false;
         return (
             this.groupModel.policy === 'anarchy' ||

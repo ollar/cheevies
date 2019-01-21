@@ -11,7 +11,7 @@ export default Component.extend({
     }),
 
     imageUrl: computed('data', function() {
-        return this.getWithDefault('data.images.preview_webp.url', '');
+        return this.getWithDefault('data.images.preview_gif.url', '');
     }),
 
     actions: {
