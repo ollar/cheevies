@@ -66,17 +66,19 @@ export default Mixin.create({
             .then(() => {
                 const imageSet = this.store.createRecord('image-set');
 
+                debugger;
+
                 const _hash = {
                     64: this.store.createRecord('image', {
-                        url: get(giphy, 'images.preview_webp.url'),
-                        height: get(giphy, 'images.preview_webp.height'),
-                        width: get(giphy, 'images.preview_webp.width'),
+                        url: get(giphy, 'images.preview_gif.url'),
+                        height: get(giphy, 'images.preview_gif.height'),
+                        width: get(giphy, 'images.preview_gif.width'),
                         created: Date.now(),
                     }),
                     128: this.store.createRecord('image', {
-                        url: get(giphy, 'images.preview_webp.url'),
-                        height: get(giphy, 'images.preview_webp.height'),
-                        width: get(giphy, 'images.preview_webp.width'),
+                        url: get(giphy, 'images.preview_gif.url'),
+                        height: get(giphy, 'images.preview_gif.height'),
+                        width: get(giphy, 'images.preview_gif.width'),
                         created: Date.now(),
                     }),
                     256: this.store.createRecord('image', {

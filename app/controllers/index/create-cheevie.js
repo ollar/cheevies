@@ -11,10 +11,14 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     giphy: service(),
 
     _model: computed.alias('model.cheevie'),
-    _image: computed('_file', function() {
+    _image: computed('_file', '_giphy', function() {
         if (this._file) {
             return {
                 url: window.URL.createObjectURL(this._file),
+            };
+        } else if (this._giphy) {
+            return {
+                url: this.getWithDefault.call(this._giphy, 'images.original.url', ''),
             };
         }
     }),
@@ -47,7 +51,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             showGiphySelector: false,
             _file: null,
             _giphy: null,
-            _image: null,
         });
     },
 
@@ -133,9 +136,6 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         takeGiphy(giphy) {
             this.setProperties({
-                _image: {
-                    url: this.getWithDefault.call(giphy, 'images.original.webp', ''),
-                },
                 _giphy: giphy,
             });
         },
