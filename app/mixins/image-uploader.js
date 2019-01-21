@@ -66,8 +66,6 @@ export default Mixin.create({
             .then(() => {
                 const imageSet = this.store.createRecord('image-set');
 
-                debugger;
-
                 const _hash = {
                     64: this.store.createRecord('image', {
                         url: get(giphy, 'images.preview_gif.url'),
