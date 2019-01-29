@@ -16,7 +16,9 @@ export default Controller.extend(BusyLoaderMixin, {
         this.onError = this.onError.bind(this);
     },
 
-    onSuccess({ credential, user }) {
+    onSuccess(result) {
+        if (!result) return;
+        const { credential, user } = result;
         if (!credential || !user) return;
         const { providerId, accessToken } = credential;
         const { email, displayName, photoURL, uid } = user;
@@ -88,10 +90,26 @@ export default Controller.extend(BusyLoaderMixin, {
 
     actions: {
         googleSignIn() {
-            return this.model.googleSignIn().then(this.onSuccess, this.onError);
+            return this.model
+                .googleSignIn()
+                .then(() =>
+                    firebase
+                        .auth()
+                        .getRedirectResult()
+                        .then(this.onSuccess)
+                )
+                .catch(this.onError);
         },
         facebookSignIn() {
-            return this.model.facebookSignIn().then(this.onSuccess, this.onError);
+            return this.model
+                .facebookSignIn()
+                .then(() =>
+                    firebase
+                        .auth()
+                        .getRedirectResult()
+                        .then(this.onSuccess)
+                )
+                .catch(this.onError);
         },
     },
 });
