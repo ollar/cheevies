@@ -19,8 +19,8 @@ export default Service.extend({
         return new Promise(() => {
             let sharer = this.isAvailable
                 ? navigator.share({
-                      title,
-                      text,
+                      title: title.toString(),
+                      text: text.toString(),
                       url,
                   })
                 : this.emailFallBack({ title, text, url });

@@ -53,5 +53,6 @@
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
+    <plugin name="cordova-plugin-web-share" spec="1.2.0" />
     <engine name="android" spec="6.2.0" />
 </widget>
