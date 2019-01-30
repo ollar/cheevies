@@ -34,6 +34,9 @@ patch_version:
         - npm version patch -m "Version up to %s [skip ci]"
 
         - git push http://${GITLAB_USER_LOGIN}:${PERSONAL_ACCESS_TOKEN}@gitlab.com/ollar/cheevies.git HEAD:${CI_COMMIT_REF_NAME}
+    only:
+        refs:
+            - dev
 
 deploy_production:
     stage: deploy
