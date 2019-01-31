@@ -107,7 +107,7 @@ export default Controller.extend({
                         sender: this.me.model.name,
                         group: this.groupModel.name,
                     }),
-                    url: `${window.location.origin}/join/${this.groupModel.id}?code=${
+                    url: `${this.share.appDomain}/join/${this.groupModel.id}?code=${
                         this.groupModel.code
                     }`,
                 })

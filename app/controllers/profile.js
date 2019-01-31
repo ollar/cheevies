@@ -103,6 +103,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 .post({
                     title: this.i18n.t('share.cheevie.title'),
                     text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
+                    url: `${this.share.appDomain}/profile/${this.model.id}`,
                 })
                 .then(() => onSuccess(), () => onError());
         },
