@@ -50,6 +50,7 @@
         <host name="auth.cheevies.club" scheme="https">
             <path url="/__/auth/callback" />
         </host>
+        <host event="universalLinksCatched" name="cheevies.club" scheme="https" />
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
