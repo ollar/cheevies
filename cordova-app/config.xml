@@ -16,6 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="blob:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" id="ldpi" src="res/icon/android/ldpi.png" />
@@ -53,7 +54,9 @@
         <host event="universalLinksCatched" name="cheevies.club" scheme="https" />
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-web-share" spec="1.2.0" />
+    <plugin name="cordova-plugin-file" spec="4.3.3" />
     <engine name="android" spec="6.2.0" />
 </widget>

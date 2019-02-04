@@ -3,8 +3,8 @@ import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import imageResize from 'image-resize-util/utils/image-resize';
+import Middleware from '../utils/middleware';
 
-// const IMAGE_SIZES = [32, 64, 128, 256, 512];
 const IMAGE_SIZES = [64, 128, 256, 512];
 
 export default Mixin.create({
@@ -39,13 +39,29 @@ export default Mixin.create({
 
     _uploadImage(file) {
         return this._removeImage()
-            .then(() =>
-                hash(
-                    IMAGE_SIZES.reduce((acc, cur) => {
-                        acc[cur] = this._processImageUpload(file, cur);
-                        return acc;
-                    }, {})
-                )
+            .then(
+                () => {
+                    var middleware = new Middleware();
+                    var _hash = {};
+
+                    const upl = (size, next) => {
+                        this._processImageUpload(file, size).then(imageModel => {
+                            _hash[size] = imageModel;
+                            next();
+                        });
+                    };
+
+                    return new Promise(res => {
+                        IMAGE_SIZES.forEach(size => middleware.use(next => upl(size, next)));
+                        middleware.go(() => res(_hash));
+                    });
+                }
+                // hash(
+                //     IMAGE_SIZES.reduce((acc, cur) => {
+                //         acc[cur] = this._processImageUpload(file, cur);
+                //         return acc;
+                //     }, {})
+                // )
             )
             .then(_hash => {
                 const imageSet = this.store.createRecord('image-set');
