@@ -16,7 +16,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-intent href="blob:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" id="ldpi" src="res/icon/android/ldpi.png" />
@@ -57,6 +56,8 @@
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-web-share" spec="1.2.0" />
+    <plugin name="cordova-plugin-camera" spec="2.4.1" />
     <plugin name="cordova-plugin-file" spec="4.3.3" />
+    <plugin name="cordova-plugin-dialogs" spec="2.0.1" />
     <engine name="android" spec="6.2.0" />
 </widget>
