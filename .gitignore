@@ -35,3 +35,5 @@ cordova-app/plugins/*
 !cordova-app/plugins/.gitkeep
 cordova-app/www/*
 !cordova-app/www/.gitkeep
+
+sign-app.sh
