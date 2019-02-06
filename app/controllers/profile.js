@@ -7,6 +7,7 @@ import Popper from 'popper';
 import $ from 'jquery';
 import DS from 'ember-data';
 import { schedule } from '@ember/runloop';
+import cordovaGetImage from '../utils/cordova-get-image';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     me: service(),
@@ -103,6 +104,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 .post({
                     title: this.i18n.t('share.cheevie.title'),
                     text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
+                    url: `${this.share.appDomain}/profile/${this.model.id}`,
                 })
                 .then(() => onSuccess(), () => onError());
         },
@@ -135,6 +137,27 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         showCheeviesPicker() {
             this.transitionToRoute('profile.give-cheevie');
+        },
+
+        handleInputClick() {
+            if (window.cordova) {
+                cordovaGetImage().then(_file => {
+                    this.send('uploadImage', [_file]);
+                });
+
+                return;
+            }
+
+            this._fileInput = document.querySelector('input[type="file"]');
+            if (this._fileInput) {
+                this._fileInput.dispatchEvent(
+                    new MouseEvent('click', {
+                        view: window,
+                        bubbles: false,
+                        cancelable: true,
+                    })
+                );
+            }
         },
     },
 });

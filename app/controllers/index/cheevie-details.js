@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 import { resolve } from 'rsvp';
 
 import { userIsModerator, userIsGroupAuthor } from '../../utils/user-role';
+import cordovaGetImage from '../../utils/cordova-get-image';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
@@ -138,6 +139,15 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         selectUpload() {
+            if (window.cordova) {
+                cordovaGetImage().then(_file => {
+                    this.toggleProperty('showOptionalMenu');
+                    this.set('_file', _file);
+                });
+
+                return;
+            }
+
             this._fileInput = document.querySelector('input[type="file"]');
             if (this._fileInput) {
                 this._fileInput.dispatchEvent(

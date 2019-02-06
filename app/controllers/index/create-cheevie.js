@@ -4,6 +4,7 @@ import ImageUploadMixin from '../../mixins/image-uploader';
 import BusyMixin from '../../mixins/busy-loader';
 import { all, resolve } from 'rsvp';
 import { inject as service } from '@ember/service';
+import cordovaGetImage from '../../utils/cordova-get-image';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     activity: service(),
@@ -115,6 +116,15 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         },
 
         selectUpload() {
+            if (window.cordova) {
+                cordovaGetImage().then(_file => {
+                    this.toggleProperty('showOptionalMenu');
+                    this.set('_file', _file);
+                });
+
+                return;
+            }
+
             this._fileInput = document.querySelector('input[type="file"]');
             if (this._fileInput) {
                 this._fileInput.dispatchEvent(

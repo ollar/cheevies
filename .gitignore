@@ -26,13 +26,12 @@ node_modules/
 # dev
 .env
 .firebase/
-corber/tmp-livereload
-corber/cordova/node_modules
-corber/cordova/package.json
-corber/cordova/package-lock.json
-corber/cordova/platforms/*
-!corber/cordova/platforms/.gitkeep
-corber/cordova/plugins/*
-!corber/cordova/plugins/.gitkeep
-corber/cordova/www/*
-!corber/cordova/www/.gitkeep
+cordova-app/node_modules
+cordova-app/package.json
+cordova-app/package-lock.json
+cordova-app/platforms/*
+!cordova-app/platforms/.gitkeep
+cordova-app/plugins/*
+!cordova-app/plugins/.gitkeep
+cordova-app/www/*
+!cordova-app/www/.gitkeep

@@ -50,6 +50,7 @@ module.exports = function(environment) {
             // Here you can pass flags/options to your application instance
             // when it is created
             giphyApiKey,
+            appDomain: 'https://cheevies.club',
         },
 
         firebase: {
@@ -78,6 +79,8 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
+        ENV.APP.appDomain = 'https://cheevies-dev.firebaseapp.com';
+
         ENV.firebase = {
             apiKey: apiKeyDev,
             authDomain: authDomainDev,
@@ -98,6 +101,8 @@ module.exports = function(environment) {
 
         ENV.APP.rootElement = '#ember-testing';
         ENV.APP.autoboot = false;
+
+        ENV.APP.appDomain = 'https://cheevies-dev.firebaseapp.com';
 
         ENV.firebase = {
             apiKey: apiKeyTest,
