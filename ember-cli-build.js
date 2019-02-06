@@ -6,6 +6,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const environment = EmberApp.env();
 const IS_PROD = environment === 'production';
 const IS_TEST = environment === 'test';
+const IS_CORDOVA = environment === 'cordova';
 
 module.exports = function(defaults) {
     let app = new EmberApp(defaults, {
@@ -15,6 +16,7 @@ module.exports = function(defaults) {
             versionStrategy: 'every-build',
         },
         'asset-cache': {
+            enabled: IS_PROD,
             include: ['assets/**/*', 'images/**/*'],
         },
         hinting: IS_TEST,
@@ -25,12 +27,16 @@ module.exports = function(defaults) {
         autoprefixer: {
             sourcemap: false, // Was never helpful
         },
+        sourcemaps: {
+            enabled: !IS_PROD && !IS_CORDOVA,
+        },
+        'ember-cli-uglify': {
+            enabled: IS_PROD || IS_CORDOVA,
+        },
+        minifyCSS: {
+            enabled: IS_PROD || IS_CORDOVA,
+        },
     });
-
-    if (environment === 'cordova') {
-        app.options.minifyCSS.enabled = true;
-        app.options.minifyJS.enabled = true;
-    }
 
     app.import('node_modules/normalize.css/normalize.css');
     app.import('node_modules/feather-icons/dist/feather-sprite.svg');
