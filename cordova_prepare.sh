@@ -1,4 +1,5 @@
 ember build --environment cordova
+rm -rf cordova-app/www/*
 cp -R dist/assets cordova-app/www/
 cp -R dist/feather-icons cordova-app/www/
 cp -R dist/images cordova-app/www/

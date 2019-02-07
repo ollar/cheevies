@@ -269,6 +269,7 @@ export default {
             'edit-cheevie': 'Edit Cheevie',
             'present-cheevie': 'Give a Cheevie',
             'invite-new-pal': 'Invite New Pal',
+            'edit-profile': 'Edit Profile',
         },
     },
 
