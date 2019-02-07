@@ -278,6 +278,18 @@ export default {
         },
     },
 
+    'cordova-get-image': {
+        modal: {
+            title: 'Select source',
+            text: '',
+            buttons: {
+                camera: 'Camera',
+                gallery: 'Gallery',
+                cancel: 'Cancel',
+            },
+        },
+    },
+
     'TERMS-OF-SERVICE': {
         title: 'TERMS OF SERVICE',
         text: `OVERVIEW

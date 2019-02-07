@@ -141,7 +141,17 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         handleInputClick() {
             if (window.cordova) {
-                cordovaGetImage().then(_file => {
+                cordovaGetImage({
+                    confirmStrings: {
+                        title: this.i18n.t('cordova-get-image.modal.title'),
+                        text: this.i18n.t('cordova-get-image.modal.text'),
+                        buttons: {
+                            camera: this.i18n.t('cordova-get-image.modal.buttons.camera'),
+                            gallery: this.i18n.t('cordova-get-image.modal.buttons.gallery'),
+                            cancel: this.i18n.t('cordova-get-image.modal.buttons.cancel'),
+                        },
+                    },
+                }).then(_file => {
                     this.send('uploadImage', [_file]);
                 });
 

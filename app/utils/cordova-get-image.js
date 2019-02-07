@@ -1,4 +1,4 @@
-export default function cordovaGetImage() {
+export default function cordovaGetImage({ confirmStrings: { title, text, buttons = {} } }) {
     return new Promise((resolve, reject) => {
         const setOptions = srcType => {
             var options = {
@@ -16,7 +16,7 @@ export default function cordovaGetImage() {
         };
 
         navigator.notification.confirm(
-            'select image source',
+            text.toString(),
             result => {
                 if (result === 3) return reject();
 
@@ -47,8 +47,8 @@ export default function cordovaGetImage() {
                     options
                 );
             },
-            'Window title',
-            ['Camera', 'Gallery', 'Cancel']
+            title.toString(),
+            [buttons.camera.toString(), buttons.gallery.toString(), buttons.cancel.toString()]
         );
     });
 }

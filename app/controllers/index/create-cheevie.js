@@ -10,6 +10,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     activity: service(),
     me: service(),
     giphy: service(),
+    i18n: service(),
 
     _model: computed.alias('model.cheevie'),
     _image: computed('_file', '_giphy', function() {
@@ -117,7 +118,17 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
         selectUpload() {
             if (window.cordova) {
-                cordovaGetImage().then(_file => {
+                cordovaGetImage({
+                    confirmStrings: {
+                        title: this.i18n.t('cordova-get-image.modal.title'),
+                        text: this.i18n.t('cordova-get-image.modal.text'),
+                        buttons: {
+                            camera: this.i18n.t('cordova-get-image.modal.buttons.camera'),
+                            gallery: this.i18n.t('cordova-get-image.modal.buttons.gallery'),
+                            cancel: this.i18n.t('cordova-get-image.modal.buttons.cancel'),
+                        },
+                    },
+                }).then(_file => {
                     this.toggleProperty('showOptionalMenu');
                     this.set('_file', _file);
                 });
