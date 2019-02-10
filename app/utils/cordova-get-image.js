@@ -18,7 +18,7 @@ export default function cordovaGetImage({ confirmStrings: { title, text, buttons
         navigator.notification.confirm(
             text.toString(),
             result => {
-                if (result === 3) return reject();
+                if (!result || result === 3) return reject();
 
                 var srcType =
                     result === 1
