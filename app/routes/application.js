@@ -12,6 +12,10 @@ export default Route.extend({
         this.notificationTypes = ['info', 'success', 'warning', 'error'];
         this.installStandalone.addListeners();
     },
+
+    beforeModel() {
+        return this.intl.setLocale([navigator.language, 'en-us']);
+    },
     activate() {
         if (!window.cordova && window.innerWidth > 1000) {
             schedule('afterRender', () =>
