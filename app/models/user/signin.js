@@ -11,7 +11,7 @@ export default DS.Model.extend(Validator, {
 
     firebase: service('firebase-app'),
     router: service(),
-    i18n: service(),
+    intl: service(),
 
     validations: computed(() => ({
         email: {
@@ -44,7 +44,7 @@ export default DS.Model.extend(Validator, {
                         case 'password':
                             this.router.transitionTo('wardrobe.sign-in');
                             return Promise.reject({
-                                message: this.i18n.t('messages.email-auth-required'),
+                                message: this.intl.t('messages.email-auth-required'),
                             });
 
                         case 'facebook.com':

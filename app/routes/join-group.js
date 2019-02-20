@@ -6,7 +6,7 @@ import { schedule } from '@ember/runloop';
 
 export default Route.extend({
     session: service(),
-    i18n: service(),
+    intl: service(),
     me: service(),
     isAuthenticated: computed.readOnly('session.isAuthenticated'),
 
@@ -14,7 +14,7 @@ export default Route.extend({
         const queryParams = transition.queryParams;
 
         if (!queryParams.code) {
-            throw new Error(this.get('i18n').t('join-group.messages.broken_link'));
+            throw new Error(this.get('intl').t('join-group.messages.broken_link'));
         }
 
         if (!this.isAuthenticated) {
@@ -24,7 +24,7 @@ export default Route.extend({
             });
             transition.send('notify', {
                 type: 'info',
-                text: this.get('i18n').t('join-group.messages.attempt-signin'),
+                text: this.get('intl').t('join-group.messages.attempt-signin'),
             });
             this.transitionTo('wardrobe.social-sign-in');
             transition.abort();
@@ -37,7 +37,7 @@ export default Route.extend({
         })
             .then(({ group, me }) => {
                 if (group.code !== queryParams.code) {
-                    throw new Error(this.get('i18n').t('join-group.messages.access_code_wrong'));
+                    throw new Error(this.get('intl').t('join-group.messages.access_code_wrong'));
                 }
 
                 group.users.addObject(me);
@@ -46,7 +46,7 @@ export default Route.extend({
 
                 transition.send('notify', {
                     type: 'success',
-                    text: this.get('i18n').t('join-group.messages.success', {
+                    text: this.get('intl').t('join-group.messages.success', {
                         groupName: group.name,
                         username: me.name,
                     }),

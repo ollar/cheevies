@@ -14,7 +14,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     myGroup: service(),
     activity: service(),
     share: service(),
-    i18n: service(),
+    intl: service(),
 
     openPopper: '',
 
@@ -89,21 +89,21 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             const onSuccess = () => {
                 return this.send('notify', {
                     type: 'success',
-                    text: this.i18n.t('share.messages.success'),
+                    text: this.intl.t('share.messages.success'),
                 });
             };
 
             const onError = () => {
                 return this.send('notify', {
                     type: 'error',
-                    text: this.i18n.t('share.messages.error'),
+                    text: this.intl.t('share.messages.error'),
                 });
             };
 
             this.share
                 .post({
-                    title: this.i18n.t('share.cheevie.title'),
-                    text: this.i18n.t('share.cheevie.text', { cheevie: cheevie.name }),
+                    title: this.intl.t('share.cheevie.title'),
+                    text: this.intl.t('share.cheevie.text', { cheevie: cheevie.name }),
                     url: `${this.share.appDomain}/profile/${this.model.id}`,
                 })
                 .then(() => onSuccess(), () => onError());
@@ -143,12 +143,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             if (window.cordova) {
                 cordovaGetImage({
                     confirmStrings: {
-                        title: this.i18n.t('cordova-get-image.modal.title'),
-                        text: this.i18n.t('cordova-get-image.modal.text'),
+                        title: this.intl.t('cordova-get-image.modal.title'),
+                        text: this.intl.t('cordova-get-image.modal.text'),
                         buttons: {
-                            camera: this.i18n.t('cordova-get-image.modal.buttons.camera'),
-                            gallery: this.i18n.t('cordova-get-image.modal.buttons.gallery'),
-                            cancel: this.i18n.t('cordova-get-image.modal.buttons.cancel'),
+                            camera: this.intl.t('cordova-get-image.modal.buttons.camera'),
+                            gallery: this.intl.t('cordova-get-image.modal.buttons.gallery'),
+                            cancel: this.intl.t('cordova-get-image.modal.buttons.cancel'),
                         },
                     },
                 }).then(_file => {

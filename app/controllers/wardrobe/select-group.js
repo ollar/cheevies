@@ -40,7 +40,7 @@ export default Controller.extend({
             .then(() =>
                 this.send('notify', {
                     type: 'info',
-                    text: this.get('i18n').t('messages.welcome_default'),
+                    text: this.get('intl').t('messages.welcome_default'),
                 })
             )
             .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')));
@@ -68,7 +68,7 @@ export default Controller.extend({
                     .then(groups => {
                         // 1. No groups found -> show error
                         if (!groups.length) {
-                            throw new Error(this.get('i18n').t('login.messages.no_such_group'));
+                            throw new Error(this.get('intl').t('login.messages.no_such_group'));
                         }
 
                         // 2. Group found
@@ -79,7 +79,7 @@ export default Controller.extend({
                             // Group is locked -> show error
                             if (group.locked) {
                                 throw new Error(
-                                    this.get('i18n').t('login.messages.group_is_locked')
+                                    this.get('intl').t('login.messages.group_is_locked')
                                 );
                             }
 
