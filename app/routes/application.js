@@ -4,7 +4,7 @@ import { schedule } from '@ember/runloop';
 
 export default Route.extend({
     notify: service(),
-    i18n: service(),
+    intl: service(),
     installStandalone: service('install-standalone'),
 
     init() {
@@ -12,12 +12,16 @@ export default Route.extend({
         this.notificationTypes = ['info', 'success', 'warning', 'error'];
         this.installStandalone.addListeners();
     },
+
+    beforeModel() {
+        return this.intl.setLocale([navigator.language, 'en-us']);
+    },
     activate() {
         if (!window.cordova && window.innerWidth > 1000) {
             schedule('afterRender', () =>
                 this.send('notify', {
                     type: 'warning',
-                    text: this.i18n.t('messages.screen_width_warning'),
+                    text: this.intl.t('messages.screen_width_warning'),
                 })
             );
         }

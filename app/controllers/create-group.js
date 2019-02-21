@@ -6,7 +6,7 @@ import { schedule } from '@ember/runloop';
 
 export default Controller.extend({
     session: service(),
-    i18n: service(),
+    intl: service(),
     me: service(),
 
     myModel: computed.alias('me.model'),
@@ -16,7 +16,7 @@ export default Controller.extend({
             .then(() =>
                 this.send('notify', {
                     type: 'success',
-                    text: this.i18n.t('create_group.success_message'),
+                    text: this.intl.t('create_group.success_message'),
                 })
             )
             .then(() => {
@@ -27,7 +27,7 @@ export default Controller.extend({
     onError(e) {
         return this.send('notify', {
             type: 'error',
-            text: e.message || this.i18n.t('create_group.error_message'),
+            text: e.message || this.intl.t('create_group.error_message'),
         });
     },
 
@@ -44,7 +44,7 @@ export default Controller.extend({
                             if (groups && groups.length) {
                                 return this.send('notify', {
                                     type: 'error',
-                                    text: this.i18n.t('messages.group_already_exist'),
+                                    text: this.intl.t('messages.group_already_exist'),
                                 });
                             }
                             const newGroup = this.store.createRecord('group', {

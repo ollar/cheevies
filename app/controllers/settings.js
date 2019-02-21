@@ -12,7 +12,7 @@ export default Controller.extend({
     myGroup: service(),
     settings: service(),
     share: service(),
-    i18n: service(),
+    intl: service(),
 
     groupModel: computed.alias('myGroup.model'),
 
@@ -102,8 +102,8 @@ export default Controller.extend({
         inviteGroup() {
             return this.share
                 .post({
-                    title: this.i18n.t('settings.group.invitation.title'),
-                    text: this.i18n.t('settings.group.invitation.text', {
+                    title: this.intl.t('settings.group.invitation.title'),
+                    text: this.intl.t('settings.group.invitation.text', {
                         sender: this.me.model.name,
                         group: this.groupModel.name,
                     }),
@@ -115,12 +115,12 @@ export default Controller.extend({
                     () =>
                         this.send('notify', {
                             type: 'success',
-                            text: this.i18n.t('settings.group.invitation.success'),
+                            text: this.intl.t('settings.group.invitation.success'),
                         }),
                     () =>
                         this.send('notify', {
                             type: 'error',
-                            text: this.i18n.t('settings.group.invitation.error'),
+                            text: this.intl.t('settings.group.invitation.error'),
                         })
                 );
         },

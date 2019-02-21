@@ -117,7 +117,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 .finally(() => this.setBusy(false));
         },
         deleteCheevie() {
-            if (window.confirm(this.get('i18n').t('messages.delete_cheevie_check'))) {
+            if (window.confirm(this.get('intl').t('messages.delete_cheevie_check'))) {
                 const model = this.get('model');
                 model.set('deleted', true);
 
@@ -142,12 +142,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             if (window.cordova) {
                 cordovaGetImage({
                     confirmStrings: {
-                        title: this.i18n.t('cordova-get-image.modal.title'),
-                        text: this.i18n.t('cordova-get-image.modal.text'),
+                        title: this.intl.t('cordova-get-image.modal.title'),
+                        text: this.intl.t('cordova-get-image.modal.text'),
                         buttons: {
-                            camera: this.i18n.t('cordova-get-image.modal.buttons.camera'),
-                            gallery: this.i18n.t('cordova-get-image.modal.buttons.gallery'),
-                            cancel: this.i18n.t('cordova-get-image.modal.buttons.cancel'),
+                            camera: this.intl.t('cordova-get-image.modal.buttons.camera'),
+                            gallery: this.intl.t('cordova-get-image.modal.buttons.gallery'),
+                            cancel: this.intl.t('cordova-get-image.modal.buttons.cancel'),
                         },
                     },
                 }).then(_file => {

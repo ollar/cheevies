@@ -10,7 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     settings: service(),
     myGroup: service('my-group'),
     cachedImage: service(),
-    i18n: service(),
+    intl: service(),
 
     settingsModel: computed.alias('settings.model'),
     authenticationRoute: 'wardrobe.social-sign-in',
@@ -34,7 +34,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
         this.transitionTo('wardrobe.sign-out');
         this.send('notify', {
             type: 'error',
-            text: this.i18n.t('messages.app_init_error'),
+            text: this.intl.t('messages.app_init_error'),
         });
     },
 

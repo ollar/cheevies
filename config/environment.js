@@ -61,12 +61,6 @@ module.exports = function(environment) {
             storageBucket,
             messagingSenderId,
         },
-        torii: {
-            sessionServiceName: 'session',
-        },
-        i18n: {
-            defaultLocale: 'en',
-        },
         // 'ember-gsap': {
         //     core: ['TweenLite', 'TimelineLite', 'CSSPlugin', 'AttrPlugin', 'easing'],
         // },
