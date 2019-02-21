@@ -5,9 +5,8 @@ login:
         submit: Войти
         register: Зарегистрироваться
     messages:
-        no_such_group: Can't find a group. Please check typing and try again.
-        group_is_locked: This group is private. You can ask member to send you invitation
-            link.
+        no_such_group: Не могу найти группу. Пожалуйста проверьте написание и попробуйте снова.
+        group_is_locked: Эта группа закрыта. Вы можете попросить члена группы пригласить вас.
 register:
     buttons:
         login: Войти
@@ -15,119 +14,118 @@ register:
     success_message: Добро пожаловать на борт
 form:
     name:
-        label: Name
-        placeholder: Type your name here
+        label: Имя
+        placeholder: Введите свое имя
     email:
         label: Email
-        placeholder: Type your email here
+        placeholder: Введите свой email
     password:
-        label: Password
-        placeholder: Type your password here
+        label: Пароль
+        placeholder: Введите пароль
     group:
-        label: Group
-        placeholder: Type your group here
+        label: Группа
+        placeholder: Введите группу
 messages:
-    welcome_default: Welcome back!
+    welcome_default: С возвращением!
     welcome_google: Yep, sending data to ANB
     welcome_github: All your repos belongs to us!
-    delete_cheevie_check: Are you sure?
-    app_init_error: Oops, seems we failed to launch. That's definitely Henry's fault.
-        Please try again
-    group_already_exist: Such group already exist. Please find another name
+    delete_cheevie_check: Вы уверены?
+    app_init_error: Ой, не получилось запуститься. Вася снова перепутал провода.
+    group_already_exist: Такая группа уже существует. Попробуйте другое имя?
     email-auth-required: This account exists with email authentification method. Please
         sign in with email to link accounts
     screen_width_warning: This app is optimized for mobile devices. It is recommended
         to install it as a standalone app for better user experience.
-    empty: Nothing here yet
+    empty: Здесь пусто
 buttons:
-    submit: Submit
-    cancel: Cancel
-    back: Back
-    edit: Edit
-    sign_out: Sign out
-    delete: Delete
-    save: Save
+    submit: Ок
+    cancel: Отмена
+    back: Назад
+    edit: Редактировать
+    sign_out: Выйти
+    delete: Удалить
+    save: Сохранить
     google: Google
     facebook: Facebook
 create-cheevie:
-    title: Создать cheevie
+    title: Новая ачивка
     subtitle: Feel free to express your best imagination
     form:
         name:
-            label: Cheevie name
-            placeholder: фывфывфывф Add cheevie name here
+            label: Название ачивки
+            placeholder: Введите название ачивки
         description:
-            label: Cheevie description
-            placeholder: Add cheevie description here
+            label: Описание ачивки
+            placeholder: Введите описание ачивки
         power:
-            label: Select cheevie power
-            low: low
-            normal: norm
-            high: high
+            label: Выберите силу ачивки
+            low: Слабая
+            normal: Средняя
+            high: Сильная
 optional-menu:
     giphy: Giphy
-    upload: Upload
-    cancel: Cancel
+    upload: Загрузить
+    cancel: Отмена
 profile:
     buttons:
-        give-cheevie: Present a cheevie
+        give-cheevie: Подарить ачивку
     links:
-        refuse_gift: Refuse
+        refuse_gift: Отказаться
 settings:
-    title: Settings
+    title: Настройки
     subtitle:
-        general: General
-        group-settings: Group Settings
-        additional: Additional
+        general: Главные
+        group-settings: Настройки группы
+        additional: Дополнительные
     form:
         pushNotifications:
-            label: Push notifications
+            label: Push нотификации
         sounds:
-            label: Sounds
+            label: Звуки
         animations:
-            label: Animations
+            label: Анимации
         iconsDescription:
-            label: Icons Descriptions
+            label: Подписи иконок
         standaloneApp:
-            label: Install App on Homescreen
+            label: Установить на рабочий стол
         locked:
-            label: Locked
+            label: Закрытая
         reloadApp:
-            text: Reload App
+            text: Перегрузить приложение
         name:
-            label: Group name
-            placeholder: Type group name
+            label: Имя группы
+            placeholder: Введите имя группы
         code:
-            label: Invitation code
-            placeholder: Type group invitation code
+            label: Код
+            placeholder: Введите код приглашения
         policy:
-            label: Group policy
-            anarchy: Anarchy
-            democracy: Democracy
-            totalitarianism: Totalitarianism
+            label: Политика группы
+            anarchy: Анархия
+            democracy: Демократия
+            totalitarianism: Тоталитаризм
         policy_description:
-            anarchy: All participant can create or edit cheevies
-            democracy: Group moderators can create or edit cheevies
-            totalitarianism: Only group owner can create or edit cheevies
+            anarchy: Все участники могут создавать ачивки
+            democracy: Модераторы группы могут создавать ачивки
+            totalitarianism: Только владелец группы может создавать ачивки
     feedback:
-        subject: Feedback to Cheevies App
-        linkText: Send a feedback
+        subject: Отзыв о приложении
+        linkText: Отправить отзыв
     group:
         invitation:
-            title: Invitation to Cheevie App group
-            text: '{sender} asks you to join the {group} group'
-            success: Invitation sent
-            error: Post office is closed, sorry
+            title: Пригласить в группу
+            text: '{sender} приглашает вас вступить в группу {group}'
+            success: Приглашение отправлено
+            error: Почта временно закрыта, простите
 activity:
-    title: Current Activity
-    empty: No New Activity
+    title: Текущая активность
+    empty: Никакой активности
     actions:
-        giveCheevie: gave cheevie
-        createCheevie: created cheevie
-        updateCheevie: updated cheevie
-        refuseCheevie: refused cheevie
-        logged: logged in
-        registered: signed up, hooray!
+        giveCheevie: подарил ачивку
+        createCheevie: создал ачивку
+        updateCheevie: изменил ачивку
+        refuseCheevie: отказался от ачивки
+        logged: вошел
+        registered: зарегистрировался, урв!
 nav:
     home: На главную
     profile: Профайл
@@ -138,65 +136,65 @@ nav:
     guide-text: Просмотреть гайд
     guide-invitation-text: Ознакомитесь сначала с гайдом?
 reset-password:
-    success_message: Recovery message sent, keep calm and wait for help
-    error_message: Bad weather, resque squad failed to launch
+    success_message: Инструкции по восстановлению отправлены
+    error_message: Спасательный вертолет отменен из-за нелетной погоды
 index:
     create-cheevie:
-        linkText: Create new cheevie
+        linkText: Создать ачивку
     new-cheevies:
-        title: Hooray! You've got new cheevies!
-no-cheevies-placeholder: There are no cheevies yet, maybe you can create one?
-you-have-no-cheevies-yet: You have no cheevies yet, but you are the best!
+        title: Поздравляем, у вас новая ачивка!
+no-cheevies-placeholder: Пока ачивок нет, может создать парочку?
+you-have-no-cheevies-yet: У вас пока нет ачивок, но вы все равно лучший!
 footer_message: Made with ♥ 2017
 share:
     cheevie:
-        title: Cheevie App
-        text: I have "{cheevie}" cheevie in my collection!
+        title: Ачивки
+        text: У меня есть ачивка "{cheevie}" в коллекции!
     messages:
-        success: Successfully shared
-        error: Failed to share
+        success: Успешно
+        error: Ох, неудача :(
 create_group:
-    success_message: Congratulations! Group created successfully.
-    error_message: Oops, error. Group seems to lose its way.
+    success_message: Поздравляем! Группа создана.
+    error_message: Ой, группа потерялась.
 join-group:
     messages:
-        attempt-signin: Please sign in to join the group.
-        broken_link: Oops, seems your invitation link is invalid
-        access_code_wrong: Dah, access code is broken
-        success: Welcome to {groupName} group, {username}!
+        attempt-signin: Пожалуйста войдите, чтобы присоединиться к группе.
+        broken_link: Ой, похоже пригласительный неверен
+        access_code_wrong: Неправильный код приглашения
+        success: Добро пожаловать в семью {groupName}, {username}!
 icons:
-    close: Close
-    edit: Edit
-    back: Back
-    menu: Menu
-    cancel: Cancel
-    remove: Remove
-    add_image: Add image
-    settings: Settings
-    activity: Activity
-    sign_out: Sign Out
-    users: Users
-    cheevies: Cheevies
-    refuse: Refuse
-    share: Share
-    reward: Reward
-    invite: Invite New Participant
+    close: Закрыть
+    edit: Редактировать
+    back: Назад
+    menu: Меню
+    cancel: Отмена
+    remove: Удалить
+    add_image: Добавить изображение
+    settings: Настройки
+    activity: Активность
+    sign_out: Выйти
+    users: Участники
+    cheevies: Ачивки
+    refuse: Отказаться
+    share: Поделиться
+    reward: Наградить
+    invite: Пригласить нового участника
 slides:
     title:
-        create-cheevie: Create Cheevie
-        edit-cheevie: Edit Cheevie
-        present-cheevie: Give a Cheevie
-        invite-new-pal: Invite New Pal
-        edit-profile: Edit Profile
+        create-cheevie: Создать ачивку
+        edit-cheevie: Изменить ачивку
+        present-cheevie: Подарить ачивку
+        invite-new-pal: Пригласить участника
+        edit-profile: Редактировать профиль
 giphy-selector:
     input:
-        placeholder: Search on giphy
+        placeholder: Поиск giphy
 cordova-get-image:
     modal:
-        title: Select source
+        title: Выберите источник
         text: ''
         buttons:
-            camera: Camera
-            gallery: Gallery
-            cancel: Cancel
+            camera: Камера
+            gallery: Галерея
+            cancel: Отмена
 TERMS-OF-SERVICE: {}
