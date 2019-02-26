@@ -47,6 +47,7 @@ buttons:
     save: Сохранить
     google: Google
     facebook: Facebook
+    demo-sign-in: Демо режим
 create-cheevie:
     title: Новая ачивка
     subtitle: Feel free to express your best imagination

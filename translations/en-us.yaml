@@ -51,6 +51,7 @@ buttons:
     save: Save
     google: Google
     facebook: Facebook
+    demo-sign-in: Demo mode
 create-cheevie:
     title: Create cheevie
     subtitle: Feel free to express your best imagination

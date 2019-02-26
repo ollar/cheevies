@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
-import { all } from 'rsvp';
+import { all, hash } from 'rsvp';
 import firebase from 'firebase';
+import demoGroup from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
@@ -110,6 +111,38 @@ export default Controller.extend(BusyLoaderMixin, {
                         .then(this.onSuccess)
                 )
                 .catch(this.onError);
+        },
+        demoSignIn() {
+            this.setBusy(true);
+            return (
+                this.model
+                    .anonymousSignIn()
+                    .then(({ uid }) => {
+                        const user = this.store.createRecord('demo/user', {
+                            name: 'demoUser',
+                            created: Date.now(),
+                        });
+
+                        const group = this.store.createRecord('demo/group', {
+                            name: 'demo-group-' + Math.round(Math.random() * 1000),
+                        });
+
+                        // this.session.authenticate('authenticator:social', {
+                        //     uid,
+                        // });
+
+                        group.users.pushObject(user);
+                        user.groups.pushObject(group);
+
+                        // this.session.set('data.group', group.name);
+                        // this.session.set('data.demoGroup', true);
+                        this.setBusy(false);
+
+                        return all([user.save(), group.save()]);
+                    })
+                    // .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')))
+                    .catch(this.onError)
+            );
         },
     },
 });
