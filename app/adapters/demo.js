@@ -13,7 +13,11 @@ export default DS.Adapter.extend({
     generateIdForRecord() {
         return this.incId();
     },
-    findRecord() {},
+    findRecord(store, type, id, snapshot) {
+        console.log(snapshot);
+
+        return this.storage[type][id];
+    },
     createRecord(store, type, snapshot) {
         let data = this.serialize(snapshot, { includeId: true });
 
@@ -21,7 +25,7 @@ export default DS.Adapter.extend({
 
         this.storage[type][data.id] = data;
 
-        return resolve(data);
+        return data;
     },
     updateRecord() {},
     deleteRecord() {},

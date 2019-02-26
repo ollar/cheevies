@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { schedule } from '@ember/runloop';
+import { schedule, run } from '@ember/runloop';
 import { all, hash } from 'rsvp';
 import firebase from 'firebase';
-import demoGroup from './_demo-group';
+import demoGroup, { users, cheevies, images, imageSets, demoGroupId } from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
@@ -114,35 +114,80 @@ export default Controller.extend(BusyLoaderMixin, {
         },
         demoSignIn() {
             this.setBusy(true);
-            return (
-                this.model
-                    .anonymousSignIn()
-                    .then(({ uid }) => {
-                        const user = this.store.createRecord('demo/user', {
-                            name: 'demoUser',
-                            created: Date.now(),
-                        });
+            return this.model.anonymousSignIn().then(({ uid }) => {
+                Object.keys(images).forEach(key => {
+                    this.store.push(
+                        this.store.normalize(
+                            'demo/image',
+                            Object.assign({}, { id: key }, images[key])
+                        )
+                    );
+                });
 
-                        const group = this.store.createRecord('demo/group', {
-                            name: 'demo-group-' + Math.round(Math.random() * 1000),
-                        });
+                Object.keys(imageSets).forEach(key => {
+                    this.store.push(
+                        this.store.normalize(
+                            'demo/image-set',
+                            Object.assign({}, { id: key }, imageSets[key])
+                        )
+                    );
+                });
 
-                        // this.session.authenticate('authenticator:social', {
-                        //     uid,
-                        // });
+                Object.keys(cheevies).forEach(key => {
+                    this.store.push(
+                        this.store.normalize(
+                            'demo/cheevie',
+                            Object.assign({}, { id: key }, cheevies[key])
+                        )
+                    );
+                });
 
-                        group.users.pushObject(user);
-                        user.groups.pushObject(group);
+                // Object.keys(users).forEach(key => {
+                //     this.store.push(
+                //         this.store.normalize(
+                //             'demo/user',
+                //             Object.assign({}, { id: key }, users[key])
+                //         )
+                //     );
+                // });
 
-                        // this.session.set('data.group', group.name);
-                        // this.session.set('data.demoGroup', true);
-                        this.setBusy(false);
+                Object.keys(users).forEach(key => {
+                    this.store.push(
+                        this.store.normalize(
+                            'demo/user',
+                            Object.assign({}, { id: key }, users[key])
+                        )
+                    );
+                });
 
-                        return all([user.save(), group.save()]);
-                    })
-                    // .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')))
-                    .catch(this.onError)
-            );
+                const user = this.store.createRecord('demo/user', {
+                    id: uid,
+                    name: 'demoUser',
+                    created: Date.now(),
+                });
+
+                // const group = this.store.push(
+                //     this.store.normalize(
+                //         'demo/group',
+                //         demoGroup('demo-group-' + Math.round(Math.random() * 1000))
+                //     )
+                // );
+
+                // this.session.authenticate('authenticator:social', {
+                //     uid,
+                // });
+
+                // group.users.pushObject(user);
+                // user.groups.pushObject(group);
+
+                // this.session.set('data.group', group.name);
+                // this.session.set('data.demoGroup', true);
+                this.setBusy(false);
+
+                // return all([user.save(), group.save()]);
+            });
+            // .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')))
+            // .catch(this.onError)
         },
     },
 });

@@ -1094,6 +1094,8 @@ export const imageSets = {
     },
 };
 
+export const demoGroupId = '-LPjoo_3C0RoXTMnyA72';
+
 export default name => ({
     id: '-LPjoo_3C0RoXTMnyA72',
     cheevies: {
