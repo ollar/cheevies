@@ -1,5 +1,3 @@
-import DS from 'ember-data';
+import ImageModel from '../image';
 
-export default DS.Model.extend({
-
-});
+export default ImageModel.extend({});
