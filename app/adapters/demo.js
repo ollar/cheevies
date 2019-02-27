@@ -1,7 +1,7 @@
 import DS from 'ember-data';
-import { resolve } from 'rsvp';
 
 export default DS.Adapter.extend({
+    defaultSerializer: 'demo',
     init() {
         this._super();
         this.storage = {};

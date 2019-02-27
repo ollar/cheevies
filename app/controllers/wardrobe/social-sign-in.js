@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { schedule, run } from '@ember/runloop';
-import { all, hash } from 'rsvp';
+import { all, hash, resolve } from 'rsvp';
 import firebase from 'firebase';
 import demoGroup, { users, cheevies, images, imageSets, demoGroupId } from './_demo-group';
 
@@ -114,7 +114,8 @@ export default Controller.extend(BusyLoaderMixin, {
         },
         demoSignIn() {
             this.setBusy(true);
-            return this.model.anonymousSignIn().then(({ uid }) => {
+            // return this.model.anonymousSignIn().then(({ uid }) => {
+            return resolve().then(() => {
                 Object.keys(images).forEach(key => {
                     this.store.push(
                         this.store.normalize(
@@ -142,15 +143,6 @@ export default Controller.extend(BusyLoaderMixin, {
                     );
                 });
 
-                // Object.keys(users).forEach(key => {
-                //     this.store.push(
-                //         this.store.normalize(
-                //             'demo/user',
-                //             Object.assign({}, { id: key }, users[key])
-                //         )
-                //     );
-                // });
-
                 Object.keys(users).forEach(key => {
                     this.store.push(
                         this.store.normalize(
@@ -161,17 +153,18 @@ export default Controller.extend(BusyLoaderMixin, {
                 });
 
                 const user = this.store.createRecord('demo/user', {
-                    id: uid,
+                    // id: uid,
+                    id: 'uid',
                     name: 'demoUser',
                     created: Date.now(),
                 });
 
-                // const group = this.store.push(
-                //     this.store.normalize(
-                //         'demo/group',
-                //         demoGroup('demo-group-' + Math.round(Math.random() * 1000))
-                //     )
-                // );
+                const group = this.store.push(
+                    this.store.normalize(
+                        'demo/group',
+                        demoGroup('demo-group-' + Math.round(Math.random() * 1000))
+                    )
+                );
 
                 // this.session.authenticate('authenticator:social', {
                 //     uid,
