@@ -16,21 +16,16 @@ export default DS.Adapter.extend({
     },
     createRecord(store, type, snapshot) {
         let data = this.serialize(snapshot, { includeId: true });
-
         return Promise.resolve(data);
     },
     updateRecord(store, type, snapshot) {
         let data = this.serialize(snapshot, { includeId: true });
-
-        // if (!storage[getType(type)]) return Promise.resolve([]);
-        // storage[getType(type)][id] = data;
-
-        // const record = store.peekRecord(getType(type), id);
-        // record.set
-
         return Promise.resolve(data);
     },
-    deleteRecord() {},
+    deleteRecord(store, type, snapshot) {
+        let data = this.serialize(snapshot, { includeId: true });
+        return Promise.resolve(data);
+    },
     findAll(store, type) {
         const records = store.peekAll(getType(type));
         return Promise.resolve(records);
