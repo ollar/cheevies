@@ -20,22 +20,26 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         return this.myGroup
             .fetch()
-            .then(group =>
+            .then(group => {
+                console.log(group);
+
                 hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
                     settings: this.settings.fetch(),
-                })
-            )
-            .catch(() => this.onModelError());
+                });
+            })
+            .catch(e => this.onModelError(e));
     },
 
-    onModelError() {
-        this.transitionTo('wardrobe.sign-out');
-        this.send('notify', {
-            type: 'error',
-            text: this.intl.t('messages.app_init_error'),
-        });
+    onModelError(e) {
+        console.log(e);
+
+        // this.transitionTo('wardrobe.sign-out');
+        // this.send('notify', {
+        //     type: 'error',
+        //     text: this.intl.t('messages.app_init_error'),
+        // });
     },
 
     afterModel() {

@@ -9,7 +9,11 @@ export default Service.extend({
 
     isAuthenticated: computed.readOnly('session.isAuthenticated'),
     groupName: computed.readOnly('session.data.group'),
+    isDemo: computed.readOnly('session.data.demoGroup'),
     model: null,
+    _type: computed('isDemo', function() {
+        return this.isDemo ? 'demo/group' : 'group';
+    }),
 
     init() {
         this._super(...arguments);
@@ -26,7 +30,7 @@ export default Service.extend({
             if (this.model) return this.model;
 
             return this.get('store')
-                .query('group', {
+                .query(this._type, {
                     orderBy: 'name',
                     equalTo: this.groupName,
                 })
