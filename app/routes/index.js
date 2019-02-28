@@ -1,8 +1,14 @@
 import Route from '@ember/routing/route';
-import { hash } from 'rsvp';
+import {
+    hash
+} from 'rsvp';
 import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import {
+    inject as service
+} from '@ember/service';
+import {
+    computed
+} from '@ember/object';
 // import { later } from '@ember/runloop';
 
 export default Route.extend(AuthenticatedRouteMixin, {
@@ -23,7 +29,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
             .then(group => {
                 console.log(group);
 
-                hash({
+                return hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
                     settings: this.settings.fetch(),
@@ -47,14 +53,19 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         if (this.me.model) {
             hash({
-                myGroup: this.myGroup.fetch(),
-                me: this.me.fetch(),
-            })
-                .then(({ me }) => ({
+                    myGroup: this.myGroup.fetch(),
+                    me: this.me.fetch(),
+                })
+                .then(({
+                    me
+                }) => ({
                     availableCheevies: this.myGroup.cheevies,
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
-                .then(({ availableCheevies, unseenCheevies }) =>
+                .then(({
+                        availableCheevies,
+                        unseenCheevies
+                    }) =>
                     unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 )
                 .then(unseenCheevies => {

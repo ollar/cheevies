@@ -1,14 +1,27 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
-import { all } from 'rsvp';
-import { computed } from '@ember/object';
+import {
+    inject as service
+} from '@ember/service';
+import {
+    all
+} from 'rsvp';
+import {
+    computed
+} from '@ember/object';
 
 export default Service.extend({
     session: service(),
     me: service(),
+    myGroup: service(),
     store: service(),
     myModel: computed.alias('me.model'),
     model: null,
+
+    isDemo: computed.readOnly('myGroup.isDemo'),
+
+    _type: computed('isDemo', function () {
+        return this.isDemo ? 'demo/settings' : 'settings';
+    }),
 
     init() {
         this._super(...arguments);
@@ -26,7 +39,7 @@ export default Service.extend({
                     this.set('model', settings);
                     return settings;
                 } else {
-                    settings = this.store.createRecord('settings', {
+                    settings = this.store.createRecord(this._type, {
                         user: this.myModel,
                     });
 
