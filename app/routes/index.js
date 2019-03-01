@@ -1,14 +1,8 @@
 import Route from '@ember/routing/route';
-import {
-    hash
-} from 'rsvp';
+import { hash } from 'rsvp';
 import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    computed
-} from '@ember/object';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 // import { later } from '@ember/runloop';
 
 export default Route.extend(AuthenticatedRouteMixin, {
@@ -26,26 +20,22 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         return this.myGroup
             .fetch()
-            .then(group => {
-                console.log(group);
-
-                return hash({
+            .then(group =>
+                hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
                     settings: this.settings.fetch(),
-                });
-            })
+                })
+            )
             .catch(e => this.onModelError(e));
     },
 
-    onModelError(e) {
-        console.log(e);
-
-        // this.transitionTo('wardrobe.sign-out');
-        // this.send('notify', {
-        //     type: 'error',
-        //     text: this.intl.t('messages.app_init_error'),
-        // });
+    onModelError() {
+        this.transitionTo('wardrobe.sign-out');
+        this.send('notify', {
+            type: 'error',
+            text: this.intl.t('messages.app_init_error'),
+        });
     },
 
     afterModel() {
@@ -53,19 +43,14 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         if (this.me.model) {
             hash({
-                    myGroup: this.myGroup.fetch(),
-                    me: this.me.fetch(),
-                })
-                .then(({
-                    me
-                }) => ({
+                myGroup: this.myGroup.fetch(),
+                me: this.me.fetch(),
+            })
+                .then(({ me }) => ({
                     availableCheevies: this.myGroup.cheevies,
                     unseenCheevies: me.get('unseenCheevies'),
                 }))
-                .then(({
-                        availableCheevies,
-                        unseenCheevies
-                    }) =>
+                .then(({ availableCheevies, unseenCheevies }) =>
                     unseenCheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
                 )
                 .then(unseenCheevies => {

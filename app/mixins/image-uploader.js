@@ -1,7 +1,16 @@
 import Mixin from '@ember/object/mixin';
-import { hash, resolve, all } from 'rsvp';
-import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import {
+    hash,
+    resolve,
+    all
+} from 'rsvp';
+import {
+    inject as service
+} from '@ember/service';
+import {
+    get,
+    computed
+} from '@ember/object';
 import imageResize from 'image-resize-util/utils/image-resize';
 import Middleware from '../utils/middleware';
 
@@ -9,20 +18,33 @@ const IMAGE_SIZES = [64, 128, 256, 512];
 
 export default Mixin.create({
     fileStorage: service(),
+    myGroup: service('my-group'),
+    isDemo: computed.readOnly('myGroup.isDemo'),
+
+    _typeImage: computed('isDemo', function () {
+        return this.isDemo ? 'demo/image' : 'image';
+    }),
+
+    _typeImageSet: computed('isDemo', function () {
+        return this.isDemo ? 'demo/image-set' : 'image-set';
+    }),
 
     _processImageUpload(file, size) {
         return imageResize(file, {
-            maxWidth: size,
-            maxHeight: size,
-        })
+                maxWidth: size,
+                maxHeight: size,
+            })
             .then(image =>
                 hash({
                     image,
                     snapshot: this.fileStorage.upload(this._uploadPath(image), image),
                 })
             )
-            .then(({ image, snapshot }) => {
-                const m = this.store.createRecord('image', {
+            .then(({
+                image,
+                snapshot
+            }) => {
+                const m = this.store.createRecord(this._typeImage, {
                     url: snapshot.downloadURLs[0],
                     fullPath: snapshot.fullPath,
                     type: snapshot.contentType,
@@ -64,7 +86,7 @@ export default Mixin.create({
                 // )
             )
             .then(_hash => {
-                const imageSet = this.store.createRecord('image-set');
+                const imageSet = this.store.createRecord(this._typeImageSet);
                 imageSet.setProperties(_hash);
                 this._model.set('image-set', imageSet);
                 return all([imageSet.save(), this._model.save()]);
@@ -80,28 +102,28 @@ export default Mixin.create({
     _saveGiphy(giphy) {
         return this._removeImage()
             .then(() => {
-                const imageSet = this.store.createRecord('image-set');
+                const imageSet = this.store.createRecord(this._typeImageSet);
 
                 const _hash = {
-                    64: this.store.createRecord('image', {
+                    64: this.store.createRecord(this._typeImage, {
                         url: get(giphy, 'images.preview_gif.url'),
                         height: get(giphy, 'images.preview_gif.height'),
                         width: get(giphy, 'images.preview_gif.width'),
                         created: Date.now(),
                     }),
-                    128: this.store.createRecord('image', {
+                    128: this.store.createRecord(this._typeImage, {
                         url: get(giphy, 'images.preview_gif.url'),
                         height: get(giphy, 'images.preview_gif.height'),
                         width: get(giphy, 'images.preview_gif.width'),
                         created: Date.now(),
                     }),
-                    256: this.store.createRecord('image', {
+                    256: this.store.createRecord(this._typeImage, {
                         url: get(giphy, 'images.downsized_medium.url'),
                         height: get(giphy, 'images.downsized_medium.height'),
                         width: get(giphy, 'images.downsized_medium.width'),
                         created: Date.now(),
                     }),
-                    512: this.store.createRecord('image', {
+                    512: this.store.createRecord(this._typeImage, {
                         url: get(giphy, 'images.downsized_large.url'),
                         height: get(giphy, 'images.downsized_large.height'),
                         width: get(giphy, 'images.downsized_large.width'),
@@ -128,7 +150,7 @@ export default Mixin.create({
             .get('image-set')
             .then(imageSet => {
                 if (!imageSet) return resolve();
-                const _imageSet = this.store.peekRecord('image-set', imageSet.id);
+                const _imageSet = this.store.peekRecord(this._typeImageSet, imageSet.id);
                 const promises = [_imageSet.destroyRecord()];
                 this._model.set('image-set', '');
 
