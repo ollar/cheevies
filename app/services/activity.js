@@ -1,10 +1,18 @@
-import Service, { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import Service, {
+    inject as service
+} from '@ember/service';
+import {
+    computed
+} from '@ember/object';
 
 export default Service.extend({
     store: service(),
     me: service(),
     myGroup: service('my-group'),
+    isDemo: computed.readOnly('myGroup.isDemo'),
+    _type: computed('isDemo', function () {
+        return this.isDemo ? 'demo/activity' : 'activity';
+    }),
 
     lastFetchedActivity: computed({
         get(key) {
@@ -19,25 +27,29 @@ export default Service.extend({
     fetch() {
         return this.myGroup.fetch().then(() =>
             this.store
-                .query('activity', {
-                    orderBy: 'group',
-                    equalTo: this.myGroup.model.id,
-                    limitToLast: 20,
-                })
-                .then(activities =>
-                    activities.filter(
-                        activity => activity.created >= +this.get('lastFetchedActivity')
-                    )
+            .query(this._type, {
+                orderBy: 'group',
+                equalTo: this.myGroup.model.id,
+                limitToLast: 20,
+            })
+            .then(activities =>
+                activities.filter(
+                    activity => activity.created >= +this.get('lastFetchedActivity')
                 )
-                .then(activities => {
-                    this.set('lastFetchedActivity', Date.now());
-                    return activities.reverse();
-                })
+            )
+            .then(activities => {
+                this.set('lastFetchedActivity', Date.now());
+                return activities.reverse();
+            })
         );
     },
 
-    send({ action, text, cheevie }) {
-        const activity = this.store.createRecord('activity', {
+    send({
+        action,
+        text,
+        cheevie
+    }) {
+        const activity = this.store.createRecord(this._type, {
             group: this.myGroup.model,
             user: this.me.model,
             cheevie: cheevie,
