@@ -1,13 +1,11 @@
 import Route from '@ember/routing/route';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    run
-} from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
 
 export default Route.extend({
     session: service(),
+    router: service(),
+
     beforeModel() {
         return run(() => {
             try {
