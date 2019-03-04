@@ -85,4 +85,8 @@ export default DS.Model.extend(Validator, {
             .signInWithRedirect(new firebase.auth.FacebookAuthProvider())
             .catch(e => this.handleSocialError(e));
     },
+
+    anonymousSignIn() {
+        return this.firebase.auth().signInAnonymously();
+    },
 });

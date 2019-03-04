@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
-import { all } from 'rsvp';
+import { all, resolve } from 'rsvp';
 import firebase from 'firebase';
+import demoGroup, { users, cheevies, images, imageSets } from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
@@ -109,6 +110,72 @@ export default Controller.extend(BusyLoaderMixin, {
                         .getRedirectResult()
                         .then(this.onSuccess)
                 )
+                .catch(this.onError);
+        },
+        demoSignIn() {
+            this.setBusy(true);
+            return resolve()
+                .then(() => {
+                    Object.keys(images).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/image',
+                                Object.assign({}, { id: key }, images[key])
+                            )
+                        );
+                    });
+
+                    Object.keys(imageSets).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/image-set',
+                                Object.assign({}, { id: key }, imageSets[key])
+                            )
+                        );
+                    });
+
+                    Object.keys(cheevies).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/cheevie',
+                                Object.assign({}, { id: key }, cheevies[key])
+                            )
+                        );
+                    });
+
+                    Object.keys(users).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/user',
+                                Object.assign({}, { id: key }, users[key])
+                            )
+                        );
+                    });
+
+                    const user = this.store.createRecord('demo/user', {
+                        name: 'demoUser',
+                        created: Date.now(),
+                    });
+
+                    const group = this.store.push(
+                        this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))
+                    );
+
+                    this.session.authenticate('authenticator:test', {
+                        uid: user.id,
+                    });
+
+                    group.users.pushObject(user);
+                    group.set('author', user);
+                    user.groups.pushObject(group);
+
+                    this.session.set('data.group', group.name);
+                    this.session.set('data.demoGroup', true);
+                    this.setBusy(false);
+
+                    return all([user.save(), group.save()]);
+                })
+                .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')))
                 .catch(this.onError);
         },
     },

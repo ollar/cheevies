@@ -15,6 +15,7 @@ export default Controller.extend({
     intl: service(),
 
     groupModel: computed.alias('myGroup.model'),
+    isDemo: computed.readOnly('myGroup.isDemo'),
 
     messaging: computed(function() {
         return this.get('firebaseApp').messaging();

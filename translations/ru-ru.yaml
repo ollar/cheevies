@@ -37,6 +37,7 @@ messages:
     screen_width_warning: This app is optimized for mobile devices. It is recommended
         to install it as a standalone app for better user experience.
     empty: Здесь пусто
+    demo-restrictions: Эта опция недоступна в демо режиме
 buttons:
     submit: Ок
     cancel: Отмена
@@ -47,6 +48,7 @@ buttons:
     save: Сохранить
     google: Google
     facebook: Facebook
+    demo-sign-in: Демо режим
 create-cheevie:
     title: Новая ачивка
     subtitle: Feel free to express your best imagination

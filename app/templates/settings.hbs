@@ -60,9 +60,11 @@
                 {{t 'settings.subtitle.group-settings'}}
             </span>
             {{#unless groupModel.hasDirtyAttributes}}
+            {{#unless isDemo}}
             <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
                 {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
             </button>
+            {{/unless}}
             {{/unless}}
         </h2>
         <ul class="form-errors">
@@ -89,6 +91,7 @@
                 </div>
             </div>
 
+            {{#unless isDemo}}
             <div class="field policy variants">
                 <div class="">{{t 'settings.form.policy.label'}}</div>
 
@@ -107,6 +110,7 @@
                     {{t (add 'settings.form.policy_description.' groupModel.policy)}}
                 </div>
             </div>
+            {{/unless}}
 
             <label class="field checkbox-wrapper" for="locked">
                 {{input

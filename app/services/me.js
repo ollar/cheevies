@@ -6,6 +6,12 @@ import { resolve } from 'rsvp';
 export default Service.extend({
     session: service(),
     store: service(),
+    myGroup: service('my-group'),
+    isDemo: computed.readOnly('myGroup.isDemo'),
+
+    _type: computed('isDemo', function() {
+        return this.isDemo ? 'demo/user' : 'user';
+    }),
 
     isAuthenticated: computed.readOnly('session.isAuthenticated'),
 
@@ -27,7 +33,7 @@ export default Service.extend({
             if (!this.uid) throw new Error('session.data.authenticated.uid not filled');
             if (this.model) return this.model;
 
-            return this.store.findRecord('user', this.uid).then(user => {
+            return this.store.findRecord(this._type, this.uid).then(user => {
                 this.set('model', user);
                 return user;
             });

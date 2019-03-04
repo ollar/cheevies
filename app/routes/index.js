@@ -27,7 +27,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
                     settings: this.settings.fetch(),
                 })
             )
-            .catch(() => this.onModelError());
+            .catch(e => this.onModelError(e));
     },
 
     onModelError() {
