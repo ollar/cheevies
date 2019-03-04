@@ -26,14 +26,12 @@ export default DS.Adapter.extend({
     },
     findAll(store, type) {
         const records = store.peekAll(getType(type));
-        return Promise.resolve(records);
+        return Promise.resolve(records.map(item => this.serialize(item, { includeId: true })));
     },
     query(store, type, query) {
         const [key, sorter] = [query.orderBy, query.equalTo];
         return this.findAll(store, type).then(records =>
-            records
-                .filter(item => item[key] === sorter)
-                .map(item => this.serialize(item, { includeId: true }))
+            records.filter(item => item[key] === sorter)
         );
     },
 });

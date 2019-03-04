@@ -1,16 +1,7 @@
 import Mixin from '@ember/object/mixin';
-import {
-    hash,
-    resolve,
-    all
-} from 'rsvp';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    get,
-    computed
-} from '@ember/object';
+import { hash, resolve, all } from 'rsvp';
+import { inject as service } from '@ember/service';
+import { get, computed } from '@ember/object';
 import imageResize from 'image-resize-util/utils/image-resize';
 import Middleware from '../utils/middleware';
 
@@ -21,29 +12,26 @@ export default Mixin.create({
     myGroup: service('my-group'),
     isDemo: computed.readOnly('myGroup.isDemo'),
 
-    _typeImage: computed('isDemo', function () {
+    _typeImage: computed('isDemo', function() {
         return this.isDemo ? 'demo/image' : 'image';
     }),
 
-    _typeImageSet: computed('isDemo', function () {
+    _typeImageSet: computed('isDemo', function() {
         return this.isDemo ? 'demo/image-set' : 'image-set';
     }),
 
     _processImageUpload(file, size) {
         return imageResize(file, {
-                maxWidth: size,
-                maxHeight: size,
-            })
+            maxWidth: size,
+            maxHeight: size,
+        })
             .then(image =>
                 hash({
                     image,
                     snapshot: this.fileStorage.upload(this._uploadPath(image), image),
                 })
             )
-            .then(({
-                image,
-                snapshot
-            }) => {
+            .then(({ image, snapshot }) => {
                 const m = this.store.createRecord(this._typeImage, {
                     url: snapshot.downloadURLs[0],
                     fullPath: snapshot.fullPath,
@@ -60,6 +48,13 @@ export default Mixin.create({
     },
 
     _uploadImage(file) {
+        if (this.isDemo)
+            return resolve().then(() =>
+                this.send('notify', {
+                    type: 'error',
+                    text: this.intl.t('messages.demo-restrictions'),
+                })
+            );
         return this._removeImage()
             .then(
                 () => {
