@@ -11,6 +11,7 @@ export default Base.extend({
     },
 
     invalidate() {
+        localStorage.clear();
         return resolve();
     },
 });

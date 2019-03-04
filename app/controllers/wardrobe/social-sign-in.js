@@ -3,11 +3,9 @@ import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
 import firebase from 'firebase';
-import demoGroup, { users, cheevies, images, imageSets, demoGroupId } from './_demo-group';
+import demoGroup, { users, cheevies, images, imageSets } from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
-
-const getRandomInt = () => Math.round(Math.random() * 1000);
 
 export default Controller.extend(BusyLoaderMixin, {
     session: service(),
@@ -118,7 +116,6 @@ export default Controller.extend(BusyLoaderMixin, {
             this.setBusy(true);
             return resolve()
                 .then(() => {
-                    const uid = getRandomInt();
                     Object.keys(images).forEach(key => {
                         this.store.push(
                             this.store.normalize(
@@ -156,26 +153,21 @@ export default Controller.extend(BusyLoaderMixin, {
                     });
 
                     const user = this.store.createRecord('demo/user', {
-                        id: uid,
                         name: 'demoUser',
                         created: Date.now(),
                     });
 
-                    this.store.push(
-                        this.store.normalize(
-                            'demo/group',
-                            demoGroup('demo-group-' + getRandomInt())
-                        )
+                    const group = this.store.push(
+                        this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))
                     );
 
-                    const group = this.store.peekRecord('demo/group', demoGroupId);
-
                     this.session.authenticate('authenticator:test', {
-                        uid,
+                        uid: user.id,
                     });
 
-                    group.users.addObject(user);
-                    user.groups.addObject(group);
+                    group.users.pushObject(user);
+                    group.set('author', user);
+                    user.groups.pushObject(group);
 
                     this.session.set('data.group', group.name);
                     this.session.set('data.demoGroup', true);

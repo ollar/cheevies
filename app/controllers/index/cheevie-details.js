@@ -14,6 +14,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     myGroup: service('my-group'),
     activity: service(),
     me: service(),
+    intl: service(),
 
     myModel: computed.readOnly('me.model'),
     groupModel: computed.readOnly('myGroup.model'),

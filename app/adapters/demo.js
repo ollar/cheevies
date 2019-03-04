@@ -1,14 +1,12 @@
 import DS from 'ember-data';
 
+let id = 0;
 const getType = type => type.modelName;
+const getId = () => id++;
 
 export default DS.Adapter.extend({
-    id: 0,
-    incId() {
-        return this.id++;
-    },
     generateIdForRecord() {
-        return this.incId();
+        return getId();
     },
     findRecord(store, type, id) {
         const record = store.peekRecord(getType(type), id);
@@ -33,7 +31,9 @@ export default DS.Adapter.extend({
     query(store, type, query) {
         const [key, sorter] = [query.orderBy, query.equalTo];
         return this.findAll(store, type).then(records =>
-            records.filter(item => item[key] === sorter)
+            records
+                .filter(item => item[key] === sorter)
+                .map(item => this.serialize(item, { includeId: true }))
         );
     },
 });
