@@ -53,6 +53,9 @@
         <host name="cheevies-jerk.web.app" scheme="https">
             <path url="/__/auth/callback" />
         </host>
+        <host name="cheevies-jerk.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
         <host event="universalLinksCatched" name="cheevies.club" scheme="https" />
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
