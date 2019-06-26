@@ -66,6 +66,20 @@ export const users = {
     },
 };
 
+export const you = {
+    cheevies: [
+        '-LPjtpV7mTe0QS952G6V',
+        '-LPjuLluvZCmgujMOnlw',
+        '-LPjuhh8oMbqg7O3-NRz',
+        '-LPjzvq7cKGWVw-CTK99',
+    ],
+    created: 1545936836444,
+    email: 'olegollar+222@gmail.com',
+    groups: ['-LPjoo_3C0RoXTMnyA72'],
+    'image-set': 'you-image-set',
+    name: "Arnold d'Artagnan (You)",
+};
+
 export const cheevies = {
     '-LPjs_gQPtzaTZuulofD': {
         description: 'You are a good friend and love animals',
@@ -951,6 +965,18 @@ export const images = {
             'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/cheevies%2F-LPk013dacE1SqjtlaY2%2F512%2Fsimon-maage-706908-unsplash.jpg?alt=media&token=3df37bf5-4cb8-4808-8c0e-13c7ca3cbcfd',
         width: 512,
     },
+    'you-image-64': {
+        url: 'https://avatars.dicebear.com/v2/avataaars/you.svg',
+    },
+    'you-image-128': {
+        url: 'https://avatars.dicebear.com/v2/avataaars/you.svg',
+    },
+    'you-image-256': {
+        url: 'https://avatars.dicebear.com/v2/avataaars/you.svg',
+    },
+    'you-image-512': {
+        url: 'https://avatars.dicebear.com/v2/avataaars/you.svg',
+    },
 };
 
 export const imageSets = {
@@ -1063,6 +1089,12 @@ export const imageSets = {
         '128': '-LPk0P6yjgxkDR_7s-8A',
         '256': '-LPk0PFCr9SC3C-9dB7R',
         '512': '-LPk0PKRLKNTO5PlK50k',
+    },
+    'you-image-set': {
+        '64': 'you-image-64',
+        '128': 'you-image-128',
+        '256': 'you-image-256',
+        '512': 'you-image-512',
     },
 };
 

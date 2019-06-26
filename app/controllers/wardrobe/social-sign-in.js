@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
 import firebase from 'firebase';
-import demoGroup, { users, cheevies, images, imageSets } from './_demo-group';
+import demoGroup, { users, cheevies, images, imageSets, you } from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
@@ -152,10 +152,17 @@ export default Controller.extend(BusyLoaderMixin, {
                         );
                     });
 
-                    const user = this.store.createRecord('demo/user', {
-                        name: 'demoUser',
-                        created: Date.now(),
-                    });
+                    // const user = this.store.createRecord('demo/user', {
+                    //     name: "Arnold d'Artagnan (You)",
+                    //     created: Date.now(),
+                    // });
+
+                    const user = this.store.push(
+                        this.store.normalize(
+                            'demo/user',
+                            Object.assign({}, { id: 'youruserid' }, you)
+                        )
+                    );
 
                     const group = this.store.push(
                         this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))

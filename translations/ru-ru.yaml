@@ -30,7 +30,7 @@ messages:
     welcome_google: Yep, sending data to ANB
     welcome_github: All your repos belongs to us!
     delete_cheevie_check: Вы уверены?
-    app_init_error: Ой, не получилось запуститься. Вася снова перепутал провода.
+    app_init_error: Ой, не получилось запуститься. Олег снова перепутал провода.
     group_already_exist: Такая группа уже существует. Попробуйте другое имя?
     email-auth-required: This account exists with email authentification method. Please
         sign in with email to link accounts
