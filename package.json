@@ -70,7 +70,6 @@
         "image-resize-util": "^1.0.0",
         "images-drop-area-component": "0.0.3",
         "normalize.css": "^8.0.0",
-        "particles.js": "^2.0.0",
         "popper.js": "^1.14.3",
         "site-drawer-component": "0.0.5"
     }
