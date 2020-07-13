@@ -7,14 +7,6 @@ export const users = {
         'image-set': '-LUl1A3pGPaGDXL9k2Qx',
         name: 'Mark Allen',
     },
-    B8ClshexMEVMl3c70cXCgQbbe062: {
-        cheevies: ['-LPju546C69mCj5DL9IY', '-LPjuhh8oMbqg7O3-NRz'],
-        created: 1545936773525,
-        email: 'olegollar+1@gmail.com',
-        groups: ['-LPjoo_3C0RoXTMnyA72'],
-        'image-set': '-LUl-szhPk0Xq7J6F6Ee',
-        name: 'Madison Gray',
-    },
     C9RTT7nZHcOi1XV83FEGmk3UlOI3: {
         cheevies: ['-LPjtpV7mTe0QS952G6V', '-LPjuhh8oMbqg7O3-NRz', '-LPjzvq7cKGWVw-CTK99'],
         created: 1545937011609,
@@ -210,50 +202,6 @@ export const images = {
         type: 'image/jpeg',
         url:
             'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/users%2F1j9sJxJP4deaVJepqEyEAg2VzG22%2F512%2FN5PLzyan.jpg?alt=media&token=fdc06049-fd8b-4cd3-8750-c4b2f7a85c1c',
-        width: 512,
-    },
-    '-LUl-suftvYuWW2X9FvZ': {
-        created: 1545936801280,
-        fullPath: 'users/B8ClshexMEVMl3c70cXCgQbbe062/64/2AG8omMO.jpg',
-        height: 64,
-        name: '2AG8omMO.jpg',
-        size: 2115,
-        type: 'image/jpeg',
-        url:
-            'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/users%2FB8ClshexMEVMl3c70cXCgQbbe062%2F64%2F2AG8omMO.jpg?alt=media&token=72424b3c-6e2b-447a-8ac4-6a531e21a5f6',
-        width: 64,
-    },
-    '-LUl-svIuV41FkxoB3La': {
-        created: 1545936801313,
-        fullPath: 'users/B8ClshexMEVMl3c70cXCgQbbe062/128/2AG8omMO.jpg',
-        height: 128,
-        name: '2AG8omMO.jpg',
-        size: 6286,
-        type: 'image/jpeg',
-        url:
-            'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/users%2FB8ClshexMEVMl3c70cXCgQbbe062%2F128%2F2AG8omMO.jpg?alt=media&token=44118d3e-381b-452f-a8cc-fc70fe10fb96',
-        width: 128,
-    },
-    '-LUl-swY1PnSgZkASQS3': {
-        created: 1545936801353,
-        fullPath: 'users/B8ClshexMEVMl3c70cXCgQbbe062/256/2AG8omMO.jpg',
-        height: 256,
-        name: '2AG8omMO.jpg',
-        size: 20781,
-        type: 'image/jpeg',
-        url:
-            'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/users%2FB8ClshexMEVMl3c70cXCgQbbe062%2F256%2F2AG8omMO.jpg?alt=media&token=dd084e35-2a93-4909-a470-0072fb21f970',
-        width: 256,
-    },
-    '-LUl-sxI7UJtOX6xi5hd': {
-        created: 1545936801518,
-        fullPath: 'users/B8ClshexMEVMl3c70cXCgQbbe062/512/2AG8omMO.jpg',
-        height: 512,
-        name: '2AG8omMO.jpg',
-        size: 64065,
-        type: 'image/jpeg',
-        url:
-            'https://firebasestorage.googleapis.com/v0/b/cheevies-jerk.appspot.com/o/users%2FB8ClshexMEVMl3c70cXCgQbbe062%2F512%2F2AG8omMO.jpg?alt=media&token=b0887afd-e65c-42ba-a1a8-c1de713dcad7',
         width: 512,
     },
 
@@ -1124,7 +1072,6 @@ export default name => ({
     moderators: ['1j9sJxJP4deaVJepqEyEAg2VzG22'],
     users: [
         '1j9sJxJP4deaVJepqEyEAg2VzG22',
-        'B8ClshexMEVMl3c70cXCgQbbe062',
         'C9RTT7nZHcOi1XV83FEGmk3UlOI3',
         'HlAzBpU9CiSHNM5xer2k4Lua4302',
         'c9QY00LssFdM1aBTmmeX7xcte612',

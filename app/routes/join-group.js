@@ -10,14 +10,10 @@ export default Route.extend({
     me: service(),
     isAuthenticated: computed.readOnly('session.isAuthenticated'),
 
-    model({ group_id }, transition) {
+    redirectToSignIn({ group_id }, transition) {
         const queryParams = transition.queryParams;
 
-        if (!queryParams.code) {
-            throw new Error(this.get('intl').t('join-group.messages.broken_link'));
-        }
-
-        if (!this.isAuthenticated) {
+        return new Promise(res => {
             this.store.createRecord('join-group', {
                 group_id,
                 queryParams,
@@ -28,7 +24,24 @@ export default Route.extend({
             });
             this.transitionTo('wardrobe.social-sign-in');
             transition.abort();
-            return;
+            return res();
+        });
+    },
+
+    model({ group_id }, transition) {
+        const queryParams = transition.queryParams;
+
+        if (!queryParams.code) {
+            throw new Error(this.get('intl').t('join-group.messages.broken_link'));
+        }
+
+        if (this.session.get('data.demoGroup')) {
+            this.session.invalidate()
+                .then(() => this.redirectToSignIn({ group_id }, transition));
+        }
+
+        if (!this.isAuthenticated) {
+            return this.redirectToSignIn({ group_id }, transition);
         }
 
         return hash({
