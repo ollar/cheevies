@@ -289,4 +289,9 @@ select:-webkit-autofill {
         --bgColour1: #8b9dc3;
         --bgColour2: #3b5998;
     }
+
+    &.demo {
+        --bgColour1: #FF008A;
+        --bgColour2: #8F38FF;
+    }
 }
