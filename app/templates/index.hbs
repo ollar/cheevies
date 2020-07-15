@@ -8,6 +8,7 @@
     </div>
 {{/unless}}
 
+{{#particles-container}}
 {{#index-sections-wrapper
     class=(add "sections-wrapper " activePage)
     setActivePage=(action 'setActivePage')
@@ -36,6 +37,7 @@
     {{/each}}
   </section>
 {{/index-sections-wrapper}}
+{{/particles-container}}
 
 {{outlet}}
 
