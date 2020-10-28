@@ -12,13 +12,13 @@ export default Base.extend({
     authenticate({ email, password, model }) {
         return this.firebase
             .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then(res => {
+            .then(auth => auth.signInWithEmailAndPassword(email, password))
+            .then(({ user }) => {
                 if (model && model.pendingCred) {
-                    res.linkWithCredential(model.pendingCred);
+                    user.linkWithCredential(model.pendingCred);
                 }
                 return {
-                    uid: res.uid,
+                    uid: user.uid,
                 };
             });
     },
@@ -26,6 +26,8 @@ export default Base.extend({
     invalidate() {
         window.localStorage.removeItem('awaitForSignInRedirect');
         this.session.set('data.group', '');
-        return this.firebase.auth().signOut();
+        return this.firebase
+            .auth()
+            .then(auth => auth.signOut());
     },
 });

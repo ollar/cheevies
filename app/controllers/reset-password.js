@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import { resolve } from 'rsvp';
 import { schedule, later } from '@ember/runloop';
 

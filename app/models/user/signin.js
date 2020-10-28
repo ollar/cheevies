@@ -2,7 +2,7 @@ import Model, { attr } from '@ember-data/model';
 import Validator from '../../mixins/model-validator';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 export default Model.extend(Validator, {
     email: attr('string'),
@@ -36,7 +36,7 @@ export default Model.extend(Validator, {
             // Get sign-in methods for this email.
             return firebase
                 .auth()
-                .fetchProvidersForEmail(this.email)
+                .then(auth => auth.fetchProvidersForEmail(this.email))
                 .then(methods => {
                     // If the user has several sign-in methods,
                     // the first method in the list will be the "recommended" method to use.
@@ -74,7 +74,7 @@ export default Model.extend(Validator, {
         this._prepareSignInFlow();
         return this.firebase
             .auth()
-            .signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+            .then(auth => auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()))
             .catch(e => this.handleSocialError(e));
     },
 
@@ -82,11 +82,13 @@ export default Model.extend(Validator, {
         this._prepareSignInFlow();
         return this.firebase
             .auth()
-            .signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+            .then(auth => auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider()))
             .catch(e => this.handleSocialError(e));
     },
 
     anonymousSignIn() {
-        return this.firebase.auth().signInAnonymously();
+        return this.firebase
+            .auth()
+            .then(auth => auth.signInAnonymously());
     },
 });

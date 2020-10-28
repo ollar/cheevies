@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import Service from '@ember/service';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 export default Service.extend({
     storageRef: computed(function() {

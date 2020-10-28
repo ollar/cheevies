@@ -6,7 +6,7 @@ import {
 import {
     inject as service
 } from '@ember/service';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 export default Model.extend(Validator, {
     session: service(),
@@ -14,6 +14,8 @@ export default Model.extend(Validator, {
     name: attr('string'),
     password: attr('string'),
     email: attr('string'),
+
+    firebase: service('firebase-app'),
 
     init() {
         this._super(...arguments);
@@ -36,22 +38,24 @@ export default Model.extend(Validator, {
         },
     })),
 
-    _createUserMode(newUser) {
+    _createUserMode({ user: newUser }) {
         // this is needed to have user model on screen
-        return firebase
+        return this.firebase
             .database()
-            .ref('/users/' + newUser.uid)
-            .set({
-                name: this.name || newUser.displayName,
-                email: newUser.email,
-                created: Date.now(),
-            });
+            .then(database =>
+                database.ref('/users/' + newUser.uid)
+                .set({
+                    name: this.name || newUser.displayName,
+                    email: newUser.email,
+                    created: Date.now(),
+                })
+            );
     },
 
     signUp() {
-        return firebase
+        return this.firebase
             .auth()
-            .createUserWithEmailAndPassword(this.email, this.password)
+            .then(auth => auth.createUserWithEmailAndPassword(this.email, this.password))
             .then(this._createUserMode);
     },
 });

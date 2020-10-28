@@ -58,7 +58,7 @@
     "ember-sinon": "^2.2.0",
     "ember-source": "~3.16.0",
     "ember-web-app": "^2.3.0",
-    "emberfire": "^2.0.10",
+    "emberfire": "^3.0.0-rc.6",
     "eslint-plugin-ember": "^7.7.2",
     "eslint-plugin-node": "^11.0.0",
     "loader.js": "^4.7.0",
