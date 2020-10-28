@@ -51,7 +51,7 @@ export default Model.extend(Validator, {
     signUp() {
         return firebase
             .auth()
-            .createUserWithEmailAndPassword(this.get('email'), this.get('password'))
+            .createUserWithEmailAndPassword(this.email, this.password)
             .then(this._createUserMode);
     },
 });

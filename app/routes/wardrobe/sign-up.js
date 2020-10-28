@@ -15,7 +15,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     model() {
-        return this.get('store').createRecord('user/signup', {
+        return this.store.createRecord('user/signup', {
             type: 'email',
         });
     },

@@ -35,7 +35,7 @@ export default Service.extend({
             })
             .then(activities =>
                 activities.filter(
-                    activity => activity.created >= +this.get('lastFetchedActivity')
+                    activity => activity.created >= +this.lastFetchedActivity
                 )
             )
             .then(activities => {

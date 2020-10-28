@@ -16,9 +16,9 @@ export default Route.extend({
             }
 
             run(() => {
-                this.get('session')
+                this.session
                     .invalidate()
-                    .then(() => this.get('router').transitionTo('wardrobe.social-sign-in'));
+                    .then(() => this.router.transitionTo('wardrobe.social-sign-in'));
             });
         });
     },

@@ -11,7 +11,7 @@ export default Service.extend({
         const metadata = {
             cacheControl: 'public,max-age=31536000',
         };
-        return this.get('storageRef')
+        return this.storageRef
             .ref(path)
             .put(file, metadata)
             .then(snapshot => snapshot.metadata);
@@ -21,7 +21,7 @@ export default Service.extend({
         const _path = (imageModel && imageModel.get('fullPath')) || path;
 
         if (!_path) throw new Error('no file path specified');
-        return this.get('storageRef')
+        return this.storageRef
             .ref(_path)
             .delete();
     },

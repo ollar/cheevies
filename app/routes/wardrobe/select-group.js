@@ -15,7 +15,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
     model() {
         return this.me.fetch().then(() => {
-            return this.get('store').createRecord('user/select-group');
+            return this.store.createRecord('user/select-group');
         });
     },
 

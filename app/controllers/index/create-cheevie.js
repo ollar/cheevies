@@ -74,7 +74,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 })
                 .then(() => {
                     const group = this.get('model.myGroup');
-                    const model = this.get('_model');
+                    const model = this._model;
 
                     model.set('group', group);
                     model.set('author', this.me.model);
@@ -85,7 +85,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 })
                 .then(() =>
                     this.activity.send({
-                        cheevie: this.get('_model'),
+                        cheevie: this._model,
                         action: 'createCheevie',
                     })
                 )

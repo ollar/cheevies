@@ -18,7 +18,7 @@ export default Route.extend({
     }),
     model() {
         return hash({
-            cheevie: this.get('store').createRecord(this._type),
+            cheevie: this.store.createRecord(this._type),
             myGroup: this.myGroup.fetch(),
         });
     },

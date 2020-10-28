@@ -21,7 +21,7 @@ export default Route.extend({
             });
             transition.send('notify', {
                 type: 'info',
-                text: this.get('intl').t('join-group.messages.attempt-signin'),
+                text: this.intl.t('join-group.messages.attempt-signin'),
             });
             this.transitionTo('wardrobe.social-sign-in');
             transition.abort();
@@ -33,7 +33,7 @@ export default Route.extend({
         const queryParams = transition.queryParams;
 
         if (!queryParams.code) {
-            throw new Error(this.get('intl').t('join-group.messages.broken_link'));
+            throw new Error(this.intl.t('join-group.messages.broken_link'));
         }
 
         if (this.session.get('data.demoGroup')) {
@@ -51,16 +51,16 @@ export default Route.extend({
         })
             .then(({ group, me }) => {
                 if (group.code !== queryParams.code) {
-                    throw new Error(this.get('intl').t('join-group.messages.access_code_wrong'));
+                    throw new Error(this.intl.t('join-group.messages.access_code_wrong'));
                 }
 
                 group.users.addObject(me);
                 me.groups.addObject(group);
-                this.get('session').set('data.group', group.name);
+                this.session.set('data.group', group.name);
 
                 transition.send('notify', {
                     type: 'success',
-                    text: this.get('intl').t('join-group.messages.success', {
+                    text: this.intl.t('join-group.messages.success', {
                         groupName: group.name,
                         username: me.name,
                     }),

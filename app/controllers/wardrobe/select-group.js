@@ -33,7 +33,7 @@ export default Controller.extend({
             .then(() =>
                 this.send('notify', {
                     type: 'info',
-                    text: this.get('intl').t('messages.welcome_default'),
+                    text: this.intl.t('messages.welcome_default'),
                 })
             )
             .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')));
@@ -61,7 +61,7 @@ export default Controller.extend({
                         .then(groups => {
                             // 1. No groups found -> show error
                             if (!groups.length) {
-                                throw new Error(this.get('intl').t('login.messages.no_such_group'));
+                                throw new Error(this.intl.t('login.messages.no_such_group'));
                             }
 
                             // 2. Group found
@@ -72,7 +72,7 @@ export default Controller.extend({
                                 // Group is locked -> show error
                                 if (group.locked) {
                                     throw new Error(
-                                        this.get('intl').t('login.messages.group_is_locked')
+                                        this.intl.t('login.messages.group_is_locked')
                                     );
                                 }
 
@@ -90,7 +90,7 @@ export default Controller.extend({
                             };
                         })
                         .then(({ group }) => {
-                            this.get('session').set('data.group', group.name);
+                            this.session.set('data.group', group.name);
                             return group.reload();
                         })
                         .then(this.onSuccess, this.onError)
@@ -99,7 +99,7 @@ export default Controller.extend({
         },
 
         invalidate() {
-            return this.get('session')
+            return this.session
                 .invalidate()
                 .then(() => {
                     schedule('routerTransitions', () => window.history.back());

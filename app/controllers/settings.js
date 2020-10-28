@@ -19,7 +19,7 @@ export default Controller.extend({
     isDemo: readOnly('myGroup.isDemo'),
 
     messaging: computed(function() {
-        return this.get('firebaseApp').messaging();
+        return this.firebaseApp.messaging();
     }),
 
     installStandalone: service('install-standalone'),

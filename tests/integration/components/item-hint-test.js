@@ -1,56 +1,55 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('item-hint', 'Integration | Component | item hint', {
-  integration: true,
-});
+module('Integration | Component | item hint', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  const cheevie = {
-    id: '1',
-    name: 'test',
-    description: 'description',
-  };
+    const cheevie = {
+      id: '1',
+      name: 'test',
+      description: 'description',
+    };
 
-  this.set('cheevie', cheevie);
+    this.set('cheevie', cheevie);
 
-  this.set('actions.cheevieDetails', () => false);
+    this.set('actions.cheevieDetails', () => false);
 
-  this.render(hbs`{{item-hint
-    data=cheevie
-    id=(add cheevie.id '_hint')
-    cheevieDetailsAction=(action 'cheevieDetails' cheevie)}}`);
+    await render(hbs`{{item-hint
+      data=cheevie
+      id=(add cheevie.id '_hint')
+      cheevieDetailsAction=(action 'cheevieDetails' cheevie)}}`);
 
-  assert.equal(
-    this.$('.title')
-      .text()
-      .trim(),
-    cheevie.name
-  );
+    assert.equal(
+      find('.title').textContent
+        .trim(),
+      cheevie.name
+    );
 
-  assert.equal(
-    this.$('.content')
-      .text()
-      .trim(),
-    cheevie.description
-  );
+    assert.equal(
+      find('.content').textContent
+        .trim(),
+      cheevie.description
+    );
 
-  // Template block usage:
-  this.render(hbs`
-  {{#item-hint
-    id=(add cheevie.id '_hint')
-    cheevieDetailsAction=(action 'cheevieDetails' cheevie)}}
-    template block text
-    {{/item-hint}}
-  `);
+    // Template block usage:
+    await render(hbs`
+    {{#item-hint
+      id=(add cheevie.id '_hint')
+      cheevieDetailsAction=(action 'cheevieDetails' cheevie)}}
+      template block text
+      {{/item-hint}}
+    `);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'template block text'
-  );
+    assert.equal(
+      find('*').textContent
+        .trim(),
+      'template block text'
+    );
+  });
 });

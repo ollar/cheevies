@@ -15,7 +15,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     model() {
-        return this.get('store').createRecord('user/signin', {
+        return this.store.createRecord('user/signin', {
             type: 'social',
         });
     },

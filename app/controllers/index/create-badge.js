@@ -11,7 +11,7 @@ export default Controller.extend({
 
   actions: {
     createBadge() {
-      const badge = this.get('store').createRecord('badge', {
+      const badge = this.store.createRecord('badge', {
         name: this.get('fields.name'),
         description: this.get('fields.description'),
       });

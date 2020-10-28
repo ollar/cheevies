@@ -16,7 +16,7 @@ export default Controller.extend({
             .then(() =>
                 this.send('notify', {
                     type: 'success',
-                    text: this.get('intl').t('reset-password.success_message'),
+                    text: this.intl.t('reset-password.success_message'),
                 })
             )
             .then(() =>
@@ -28,7 +28,7 @@ export default Controller.extend({
         this.model.rollbackAttributes();
         this.send('notify', {
             type: 'error',
-            text: e.message || this.get('intl').t('reset-password.error_message'),
+            text: e.message || this.intl.t('reset-password.error_message'),
         });
     },
 

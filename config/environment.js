@@ -83,6 +83,7 @@ module.exports = function(environment) {
             projectId: projectIdDev,
             messagingSenderId: messagingSenderIdDev,
         };
+    }
 
     if (environment === 'test') {
         // Testem prefers this...

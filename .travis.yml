@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
-sudo: false
 dist: trusty
 addons:
     chrome: stable
@@ -13,6 +12,10 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
+
+branches:
+  only:
+    - master
 
 script:
     - npm run lint:js

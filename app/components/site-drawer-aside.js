@@ -73,10 +73,10 @@ export default Component.extend(DraggableMixin, {
 
     actions: {
         createCheevie() {
-            this.get('router').transitionTo('index.create-cheevie');
+            this.router.transitionTo('index.create-cheevie');
         },
         invalidate() {
-            return this.get('router').transitionTo('wardrobe.sign-out');
+            return this.router.transitionTo('wardrobe.sign-out');
         },
     },
 });

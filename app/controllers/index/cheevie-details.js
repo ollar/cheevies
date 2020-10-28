@@ -106,10 +106,10 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
                     return true;
                 })
-                .then(() => this.get('model').save())
+                .then(() => this.model.save())
                 .then(() =>
                     this.activity.send({
-                        cheevie: this.get('_model'),
+                        cheevie: this._model,
                         action: 'updateCheevie',
                     })
                 )
@@ -119,8 +119,8 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
                 .finally(() => this.setBusy(false));
         },
         deleteCheevie() {
-            if (window.confirm(this.get('intl').t('messages.delete_cheevie_check'))) {
-                const model = this.get('model');
+            if (window.confirm(this.intl.t('messages.delete_cheevie_check'))) {
+                const model = this.model;
                 model.set('deleted', true);
 
                 return resolve()

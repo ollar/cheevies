@@ -1,50 +1,48 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('add', 'helper:add', {
-  integration: true,
-});
+module('helper:add', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it adds 2 numbers', function(assert) {
-  this.render(hbs`{{add 1 2}}`);
+  test('it adds 2 numbers', async function(assert) {
+    await render(hbs`{{add 1 2}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '3'
-  );
-});
+    assert.equal(
+      find('*').textContent
+        .trim(),
+      '3'
+    );
+  });
 
-test('it adds 3 numbers', function(assert) {
-  this.render(hbs`{{add 1 2 3}}`);
+  test('it adds 3 numbers', async function(assert) {
+    await render(hbs`{{add 1 2 3}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '6'
-  );
-});
+    assert.equal(
+      find('*').textContent
+        .trim(),
+      '6'
+    );
+  });
 
-test('it adds strings', function(assert) {
-  this.render(hbs`{{add '1' '2'}}`);
+  test('it adds strings', async function(assert) {
+    await render(hbs`{{add '1' '2'}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '12'
-  );
-});
+    assert.equal(
+      find('*').textContent
+        .trim(),
+      '12'
+    );
+  });
 
-test('it adds strings and numbers', function(assert) {
-  this.render(hbs`{{add '1' '2' 3}}`);
+  test('it adds strings and numbers', async function(assert) {
+    await render(hbs`{{add '1' '2' 3}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '123'
-  );
+    assert.equal(
+      find('*').textContent
+        .trim(),
+      '123'
+    );
+  });
 });

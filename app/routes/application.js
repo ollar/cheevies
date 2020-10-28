@@ -28,10 +28,10 @@ export default Route.extend({
     },
     actions: {
         notify({ type, text }) {
-            if (this.get('notificationTypes').indexOf(type) === -1) {
+            if (this.notificationTypes.indexOf(type) === -1) {
                 throw new Error(text);
             }
-            return this.get('notify')[type](text);
+            return this.notify[type](text);
         },
     },
 });

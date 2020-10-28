@@ -29,7 +29,7 @@ export default Service.extend({
             if (!this.groupName) throw new Error('session.data.group not filled');
             if (this.model) return this.model;
 
-            return this.get('store')
+            return this.store
                 .query(this._type, {
                     orderBy: 'name',
                     equalTo: this.groupName,

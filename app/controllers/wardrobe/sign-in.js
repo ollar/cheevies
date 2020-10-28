@@ -47,7 +47,7 @@ export default Controller.extend({
     actions: {
         passwordSignIn() {
             if (this.model.validate()) {
-                return this.get('session')
+                return this.session
                     .authenticate('authenticator:firebase', {
                         email: this.get('model.email'),
                         password: this.get('model.password'),

@@ -23,7 +23,7 @@ export default Component.extend({
     power: readOnly('data.power'),
 
     updateStyles() {
-        this.element.style.setProperty('--backgroundColour0', this.get('backgroundColour')[0]);
-        this.element.style.setProperty('--backgroundColour1', this.get('backgroundColour')[1]);
+        this.element.style.setProperty('--backgroundColour0', this.backgroundColour[0]);
+        this.element.style.setProperty('--backgroundColour1', this.backgroundColour[1]);
     },
 });

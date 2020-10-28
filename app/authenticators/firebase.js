@@ -25,7 +25,7 @@ export default Base.extend({
 
     invalidate() {
         window.localStorage.removeItem('awaitForSignInRedirect');
-        this.get('session').set('data.group', '');
+        this.session.set('data.group', '');
         return this.firebase.auth().signOut();
     },
 });

@@ -45,7 +45,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     },
 
     isMe: computed('userId', 'myId', function() {
-        return this.get('userId') === this.get('myId');
+        return this.userId === this.myId;
     }),
 
     imageSet: readOnly('model.image-set'),
@@ -60,7 +60,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
     actions: {
         uploadImage(files) {
-            if (!this.get('isMe')) return;
+            if (!this.isMe) return;
             const file = files[0];
 
             if (!file || file.type.indexOf('image') < 0) return;

@@ -58,7 +58,7 @@ export default Controller.extend({
                             newGroup.set('author', this.myModel);
                             newGroup.get('moderators').addObject(this.myModel);
 
-                            this.get('session').set('data.group', newGroup.name);
+                            this.session.set('data.group', newGroup.name);
                             return all([newGroup.save(), this.myModel.save()]).then(
                                 () => this.onSuccess(),
                                 e => this.onError(e)

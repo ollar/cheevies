@@ -76,7 +76,7 @@ export default Mixin.create({
       !this.get('session.isAuthenticated') ||
       !this.get('session.data.group')
     ) {
-      if (this.get('_isFastBoot')) {
+      if (this._isFastBoot) {
         const fastboot = getOwner(this).lookup('service:fastboot');
         const cookies = getOwner(this).lookup('service:cookies');
 
@@ -107,10 +107,10 @@ export default Mixin.create({
     @protected
   */
   triggerAuthentication() {
-    let authenticationRoute = this.get('authenticationRoute');
+    let authenticationRoute = this.authenticationRoute;
     assert(
       'The route configured as Configuration.authenticationRoute cannot implement the AuthenticatedRouteMixin mixin as that leads to an infinite transitioning loop!',
-      this.get('routeName') !== authenticationRoute
+      this.routeName !== authenticationRoute
     );
 
     this.transitionTo(authenticationRoute);
