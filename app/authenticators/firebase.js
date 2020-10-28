@@ -1,13 +1,36 @@
 import Base from 'ember-simple-auth/authenticators/base';
 import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
+import { get, set } from '@ember/object';
+import { Promise, resolve } from 'rsvp';
+import Evented from '@ember/object/evented';
 
-export default Base.extend({
+
+export default Base.extend(Evented, {
     session: service(),
     firebase: service('firebase-app'),
 
+    // restore(data) {
+    //     return Promise.resolve(data);
+    // },
+
+    restoring: true,
+    persist: resolve,
+    clear: resolve,
+
     restore(data) {
-        return Promise.resolve(data);
-    },
+    return new Promise(resolve => {
+            get(this, 'firebase').auth().then(auth => auth.onIdTokenChanged(user => run(() => {
+                let authenticated = user ? {authenticator: 'authenticator:firebase', user, credential: user.getIdToken()} : {};
+                if (get(this, 'restoring')) {
+                    set(this, 'restoring', false);
+                    resolve({ authenticated, ...data });
+                } else {
+                    this.trigger('sessionDataUpdated', { authenticated, ...data });
+                }
+            })));
+        });
+},
 
     authenticate({ email, password, model }) {
         return this.firebase
