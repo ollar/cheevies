@@ -33,8 +33,14 @@ export default Mixin.create({
                 })
             )
             .then(({ image, snapshot }) => {
+                const downloadURL = snapshot.ref.getDownloadURL();
+                return hash({
+                    image, snapshot, downloadURL
+                })
+            })
+            .then(({ image, snapshot, downloadURL }) => {
                 const m = this.store.createRecord(this._typeImage, {
-                    url: snapshot.downloadURLs[0],
+                    url: downloadURL,
                     fullPath: snapshot.fullPath,
                     type: snapshot.contentType,
                     name: snapshot.name,

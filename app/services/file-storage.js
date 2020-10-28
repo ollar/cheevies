@@ -1,10 +1,11 @@
 import { computed } from '@ember/object';
-import Service from '@ember/service';
-// import firebase from 'firebase';
+import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
+    firebase: service('firebase-app'),
+
     storageRef: computed(function() {
-        return firebase.storage();
+        return this.firebase.storage();
     }),
 
     upload(path, file) {
@@ -12,8 +13,8 @@ export default Service.extend({
             cacheControl: 'public,max-age=31536000',
         };
         return this.storageRef
-            .ref(path)
-            .put(file, metadata)
+            .then(storage => storage.ref(path))
+            .then(ref => ref.put(file, metadata))
             .then(snapshot => snapshot.metadata);
     },
 
@@ -22,7 +23,7 @@ export default Service.extend({
 
         if (!_path) throw new Error('no file path specified');
         return this.storageRef
-            .ref(_path)
-            .delete();
+            .then(storage => storage.ref(_path))
+            .then(ref => ref.delete());
     },
 });

@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
-// import firebase from 'firebase';
 import { resolve } from 'rsvp';
+import { inject as service } from '@ember/service';
 import { schedule, later } from '@ember/runloop';
 
 export default Controller.extend({
+    firebase: service('firebase-app'),
+
     init() {
         this._super(...arguments);
 
@@ -35,8 +37,9 @@ export default Controller.extend({
     actions: {
         resetPassword() {
             if (this.model.validate()) {
-                var auth = firebase.auth();
-                auth.sendPasswordResetEmail(this.model.email).then(this.onSuccess, this.onError);
+                return this.firebase.auth()
+                    .then(auth => auth.sendPasswordResetEmail(this.model.email))
+                    .then(this.onSuccess, this.onError);
             }
         },
 

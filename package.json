@@ -76,6 +76,7 @@
     "feather-icons": "^4.7.3",
     "image-resize-util": "^1.0.0",
     "images-drop-area-component": "0.0.3",
+    "nanoid": "^3.1.16",
     "normalize.css": "^8.0.0",
     "particles.js": "^2.0.0",
     "popper.js": "^1.14.3",

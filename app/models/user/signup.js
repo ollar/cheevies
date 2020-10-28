@@ -6,7 +6,6 @@ import {
 import {
     inject as service
 } from '@ember/service';
-// import firebase from 'firebase';
 
 export default Model.extend(Validator, {
     session: service(),
