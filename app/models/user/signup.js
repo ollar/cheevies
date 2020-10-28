@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import Validator from '../../mixins/model-validator';
 import {
     computed
@@ -8,12 +8,12 @@ import {
 } from '@ember/service';
 import firebase from 'firebase';
 
-export default DS.Model.extend(Validator, {
+export default Model.extend(Validator, {
     session: service(),
 
-    name: DS.attr('string'),
-    password: DS.attr('string'),
-    email: DS.attr('string'),
+    name: attr('string'),
+    password: attr('string'),
+    email: attr('string'),
 
     init() {
         this._super(...arguments);

@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Component from 'avatar-icon-component/components/avatar-icon';
 import { isEmpty } from '@ember/utils';
@@ -19,7 +20,7 @@ export default Component.extend({
         return this.getWithDefault('data.name', 'anonymous');
     }),
 
-    power: computed.readOnly('data.power'),
+    power: readOnly('data.power'),
 
     updateStyles() {
         this.element.style.setProperty('--backgroundColour0', this.get('backgroundColour')[0]);

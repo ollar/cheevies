@@ -1,3 +1,4 @@
+import { alias, readOnly } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -9,8 +10,8 @@ export default Controller.extend({
     session: service(),
     intl: service(),
 
-    myModel: computed.alias('me.model'),
-    imageSet: computed.readOnly('myModel.image-set'),
+    myModel: alias('me.model'),
+    imageSet: readOnly('myModel.image-set'),
     myImage: computed('imageSet.{}', function() {
         if (!this.get('imageSet.64')) return null;
         return {

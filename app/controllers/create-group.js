@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -9,7 +10,7 @@ export default Controller.extend({
     intl: service(),
     me: service(),
 
-    myModel: computed.alias('me.model'),
+    myModel: alias('me.model'),
 
     onSuccess() {
         return resolve()

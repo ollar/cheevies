@@ -1,10 +1,10 @@
-import DS from 'ember-data';
+import Adapter from '@ember-data/adapter';
 
 let id = 0;
 const getType = type => type.modelName;
 const getId = () => id++;
 
-export default DS.Adapter.extend({
+export default Adapter.extend({
     generateIdForRecord() {
         return getId();
     },

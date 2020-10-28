@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Component from 'site-drawer-component/components/site-drawer-aside';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -13,10 +14,10 @@ export default Component.extend(DraggableMixin, {
     myGroup: service('my-group'),
     router: service(),
 
-    myModel: computed.readOnly('me.model'),
-    groupModel: computed.readOnly('myGroup.model'),
+    myModel: readOnly('me.model'),
+    groupModel: readOnly('myGroup.model'),
 
-    imageSet: computed.readOnly('me.model.image-set'),
+    imageSet: readOnly('me.model.image-set'),
     image: computed('imageSet.{}', function() {
         if (!this.get('imageSet.128')) return null;
         return {

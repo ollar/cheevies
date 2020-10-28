@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
@@ -12,7 +13,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     cachedImage: service(),
     intl: service(),
 
-    settingsModel: computed.alias('settings.model'),
+    settingsModel: alias('settings.model'),
     authenticationRoute: 'wardrobe.social-sign-in',
 
     model() {

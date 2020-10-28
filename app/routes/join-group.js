@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -8,7 +9,7 @@ export default Route.extend({
     session: service(),
     intl: service(),
     me: service(),
-    isAuthenticated: computed.readOnly('session.isAuthenticated'),
+    isAuthenticated: readOnly('session.isAuthenticated'),
 
     redirectToSignIn({ group_id }, transition) {
         const queryParams = transition.queryParams;

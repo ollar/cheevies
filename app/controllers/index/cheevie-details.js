@@ -1,3 +1,4 @@
+import { not, readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import ImageUploadMixin from '../../mixins/image-uploader';
@@ -10,14 +11,14 @@ import cordovaGetImage from '../../utils/cordova-get-image';
 
 export default Controller.extend(ImageUploadMixin, BusyMixin, {
     showMode: true,
-    editMode: computed.not('showMode'),
+    editMode: not('showMode'),
     myGroup: service('my-group'),
     activity: service(),
     me: service(),
     intl: service(),
 
-    myModel: computed.readOnly('me.model'),
-    groupModel: computed.readOnly('myGroup.model'),
+    myModel: readOnly('me.model'),
+    groupModel: readOnly('myGroup.model'),
 
     canEditCheevie: computed('myModel.id', 'groupModel.id', function() {
         if (!this.myModel || !this.groupModel) return false;
@@ -28,12 +29,12 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         );
     }),
 
-    _model: computed.alias('model'),
+    _model: alias('model'),
 
     _file: null,
     _giphy: null,
 
-    image: computed.readOnly('model.image-set.512'),
+    image: readOnly('model.image-set.512'),
 
     _image: computed('_file', '_giphy', 'image', function() {
         if (this._file) {

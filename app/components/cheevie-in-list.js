@@ -1,3 +1,4 @@
+import { readOnly, intersect, notEmpty } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 // import HaoticMoveMixin from '../mixins/haotic-move';
@@ -7,7 +8,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend(
     /*HaoticMoveMixin,*/ {
         me: service(),
-        imageSet: computed.readOnly('cheevie.image-set'),
+        imageSet: readOnly('cheevie.image-set'),
 
         _id: computed('cheevie.id', function() {
             return [this.cheevie.id];
@@ -16,8 +17,8 @@ export default Component.extend(
             if (!this.me.model) return [];
             return this.me.model.cheevies.mapBy('id');
         }),
-        _isMineArr: computed.intersect('_id', 'myCheevies'),
-        isMine: computed.notEmpty('_isMineArr'),
+        _isMineArr: intersect('_id', 'myCheevies'),
+        isMine: notEmpty('_isMineArr'),
 
         image: computed('imageSet.{}', function() {
             if (!this.get('imageSet.64')) return null;

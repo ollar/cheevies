@@ -1,9 +1,10 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-    user: computed.alias('_data.user'),
-    userImageSet: computed.alias('user.image-set'),
+    user: alias('_data.user'),
+    userImageSet: alias('user.image-set'),
     userImage: computed('userImageSet.{}', function() {
         if (!this.get('userImageSet.64')) return null;
         return {
@@ -12,8 +13,8 @@ export default Component.extend({
         };
     }),
 
-    cheevie: computed.alias('_data.cheevie'),
-    cheevieImageSet: computed.alias('cheevie.image-set'),
+    cheevie: alias('_data.cheevie'),
+    cheevieImageSet: alias('cheevie.image-set'),
     cheevieImage: computed('cheevieImageSet.{}', function() {
         if (!this.get('cheevieImageSet.64')) return null;
         return {

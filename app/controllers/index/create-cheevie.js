@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import ImageUploadMixin from '../../mixins/image-uploader';
@@ -12,7 +13,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
     giphy: service(),
     intl: service(),
 
-    _model: computed.alias('model.cheevie'),
+    _model: alias('model.cheevie'),
     _image: computed('_file', '_giphy', function() {
         if (this._file) {
             return {

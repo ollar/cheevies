@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -6,7 +7,7 @@ import { TimelineLite } from 'gsap';
 export default Controller.extend({
     activity: service(),
 
-    cheevies: computed.alias('model.cheevies'),
+    cheevies: alias('model.cheevies'),
 
     actions: {
         goBack() {

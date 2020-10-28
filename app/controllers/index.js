@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -15,7 +16,7 @@ export default Controller.extend({
         return window.localStorage.getItem('hideGuidePopup');
     }),
 
-    cheevies: computed.readOnly('myGroup.cheevies'),
+    cheevies: readOnly('myGroup.cheevies'),
 
     actions: {
         openDrawer() {

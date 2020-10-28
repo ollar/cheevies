@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Mixin from '@ember/object/mixin';
 import { hash, resolve, all } from 'rsvp';
 import { inject as service } from '@ember/service';
@@ -10,7 +11,7 @@ const IMAGE_SIZES = [64, 128, 256, 512];
 export default Mixin.create({
     fileStorage: service(),
     myGroup: service('my-group'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    isDemo: readOnly('myGroup.isDemo'),
 
     _typeImage: computed('isDemo', function() {
         return this.isDemo ? 'demo/image' : 'image';

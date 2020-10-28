@@ -1,13 +1,13 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import Validator from '../../mixins/model-validator';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import firebase from 'firebase';
 
-export default DS.Model.extend(Validator, {
-    email: DS.attr('string'),
-    password: DS.attr('string'),
-    type: DS.attr('string'),
+export default Model.extend(Validator, {
+    email: attr('string'),
+    password: attr('string'),
+    type: attr('string'),
 
     firebase: service('firebase-app'),
     router: service(),

@@ -1,13 +1,13 @@
-import DS from 'ember-data';
+import Model, { belongsTo, attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    user: DS.belongsTo('user'),
+export default Model.extend({
+    user: belongsTo('user'),
 
-    pushNotifications: DS.attr('boolean', { defaultValue: false }),
+    pushNotifications: attr('boolean', { defaultValue: false }),
 
-    sounds: DS.attr('boolean', { defaultValue: false }),
-    animations: DS.attr('boolean', { defaultValue: true }),
-    iconsDescription: DS.attr('boolean', { defaultValue: true }),
+    sounds: attr('boolean', { defaultValue: false }),
+    animations: attr('boolean', { defaultValue: true }),
+    iconsDescription: attr('boolean', { defaultValue: true }),
 
-    updated: DS.attr('number'),
+    updated: attr('number'),
 });

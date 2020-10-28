@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import HaoticMoveMixin from '../mixins/haotic-move';
@@ -19,7 +20,7 @@ export default Component.extend(HaoticMoveMixin, {
     }),
 
     classNames: ['user-in-list'],
-    imageSet: computed.readOnly('user.image-set'),
+    imageSet: readOnly('user.image-set'),
     image: computed('imageSet.{}', function() {
         if (!this.get('imageSet.128')) return null;
         return {

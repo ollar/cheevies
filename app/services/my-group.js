@@ -1,5 +1,5 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { readOnly, filterBy } from '@ember/object/computed';
+import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 
@@ -7,9 +7,9 @@ export default Service.extend({
     session: service(),
     store: service(),
 
-    isAuthenticated: computed.readOnly('session.isAuthenticated'),
-    groupName: computed.readOnly('session.data.group'),
-    isDemo: computed.readOnly('session.data.demoGroup'),
+    isAuthenticated: readOnly('session.isAuthenticated'),
+    groupName: readOnly('session.data.group'),
+    isDemo: readOnly('session.data.demoGroup'),
     model: null,
     _type: computed('isDemo', function() {
         return this.isDemo ? 'demo/group' : 'group';
@@ -22,7 +22,7 @@ export default Service.extend({
         });
     },
 
-    cheevies: computed.filterBy('model.cheevies', 'deleted', false),
+    cheevies: filterBy('model.cheevies', 'deleted', false),
 
     fetch() {
         return resolve().then(() => {

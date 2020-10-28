@@ -1,3 +1,4 @@
+import { alias, readOnly } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -14,8 +15,8 @@ export default Controller.extend({
     share: service(),
     intl: service(),
 
-    groupModel: computed.alias('myGroup.model'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    groupModel: alias('myGroup.model'),
+    isDemo: readOnly('myGroup.isDemo'),
 
     messaging: computed(function() {
         return this.get('firebaseApp').messaging();

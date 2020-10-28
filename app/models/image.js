@@ -1,14 +1,14 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    url: DS.attr('string'),
-    fullPath: DS.attr('string'),
+export default Model.extend({
+    url: attr('string'),
+    fullPath: attr('string'),
 
-    type: DS.attr('string'),
-    name: DS.attr('string'),
-    size: DS.attr('number'),
-    height: DS.attr('number'),
-    width: DS.attr('number'),
+    type: attr('string'),
+    name: attr('string'),
+    size: attr('number'),
+    height: attr('number'),
+    width: attr('number'),
 
-    created: DS.attr('number'),
+    created: attr('number'),
 });

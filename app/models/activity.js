@@ -1,10 +1,10 @@
-import DS from 'ember-data';
+import Model, { belongsTo, attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    group: DS.belongsTo('group'),
-    user: DS.belongsTo('user'),
-    cheevie: DS.belongsTo('cheevie'),
-    action: DS.attr('string'),
-    text: DS.attr('string', { defaultValue: '' }),
-    created: DS.attr('number'),
+export default Model.extend({
+    group: belongsTo('group'),
+    user: belongsTo('user'),
+    cheevie: belongsTo('cheevie'),
+    action: attr('string'),
+    text: attr('string', { defaultValue: '' }),
+    created: attr('number'),
 });

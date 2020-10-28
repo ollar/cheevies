@@ -1,3 +1,4 @@
+import { readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -18,11 +19,11 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
     openPopper: '',
 
-    userId: computed.readOnly('model.id'),
-    myId: computed.readOnly('me.model.id'),
-    isShareAvailable: computed.readOnly('share.isAvailable'),
+    userId: readOnly('model.id'),
+    myId: readOnly('me.model.id'),
+    isShareAvailable: readOnly('share.isAvailable'),
 
-    _model: computed.alias('model'),
+    _model: alias('model'),
 
     _cheeviesPromise: computed('model.cheevies.[]', function() {
         return DS.PromiseArray.create({
@@ -47,7 +48,7 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
         return this.get('userId') === this.get('myId');
     }),
 
-    imageSet: computed.readOnly('model.image-set'),
+    imageSet: readOnly('model.image-set'),
     avatar: computed('model.image-set.{256,512}', function() {
         if (!this.get('imageSet.256')) return null;
 

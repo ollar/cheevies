@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import {
     hash
@@ -11,7 +12,7 @@ import {
 
 export default Route.extend({
     myGroup: service('my-group'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    isDemo: readOnly('myGroup.isDemo'),
     _type: computed('isDemo', function () {
         return this.isDemo ? 'demo/cheevie' : 'cheevie';
     }),

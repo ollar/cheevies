@@ -1,7 +1,5 @@
-import Service from '@ember/service';
-import {
-    inject as service
-} from '@ember/service';
+import { alias, readOnly } from '@ember/object/computed';
+import Service, { inject as service } from '@ember/service';
 import {
     all
 } from 'rsvp';
@@ -14,10 +12,10 @@ export default Service.extend({
     me: service(),
     myGroup: service(),
     store: service(),
-    myModel: computed.alias('me.model'),
+    myModel: alias('me.model'),
     model: null,
 
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    isDemo: readOnly('myGroup.isDemo'),
 
     _type: computed('isDemo', function () {
         return this.isDemo ? 'demo/settings' : 'settings';

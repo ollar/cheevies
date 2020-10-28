@@ -1,9 +1,9 @@
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
+export default Model.extend({
   // '32': DS.belongsTo('image'),
-  '64': DS.belongsTo('image'),
-  '128': DS.belongsTo('image'),
-  '256': DS.belongsTo('image'),
-  '512': DS.belongsTo('image'),
+  '64': belongsTo('image'),
+  '128': belongsTo('image'),
+  '256': belongsTo('image'),
+  '512': belongsTo('image'),
 });

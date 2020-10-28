@@ -1,5 +1,5 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { readOnly } from '@ember/object/computed';
+import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 
@@ -7,13 +7,13 @@ export default Service.extend({
     session: service(),
     store: service(),
     myGroup: service('my-group'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    isDemo: readOnly('myGroup.isDemo'),
 
     _type: computed('isDemo', function() {
         return this.isDemo ? 'demo/user' : 'user';
     }),
 
-    isAuthenticated: computed.readOnly('session.isAuthenticated'),
+    isAuthenticated: readOnly('session.isAuthenticated'),
 
     uid: computed('isAuthenticated', function() {
         return this.isAuthenticated

@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import { belongsTo } from '@ember-data/model';
 import SettingsModel from '../settings';
 
 export default SettingsModel.extend({
-    user: DS.belongsTo('demo/user', { inverse: null }),
+    user: belongsTo('demo/user', { inverse: null }),
 });

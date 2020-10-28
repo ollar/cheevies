@@ -1,11 +1,11 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import {
     computed
 } from '@ember/object';
 import Validator from '../../mixins/model-validator';
 
-export default DS.Model.extend(Validator, {
-    group: DS.attr('string'),
+export default Model.extend(Validator, {
+    group: attr('string'),
 
     validations: computed(() => ({
         group: {

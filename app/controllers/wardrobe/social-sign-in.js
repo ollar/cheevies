@@ -3,7 +3,13 @@ import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
 import firebase from 'firebase';
-import demoGroup, { users, cheevies, images, imageSets, you } from './_demo-group';
+import demoGroup, {
+  users,
+  cheevies,
+  images,
+  imageSets,
+  you
+} from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
