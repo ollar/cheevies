@@ -40,11 +40,7 @@
             </label> --}}
 
             <label class="field checkbox-wrapper" for="iconsDescription">
-                {{input
-                type="checkbox"
-                name="iconsDescription"
-                id="iconsDescription"
-                checked=model.iconsDescription}}
+                <Input @type="checkbox" @name="iconsDescription" @id="iconsDescription" @checked={{model.iconsDescription}} />
 
                 <div class="checkbox-value"></div>
 
@@ -62,7 +58,7 @@
             {{#unless groupModel.hasDirtyAttributes}}
             {{#unless isDemo}}
             <button class="icon-button share" {{action 'inviteGroup' cheevie}}>
-                {{svg-icon _name="share-2" _size=18 _title=(t 'icons.invite') class="v-center right"}}
+                <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.invite"}} @class="v-center right" />
             </button>
             {{/unless}}
             {{/unless}}
@@ -79,15 +75,7 @@
             <div class="field">
                 <label class="" for="name">{{t 'settings.form.name.label'}}</label>
                 <div class="control">
-                    {{input
-                    class="input"
-                    data-test-id="name"
-                    id="name"
-                    type="text"
-                    placeholder=(t 'settings.form.name.placeholder')
-                    autocapitalize='off'
-                    autocomplete="off"
-                    value=groupModel.name}}
+                    <Input class="input" data-test-id="name" @id="name" @type="text" placeholder={{t "settings.form.name.placeholder"}} @autocapitalize="off" @autocomplete="off" @value={{groupModel.name}} />
                 </div>
             </div>
 
@@ -113,11 +101,7 @@
             {{/unless}}
 
             <label class="field checkbox-wrapper" for="locked">
-                {{input
-                type="checkbox"
-                name="locked"
-                id="locked"
-                checked=groupModel.locked}}
+                <Input @type="checkbox" @name="locked" @id="locked" @checked={{groupModel.locked}} />
 
                 <div class="checkbox-value"></div>
 
@@ -127,15 +111,7 @@
             <div class="field">
                 <label class="" for="code">{{t 'settings.form.code.label'}}</label>
                 <div class="control">
-                    {{input
-                    class="input"
-                    data-test-id="code"
-                    id="code"
-                    type="text"
-                    placeholder=(t 'settings.form.code.placeholder')
-                    autocapitalize='off'
-                    autocomplete="off"
-                    value=groupModel.code}}
+                    <Input class="input" data-test-id="code" @id="code" @type="text" placeholder={{t "settings.form.code.placeholder"}} @autocapitalize="off" @autocomplete="off" @value={{groupModel.code}} />
                 </div>
             </div>
 
@@ -156,7 +132,7 @@
         </h2>
 
         <div class="line">
-            {{link-to (t 'nav.guide-text') 'index.guide'}}
+            <LinkTo @route="index.guide">{{t 'nav.guide-text' }}</LinkTo>
         </div>
 
         <div class="line">

@@ -1,4 +1,4 @@
-{{#modal-wrapper goBack=(action 'goBack') class="new-cheevies"}}
+<ModalWrapper @goBack={{action "goBack"}} @class="new-cheevies">
 
 <h1 class="title">
   {{t 'index.new-cheevies.title'}}
@@ -6,10 +6,10 @@
 
 <div class="new-cheevies-wrapper">
   {{#each model as |cheevie|}}
-    {{cheevie-in-list cheevie=cheevie class="cards-view"}}
+    <CheevieInList @cheevie={{cheevie}} @class="cards-view" />
   {{/each}}
 </div>
 
-{{/modal-wrapper}}
+</ModalWrapper>
 
-{{props-container}}
+<PropsContainer />

@@ -1,24 +1,19 @@
+import Component from '@glimmer/component';
 import { readOnly } from '@ember/object/computed';
-import Component from '@ember/component';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 
-export default Component.extend({
-  tagName: 'header',
-  classNames: ['header'],
-  router: service(),
 
-  currentRouteName: readOnly('router.currentRouteName'),
-  isIndex: computed('currentRouteName', function() {
-    return this.currentRouteName.startsWith('index');
-  }),
+export default class SiteHeaderComponent extends Component {
+    @service router;
+    @readOnly('router.currentRouteName') currentRouteName;
 
-  actions: {
+    get isIndex() {
+        return this.currentRouteName.startsWith('index');
+    }
+
+    @action
     goBack() {
       return window.history.back();
-    },
-    toggleDrawer() {
-      this._drawerData.toggleDrawer();
-    },
-  },
-});
+    }
+}

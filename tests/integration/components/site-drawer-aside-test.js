@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | site-drawer-aside', function(hooks) {
   setupRenderingTest(hooks);
@@ -10,8 +10,17 @@ module('Integration | Component | site-drawer-aside', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{site-drawer-aside}}`);
+    await render(hbs`<SiteDrawerAside />`);
 
-    assert.ok(this.element);
+    assert.equal(this.element.textContent.trim(), '');
+
+    // Template block usage:
+    await render(hbs`
+      <SiteDrawerAside>
+        template block text
+      </SiteDrawerAside>
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

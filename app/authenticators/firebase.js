@@ -20,9 +20,9 @@ export default Base.extend(Evented, {
 
     restore(data) {
     return new Promise(resolve => {
-            get(this, 'firebase').auth().then(auth => auth.onIdTokenChanged(user => run(() => {
+            this.firebase.auth().then(auth => auth.onIdTokenChanged(user => run(() => {
                 let authenticated = user ? {authenticator: 'authenticator:firebase', user, credential: user.getIdToken()} : {};
-                if (get(this, 'restoring')) {
+                if (this.restoring) {
                     set(this, 'restoring', false);
                     resolve({ authenticated, ...data });
                 } else {

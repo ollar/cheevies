@@ -3,9 +3,9 @@
 </div>
 {{!-- user --}}
 {{#if user}}
-    {{#link-to 'profile' user}}
-        {{icon-image data=user image=userImage class="user-icon"}}
-    {{/link-to}}
+    <LinkTo @route="profile" @model={{user}}>
+        <IconImage @data={{user}} @image={{userImage}} @class="user-icon" />
+    </LinkTo>
 {{/if}}
 
 {{!-- action --}}
@@ -16,7 +16,7 @@
 {{!-- cheevie --}}
 {{#if cheevie}}
     <div class="activity-cheevie">
-        {{icon-image data=cheevie image=cheevieImage class="cheevie-icon"}}
+        <IconImage @data={{cheevie}} @image={{cheevieImage}} @class="cheevie-icon" />
     </div>
 {{/if}}
 

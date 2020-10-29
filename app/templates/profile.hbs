@@ -1,22 +1,19 @@
-{{#profile-animation-wrapper _cheeviesPromise=_cheeviesPromise}}
+<ProfileAnimationWrapper @_cheeviesPromise={{_cheeviesPromise}}>
 <section class="center-wrapper {{if isMe 'is-me'}}">
 <div class="user-image-wrapper {{if busy 'busy'}}">
     {{#unless isMe}}
-        {{icon-image data=model image=avatar class="user-image"}}
+        <IconImage @data={{model}} @image={{avatar}} @class="user-image" />
     {{else}}
-        {{#images-drop-area
-            images=model.imageUrl
-            uploadImage=(action 'uploadImage')
-        }}
-        {{icon-image data=this.model image=avatar class="user-image"}}
+        <ImagesDropArea @images={{model.imageUrl}} @uploadImage={{action "uploadImage"}}>
+        <IconImage @data={{this.model}} @image={{avatar}} @class="user-image" />
         {{#if isMe}}
             {{#if model.imageUrl}}
             <button class="icon-image delete" {{action 'removeImage'}}>
-                {{svg-icon _name="x" _size=24 _title=(t 'icons.remove') class="h-center bottom"}}
+                <SvgIcon @_name="x" @_size={{24}} @_title={{t "icons.remove"}} @class="h-center bottom" />
             </button>
             {{/if}}
         {{/if}}
-        {{/images-drop-area}}
+        </ImagesDropArea>
         <a class="input-click-handler" {{action 'handleInputClick'}}></a>
     {{/unless}}
 
@@ -27,7 +24,7 @@
 
 <h1 class="name">
   {{#if isMe}}
-    {{input type='text' value=model.name class="psevdo-title"}}
+    <Input @type="text" @value={{model.name}} class="psevdo-title" />
   {{else}}
     {{model.name}}
   {{/if}}
@@ -36,7 +33,7 @@
 <div class="cheevies grid-wrapper-3">
   {{#each cheevies as |cheevie|}}
     <div class="cheevie-wrapper" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
-      {{cheevie-in-list cheevie=cheevie}}
+      <CheevieInList @cheevie={{cheevie}} />
     </div>
   {{else}}
     <div class="empty-placeholder">
@@ -45,27 +42,25 @@
   {{/each}}
 
   {{#each cheevies as |cheevie|}}
-    {{#item-hint
-      data=cheevie
-      id=(add cheevie.id '_hint')}}
+    <ItemHint @data={{cheevie}} @id={{add cheevie.id "_hint"}}>
       {{#if isMe}}
         <button class="icon-button delete" {{action 'refuseCheevie' cheevie}}>
-          {{svg-icon _name="trash-2" _size=18 _title=(t 'icons.refuse') class="v-center left"}}
+          <SvgIcon @_name="trash-2" @_size={{18}} @_title={{t "icons.refuse"}} @class="v-center left" />
         </button>
       {{/if}}
 
       {{#if isShareAvailable}}
       {{#if isMe}}
         <button class="icon-button share" {{action 'shareCheevie' cheevie}}>
-          {{svg-icon _name="share-2" _size=18 _title=(t 'icons.share') class="v-center left"}}
+          <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center left" />
         </button>
       {{/if}}
       {{/if}}
-    {{/item-hint}}
+    </ItemHint>
   {{/each}}
 </div>
 </section>
-{{/profile-animation-wrapper}}
+</ProfileAnimationWrapper>
 
 {{#if openPopper}}
   <div class="card-content-overlay" {{action 'closeCheevieDetails' on='click'}}></div>
@@ -74,7 +69,7 @@
 {{#unless isMe}}
   <footer>
     <button class="icon-button give-cheevie" {{action 'showCheeviesPicker'}}>
-      {{svg-icon _name="award" _size=24 _title=(t 'icons.reward') class="h-center bottom"}}
+      <SvgIcon @_name="award" @_size={{24}} @_title={{t "icons.reward"}} @class="h-center bottom" />
     </button>
   </footer>
 {{/unless}}

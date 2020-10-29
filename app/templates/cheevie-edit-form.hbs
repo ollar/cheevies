@@ -10,7 +10,7 @@
   <div class="field">
     <label class="label" for="name">{{t 'create-cheevie.form.name.label'}}</label>
     <div class="control">
-      {{input class="input" data-test-id="name" id="name" type="text" placeholder=(t 'create-cheevie.form.name.placeholder') value=_model.name}}
+      <Input class="input" data-test-id="name" @id="name" @type="text" placeholder={{t "create-cheevie.form.name.placeholder"}} @value={{_model.name}} />
     </div>
   </div>
 
@@ -35,19 +35,14 @@
   <div class="field">
     <label class="label" for="description">{{t 'create-cheevie.form.description.label'}}</label>
     <div class="control">
-      {{textarea
-        data-test-id="description"
-        class="textarea"
-        id="description"
-        placeholder=(t 'create-cheevie.form.description.placeholder')
-        value=_model.description}}
+      <Textarea data-test-id="description" class="textarea" @id="description" placeholder={{t "create-cheevie.form.description.placeholder"}} @value={{_model.description}} />
     </div>
   </div>
 
   <div class="field is-grouped">
     <div class="control">
       <button type="submit" class="button">
-        {{svg-icon _name="check" _size=24}}
+        <SvgIcon @_name="check" @_size={{24}} />
       </button>
     </div>
   </div>

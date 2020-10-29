@@ -1,16 +1,16 @@
 <div class="avatar">
-    {{icon-image data=me.model image=image}}
+    <IconImage @data={{this.myModel}} @image={{this.image}} />
 </div>
 
 <div class="info">
     <h3 class="user-name">
-        {{me.model.name}}
+        {{this.myModel.name}}
     </h3>
 
     <div class="cheevies-list">
         <div class="grid-wrapper-3">
-            {{#each cheevies as |cheevie|}}
-            {{cheevie-in-list cheevie=cheevie class="cheevie-in-list"}}
+            {{#each this.cheevies as |cheevie|}}
+                <CheevieInList @cheevie={{cheevie}} class="cheevie-in-list" />
             {{else}}
             <div class="empty-placeholder">
                 {{t 'you-have-no-cheevies-yet'}}
@@ -19,10 +19,10 @@
         </div>
     </div>
 
-    {{#if canCreateCheevie}}
+    {{#if this.canCreateCheevie}}
         <div class="add-cheevie-wrapper">
             <button class="icon-button" {{action 'createCheevie'}}>
-                {{svg-icon _name="plus-circle" _size=48}}
+                <SvgIcon @_name="plus-circle" @_size={{48}} />
             </button>
             <span class="add-cheevie-text">
                 {{t 'create-cheevie.title'}}
@@ -34,15 +34,15 @@
 {{yield}}
 
 <footer class="drawer-footer">
-    {{#link-to 'settings'}}
-    {{svg-icon _name="settings" _size=24 _title=(t 'icons.settings') class="bottom h-center"}}
-    {{/link-to}}
+    <LinkTo @route="settings">
+    <SvgIcon @_name="settings" @_size={{24}} @_title={{t "icons.settings"}} class="bottom h-center" />
+    </LinkTo>
 
-    {{#link-to 'activity'}}
-    {{svg-icon _name="clock" _size=24 _title=(t 'icons.activity') class="bottom h-center"}}
-    {{/link-to}}
+    <LinkTo @route="activity">
+    <SvgIcon @_name="clock" @_size={{24}} @_title={{t "icons.activity"}} class="bottom h-center" />
+    </LinkTo>
 
     <button class="icon-button" {{action 'invalidate'}}>
-        {{svg-icon _name="log-out" _size=24 _title=(t 'icons.sign_out') class="bottom h-center"}}
+        <SvgIcon @_name="log-out" @_size={{24}} @_title={{t "icons.sign_out"}} class="bottom h-center" />
     </button>
 </footer>
