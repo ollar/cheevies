@@ -1,4 +1,4 @@
-<ProfileAnimationWrapper @_cheeviesPromise={{_cheeviesPromise}}>
+{{!-- <ProfileAnimationWrapper @_cheeviesPromise={{_cheeviesPromise}}> --}}
 <section class="center-wrapper {{if isMe 'is-me'}}">
 <div class="user-image-wrapper {{if busy 'busy'}}">
     {{#unless isMe}}
@@ -60,7 +60,7 @@
   {{/each}}
 </div>
 </section>
-</ProfileAnimationWrapper>
+{{!-- </ProfileAnimationWrapper> --}}
 
 {{#if openPopper}}
   <div class="card-content-overlay" {{action 'closeCheevieDetails' on='click'}}></div>

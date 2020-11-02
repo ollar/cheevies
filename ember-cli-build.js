@@ -41,8 +41,8 @@ module.exports = function(defaults) {
     app.import('node_modules/normalize.css/normalize.css');
     app.import('node_modules/feather-icons/dist/feather-sprite.svg');
 
-    app.import('node_modules/popper.js/dist/umd/popper.min.js');
-    app.import('vendor/shims/popper.js');
+    // app.import('node_modules/popper.js/dist/umd/popper.min.js');
+    // app.import('vendor/shims/popper.js');
 
     app.import('node_modules/particles.js/particles.js');
     app.import('vendor/shims/particles.js');

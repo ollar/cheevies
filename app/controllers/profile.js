@@ -1,174 +1,44 @@
-import { readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import ImageUploadMixin from '../mixins/image-uploader';
-import BusyMixin from '../mixins/busy-loader';
-import Popper from 'popper';
-import $ from 'jquery';
-import DS from 'ember-data';
-import { schedule } from '@ember/runloop';
-import cordovaGetImage from '../utils/cordova-get-image';
 
-export default Controller.extend(ImageUploadMixin, BusyMixin, {
-    me: service(),
-    myGroup: service(),
-    activity: service(),
-    share: service(),
-    intl: service(),
+export default class ProfileController extends Controller {
+    @service me;
+    @service myGroup;
+    @service intl;
+    @service share;
+    @service activity;
 
-    openPopper: '',
 
-    userId: readOnly('model.id'),
-    myId: readOnly('me.model.id'),
-    isShareAvailable: readOnly('share.isAvailable'),
 
-    _model: alias('model'),
+    get userId() {
+        return this.model.id;
+    }
 
-    _cheeviesPromise: computed('model.cheevies.[]', function() {
-        return DS.PromiseArray.create({
-            promise: this.myGroup
-                .fetch()
-                .then(() => this.myGroup.cheevies)
-                .then(availableCheevies =>
-                    this.model.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
-                ),
-        });
-    }),
+    get myId() {
+        return this.me.model.id;
+    }
 
-    cheevies: computed('_cheeviesPromise.isFulfilled', function() {
-        return this._cheeviesPromise;
-    }),
+    get isShareAvailable() {
+        return this.share.isAvailable;
+    }
+
+    get _model() {
+        return this.model;
+    }
 
     _uploadPath(image) {
         return `users/${this.model.id}/${image.width}/${image.name}`;
-    },
+    }
 
-    isMe: computed('userId', 'myId', function() {
-        return this.userId === this.myId;
-    }),
+    get groupCheevies() {
+        return this.myGroup.cheevies;
+    }
 
-    imageSet: readOnly('model.image-set'),
-    avatar: computed('model.image-set.{256,512}', function() {
-        if (!this.get('imageSet.256')) return null;
+    get userCheevies() {
+        return this.model.cheevies;
+    }
 
-        return {
-            sm: this.get('imageSet.256'),
-            md: this.get('imageSet.512'),
-        };
-    }),
-
-    actions: {
-        uploadImage(files) {
-            if (!this.isMe) return;
-            const file = files[0];
-
-            if (!file || file.type.indexOf('image') < 0) return;
-
-            this.setBusy(true);
-
-            return this._uploadImage(file).finally(() => {
-                this.setBusy(false);
-            });
-        },
-
-        removeImage() {
-            return this._removeImage(true);
-        },
-
-        refuseCheevie(cheevie) {
-            this.model.get('cheevies').removeObject(cheevie);
-            this.model.save().then(() =>
-                this.activity.send({
-                    cheevie,
-                    action: 'refuseCheevie',
-                })
-            );
-        },
-
-        shareCheevie(cheevie) {
-            const onSuccess = () => {
-                return this.send('notify', {
-                    type: 'success',
-                    text: this.intl.t('share.messages.success'),
-                });
-            };
-
-            const onError = () => {
-                return this.send('notify', {
-                    type: 'error',
-                    text: this.intl.t('share.messages.error'),
-                });
-            };
-
-            this.share
-                .post({
-                    title: this.intl.t('share.cheevie.title'),
-                    text: this.intl.t('share.cheevie.text', { cheevie: cheevie.name }),
-                    url: `${this.share.appDomain}/profile/${this.model.id}`,
-                })
-                .then(() => onSuccess(), () => onError());
-        },
-
-        closeCheevieDetails() {
-            if (this.popper) this.popper.destroy();
-            $('.item-hint').hide();
-            this.set('openPopper', '');
-            return;
-        },
-
-        cheevieDetails(cheevie) {
-            const reference = document.querySelector(`#${cheevie.id}`);
-            const popper = document.querySelector(`#${cheevie.id}_hint`);
-            if (this.popper) this.popper.destroy();
-            if (cheevie.id === this.openPopper) {
-                $('.item-hint').hide();
-                this.set('openPopper', '');
-                return;
-            }
-
-            $('.item-hint').hide();
-            $(popper).show();
-
-            schedule('render', () => {
-                this.popper = new Popper(reference, popper);
-                this.set('openPopper', cheevie.id);
-            });
-        },
-
-        showCheeviesPicker() {
-            this.transitionToRoute('profile.give-cheevie');
-        },
-
-        handleInputClick() {
-            if (window.cordova) {
-                cordovaGetImage({
-                    confirmStrings: {
-                        title: this.intl.t('cordova-get-image.modal.title'),
-                        text: this.intl.t('cordova-get-image.modal.text'),
-                        buttons: {
-                            camera: this.intl.t('cordova-get-image.modal.buttons.camera'),
-                            gallery: this.intl.t('cordova-get-image.modal.buttons.gallery'),
-                            cancel: this.intl.t('cordova-get-image.modal.buttons.cancel'),
-                        },
-                    },
-                }).then(_file => {
-                    this.send('uploadImage', [_file]);
-                });
-
-                return;
-            }
-
-            this._fileInput = document.querySelector('input[type="file"]');
-            if (this._fileInput) {
-                this._fileInput.dispatchEvent(
-                    new MouseEvent('click', {
-                        view: window,
-                        bubbles: false,
-                        cancelable: true,
-                    })
-                );
-            }
-        },
-    },
-});
+    get cheevies() {
+        return []
+    }
+}

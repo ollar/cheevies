@@ -1,31 +1,38 @@
-import { readOnly, filterBy } from '@ember/object/computed';
 import Service, { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import { tracked } from '@glimmer/tracking';
+import { filterBy } from '@ember/object/computed';
 
-export default Service.extend({
-    session: service(),
-    store: service(),
+export default class MyGroupService extends Service {
+    @service session;
+    @service store;
+    @filterBy('model.cheevies', 'deleted', false) cheevies;
+    @tracked model = null;
 
-    isAuthenticated: readOnly('session.isAuthenticated'),
-    groupName: readOnly('session.data.group'),
-    isDemo: readOnly('session.data.demoGroup'),
-    model: null,
-    _type: computed('isDemo', function() {
+    get isAuthenticated() {
+        return this.session.isAuthenticated;
+    }
+
+    get groupName() {
+        return this.session.data.group;
+    }
+
+    get isDemo() {
+        return this.session.data.demoGroup;
+    }
+
+    get _type() {
         return this.isDemo ? 'demo/group' : 'group';
-    }),
+    }
 
-    init() {
-        this._super(...arguments);
+    constructor() {
+        super(...arguments);
         this.session.on('invalidationSucceeded', () => {
-            this.set('model', null);
+            this.model = null;
         });
-    },
-
-    cheevies: filterBy('model.cheevies', 'deleted', false),
+    }
 
     fetch() {
-        return resolve().then(() => {
+        return Promise.resolve().then(() => {
             if (!this.groupName) throw new Error('session.data.group not filled');
             if (this.model) return this.model;
 
@@ -36,9 +43,9 @@ export default Service.extend({
                 })
                 .then(_group => {
                     const group = _group.firstObject;
-                    this.set('model', group);
+                    this.model = group;
                     return group;
                 });
         });
-    },
-});
+    }
+}

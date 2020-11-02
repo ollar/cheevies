@@ -1,32 +1,32 @@
-import { alias, readOnly } from '@ember/object/computed';
 import Service, { inject as service } from '@ember/service';
-import {
-    all
-} from 'rsvp';
-import {
-    computed
-} from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-    session: service(),
-    me: service(),
-    myGroup: service(),
-    store: service(),
-    myModel: alias('me.model'),
-    model: null,
+export default class SettingsService extends Service {
+    @service session;
+    @service me;
+    @service myGroup;
+    @service store;
 
-    isDemo: readOnly('myGroup.isDemo'),
+    @tracked model;
 
-    _type: computed('isDemo', function () {
+    get myModel() {
+        return this.me.model;
+    }
+
+    get isDemo() {
+        return this.myGroup.isDemo;
+    }
+
+    get _type() {
         return this.isDemo ? 'demo/settings' : 'settings';
-    }),
+    }
 
-    init() {
-        this._super(...arguments);
+    constructor() {
+        super(...arguments);
         this.session.on('invalidationSucceeded', () => {
-            this.set('model', null);
+            this.model = null;
         });
-    },
+    }
 
     fetch() {
         return this.me.fetch().then(() => {
@@ -34,7 +34,7 @@ export default Service.extend({
 
             return this.myModel.get('settings').then(settings => {
                 if (settings) {
-                    this.set('model', settings);
+                    this.model = settings;
                     return settings;
                 } else {
                     settings = this.store.createRecord(this._type, {
@@ -43,18 +43,22 @@ export default Service.extend({
 
                     this.myModel.set('settings', settings);
 
-                    return all([this.myModel.save(), settings.save()]).then(() => {
-                        this.set('model', settings);
+                    return Promise.all([
+                        this.myModel.save(),
+                        settings.save()
+                    ])
+                    .then(() => {
+                        this.model = settings;
                         return settings;
                     });
                 }
             });
         });
-    },
+    }
 
     save() {
         const model = this.model;
         model.set('updated', Date.now());
         return model.save();
-    },
-});
+    }
+}
