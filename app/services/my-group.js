@@ -42,7 +42,10 @@ export default class MyGroupService extends Service {
                     equalTo: this.groupName,
                 })
                 .then(_group => {
+
+
                     const group = _group.firstObject;
+                    console.log(group)
                     this.model = group;
                     return group;
                 });

@@ -52,22 +52,26 @@ export default Controller.extend({
             if (this.model.validate()) {
                 return this.me.fetch().then(() =>
                     this.store
-                        .query('group', {
+                        .queryRecord('group', {
                             orderBy: 'name',
                             equalTo: this.getWithDefault('model.group', '')
                                 .toLowerCase() // todo: check this
                                 .trim(),
                         })
-                        .then(groups => {
+                        .then(group => {
                             // 1. No groups found -> show error
-                            if (!groups.length) {
+                            if (!group) {
                                 throw new Error(this.intl.t('login.messages.no_such_group'));
                             }
 
                             // 2. Group found
-                            var group = groups.firstObject;
-
                             // 2.1 You are not in group
+                            return hash({
+                                group,
+                                users: group.get('users')
+                            });
+                        })
+                        .then(({ group, users }) => {
                             if (group.users.indexOf(this.me.model) < 0) {
                                 // Group is locked -> show error
                                 if (group.locked) {
@@ -76,6 +80,7 @@ export default Controller.extend({
                                     );
                                 }
 
+                                debugger
                                 // Group is public -> pass
                                 group.users.pushObject(this.me.model);
                                 this.me.model.groups.pushObject(group);

@@ -1,25 +1,16 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
-import Validator from '../mixins/model-validator';
-import { computed } from '@ember/object';
 
-export default Model.extend(Validator, {
-    policies: computed(() => ['anarchy', 'democracy', 'totalitarianism']),
+export default class GroupModel extends Model {
+    @attr('string') name;
+    @hasMany('cheevie') cheevies;
+    @hasMany('user', { inverse: null }) users;
+    @attr('boolean', { defaultValue: false }) locked;
+    @attr('string', { defaultValue: '0000' }) code;
+    @belongsTo('user', { inverse: null }) author;
+    @hasMany('user', { inverse: null }) moderators;
+    @attr('string', { defaultValue: 'anarchy' }) policy;
 
-    name: attr('string'),
-    cheevies: hasMany('cheevie'),
-    users: hasMany('user'),
-    locked: attr('boolean', { defaultValue: false }),
-    code: attr('string', { defaultValue: '0000' }),
-    author: belongsTo('user', { inverse: null }),
-    moderators: hasMany('user', { inverse: null }),
-    policy: attr('string', { defaultValue: 'anarchy' }),
-
-    validations: computed(() => ({
-        name: {
-            presence: true,
-        },
-        code: {
-            presence: true,
-        },
-    })),
-});
+    get policies() {
+        return ['anarchy', 'democracy', 'totalitarianism'];
+    }
+}
