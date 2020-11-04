@@ -23,7 +23,7 @@ export default Route.extend({
                 type: 'info',
                 text: this.intl.t('join-group.messages.attempt-signin'),
             });
-            this.transitionTo('wardrobe.social-sign-in');
+            this.transitionTo('wardrobe.sign-in');
             transition.abort();
             return res();
         });

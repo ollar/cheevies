@@ -8,7 +8,6 @@ import { schedule } from '@ember/runloop';
 import { userIsModerator } from '../utils/user-role';
 
 export default Controller.extend({
-    firebaseApp: service(),
     me: service(),
     myGroup: service(),
     settings: service(),

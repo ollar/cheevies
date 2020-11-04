@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     intl: service(),
 
     settingsModel: alias('settings.model'),
-    authenticationRoute: 'wardrobe.social-sign-in',
+    authenticationRoute: 'wardrobe.sign-in',
 
     model() {
         if (!this.get('myGroup.groupName')) return {};

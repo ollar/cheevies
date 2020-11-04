@@ -2,8 +2,6 @@ import { computed } from '@ember/object';
 import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
-    firebase: service('firebase-app'),
-
     storageRef: computed(function() {
         return this.firebase.storage();
     }),

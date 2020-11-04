@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import ENV from 'cheevies-jerk/config/environment';
+import ENV from 'cheevies/config/environment';
 
 const { rootURL } = ENV;
 

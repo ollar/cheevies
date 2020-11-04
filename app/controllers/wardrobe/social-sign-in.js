@@ -15,7 +15,6 @@ import BusyLoaderMixin from '../../mixins/busy-loader';
 export default Controller.extend(BusyLoaderMixin, {
     session: service(),
     activity: service(),
-    firebase: service('firebase-app'),
 
     init() {
         this._super(...arguments);

@@ -8,7 +8,6 @@ import Evented from '@ember/object/evented';
 
 export default Base.extend(Evented, {
     session: service(),
-    firebase: service('firebase-app'),
 
     // restore(data) {
     //     return Promise.resolve(data);

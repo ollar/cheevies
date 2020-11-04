@@ -14,8 +14,6 @@ export default Model.extend(Validator, {
     password: attr('string'),
     email: attr('string'),
 
-    firebase: service('firebase-app'),
-
     init() {
         this._super(...arguments);
         this._createUserMode = this._createUserMode.bind(this);

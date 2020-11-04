@@ -1,121 +1,66 @@
-/* eslint-env node */
 'use strict';
-require('dotenv').config();
 
-const {
-    apiKey,
-    authDomain,
-    databaseURL,
-    storageBucket,
-    projectId,
-    messagingSenderId,
+require("dotenv").config();
 
-    apiKeyDev,
-    authDomainDev,
-    databaseURLDev,
-    storageBucketDev,
-    projectIdDev,
-    messagingSenderIdDev,
-
-    apiKeyTest,
-    authDomainTest,
-    databaseURLTest,
-    storageBucketTest,
-    projectIdTest,
-    messagingSenderIdTest,
-
-    giphyApiKey,
-} = process.env;
+const APP_NAME = "cheevies";
+const { sentryDsn, giphyApiKey } = process.env;
 
 module.exports = function(environment) {
-    let ENV = {
-        modulePrefix: 'cheevies-jerk',
-        environment,
-        rootURL: '/',
-        // rootURL: '',
-        locationType: 'auto',
-        // locationType: 'hash',
-        EmberENV: {
-            FEATURES: {
-                // Here you can enable experimental features on an ember canary build
-                // e.g. 'with-controller': true
-            },
-            EXTEND_PROTOTYPES: {
-                // Prevent Ember Data from overriding Date.parse.
-                Date: false,
-            },
-        },
+  let ENV = {
+    modulePrefix: APP_NAME,
+    environment,
+    rootURL: '/',
+    locationType: 'auto',
+    EmberENV: {
+      FEATURES: {
+        // Here you can enable experimental features on an ember canary build
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
+      }
+    },
 
-        APP: {
-            // Here you can pass flags/options to your application instance
-            // when it is created
-            giphyApiKey,
-            appDomain: 'https://cheevies.club',
-        },
-
-        firebase: {
-            apiKey,
-            authDomain,
-            databaseURL,
-            projectId,
-            storageBucket,
-            messagingSenderId,
-        },
-        // 'ember-gsap': {
-        //     core: ['TweenLite', 'TimelineLite', 'CSSPlugin', 'AttrPlugin', 'easing'],
-        // },
-    };
-
-    if (environment === 'development') {
-        // ENV.APP.LOG_RESOLVER = true;
-        // ENV.APP.LOG_ACTIVE_GENERATION = true;
-        // ENV.APP.LOG_TRANSITIONS = true;
-        // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-        // ENV.APP.LOG_VIEW_LOOKUPS = true;
-
-        ENV.APP.appDomain = 'https://cheevies-dev.firebaseapp.com';
-
-        ENV.firebase = {
-            apiKey: apiKeyDev,
-            authDomain: authDomainDev,
-            databaseURL: databaseURLDev,
-            storageBucket: storageBucketDev,
-            projectId: projectIdDev,
-            messagingSenderId: messagingSenderIdDev,
-        };
+    APP: {
+      // Here you can pass flags/options to your application instance
+      // when it is created
+      apiHost: 'http://34.242.87.146:8080',
+      authHost: 'http://34.242.87.146:8090',
+      // apiHost: 'http://localhost:8080',
+      // authHost: 'http://localhost:8090',
+      // authHost: 'http://localhost:8090',
+      appName: APP_NAME,
+      giphyApiKey,
     }
+  };
 
-    if (environment === 'test') {
-        // Testem prefers this...
-        ENV.locationType = 'none';
+  if (environment === 'development') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
 
-        // keep test console output quieter
-        ENV.APP.LOG_ACTIVE_GENERATION = false;
-        ENV.APP.LOG_VIEW_LOOKUPS = false;
+  if (environment === 'test') {
+    // Testem prefers this...
+    ENV.locationType = 'none';
 
-        ENV.APP.rootElement = '#ember-testing';
-        ENV.APP.autoboot = false;
+    // keep test console output quieter
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-        ENV.APP.appDomain = 'https://cheevies-dev.firebaseapp.com';
+    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
+  }
 
-        ENV.firebase = {
-            apiKey: apiKeyTest,
-            authDomain: authDomainTest,
-            databaseURL: databaseURLTest,
-            storageBucket: storageBucketTest,
-            projectId: projectIdTest,
-            messagingSenderId: messagingSenderIdTest,
-        };
-    }
+  if (environment === 'production') {
+    // here you can enable a production-specific feature
+    ENV.APP.sentryDsn = sentryDsn;
+    ENV.APP.apiHost = 'https://api.ollar.rocks';
+    ENV.APP.authHost = 'https://auth.ollar.rocks';
+  }
 
-    if (environment === 'production') {
-        // here you can enable a production-specific feature
-    }
-
-    if (environment === 'cordova') {
-        ENV.rootURL = '';
-        ENV.locationType = 'hash';
-    }
-
-    return ENV;
+  return ENV;
 };

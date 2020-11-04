@@ -5,7 +5,6 @@ import { resolve } from 'rsvp';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
     session: service(),
-    firebase: service('firebase-app'),
 
     beforeModel(transition) {
         if (this.session.isAuthenticated) {

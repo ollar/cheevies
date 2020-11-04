@@ -4,8 +4,6 @@ import { inject as service } from '@ember/service';
 import { schedule, later } from '@ember/runloop';
 
 export default Controller.extend({
-    firebase: service('firebase-app'),
-
     init() {
         this._super(...arguments);
 

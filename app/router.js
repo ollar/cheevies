@@ -1,5 +1,5 @@
 import EmberRouter from '@ember/routing/router';
-import config from 'cheevies-jerk/config/environment';
+import config from 'cheevies/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -29,7 +29,7 @@ Router.map(function() {
         this.route('sign-in');
         this.route('sign-up');
         this.route('sign-out');
-        this.route('social-sign-in');
+        // this.route('social-sign-in');
     });
     this.route('terms-and-conditions');
     this.route('welcome');
