@@ -1,27 +1,14 @@
 import Service, { inject as service } from '@ember/service';
-import { resolve } from 'rsvp';
+import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
-
 
 export default class MeService extends Service {
     @service session;
     @service store;
-    @service myGroup;
-
     @tracked model = null;
 
-    get isDemo() {
-        return this.myGroup.isDemo;
-    }
-
-    get _type() {
-        return this.isDemo ? 'demo/user' : 'user';
-    }
-
-
-    get uid() {
-        return this.isAuthenticated
-            ? (this.get('session.data.authenticated.uid') || '') : '';
+    get appName() {
+        return getOwner(this).application.appName;
     }
 
     get isAuthenticated() {
@@ -36,14 +23,13 @@ export default class MeService extends Service {
     }
 
     fetch() {
-        return resolve().then(() => {
-            if (!this.uid) throw new Error('session.data.authenticated.uid not filled');
-            if (this.model) return this.model;
+        if (!this.isAuthenticated || this.model) return Promise.resolve(this.model);
 
-            return this.store.findRecord(this._type, this.uid).then(me => {
-                this.model = me;
-                return me;
-            });
+        return this.store.queryRecord('me', {
+            collection_name: this.appName
+        }).then(me => {
+            this.model = me;
+            return me;
         });
     }
 }

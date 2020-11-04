@@ -1,22 +1,26 @@
 import Controller from '@ember/controller';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    schedule
-} from '@ember/runloop';
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { schedule } from '@ember/runloop';
 
-export default Controller.extend({
-    session: service(),
-    me: service(),
-    activity: service(),
+export default class WardrobeSignInController extends Controller {
+    @service session;
+    @service me;
+    @service activity;
 
-    init() {
-        this._super(...arguments);
-        this.onError = this.onError.bind(this);
-        this.onSuccess = this.onSuccess.bind(this);
-    },
+    @action
+    passwordSignIn(e) {
+        if (e && e.preventDefault) e.preventDefault();
 
+        if (this.model.validate()) {
+            const data = this.model.serialize();
+
+            this.session.authenticate('authenticator:application', data)
+                .then(this.onSuccess, this.onError);
+        }
+    }
+
+    @action
     onSuccess() {
         return this.me
             .fetch()
@@ -35,26 +39,13 @@ export default Controller.extend({
             .then(() => schedule('routerTransitions', () =>
                 this.transitionToRoute('wardrobe.select-group')
             ));
-    },
+    }
 
+    @action
     onError(err) {
         this.send('notify', {
             type: 'error',
-            text: err.message,
+            text: err.detail
         });
-    },
-
-    actions: {
-        passwordSignIn() {
-            if (this.model.validate()) {
-                return this.session
-                    .authenticate('authenticator:firebase', {
-                        email: this.get('model.email'),
-                        password: this.get('model.password'),
-                        model: this.model,
-                    })
-                    .then(this.onSuccess, this.onError);
-            }
-        },
-    },
-});
+    }
+}
