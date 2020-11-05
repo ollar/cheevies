@@ -18,7 +18,7 @@ export default class SettingsService extends Service {
     }
 
     get _type() {
-        return this.isDemo ? 'demo/settings' : 'settings';
+        return this.isDemo ? 'demo/settings' : 'setting';
     }
 
     constructor() {
@@ -28,32 +28,30 @@ export default class SettingsService extends Service {
         });
     }
 
-    fetch() {
-        return this.me.fetch().then(() => {
-            if (this.model) return this.model;
+    async fetch() {
+        await this.me.fetch();
 
-            return this.myModel.get('settings').then(settings => {
-                if (settings) {
-                    this.model = settings;
-                    return settings;
-                } else {
-                    settings = this.store.createRecord(this._type, {
-                        user: this.myModel,
-                    });
+        if (this.model) return this.model;
 
-                    this.myModel.set('settings', settings);
+        let settings = await this.myModel.get('settings');
 
-                    return Promise.all([
-                        this.myModel.save(),
-                        settings.save()
-                    ])
-                    .then(() => {
-                        this.model = settings;
-                        return settings;
-                    });
-                }
+        if (settings) {
+            this.model = settings;
+            return settings;
+        } else {
+            settings = this.store.createRecord(this._type, {
+                user: this.myModel,
             });
-        });
+
+            await settings.save();
+
+            this.myModel.set('settings', settings);
+
+            await this.myModel.save();
+
+            this.model = settings;
+            return settings;
+        }
     }
 
     save() {

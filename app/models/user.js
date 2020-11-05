@@ -1,7 +1,7 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default Model.extend({
-    name: attr('string'),
+    username: attr('string'),
     'image-set': belongsTo('image-set'),
     email: attr('string'),
     fcmToken: attr('string'),
@@ -17,5 +17,5 @@ export default Model.extend({
     created: attr('number'),
     groups: hasMany('group'),
 
-    settings: belongsTo('settings'),
+    settings: belongsTo('setting'),
 });

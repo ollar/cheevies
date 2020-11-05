@@ -21,17 +21,18 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
         return this.myGroup
             .fetch()
-            .then(group =>
-                hash({
+            .then(group => {
+                return hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
                     settings: this.settings.fetch(),
                 })
-            )
+            })
             .catch(e => this.onModelError(e));
     },
 
-    onModelError() {
+    onModelError(e) {
+        console.log(e)
         this.transitionTo('wardrobe.sign-out');
         this.send('notify', {
             type: 'error',

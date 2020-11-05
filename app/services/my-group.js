@@ -38,14 +38,13 @@ export default class MyGroupService extends Service {
 
             return this.store
                 .query(this._type, {
-                    orderBy: 'name',
-                    equalTo: this.groupName,
+                    find: {
+                        name: this.groupName
+                    }
                 })
-                .then(_group => {
-
-
-                    const group = _group.firstObject;
-                    console.log(group)
+                .then(_groups => {
+                    const group = _groups.firstObject;
+                    console.log(group.serialize())
                     this.model = group;
                     return group;
                 });

@@ -45,13 +45,23 @@ export default class WardrobeSignUpController extends Controller {
         if (this.model.validate()) {
             return this.session.register(data)
                 .then(() => this.session.authenticate('authenticator:application', data))
-                .then(() => {
+                .then(async () => {
                     const user = this.store.createRecord('user', {
                         username: data.username,
                         email: data.email,
                     });
 
-                    return user.save();
+                    await user.save();
+
+                    const settings = this.store.createRecord('setting', {
+                        user,
+                    });
+
+                    await settings.save();
+
+                    user.set('settings', settings);
+
+                    await user.save();
                 })
                 .then(this.onSuccess)
                 .catch(this.onError);
