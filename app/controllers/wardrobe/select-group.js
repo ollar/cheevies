@@ -87,7 +87,7 @@ export default class WardrobeSelectGroupController extends Controller {
             }
 
 
-            this.session.set('data.group', group.name);
+            this.session.persist('group', group.name)
 
             return group.reload()
                     .then(this.onSuccess, this.onError);

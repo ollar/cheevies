@@ -8,13 +8,13 @@
         <IconImage @data={{this.model}} @image={{avatar}} @class="user-image" />
         {{#if isMe}}
             {{#if model.imageUrl}}
-            <button class="icon-image delete" {{action 'removeImage'}}>
+            <button class="icon-image delete" {{on 'click' this.removeImage}}>
                 <SvgIcon @_name="x" @_size={{24}} @_title={{t "icons.remove"}} @class="h-center bottom" />
             </button>
             {{/if}}
         {{/if}}
         </ImagesDropArea>
-        <a class="input-click-handler" {{action 'handleInputClick'}}></a>
+        <a class="input-click-handler" {{on 'click' this.handleInputClick}}></a>
     {{/unless}}
 
   <div class="experience">
@@ -32,7 +32,7 @@
 
 <div class="cheevies grid-wrapper-3">
   {{#each cheevies as |cheevie|}}
-    <div class="cheevie-wrapper" id={{cheevie.id}} {{action 'cheevieDetails' cheevie}}>
+    <div class="cheevie-wrapper" id={{cheevie.id}} {{on 'click' (fn this.cheevieDetails cheevie)}}>
       <CheevieInList @cheevie={{cheevie}} />
     </div>
   {{else}}
@@ -63,12 +63,12 @@
 {{!-- </ProfileAnimationWrapper> --}}
 
 {{#if openPopper}}
-  <div class="card-content-overlay" {{action 'closeCheevieDetails' on='click'}}></div>
+  <div class="card-content-overlay" {{on 'click' this.closeCheevieDetails}}></div>
 {{/if}}
 
 {{#unless isMe}}
   <footer>
-    <button class="icon-button give-cheevie" {{action 'showCheeviesPicker'}}>
+    <button class="icon-button give-cheevie" {{on 'click' this.showCheeviesPicker}}>
       <SvgIcon @_name="award" @_size={{24}} @_title={{t "icons.reward"}} @class="h-center bottom" />
     </button>
   </footer>

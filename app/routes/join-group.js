@@ -56,7 +56,7 @@ export default Route.extend({
 
                 group.users.addObject(me);
                 me.groups.addObject(group);
-                this.session.set('data.group', group.name);
+                this.session.persist('group', group.name);
 
                 transition.send('notify', {
                     type: 'success',

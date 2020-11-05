@@ -1,5 +1,6 @@
 import SessionService from 'ember-simple-auth/services/session';
 import { getOwner } from '@ember/application';
+import { action } from '@ember/object';
 
 const TOKEN_NOT_VALID = 'token_not_valid';
 
@@ -56,5 +57,15 @@ export default class MySessionService extends SessionService {
             this.session.store.persist({ authenticated });
             this.set('data.authenticated.access', access);
         });
+    }
+
+    @action
+    persist(key, value) {
+        const { authenticated } = this.data;
+
+        authenticated[key] = value;
+
+        this.session.store.persist({ authenticated });
+        this.set(`data.authenticated.${key}`, value);
     }
 }

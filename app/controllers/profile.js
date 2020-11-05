@@ -1,5 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+
 
 export default class ProfileController extends Controller {
     @service me;
@@ -39,6 +41,18 @@ export default class ProfileController extends Controller {
     }
 
     get cheevies() {
+
+
+
         return []
+    }
+
+
+
+
+
+    @action
+    showCheeviesPicker() {
+        this.transitionToRoute('profile.give-cheevie');
     }
 }

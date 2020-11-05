@@ -2,7 +2,7 @@
 
     {{#site-drawer drawerData as |drawerData|}}
     {{#if session.isAuthenticated}}
-        {{#if session.data.group}}
+        {{#if session.data.authenticated.group}}
             <SiteHeader @drawerData={{drawerData}} />
         {{/if}}
     {{/if}}

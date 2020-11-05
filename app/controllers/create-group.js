@@ -37,7 +37,7 @@ export default class CreateGroupController extends Controller {
             await newGroup.save();
 
             this.myModel.get('groups').addObject(newGroup);
-            this.session.set('data.group', newGroup.name);
+            this.session.persist('group', newGroup.name);
 
             return this.myModel.save().then(this.onSuccess, this.onError);
         }

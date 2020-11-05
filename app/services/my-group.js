@@ -13,11 +13,11 @@ export default class MyGroupService extends Service {
     }
 
     get groupName() {
-        return this.session.data.group;
+        return this.session.data.authenticated.group;
     }
 
     get isDemo() {
-        return this.session.data.demoGroup;
+        return this.session.data.authenticated.demoGroup;
     }
 
     get _type() {
@@ -33,7 +33,7 @@ export default class MyGroupService extends Service {
 
     fetch() {
         return Promise.resolve().then(() => {
-            if (!this.groupName) throw new Error('session.data.group not filled');
+            if (!this.groupName) throw new Error('group not filled');
             if (this.model) return this.model;
 
             return this.store
@@ -44,7 +44,6 @@ export default class MyGroupService extends Service {
                 })
                 .then(_groups => {
                     const group = _groups.firstObject;
-                    console.log(group.serialize())
                     this.model = group;
                     return group;
                 });

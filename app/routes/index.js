@@ -1,20 +1,22 @@
 import { alias } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 // import { later } from '@ember/runloop';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend({
     me: service(),
     settings: service(),
     myGroup: service('my-group'),
     cachedImage: service(),
     intl: service(),
+    session: service(),
 
     settingsModel: alias('settings.model'),
-    authenticationRoute: 'wardrobe.sign-in',
+
+    beforeModel(transition) {
+        this.session.requireAuthentication(transition, 'wardrobe.sign-in');
+    },
 
     model() {
         if (!this.get('myGroup.groupName')) return {};
