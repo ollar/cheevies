@@ -2,7 +2,7 @@ import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class GroupModel extends Model {
     @attr('string') name;
-    @hasMany('cheevie') cheevies;
+    @hasMany('cheevie', { inverse: null }) cheevies;
     @hasMany('user', { inverse: null }) users;
     @attr('boolean', { defaultValue: false }) locked;
     @attr('string', { defaultValue: '0000' }) code;

@@ -1,0 +1,48 @@
+{{#unless this.shouldHideGuidePopup}}
+    <div class="guide-invitation-button-wrapper">
+        <LinkTo @route="index.guide">{{t 'nav.guide-invitation-text' }}</LinkTo>
+
+        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
+            <SvgIcon @_name="x" @_size={{24}} />
+        </button>
+    </div>
+{{/unless}}
+
+<ParticlesContainer>
+<IndexSectionsWrapper @class={{add "sections-wrapper " activePage}} @setActivePage={{this.setActivePage}}>
+  <section class="users-list grid-wrapper-2">
+    <LinkTo @route="index.profile" @model={{model.me}}>
+      <UserInList @user={{this.model.me}} @class="is-me" />
+    </LinkTo>
+
+    {{#each this.users as |user|}}
+      <LinkTo @route="index.profile" @model={{user}}>
+        <UserInList @user={{user}} @cheevies={{this.model.cheevies}} />
+      </LinkTo>
+    {{/each}}
+  </section>
+
+  <section class="cheevies-list grid-wrapper-3">
+    {{#each this.model.cheevies as |cheevie|}}
+      <LinkTo @route="index.cheevie-details" @model={{cheevie}}>
+        <CheevieInList @cheevie={{cheevie}} />
+      </LinkTo>
+    {{else}}
+      <div class="empty-placeholder">
+        {{t 'no-cheevies-placeholder'}}
+      </div>
+    {{/each}}
+  </section>
+</IndexSectionsWrapper>
+</ParticlesContainer>
+
+{{outlet}}
+
+<footer>
+  <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{on 'click' (fn this.setActivePage 'users')}}>
+    <SvgIcon @_name="users" @_size={{24}} @_title={{t "icons.users"}} @class="bottom h-center" />
+  </button>
+  <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{on 'click' (fn this.setActivePage 'cheevies')}}>
+    <SvgIcon @_name="star" @_size={{24}} @_title={{t "icons.cheevies"}} @class="bottom h-center" />
+  </button>
+</footer>

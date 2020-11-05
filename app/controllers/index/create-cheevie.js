@@ -72,14 +72,17 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
 
                     return true;
                 })
-                .then(() => {
+                .then(async () => {
                     const group = this.get('model.myGroup');
                     const model = this._model;
 
                     model.set('group', group);
                     model.set('author', this.me.model);
+
+                    await model.save();
+
                     group.get('cheevies').pushObject(model);
-                    return all([model.save(), group.save()]).then(() =>
+                    return group.save().then(() =>
                         this.transitionToRoute('index')
                     );
                 })

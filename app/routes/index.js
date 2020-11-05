@@ -27,6 +27,7 @@ export default Route.extend({
                 return hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
+                    cheevies: group.get('cheevies'),
                     settings: this.settings.fetch(),
                 })
             })

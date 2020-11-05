@@ -1,32 +1,25 @@
-import { readOnly } from '@ember/object/computed';
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import HaoticMoveMixin from '../mixins/haotic-move';
-import { inject as service } from '@ember/service';
-import DS from 'ember-data';
+import Component from '@glimmer/component';
 
-export default Component.extend(HaoticMoveMixin, {
-    myGroup: service('my-group'),
+export default class UserInListComponent extends Component {
+    get imageSet() {
+        return this.args.user['image-set'];
+    }
 
-    cheevies: computed('model.cheevies.[]', function() {
-        return DS.PromiseArray.create({
-            promise: this.myGroup
-                .fetch()
-                .then(() => this.myGroup.cheevies)
-                .then(availableCheevies =>
-                    this.user.cheevies.filter(cheevie => availableCheevies.indexOf(cheevie) > -1)
-                ),
-        });
-    }),
-
-    classNames: ['user-in-list'],
-    imageSet: readOnly('user.image-set'),
-    image: computed('imageSet.{}', function() {
-        if (!this.get('imageSet.128')) return null;
+    get image() {
+        if (!this.imageSet[128]) return null;
         return {
             sm: this.get('imageSet.128'),
             md: this.get('imageSet.256'),
             lg: this.get('imageSet.512'),
         };
-    }),
-});
+    }
+
+    get cheevies() {
+        const cheevies = this.args.cheevies ? this.args.cheevies.toArray() : [];
+
+        const userCheevies = this.args.user.cheevies.toArray().map(c => c.id);
+        const groupCheevies = cheevies.toArray().map(c => c.id);
+
+        return userCheevies.filter(cheevie => groupCheevies.includes(cheevie));
+    }
+}

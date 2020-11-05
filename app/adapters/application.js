@@ -113,4 +113,10 @@ export default class ApplicationAdapter extends RestAdapter {
 
         return this.ajax(url, 'GET');
     }
+
+    save() {
+        debugger
+
+        return super.save(...arguments);
+    }
 }
