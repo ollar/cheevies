@@ -42,15 +42,8 @@ export default class ProfileController extends Controller {
     }
 
     get cheevies() {
-        return this.groupCheevies;
-
-
-
-        return []
+        return this.userCheevies.filter(cheevie => this.groupCheevies.includes(cheevie));
     }
-
-
-
 
 
     @action

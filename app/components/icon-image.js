@@ -17,7 +17,7 @@ export default Component.extend({
 
     name: computed('data.name', function() {
         if (isEmpty(this.data)) return '';
-        return this.getWithDefault('data.username', 'anonymous');
+        return this.data.username || this.data.name || 'anonymous';
     }),
 
     power: readOnly('data.power'),
