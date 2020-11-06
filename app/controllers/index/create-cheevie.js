@@ -10,6 +10,7 @@ export default class IndexCreateCheevieController extends Controller {
     @tracked showGiphySelector = false;
     @tracked _file = null;
     @tracked _giphy = null;
+    @tracked busy = false;
 
     @service activity;
     @service me;
@@ -44,14 +45,13 @@ export default class IndexCreateCheevieController extends Controller {
     }
 
 
-
-
     resetProperties() {
         this.showMode = true;
         this.showOptionalMenu = false;
         this.showGiphySelector = false;
         this._file = null;
         this._giphy = null;
+        this.busy = false;
     }
 
     _clearFile() {
@@ -152,7 +152,7 @@ export default class IndexCreateCheevieController extends Controller {
     async updateCheevie() {
         if (!this._model.validate()) return;
 
-        // this.setBusy(true);
+        this.busy = true;
 
         return Promise.resolve()
             .then(() => {
@@ -184,6 +184,8 @@ export default class IndexCreateCheevieController extends Controller {
                 })
             )
             .then(() => this._clearFile())
-            // .finally(() => this.setBusy(false));
+            .finally(() => {
+                this.busy = false;
+            });
     }
 }

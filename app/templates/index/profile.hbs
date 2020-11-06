@@ -2,10 +2,10 @@
 <section class="center-wrapper {{if this.isMe 'is-me'}}">
 <div class="user-image-wrapper {{if this.busy 'busy'}}">
     {{#unless this.isMe}}
-        <IconImage @data={{this.model}} @image={{this.avatar}} @class="user-image" />
+        <IconImage @data={{this.model}} @image={{this.image}} @class="user-image" />
     {{else}}
         <ImagesDropArea @images={{this.model.imageUrl}} @uploadImage={{this.uploadImage}}>
-        <IconImage @data={{this.model}} @image={{this.avatar}} @class="user-image" />
+        <IconImage @data={{this.model}} @image={{this.image}} @class="user-image" />
         {{#if this.isMe}}
             {{#if this.model.imageUrl}}
             <button class="icon-image delete" {{on 'click' this.removeImage}}>

@@ -1,14 +1,28 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 import cordovaGetImage from 'cheevies/utils/cordova-get-image';
 
 export default class ProfileController extends Controller {
+    @tracked busy = false;
+
     @service me;
     @service myGroup;
     @service intl;
     @service activity;
+    @service imageProcessor;
+
+    get image() {
+        const user = this.model;
+        if (!user.get('image-set.128')) return null;
+        return {
+            sm: user.get('image-set.128'),
+            md: user.get('image-set.256'),
+            lg: user.get('image-set.512'),
+        };
+    }
 
     get userId() {
         return this.model.id;
@@ -24,10 +38,6 @@ export default class ProfileController extends Controller {
 
     get isShareAvailable() {
         return this.share.isAvailable;
-    }
-
-    _uploadPath(image) {
-        return `users/${this.model.id}/${image.width}/${image.name}`;
     }
 
     get groupCheevies() {
@@ -47,7 +57,6 @@ export default class ProfileController extends Controller {
         this.transitionToRoute('index.profile.give-cheevie');
     }
 
-    // todo fix me
     @action
     handleInputClick() {
         if (window.cordova) {
@@ -62,7 +71,7 @@ export default class ProfileController extends Controller {
                     },
                 },
             }).then(_file => {
-                this.send('uploadImage', [_file]);
+                this.uploadImage([_file]);
             });
 
             return;
@@ -100,16 +109,18 @@ export default class ProfileController extends Controller {
 
         if (!file || file.type.indexOf('image') < 0) return;
 
-        this.setBusy(true);
+        this.busy = true;
 
-        return this._uploadImage(file).finally(() => {
-            this.setBusy(false);
-        });
+        return this.imageProcessor.saveFile(file, this.model)
+            .then(() => this.model.save())
+            .finally(() => {
+                this.busy = false;
+            });
     }
 
     // todo fix me
     @action
     removeImage() {
-        return this._removeImage(true);
+        return this.imageProcessor.removeImage(this.model, true);
     }
 }

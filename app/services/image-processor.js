@@ -13,6 +13,21 @@ function convertToB64(blob) {
     });
 }
 
+function resizeImage(file, size) {
+    return imageResize(file, {
+                maxWidth: size,
+                maxHeight: size,
+            }).then(async blob => {
+                const base64 = await convertToB64(blob);
+                return {
+                    url: base64,
+                    height: blob.height,
+                    width: blob.width,
+                    created: Date.now(),
+                }
+            });
+}
+
 export default class ImageProcessorService extends Service {
     @service store;
     @service myGroup;
@@ -67,29 +82,14 @@ export default class ImageProcessorService extends Service {
             });
     }
 
-    resizeImage(file, size) {
-        return imageResize(file, {
-                    maxWidth: size,
-                    maxHeight: size,
-                }).then(async blob => {
-                    const base64 = await convertToB64(blob);
-                    return {
-                        url: base64,
-                        height: blob.height,
-                        width: blob.width,
-                        created: Date.now(),
-                    }
-                });
-    }
-
     saveFile(file, model) {
         return this.removeImage(model)
             .then(() => {
                 return hash({
-                    64: this.resizeImage(file, 64),
-                    128: this.resizeImage(file, 128),
-                    256: this.resizeImage(file, 256),
-                    512: this.resizeImage(file, 512),
+                    64: resizeImage(file, 64),
+                    128: resizeImage(file, 128),
+                    256: resizeImage(file, 256),
+                    512: resizeImage(file, 512),
                 })
             })
             .then(async _hash => {

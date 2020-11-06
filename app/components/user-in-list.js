@@ -1,17 +1,13 @@
 import Component from '@glimmer/component';
 
 export default class UserInListComponent extends Component {
-    get imageSet() {
-        return this.args.user['image-set'];
-    }
-
-    // todo fix me
     get image() {
-        if (!this.imageSet[128]) return null;
+        const { user } = this.args;
+        if (!user.get('image-set.128')) return null;
         return {
-            sm: this.get('imageSet.128'),
-            md: this.get('imageSet.256'),
-            lg: this.get('imageSet.512'),
+            sm: user.get('image-set.128'),
+            md: user.get('image-set.256'),
+            lg: user.get('image-set.512'),
         };
     }
 
