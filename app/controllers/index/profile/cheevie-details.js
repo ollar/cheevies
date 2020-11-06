@@ -15,12 +15,17 @@ export default class IndexProfileCheevieDetailsController extends Controller {
         return this.me.model.id;
     }
 
+    //todo fix me
     get isMe() {
         return this.userId === this.myId;
     }
 
     get isShareAvailable() {
         return this.share.isAvailable;
+    }
+
+    get image() {
+        return this.model.get('image-set.512');
     }
 
     @action

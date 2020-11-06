@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"cheevie",
-				"cheevie_id"
+				"image",
+				"image-set"
 			],
 			[
 				"c",
-				"cheevie"
+				"cheevies"
+			],
+			[
+				"ti",
+				"this"
+			],
+			[
+				"re",
+				"removeImage"
+			],
+			[
+				"cheevie",
+				"cheevie_id"
 			],
 			[
 				"chee",
@@ -150,59 +162,11 @@
 			[
 				"trans",
 				"transform\tproperty"
-			],
-			[
-				"re",
-				"renderFeedback"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "app/controllers/index/_cheevie-details.js",
-			"settings":
-			{
-				"buffer_size": 5691,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/index/cheevie-details.js",
-			"settings":
-			{
-				"buffer_size": 4225,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 396 files for \"_removeImage\"\n\n/Users/ollar/Work/cheevies/app/controllers/index/_cheevie-details.js:\n   90          removeImage() {\n   91              this._clearFile();\n   92:             return this._removeImage(true);\n   93          },\n   94          updateCheevie() {\n\n/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js:\n  113      removeImage() {\n  114          this._clearFile();\n  115:         return this._removeImage(true);\n  116      }\n  117  \n\n/Users/ollar/Work/cheevies/app/controllers/index/profile.js:\n  111      @action\n  112      removeImage() {\n  113:         return this._removeImage(true);\n  114      }\n  115  }\n\n/Users/ollar/Work/cheevies/app/mixins/image-uploader.js:\n   63                  })\n   64              );\n   65:         return this._removeImage()\n   66              .then(\n   67                  () => {\n   ..\n  103  \n  104      _saveGiphy(giphy) {\n  105:         return this._removeImage()\n  106              .then(() => {\n  107                  const imageSet = this.store.createRecord(this._typeImageSet);\n  ...\n  148      },\n  149  \n  150:     _removeImage(saveModel = false) {\n  151          return this._model\n  152              .get('image-set')\n\n6 matches across 4 files\n",
-			"settings":
-			{
-				"buffer_size": 1237,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "app/mixins/image-uploader.js",
-			"settings":
-			{
-				"buffer_size": 6246,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/index/cheevie-details.hbs",
-			"settings":
-			{
-				"buffer_size": 2663,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -291,45 +255,60 @@
 		"/Users/ollar/Work/cheevies",
 		"/Users/ollar/Work/cheevies/app",
 		"/Users/ollar/Work/cheevies/app/adapters",
-		"/Users/ollar/Work/cheevies/app/controllers",
-		"/Users/ollar/Work/cheevies/app/controllers/index",
-		"/Users/ollar/Work/cheevies/app/controllers/index/profile",
-		"/Users/ollar/Work/cheevies/app/routes",
+		"/Users/ollar/Work/cheevies/app/components",
 		"/Users/ollar/Work/cheevies/app/styles",
+		"/Users/ollar/Work/cheevies/app/styles/component-styles",
+		"/Users/ollar/Work/cheevies/app/styles/component-styles/index",
 		"/Users/ollar/Work/cheevies/app/styles/components",
 		"/Users/ollar/Work/cheevies/app/templates",
 		"/Users/ollar/Work/cheevies/app/templates/components",
+		"/Users/ollar/Work/cheevies/app/templates/index",
+		"/Users/ollar/Work/cheevies/app/templates/index/profile",
 		"/Users/ollar/Work/cheevies/config"
 	],
 	"file_history":
 	[
+		"/Users/ollar/Work/cheevies/app/routes/index.js",
+		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
+		"/Users/ollar/Work/cheevies/app/controllers/index/profile/cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/profile.scss",
+		"/Users/ollar/Work/cheevies/app/routes/index/profile/cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/index.hbs",
+		"/Users/ollar/Work/cheevies/app/components/user-in-list.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index/_create-cheevie.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index/create-cheevie.js",
+		"/Users/ollar/Work/cheevies/app/services/giphy.js",
+		"/Users/ollar/Work/cheevies/app/components/_cheevie-in-list.js",
+		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.hbs",
+		"/Users/ollar/Work/cheevies/app/styles/components/cheevie-in-list.scss",
+		"/Users/ollar/Work/cheevies/app/styles/app.scss",
+		"/Users/ollar/Work/cheevies/app/templates/index/cheevie-details.hbs",
+		"/Users/ollar/Work/cheevies/app/templates/cheevie-edit-form.hbs",
+		"/Users/ollar/Work/cheevies/app/controllers/index/_cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/create-cheevie.hbs",
+		"/Users/ollar/Work/cheevies/tests/unit/controllers/index/profile/cheevie-details-test.js",
+		"/Users/ollar/Work/cheevies/app/mixins/image-uploader.js",
+		"/Users/ollar/Work/cheevies/app/models/image-set.js",
+		"/Users/ollar/Work/cheevies/app/models/_image-set.js",
 		"/Users/ollar/Work/cheevies/app/components/site-header.hbs",
 		"/Users/ollar/Work/cheevies/app/components/site-header.js",
 		"/Users/ollar/Work/cheevies/ember-cli-build.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/profile.js",
 		"/Users/ollar/Work/cheevies/app/templates/index/profile.hbs",
-		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
-		"/Users/ollar/Work/cheevies/app/controllers/index/profile/cheevie-details.js",
 		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/controllers/_profile.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/cheevie-details.hbs",
-		"/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-wrapper.js",
 		"/Users/ollar/Work/cheevies/app/router.js",
 		"/Users/ollar/Work/cheevies/app/models/group.js",
-		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.js",
 		"/Users/ollar/Work/cheevies/app/templates/components/cheevie-in-list.hbs",
 		"/Users/ollar/Work/cheevies/app/components/icon-image.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/profile/give-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/components/user-in-list.hbs",
-		"/Users/ollar/Work/cheevies/app/styles/app.scss",
 		"/Users/ollar/Work/cheevies/app/controllers/create-group.js",
 		"/Users/ollar/Work/cheevies/app/adapters/application.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/index.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/index.hbs",
-		"/Users/ollar/Work/cheevies/app/components/user-in-list.js",
-		"/Users/ollar/Work/cheevies/app/routes/index.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index/create-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/services/my-group.js",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/sign-up.js",
 		"/Users/ollar/Work/cheevies/app/routes/index/create-cheevie.js",
@@ -416,21 +395,7 @@
 		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.xml",
 		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/canary-location.conf.erb",
 		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/release-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.manifest.json",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/centos/rwc.xml.template",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/centos/templates/root-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/canary-accounts.json.erb",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/manifests/rwc_rc_us.manifest.json",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/canary-name-root-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/centos/templates/app.config.js.erb",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/manifests/rwc_rc_us_canary.manifest.json",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/release-query-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/release-cookie-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.mainfest.json",
-		"/Users/ollar/Work/rwc2/packages/vc-web/rpm/build_rpm.sh",
-		"/Users/ollar/Work/rwc2/packages/vc-web/src/deeplink/apple-app-site-association.rc_us_canary",
-		"/Users/ollar/Work/rwc2/packages/vc-web/src/deeplink/assetlinks.rc_us_canary.json",
-		"/Users/ollar/Work/rwc2/packages/rwc_canary_config"
+		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.manifest.json"
 	],
 	"find":
 	{
@@ -449,6 +414,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"isShareAvailable",
+			"this",
+			"_result",
+			"_model",
+			"_result",
+			"image",
+			"resolve",
+			"attr",
+			"extend",
+			"_removeImage",
+			"action",
+			"group",
+			": service(),",
+			"service",
 			"_removeImage",
 			"action",
 			"showOptionalMenu",
@@ -553,195 +532,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/controllers/index/_cheevie-details.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5691,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2668,
-								2567
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1050.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/controllers/index/cheevie-details.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4225,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4158,
-								4158
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2121.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1237,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										210,
-										222
-									],
-									[
-										439,
-										451
-									],
-									[
-										615,
-										627
-									],
-									[
-										790,
-										802
-									],
-									[
-										934,
-										946
-									],
-									[
-										1106,
-										1118
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								1114,
-								1114
-							]
-						],
-						"settings":
-						{
-							"default_dir": "/Users/ollar/Work/cheevies/app/controllers/index",
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 219.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/mixins/image-uploader.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6246,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5669,
-								5669
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2039.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/templates/index/cheevie-details.hbs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2663,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1325,
-								1337
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 337.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -798,6 +590,82 @@
 		"selected_items":
 		[
 			[
+				"index",
+				"app/routes/index.js"
+			],
+			[
+				"cheeinlist",
+				"app/components/cheevie-in-list.js"
+			],
+			[
+				"cheevdet",
+				"app/controllers/index/profile/cheevie-details.js"
+			],
+			[
+				"chedet",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"cheevdehbs",
+				"app/templates/index/profile/cheevie-details.hbs"
+			],
+			[
+				"userinlist",
+				"app/components/user-in-list.js"
+			],
+			[
+				"index.hbs",
+				"app/templates/index/index.hbs"
+			],
+			[
+				"cheeviinlist",
+				"app/components/cheevie-in-list.js"
+			],
+			[
+				"cheevie-edit-form",
+				"app/templates/cheevie-edit-form.hbs"
+			],
+			[
+				"cheevdetail",
+				"app/templates/index/cheevie-details.hbs"
+			],
+			[
+				"cheedet",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"cheevide",
+				"app/templates/index/profile/cheevie-details.hbs"
+			],
+			[
+				"upload",
+				"app/mixins/image-uploader.js"
+			],
+			[
+				"giphy",
+				"app/services/giphy.js"
+			],
+			[
+				"uploade",
+				"app/mixins/image-uploader.js"
+			],
+			[
+				"imagese",
+				"app/models/image-set.js"
+			],
+			[
+				"imgeset",
+				"app/models/image-set.js"
+			],
+			[
+				"mixins/image-uploader",
+				"app/mixins/image-uploader.js"
+			],
+			[
+				"create-cheevi",
+				"app/templates/index/create-cheevie.hbs"
+			],
+			[
 				"cheevidethbs",
 				"app/templates/index/cheevie-details.hbs"
 			],
@@ -810,16 +678,8 @@
 				"app/components/site-header.hbs"
 			],
 			[
-				"cheevdet",
-				"app/controllers/index/profile/cheevie-details.js"
-			],
-			[
 				"cheevidetai",
 				"app/controllers/index/cheevie-details.js"
-			],
-			[
-				"cheevdetail",
-				"app/controllers/index/profile/cheevie-details.js"
 			],
 			[
 				"ModalWrapper",
@@ -894,16 +754,8 @@
 				"app/components/user-in-list.js"
 			],
 			[
-				"index",
-				"app/controllers/index/index.js"
-			],
-			[
 				"cordova-get-image",
 				"app/utils/cordova-get-image.js"
-			],
-			[
-				"index.hbs",
-				"app/templates/index/index.hbs"
 			],
 			[
 				"index/index",
@@ -924,10 +776,6 @@
 			[
 				"selectgro",
 				"app/controllers/wardrobe/select-group.js"
-			],
-			[
-				"userinlist",
-				"app/templates/components/user-in-list.hbs"
 			],
 			[
 				"signup",
@@ -1252,62 +1100,6 @@
 			[
 				"jenkins",
 				"Jenkinsfile"
-			],
-			[
-				"guard",
-				"packages/vc-web/low-src/guard.js"
-			],
-			[
-				"de",
-				"packages/vc-web/low-src/desktop-detect.js"
-			],
-			[
-				"webpa",
-				"packages/vc-web/webpack.parts.js"
-			],
-			[
-				"desktop-de",
-				"packages/vc-web/low-src/desktop-detect.js"
-			],
-			[
-				"manifes",
-				"packages/vc-web/ads/manifests/rwc_att.manifest.json"
-			],
-			[
-				"unsu",
-				"packages/vc-web/unsupported-src/unsupported.jsx"
-			],
-			[
-				"selectors/rct/common",
-				"packages/vc-web/src/js/selectors/rct/common.js"
-			],
-			[
-				"anno",
-				"packages/vc-web/src/js/containers/annotation/annotator.jsx"
-			],
-			[
-				"app",
-				"packages/vc-web/ads/centos/templates/app.config.js.erb"
-			],
-			[
-				"lyout",
-				"packages/vc-web/src/less/layout.less"
-			],
-			[
-				"styl",
-				"packages/rcv-ui/src/components/ClosedCaptions/styles.less"
-			],
-			[
-				"styles",
-				"packages/rcv-ui/src/components/ClosedCaptions/styles.less"
-			],
-			[
-				"ontainers/toolbars/lower-bar.jsx",
-				"packages/vc-web/src/js/containers/toolbars/lower-bar.jsx"
-			],
-			[
-				"dummy",
-				"packages/vc-web/src/js/components/closed-captions/closed-captions-dummy.jsx"
 			]
 		],
 		"width": 0.0

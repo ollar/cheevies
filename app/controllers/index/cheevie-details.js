@@ -17,6 +17,7 @@ export default class IndexCheevieDetailsController extends Controller {
     @service activity;
     @service me;
     @service intl;
+    @service giphy;
 
 
     get editMode() {
@@ -44,9 +45,8 @@ export default class IndexCheevieDetailsController extends Controller {
         );
     }
 
-    // todo fix me
     get image() {
-        return this.model.get('image-set').then(set => set['512']);
+        return this.model.get('image-set.512');
     }
 
     get _image() {
@@ -117,8 +117,7 @@ export default class IndexCheevieDetailsController extends Controller {
     @action
     removeImage() {
         this._clearFile();
-        // todo fix me
-        // return this._removeImage(true);
+        return this.giphy.removeImage(this.model, true);
     }
 
     @action
@@ -156,6 +155,34 @@ export default class IndexCheevieDetailsController extends Controller {
         this.showOptionalMenu = false;
     }
 
+    @action
+    updateCheevie() {
+        if (!this.model.validate()) return;
+
+        // this.setBusy(true);
+
+        return Promise.resolve()
+            .then(() => {
+                if (this._giphy) {
+                    return this.giphy.saveGiphy(this._giphy, this.model);
+                } else if (this._file) {
+                    return this._uploadImage(this._file);
+                }
+
+                return true;
+            })
+            .then(() => this.model.save())
+            .then(() =>
+                this.activity.send({
+                    cheevie: this.model,
+                    action: 'updateCheevie',
+                })
+            )
+            .then(() => {
+                this.goBack();
+            })
+            // .finally(() => this.setBusy(false));
+    }
     @action
     async deleteCheevie() {
         if (window.confirm(this.intl.t('messages.delete_cheevie_check'))) {

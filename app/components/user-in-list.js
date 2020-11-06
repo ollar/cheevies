@@ -5,6 +5,7 @@ export default class UserInListComponent extends Component {
         return this.args.user['image-set'];
     }
 
+    // todo fix me
     get image() {
         if (!this.imageSet[128]) return null;
         return {

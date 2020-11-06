@@ -1,4 +1,4 @@
-<ModalWrapper @goBack={{this.goBack}} @class={{if this._image "has-image" "no-image"}}>
+<ModalWrapper @goBack={{this.goBack}} @class={{if this.image "has-image" "no-image"}}>
     {{#if this.isShareAvailable}}
     {{#if this.isMe}}
     <button class="icon-button share" {{on click (fn this.shareCheevie this.model)}}>
@@ -7,9 +7,9 @@
     {{/if}}
     {{/if}}
 
-    {{#if this._image}}
+    {{#if this.image}}
         <figure class="image">
-        <img src={{this._image.url}}>
+        <img src={{this.image.url}}>
 
         </figure>
     {{else}}
