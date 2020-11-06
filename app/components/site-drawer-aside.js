@@ -19,6 +19,7 @@ export default class SiteDrawerAsideComponent extends Component {
         return this.me.model.get('image-set');
     }
 
+    // todo fix this
     get image() {
         if (!this.imageSet) return null;
         if (!this.imageSet.get('128')) return null;
@@ -35,6 +36,14 @@ export default class SiteDrawerAsideComponent extends Component {
             userIsModerator(this.groupModel, this.myModel) ||
             userIsGroupAuthor(this.groupModel, this.myModel)
         );
+    }
+
+    get cheevies() {
+        if (!this.myModel || !this.groupModel) return [];
+        const userCheevies = this.myModel.cheevies;
+        const groupCheevies = this.groupModel.cheevies;
+
+        return userCheevies.filter(cheevie => groupCheevies.includes(cheevie));
     }
 
     @action

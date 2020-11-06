@@ -13,11 +13,9 @@ export default class IndexCreateCheevieController extends Controller {
 
     @service activity;
     @service me;
-    @service giphy;
     @service intl;
     @service myGroup;
-
-
+    @service imageProcessor;
 
     get groupModel() {
         return this.myGroup.model;
@@ -94,8 +92,6 @@ export default class IndexCreateCheevieController extends Controller {
     @action
     removeImage() {
         this._clearFile();
-        // todo fix me
-        // return this._removeImage(true);
     }
 
     @action
@@ -161,12 +157,12 @@ export default class IndexCreateCheevieController extends Controller {
         return Promise.resolve()
             .then(() => {
                 if (this._giphy) {
-                    return this.giphy.saveGiphy(this._giphy, this._model);
-                }// else if (this._file) {
-            //         return this._uploadImage(this._file);
-            //     }
+                    return this.imageProcessor.saveGiphy(this._giphy, this._model);
+                } else if (this._file) {
+                    return this.imageProcessor.saveFile(this._file, this._model);
+                }
 
-            //     return true;
+                return true;
             })
             .then(async () => {
                 const model = this._model;

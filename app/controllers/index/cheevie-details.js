@@ -17,8 +17,7 @@ export default class IndexCheevieDetailsController extends Controller {
     @service activity;
     @service me;
     @service intl;
-    @service giphy;
-
+    @service imageProcessor;
 
     get editMode() {
         return !this.showMode;
@@ -115,9 +114,16 @@ export default class IndexCheevieDetailsController extends Controller {
     }
 
     @action
+    uploadImage(files) {
+        const file = files[0];
+        if (!file || file.type.indexOf('image') < 0) return;
+        this._file = file;
+    }
+
+    @action
     removeImage() {
         this._clearFile();
-        return this.giphy.removeImage(this.model, true);
+        return this.imageProcessor.removeImage(this.model, true);
     }
 
     @action
@@ -164,9 +170,9 @@ export default class IndexCheevieDetailsController extends Controller {
         return Promise.resolve()
             .then(() => {
                 if (this._giphy) {
-                    return this.giphy.saveGiphy(this._giphy, this.model);
+                    return this.imageProcessor.saveGiphy(this._giphy, this._model);
                 } else if (this._file) {
-                    return this._uploadImage(this._file);
+                    return this.imageProcessor.saveFile(this._file, this._model);
                 }
 
                 return true;

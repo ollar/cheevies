@@ -268,6 +268,7 @@
 	],
 	"file_history":
 	[
+		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/routes/index.js",
 		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js",
@@ -297,7 +298,6 @@
 		"/Users/ollar/Work/cheevies/ember-cli-build.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/profile.js",
 		"/Users/ollar/Work/cheevies/app/templates/index/profile.hbs",
-		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/controllers/_profile.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-wrapper.js",
 		"/Users/ollar/Work/cheevies/app/router.js",
@@ -399,7 +399,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -589,6 +589,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pack",
+				"package.json"
+			],
 			[
 				"index",
 				"app/routes/index.js"
@@ -1096,10 +1100,6 @@
 			[
 				"capa",
 				"packages/vc-web/src/js/utils/capabilities.js"
-			],
-			[
-				"jenkins",
-				"Jenkinsfile"
 			]
 		],
 		"width": 0.0
