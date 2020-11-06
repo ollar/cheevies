@@ -1,15 +1,15 @@
-<ModalWrapper @goBack={{action "goBack"}} @busy={{busy}} @disableDrag={{hasChangedAttributes}}>
+<ModalWrapper @goBack={{this.goBack}} @busy={{this.busy}} @disableDrag={{this.hasChangedAttributes}}>
 
     <div class="image-uploader-wrapper">
-        <a class="image-uploader-trigger" href="" {{action 'chooseMethod'}}></a>
+        <a class="image-uploader-trigger" href="" {{on 'click' this.chooseMethod}}></a>
 
-        <ImagesDropArea @images={{_model.images-set}} @uploadImage={{action "uploadImage"}}>
-            {{#if _image}}
+        <ImagesDropArea @images={{this._model.images-set}} @uploadImage={{this.uploadImage}}>
+            {{#if this._image}}
                 <figure class="image">
-                <img src={{_image.url}}>
+                <img src={{this._image.url}}>
                 </figure>
 
-                <button class="icon-button delete" {{action 'removeImage'}}>
+                <button class="icon-button delete" {{on 'click' this.removeImage}}>
                 <SvgIcon @_name="x" @_size={{48}} @_title={{t "icons.remove"}} @class="h-center bottom" />
                 </button>
             {{else}}
@@ -19,23 +19,23 @@
 
             {{/if}}
         </ImagesDropArea>
-        {{#if showOptionalMenu}}
+        {{#if this.showOptionalMenu}}
             <ul class="optional-menu">
-                <li {{action 'selectGiphy'}}>
+                <li {{on 'click' this.selectGiphy}}>
                     {{t 'optional-menu.giphy'}}
                 </li>
-                <li {{action 'selectUpload'}}>
+                <li {{on 'click' this.selectUpload}}>
                     {{t 'optional-menu.upload'}}
                 </li>
-                <li {{action 'closeOptionalMenu'}}>
+                <li {{on 'click' this.closeOptionalMenu}}>
                     {{t 'optional-menu.cancel'}}
                 </li>
             </ul>
         {{/if}}
     </div>
 
-    {{#if showGiphySelector}}
-        <GiphySelector @goBack={{action "closeOptionalMenu"}} @takeGiphy={{action "takeGiphy"}} />
+    {{#if this.showGiphySelector}}
+        <GiphySelector @goBack={{this.closeOptionalMenu}} @takeGiphy={{this.takeGiphy}} />
     {{/if}}
 
     {{partial 'cheevie-edit-form'}}

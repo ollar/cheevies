@@ -11,8 +11,9 @@
     {{/if}}
 
     {{#if this._image}}
+        {{log this._image}}
         <figure class="image">
-        <img src={{this._image.url}}>
+        <img src={{this._image._result.url}}>
         </figure>
     {{else}}
         <div class="image-placeholder">

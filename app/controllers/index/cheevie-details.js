@@ -44,6 +44,11 @@ export default class IndexCheevieDetailsController extends Controller {
         );
     }
 
+    // todo fix me
+    get image() {
+        return this.model.get('image-set').then(set => set['512']);
+    }
+
     get _image() {
         if (this._file) {
             return {
