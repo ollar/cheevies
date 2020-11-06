@@ -8,10 +8,7 @@ export default class ProfileController extends Controller {
     @service me;
     @service myGroup;
     @service intl;
-    @service share;
     @service activity;
-
-
 
     get userId() {
         return this.model.id;
@@ -45,42 +42,12 @@ export default class ProfileController extends Controller {
         return this.userCheevies.filter(cheevie => this.groupCheevies.includes(cheevie));
     }
 
-
     @action
     showCheeviesPicker() {
         this.transitionToRoute('index.profile.give-cheevie');
     }
 
-    @action
-    cheevieDetails(cheevie) {
-        return;
-        const reference = document.querySelector(`#${cheevie.id}`);
-        const popper = document.querySelector(`#${cheevie.id}_hint`);
-        if (this.popper) this.popper.destroy();
-        if (cheevie.id === this.openPopper) {
-            $('.item-hint').hide();
-            this.set('openPopper', '');
-            return;
-        }
-
-        $('.item-hint').hide();
-        $(popper).show();
-
-        schedule('render', () => {
-            this.popper = new Popper(reference, popper);
-            this.set('openPopper', cheevie.id);
-        });
-    }
-
-    @action
-    closeCheevieDetails() {
-        return;
-        if (this.popper) this.popper.destroy();
-        $('.item-hint').hide();
-        this.set('openPopper', '');
-        return;
-    }
-
+    // todo fix me
     @action
     handleInputClick() {
         if (window.cordova) {
@@ -113,31 +80,7 @@ export default class ProfileController extends Controller {
         }
     }
 
-    @action
-    shareCheevie(cheevie) {
-        const onSuccess = () => {
-            return this.send('notify', {
-                type: 'success',
-                text: this.intl.t('share.messages.success'),
-            });
-        };
-
-        const onError = () => {
-            return this.send('notify', {
-                type: 'error',
-                text: this.intl.t('share.messages.error'),
-            });
-        };
-
-        this.share
-            .post({
-                title: this.intl.t('share.cheevie.title'),
-                text: this.intl.t('share.cheevie.text', { cheevie: cheevie.name }),
-                url: `${this.share.appDomain}/profile/${this.model.id}`,
-            })
-            .then(() => onSuccess(), () => onError());
-    }
-
+    // todo fix me
     @action
     refuseCheevie(cheevie) {
         this.model.get('cheevies').removeObject(cheevie);
@@ -149,7 +92,7 @@ export default class ProfileController extends Controller {
         );
     }
 
-
+    // todo fix me
     @action
     uploadImage(files) {
         if (!this.isMe) return;
@@ -164,6 +107,7 @@ export default class ProfileController extends Controller {
         });
     }
 
+    // todo fix me
     @action
     removeImage() {
         return this._removeImage(true);

@@ -1,42 +1,50 @@
-import { not, readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import ImageUploadMixin from '../../mixins/image-uploader';
-import BusyMixin from '../../mixins/busy-loader';
 import { inject as service } from '@ember/service';
-import { resolve } from 'rsvp';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-import { userIsModerator, userIsGroupAuthor } from '../../utils/user-role';
-import cordovaGetImage from '../../utils/cordova-get-image';
+import { userIsModerator, userIsGroupAuthor } from 'cheevies/utils/user-role';
+import cordovaGetImage from 'cheevies/utils/cordova-get-image';
 
-export default Controller.extend(ImageUploadMixin, BusyMixin, {
-    showMode: true,
-    editMode: not('showMode'),
-    myGroup: service('my-group'),
-    activity: service(),
-    me: service(),
-    intl: service(),
+export default class IndexCheevieDetailsController extends Controller {
+    @tracked showMode = true;
+    @tracked showOptionalMenu = false;
+    @tracked showGiphySelector = false;
+    @tracked _file = null;
+    @tracked _giphy = null;
 
-    myModel: readOnly('me.model'),
-    groupModel: readOnly('myGroup.model'),
+    @service myGroup;
+    @service activity;
+    @service me;
+    @service intl;
 
-    canEditCheevie: computed('myModel.id', 'groupModel.id', function() {
+
+    get editMode() {
+        return !this.showMode;
+    }
+
+    get myModel() {
+        return this.me.model;
+    }
+
+    get groupModel() {
+        return this.myGroup.model;
+    }
+
+    get _model() {
+        return this.model;
+    }
+
+    get canEditCheevie() {
         if (!this.myModel || !this.groupModel) return false;
         return (
             this.groupModel.policy === 'anarchy' ||
             userIsGroupAuthor(this.groupModel, this.myModel) ||
             userIsModerator(this.groupModel, this.myModel)
         );
-    }),
+    }
 
-    _model: alias('model'),
-
-    _file: null,
-    _giphy: null,
-
-    image: readOnly('model.image-set.512'),
-
-    _image: computed('_file', '_giphy', 'image', function() {
+    get _image() {
         if (this._file) {
             return {
                 url: window.URL.createObjectURL(this._file),
@@ -47,140 +55,115 @@ export default Controller.extend(ImageUploadMixin, BusyMixin, {
             };
         }
         return this.image;
-    }),
-
-    _uploadPath(image) {
-        return `cheevies/${this.model.id}/${image.width}/${image.name}`;
-    },
+    }
 
     resetProperties() {
-        this.setProperties({
-            showMode: true,
-            showOptionalMenu: false,
-            showGiphySelector: false,
-            _file: null,
-            _giphy: null,
-        });
-    },
+        this.showMode = true;
+        this.showOptionalMenu = false;
+        this.showGiphySelector = false;
+        this._file = null;
+        this._giphy = null;
+    }
 
     _clearFile() {
         if (this._file) {
-            this.set('_file', '');
+            this._file = null;
         } else if (this._giphy) {
             this.resetProperties();
         }
-    },
+    }
 
-    actions: {
-        toggleMode() {
-            this.model.rollbackAttributes();
-            this.toggleProperty('showMode');
-        },
 
-        goBack() {
-            this.model.rollbackAttributes();
-            this.transitionToRoute('index');
-        },
+    @action
+    toggleMode() {
+        this.model.rollbackAttributes();
+        this.showMode = !this.showMode;
+    }
 
-        uploadImage(files) {
-            const file = files[0];
-            if (!file || file.type.indexOf('image') < 0) return;
-            this.set('_file', file);
-        },
-        removeImage() {
-            this._clearFile();
-            return this._removeImage(true);
-        },
-        updateCheevie() {
-            if (!this._model.validate()) return;
+    @action
+    goBack() {
+        this.model.rollbackAttributes();
+        this.transitionToRoute('index');
+    }
 
-            this.setBusy(true);
+    @action
+    chooseMethod(e) {
+        e && e.preventDefault && e.preventDefault();
+        this.showOptionalMenu = true;
+    }
 
-            return resolve()
-                .then(() => {
-                    if (this._giphy) {
-                        return this._saveGiphy(this._giphy);
-                    } else if (this._file) {
-                        return this._uploadImage(this._file);
-                    }
+    @action
+    selectGiphy() {
+        this.showGiphySelector = true;
+        this.showOptionalMenu = false;
+    }
 
-                    return true;
-                })
-                .then(() => this.model.save())
-                .then(() =>
-                    this.activity.send({
-                        cheevie: this._model,
-                        action: 'updateCheevie',
-                    })
-                )
-                .then(() => {
-                    this.send('goBack');
-                })
-                .finally(() => this.setBusy(false));
-        },
-        deleteCheevie() {
-            if (window.confirm(this.intl.t('messages.delete_cheevie_check'))) {
-                const model = this.model;
-                model.set('deleted', true);
+    @action
+    closeOptionalMenu() {
+        this.showOptionalMenu = false;
+        this.showGiphySelector = false;
+    }
 
-                return resolve()
-                    .then(() => model.save())
-                    .then(() => {
-                        this.transitionToRoute('index');
-                    });
-            }
-        },
+    @action
+    takeGiphy(giphy) {
+        this._giphy = giphy;
+    }
 
-        chooseMethod() {
-            this.toggleProperty('showOptionalMenu');
-        },
+    @action
+    removeImage() {
+        this._clearFile();
+        // todo fix me
+        // return this._removeImage(true);
+    }
 
-        selectGiphy() {
-            this.toggleProperty('showGiphySelector');
-            this.toggleProperty('showOptionalMenu');
-        },
-
-        selectUpload() {
-            if (window.cordova) {
-                cordovaGetImage({
-                    confirmStrings: {
-                        title: this.intl.t('cordova-get-image.modal.title'),
-                        text: this.intl.t('cordova-get-image.modal.text'),
-                        buttons: {
-                            camera: this.intl.t('cordova-get-image.modal.buttons.camera'),
-                            gallery: this.intl.t('cordova-get-image.modal.buttons.gallery'),
-                            cancel: this.intl.t('cordova-get-image.modal.buttons.cancel'),
-                        },
+    @action
+    selectUpload() {
+        if (window.cordova) {
+            cordovaGetImage({
+                confirmStrings: {
+                    title: this.intl.t('cordova-get-image.modal.title'),
+                    text: this.intl.t('cordova-get-image.modal.text'),
+                    buttons: {
+                        camera: this.intl.t('cordova-get-image.modal.buttons.camera'),
+                        gallery: this.intl.t('cordova-get-image.modal.buttons.gallery'),
+                        cancel: this.intl.t('cordova-get-image.modal.buttons.cancel'),
                     },
-                }).then(_file => {
-                    this.toggleProperty('showOptionalMenu');
-                    this.set('_file', _file);
-                });
+                },
+            }).then(_file => {
+                this.showOptionalMenu = false;
+                this._file = _file;
+            });
 
-                return;
-            }
+            return;
+        }
 
-            this._fileInput = document.querySelector('input[type="file"]');
-            if (this._fileInput) {
-                this._fileInput.dispatchEvent(
-                    new MouseEvent('click', {
-                        view: window,
-                        bubbles: false,
-                        cancelable: true,
-                    })
-                );
-            }
+        this._fileInput = document.querySelector('input[type="file"]');
+        if (this._fileInput) {
+            this._fileInput.dispatchEvent(
+                new MouseEvent('click', {
+                    view: window,
+                    bubbles: false,
+                    cancelable: true,
+                })
+            );
+        }
 
-            this.toggleProperty('showOptionalMenu');
-        },
+        this.showOptionalMenu = false;
+    }
 
-        closeOptionalMenu() {
-            this.set('showOptionalMenu', false);
-            this.set('showGiphySelector', false);
-        },
+    @action
+    async deleteCheevie() {
+        if (window.confirm(this.intl.t('messages.delete_cheevie_check'))) {
+            this.groupModel.get('cheevies').removeObject(this.model);
 
-        takeGiphy(giphy) {
-            this.set('_giphy', giphy);
-        },
-    },
-});
+            this.model.set('deleted', true);
+
+            await this.model.save();
+            await this.groupModel.save();
+
+            this.transitionToRoute('index');
+        }
+    }
+
+
+}

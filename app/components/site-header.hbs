@@ -1,5 +1,5 @@
 <header class="header">
-    {{#if isIndex}}
+    {{#if this.isIndex}}
         <button class="drawer-toggle-button icon-button" {{on 'click' @drawerData.toggleDrawer}}>
           <SvgIcon @_size={{24}} @_name="menu" @_title={{t "icons.menu"}} class="h-center bottom" />
         </button>

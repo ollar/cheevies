@@ -16,7 +16,8 @@ Router.map(function() {
         this.route('new-cheevies');
         this.route('guide');
         this.route('profile', { path: '/profile/:user_id' }, function() {
-            this.route('give-cheevie');
+          this.route('give-cheevie');
+          this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
         });
     });
     this.route('settings');

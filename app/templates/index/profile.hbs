@@ -32,39 +32,17 @@
 
 <div class="cheevies grid-wrapper-3">
   {{#each this.cheevies as |cheevie|}}
-    <div class="cheevie-wrapper" id={{cheevie.id}} {{on 'click' (fn this.cheevieDetails cheevie)}}>
+    <LinkTo @route="index.profile.cheevie-details" @model={{cheevie}} class="cheevie-wrapper">
       <CheevieInList @cheevie={{cheevie}} />
-    </div>
+    </LinkTo>
   {{else}}
     <div class="empty-placeholder">
       {{t 'you-have-no-cheevies-yet'}}
     </div>
   {{/each}}
-
-  {{#each this.cheevies as |cheevie|}}
-    <ItemHint @data={{cheevie}} @id={{add cheevie.id "_hint"}}>
-      {{#if isMe}}
-        <button class="icon-button delete" {{on 'click' (fn this.refuseCheevie cheevie)}}>
-          <SvgIcon @_name="trash-2" @_size={{18}} @_title={{t "icons.refuse"}} @class="v-center left" />
-        </button>
-      {{/if}}
-
-      {{#if this.isShareAvailable}}
-      {{#if this.isMe}}
-        <button class="icon-button share" {{on click (fn this.shareCheevie cheevie)}}>
-          <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center left" />
-        </button>
-      {{/if}}
-      {{/if}}
-    </ItemHint>
-  {{/each}}
 </div>
 </section>
 {{!-- </ProfileAnimationWrapper> --}}
-
-{{#if this.openPopper}}
-  <div class="card-content-overlay" {{on 'click' this.closeCheevieDetails}}></div>
-{{/if}}
 
 {{#unless this.isMe}}
   <footer>

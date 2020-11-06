@@ -9,7 +9,7 @@ export default class SiteHeaderComponent extends Component {
     @readOnly('router.currentRouteName') currentRouteName;
 
     get isIndex() {
-        return this.currentRouteName.startsWith('index');
+        return this.currentRouteName.startsWith('index.index');
     }
 
     @action

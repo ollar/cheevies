@@ -1,6 +1,7 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import Validator from '../mixins/model-validator';
 
-export default class GroupModel extends Model {
+class GroupModel extends Model {
     @attr('string') name;
     @hasMany('cheevie', { inverse: null }) cheevies;
     @hasMany('user', { inverse: null }) users;
@@ -13,4 +14,17 @@ export default class GroupModel extends Model {
     get policies() {
         return ['anarchy', 'democracy', 'totalitarianism'];
     }
+
+    get validations() {
+        return {
+            name: {
+                presence: true,
+            },
+            code: {
+                presence: true,
+            },
+        };
+    }
 }
+
+export default GroupModel.extend(Validator);

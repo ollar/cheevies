@@ -1,0 +1,31 @@
+<ModalWrapper @goBack={{this.goBack}} @class={{if this._image "has-image" "no-image"}}>
+    {{#if this.isShareAvailable}}
+    {{#if this.isMe}}
+    <button class="icon-button share" {{on click (fn this.shareCheevie this.model)}}>
+        <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center left" />
+    </button>
+    {{/if}}
+    {{/if}}
+
+    {{#if this._image}}
+        <figure class="image">
+        <img src={{this._image.url}}>
+
+        </figure>
+    {{else}}
+        <div class="image-placeholder">
+          <SvgIcon @_name="image" @_size={{48}} />
+        </div>
+    {{/if}}
+
+    <h1 class="title">
+      {{this.model.name}}
+    </h1>
+
+    <div class="description">
+      {{this.model.description}}
+    </div>
+
+    {{outlet}}
+
+</ModalWrapper>
