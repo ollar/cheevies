@@ -37,7 +37,7 @@
     </LinkTo>
   {{else}}
     <div class="empty-placeholder">
-      {{t 'you-have-no-cheevies-yet'}}
+      {{if this.isMe (t 'you-have-no-cheevies-yet') (t 'user-have-no-cheevies-yet' username=this.model.username)}}
     </div>
   {{/each}}
 </div>

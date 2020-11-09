@@ -17,7 +17,7 @@ export default Component.extend({
 
     name: computed('data.name', function() {
         if (isEmpty(this.data)) return '';
-        return this.data.username || this.data.name || 'anonymous';
+        return this.data.get('username') || this.data.get('name') || 'anonymous';
     }),
 
     power: readOnly('data.power'),

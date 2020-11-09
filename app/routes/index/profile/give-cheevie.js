@@ -6,13 +6,23 @@ export default Route.extend({
     myGroup: service(),
 
     model() {
+        return this.modelFor('index.profile');
+
+
+
         return hash({
             user: this.modelFor('index.profile'),
-            cheevies: this.myGroup.fetch().then(() => this.myGroup.cheevies),
-        }).then(({ user, cheevies }) => {
-            const userCheevies = user.get('cheevies');
+            cheevies: this.myGroup.get('cheevies'),
+        }).then(async ({ user, cheevies: groupCheevies }) => {
+            const userCheevies = await user.get('cheevies');
+
+            console.log(userCheevies.toArray())
+            console.log(groupCheevies.toArray())
+            console.log(groupCheevies.filter(cheevie => !userCheevies.includes(cheevie)))
+
             return {
-                cheevies: cheevies.filter(cheevie => userCheevies.indexOf(cheevie) < 0),
+                // cheevies: groupCheevies.filter(cheevie => !userCheevies.includes(cheevie)),
+                cheevies: groupCheevies.filter(cheevie => !userCheevies.includes(cheevie)),
                 user,
             };
         });

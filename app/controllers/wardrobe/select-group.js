@@ -36,7 +36,7 @@ export default class WardrobeSelectGroupController extends Controller {
                     text: this.intl.t('messages.welcome_default'),
                 })
             )
-            .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')));
+            .then(() => this.transitionToRoute('index'));
     }
 
     @action
@@ -98,8 +98,6 @@ export default class WardrobeSelectGroupController extends Controller {
     invalidate() {
         return this.session
             .invalidate()
-            .then(() => {
-                schedule('routerTransitions', () => this.transitionToRoute('index'));
-            });
+            .then(() => this.transitionToRoute('index'));
     }
 }

@@ -10,12 +10,12 @@ export default Model.extend({
     accessToken: attr('string'),
     photoURL: attr('string'),
 
-    cheevies: hasMany('cheevie'),
-    unseenCheevies: hasMany('cheevie'),
-    badges: hasMany('badge'),
+    cheevies: hasMany('cheevie', { inverse: null }),
+    unseenCheevies: hasMany('cheevie', { inverse: null }),
+    badges: hasMany('badge', { inverse: null }),
 
     created: attr('number'),
-    groups: hasMany('group'),
+    groups: hasMany('group', { inverse: null }),
 
     settings: belongsTo('setting'),
 });

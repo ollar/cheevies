@@ -3,11 +3,28 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { TimelineLite } from 'gsap';
 import { tracked } from '@glimmer/tracking';
+import { getOwner } from '@ember/application';
 
 export default class ProfileController extends Controller {
     @service activity;
+    @service me;
+    @service myGroup;
 
-    @tracked cheevies = this.model.cheevies;
+    get cheevies() {
+        return this.myGroup.cheevies.filter(cheevie => !this.model.cheevies.includes(cheevie));
+    }
+
+    get userId() {
+        return this.model.id;
+    }
+
+    get myId() {
+        return this.me.model.id;
+    }
+
+    get isMe() {
+        return this.userId === this.myId;
+    }
 
     @action
     goBack() {
@@ -15,14 +32,12 @@ export default class ProfileController extends Controller {
     }
 
     @action
-    pickCheevie(cheevie) {
+    pickCheevie(cheevie, e) {
         let _this = this;
-        let $cheevie = document.getElementById(cheevie.id);
+        let $cheevie = e.currentTarget;
         let tline = new TimelineLite({
             onComplete() {
-                _this.cheevies = _this.model.cheevies.filter(_cheevie => _cheevie.id !== cheevie.id);
-
-                const user = _this.model.user;
+                const user = _this.model;
                 user.get('cheevies').pushObject(cheevie);
                 user.save().then(() =>
                     _this.activity.send({
@@ -30,10 +45,9 @@ export default class ProfileController extends Controller {
                         action: 'giveCheevie',
                     })
                 );
-                // .then(() => window.history.back());
             },
         });
 
-        tline.to($cheevie, 0.2, { y: -100, scale: 1.2 }).to($cheevie, 0.2, { opacity: 0 });
+        tline.to($cheevie, 0.2, { y: -100, scale: 1.2, opacity: 0.3 }).to($cheevie, 0.2, { opacity: 0 });
     }
 }

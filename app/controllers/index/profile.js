@@ -89,19 +89,6 @@ export default class ProfileController extends Controller {
         }
     }
 
-    // todo fix me
-    @action
-    refuseCheevie(cheevie) {
-        this.model.get('cheevies').removeObject(cheevie);
-        this.model.save().then(() =>
-            this.activity.send({
-                cheevie,
-                action: 'refuseCheevie',
-            })
-        );
-    }
-
-    // todo fix me
     @action
     uploadImage(files) {
         if (!this.isMe) return;
