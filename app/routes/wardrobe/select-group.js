@@ -6,6 +6,9 @@ export default Route.extend({
     me: service(),
 
     beforeModel(transition) {
+        if (this.session.data.authenticated.group) {
+            this.transitionTo('index');
+        }
         this.session.requireAuthentication(transition, 'wardrobe.sign-in');
     },
 

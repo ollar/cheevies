@@ -4,8 +4,12 @@
 		"selected_items":
 		[
 			[
+				"chee",
+				"cheevies"
+			],
+			[
 				"image",
-				"image-set"
+				"imageProcessor"
 			],
 			[
 				"c",
@@ -22,10 +26,6 @@
 			[
 				"cheevie",
 				"cheevie_id"
-			],
-			[
-				"chee",
-				"cheevie"
 			],
 			[
 				"ac",
@@ -255,32 +255,73 @@
 		"/Users/ollar/Work/cheevies",
 		"/Users/ollar/Work/cheevies/app",
 		"/Users/ollar/Work/cheevies/app/adapters",
-		"/Users/ollar/Work/cheevies/app/components",
+		"/Users/ollar/Work/cheevies/app/controllers",
+		"/Users/ollar/Work/cheevies/app/mixins",
+		"/Users/ollar/Work/cheevies/app/routes",
+		"/Users/ollar/Work/cheevies/app/routes/index",
 		"/Users/ollar/Work/cheevies/app/styles",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/index",
 		"/Users/ollar/Work/cheevies/app/styles/components",
 		"/Users/ollar/Work/cheevies/app/templates",
-		"/Users/ollar/Work/cheevies/app/templates/components",
-		"/Users/ollar/Work/cheevies/app/templates/index",
-		"/Users/ollar/Work/cheevies/app/templates/index/profile",
-		"/Users/ollar/Work/cheevies/config"
+		"/Users/ollar/Work/cheevies/config",
+		"/Users/ollar/Work/cheevies/translations"
 	],
 	"file_history":
 	[
+		"/Users/ollar/Work/cheevies/app/components/site-header.hbs",
+		"/Users/ollar/Work/cheevies/app/components/site-header.js",
+		"/Users/ollar/Work/cheevies/app/routes/wardrobe/sign-in.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index.js",
+		"/Users/ollar/Work/cheevies/app/templates/index.hbs",
+		"/Users/ollar/Work/cheevies/app/templates/application.hbs",
+		"/Users/ollar/Work/cheevies/app/router.js",
+		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.hbs",
+		"/Users/ollar/Work/cheevies/app/controllers/index/settings.js",
+		"/Users/ollar/Work/cheevies/app/styles/_base.scss",
+		"/Users/ollar/Work/cheevies/app/routes/wardrobe/select-group.js",
+		"/Users/ollar/Work/cheevies/app/services/my-group.js",
+		"/Users/ollar/Work/cheevies/app/controllers/application.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/profile/give-cheevie.hbs",
+		"/Users/ollar/Work/cheevies/app/routes/index/profile/give-cheevie.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/profile.hbs",
+		"/Users/ollar/Work/cheevies/app/controllers/index/profile/cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
+		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/profile.scss",
+		"/Users/ollar/Work/cheevies/app/controllers/index/profile/give-cheevie.js",
+		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/select-group.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index/profile.js",
+		"/Users/ollar/Work/cheevies/app/routes/index/profile.js",
+		"/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js",
+		"/Users/ollar/Work/cheevies/app/models/user.js",
+		"/Users/ollar/Work/cheevies/app/models/group.js",
+		"/Users/ollar/Work/cheevies/app/templates/activity.hbs",
+		"/Users/ollar/Work/cheevies/app/components/activity-list-item.js",
+		"/Users/ollar/Work/cheevies/app/components/icon-image.js",
+		"/Users/ollar/Work/cheevies/app/components/icon-image.hbs",
+		"/Users/ollar/Work/cheevies/app/templates/components/activity-list-item.hbs",
+		"/Users/ollar/Work/cheevies/translations/en-us.yaml",
+		"/Users/ollar/Work/cheevies/translations/ru-ru.yaml",
+		"/Users/ollar/Work/cheevies/app/templates/index/create-cheevie.hbs",
+		"/Users/ollar/Work/cheevies/app/controllers/index/create-cheevie.js",
+		"/Users/ollar/Work/cheevies/config/deploy.js",
+		"/Users/ollar/Work/cheevies/app/components/particlesjs-config.js",
+		"/Users/ollar/Work/cheevies/.env",
+		"/Users/ollar/Work/cheevies/.gitlab-ci.yml",
+		"/Users/ollar/Work/cheevies/app/services/image-processor.js",
+		"/Users/ollar/Work/cheevies/app/components/user-in-list.js",
+		"/Users/ollar/Work/cheevies/app/components/user-in-list.hbs",
+		"/Users/ollar/Work/cheevies/app/services/busy.js",
+		"/Users/ollar/Work/cheevies/app/mixins/image-uploader.js",
+		"/Users/ollar/Work/cheevies/app/services/giphy.js",
+		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.js",
+		"/Users/ollar/Work/cheevies/app/components/_site-drawer-aside.js",
 		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/routes/index.js",
 		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index/cheevie-details.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
-		"/Users/ollar/Work/cheevies/app/controllers/index/profile/cheevie-details.js",
-		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/profile.scss",
 		"/Users/ollar/Work/cheevies/app/routes/index/profile/cheevie-details.js",
 		"/Users/ollar/Work/cheevies/app/templates/index/index.hbs",
-		"/Users/ollar/Work/cheevies/app/components/user-in-list.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/_create-cheevie.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index/create-cheevie.js",
-		"/Users/ollar/Work/cheevies/app/services/giphy.js",
 		"/Users/ollar/Work/cheevies/app/components/_cheevie-in-list.js",
 		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.hbs",
 		"/Users/ollar/Work/cheevies/app/styles/components/cheevie-in-list.scss",
@@ -288,59 +329,37 @@
 		"/Users/ollar/Work/cheevies/app/templates/index/cheevie-details.hbs",
 		"/Users/ollar/Work/cheevies/app/templates/cheevie-edit-form.hbs",
 		"/Users/ollar/Work/cheevies/app/controllers/index/_cheevie-details.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/create-cheevie.hbs",
 		"/Users/ollar/Work/cheevies/tests/unit/controllers/index/profile/cheevie-details-test.js",
-		"/Users/ollar/Work/cheevies/app/mixins/image-uploader.js",
 		"/Users/ollar/Work/cheevies/app/models/image-set.js",
 		"/Users/ollar/Work/cheevies/app/models/_image-set.js",
-		"/Users/ollar/Work/cheevies/app/components/site-header.hbs",
-		"/Users/ollar/Work/cheevies/app/components/site-header.js",
 		"/Users/ollar/Work/cheevies/ember-cli-build.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index/profile.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/profile.hbs",
 		"/Users/ollar/Work/cheevies/app/controllers/_profile.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-wrapper.js",
-		"/Users/ollar/Work/cheevies/app/router.js",
-		"/Users/ollar/Work/cheevies/app/models/group.js",
 		"/Users/ollar/Work/cheevies/app/templates/components/cheevie-in-list.hbs",
-		"/Users/ollar/Work/cheevies/app/components/icon-image.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index/profile/give-cheevie.js",
-		"/Users/ollar/Work/cheevies/app/components/user-in-list.hbs",
 		"/Users/ollar/Work/cheevies/app/controllers/create-group.js",
 		"/Users/ollar/Work/cheevies/app/adapters/application.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/index.js",
-		"/Users/ollar/Work/cheevies/app/services/my-group.js",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/sign-up.js",
 		"/Users/ollar/Work/cheevies/app/routes/index/create-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/components/_user-in-list.js",
 		"/Users/ollar/Work/cheevies/app/styles/components/user-in-list.scss",
-		"/Users/ollar/Work/cheevies/app/routes/index/profile.js",
-		"/Users/ollar/Work/cheevies/app/templates/index/profile/give-cheevie.hbs",
-		"/Users/ollar/Work/cheevies/app/routes/index/profile/give-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/utils/cordova-get-image.js",
 		"/Users/ollar/Work/cheevies/app/templates/profile.hbs",
-		"/Users/ollar/Work/cheevies/app/templates/index.hbs",
 		"/Users/ollar/Work/cheevies/app/routes/index/index.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/_index.js",
 		"/Users/ollar/Work/cheevies/app/controllers/profile.js",
-		"/Users/ollar/Work/cheevies/app/controllers/index.js",
 		"/Users/ollar/Work/cheevies/app/services/session.js",
 		"/Users/ollar/Work/cheevies/app/authenticators/firebase.js",
-		"/Users/ollar/Work/cheevies/app/templates/application.hbs",
 		"/Users/ollar/Work/cheevies/app/authenticators/test.js",
-		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/select-group.js",
 		"/Users/ollar/Work/cheevies/tests/unit/mixins/unauthenticated-route-mixin-test.js",
 		"/Users/ollar/Work/cheevies/tests/unit/mixins/authenticated-route-mixin-test.js",
 		"/Users/ollar/Work/cheevies/app/routes/join-group.js",
 		"/Users/ollar/Work/cheevies/app/services/settings.js",
-		"/Users/ollar/Work/cheevies/app/routes/wardrobe/select-group.js",
-		"/Users/ollar/Work/cheevies/app/routes/wardrobe/sign-in.js",
 		"/Users/ollar/Work/cheevies/app/routes/wardrobe/sign-out.js",
 		"/Users/ollar/Work/cheevies/app/routes/wardrobe/sign-up.js",
 		"/Users/ollar/Work/cheevies/app/templates/components/user-in-list.hbs",
 		"/Users/ollar/Work/cheevies/app/routes/application.js",
 		"/Users/ollar/Work/cheevies/app/serializers/application.js",
-		"/Users/ollar/Work/cheevies/app/models/user.js",
 		"/Users/ollar/Work/cheevies/app/serializers/settings.js",
 		"/Users/ollar/Work/cheevies/app/models/settings.js",
 		"/Users/ollar/Work/cheevies/app/controllers/_create-group.js",
@@ -355,13 +374,11 @@
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/_sign-in.js",
 		"/Users/ollar/Work/cheevies/app/models/user/signin.js",
 		"/Users/ollar/Work/cheevies/app/templates/wardrobe/sign-in.hbs",
-		"/Users/ollar/Work/cheevies/translations/ru-ru.yaml",
 		"/Users/ollar/Work/cheevies/app/authenticators/application.js",
 		"/Users/ollar/Work/cheevies/tests/acceptance/index-test.js",
 		"/Users/ollar/Work/cheevies/config/environment.js",
 		"/Users/ollar/Work/cheevies/app/helpers/get-path.js",
 		"/Users/ollar/Work/cheevies/public/firebase-messaging-sw.js",
-		"/Users/ollar/Work/cheevies/config/deploy.js",
 		"/Users/ollar/Work/cheevies/app/services/file-storage.js",
 		"/Users/ollar/Work/cheevies/app/routes/wardrobe/social-sign-in.js",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/social-sign-in.js",
@@ -379,23 +396,7 @@
 		"/Users/ollar/Work/cheevies-jerk/app/services/settings.js",
 		"/Users/ollar/Work/cheevies-jerk/app/services/_settings.js",
 		"/Users/ollar/Work/cheevies-jerk/app/services/_my-group.js",
-		"/Users/ollar/Work/cheevies-jerk/app/utils/user-role.js",
-		"/Users/ollar/Work/cheevies-jerk/app/services/my-group.js",
-		"/Users/ollar/Work/cheevies-jerk/app/controllers/_profile.js",
-		"/Users/ollar/Work/cheevies-jerk/app/routes/profile.js",
-		"/Users/ollar/Work/cheevies-jerk/app/controllers/profile.js",
-		"/Users/ollar/Work/cheevies-jerk/app/templates/profile.hbs",
-		"/Users/ollar/Work/cheevies-jerk/ember-cli-build.js",
-		"/Users/ollar/Work/cheevies-jerk/app/components/particles-container.js",
-		"/Users/ollar/Work/cheevies-jerk/config/ember-intl.js",
-		"/Users/ollar/Work/cheevies-jerk/cheevies.sublime-project",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/centos/templates/rwc-location.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/vc-web/ads/centos/templates/brands-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/vc-web/src/js/containers/citrix-bcr-initializer.jsx",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.xml",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/canary-location.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/templates/release-map.conf.erb",
-		"/Users/ollar/Work/rwc2/packages/rwc-canary-conf/ads/centos/rwc_canary_conf.manifest.json"
+		"/Users/ollar/Work/cheevies-jerk/app/utils/user-role.js"
 	],
 	"find":
 	{
@@ -411,9 +412,42 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"firebaseApp",
+			"index",
+			"h",
+			"willDestroy",
+			"cheevies",
+			"groupCheevies",
+			"cheevies",
+			"username",
+			"userCheevies",
+			"click",
+			"share",
+			"isMe",
+			"computed",
+			"updateStyles",
+			"this",
+			"eu-central-1",
+			"webslides-statics-dev",
+			"_uploadPath",
+			"this",
+			"128",
+			"args",
+			"imageSet",
+			"resizeImage",
+			"setBusy",
+			"uploadImage",
+			"giphy",
+			"service",
+			"_typeImage",
+			"size",
+			"image",
+			"const",
+			"get(",
+			"_uploadImage",
 			"isShareAvailable",
 			"this",
 			"_result",
@@ -508,13 +542,7 @@
 			"users",
 			"length",
 			"getWithDefault",
-			"readOnly",
-			"isDemo",
-			"groupName",
-			"isShareAvailable",
-			"_cheeviesPromise",
-			"owner",
-			"particles"
+			"readOnly"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -526,7 +554,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
@@ -590,20 +618,164 @@
 		"selected_items":
 		[
 			[
-				"pack",
-				"package.json"
+				"header",
+				"app/components/site-header.hbs"
+			],
+			[
+				"settin",
+				"app/controllers/index/settings.js"
+			],
+			[
+				"aside",
+				"app/components/site-drawer-aside.hbs"
+			],
+			[
+				"base",
+				"app/styles/_base.scss"
+			],
+			[
+				"my",
+				"app/services/my-group.js"
+			],
+			[
+				"signin",
+				"app/routes/wardrobe/sign-in.js"
+			],
+			[
+				"sele",
+				"app/routes/wardrobe/select-group.js"
+			],
+			[
+				"applica",
+				"app/templates/application.hbs"
+			],
+			[
+				"contindex",
+				"app/controllers/index.js"
 			],
 			[
 				"index",
-				"app/routes/index.js"
+				"app/templates/index.hbs"
 			],
 			[
-				"cheeinlist",
-				"app/components/cheevie-in-list.js"
+				"selectgroup",
+				"app/controllers/wardrobe/select-group.js"
+			],
+			[
+				"router",
+				"app/router.js"
+			],
+			[
+				"mygropu",
+				"app/services/my-group.js"
+			],
+			[
+				"profile",
+				"app/controllers/index/profile.js"
+			],
+			[
+				"details",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"group",
+				"app/models/group.js"
+			],
+			[
+				"user",
+				"app/models/user.js"
+			],
+			[
+				"give",
+				"app/routes/index/profile/give-cheevie.js"
+			],
+			[
+				"cheevdethbs",
+				"app/templates/index/profile/cheevie-details.hbs"
 			],
 			[
 				"cheevdet",
 				"app/controllers/index/profile/cheevie-details.js"
+			],
+			[
+				"iconimage",
+				"app/components/icon-image.js"
+			],
+			[
+				"ActivityListItem",
+				"app/templates/components/activity-list-item.hbs"
+			],
+			[
+				"activi",
+				"app/templates/activity.hbs"
+			],
+			[
+				"tr",
+				"translations/ru-ru.yaml"
+			],
+			[
+				"select",
+				"app/controllers/wardrobe/select-group.js"
+			],
+			[
+				"creac",
+				"app/templates/index/create-cheevie.hbs"
+			],
+			[
+				"create",
+				"app/controllers/index/create-cheevie.js"
+			],
+			[
+				"particles",
+				"app/components/particlesjs-config.js"
+			],
+			[
+				"userinlist",
+				"app/components/user-in-list.js"
+			],
+			[
+				"imageProcessor",
+				"app/services/image-processor.js"
+			],
+			[
+				"hedet",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"profilescs",
+				"app/styles/component-styles/index/profile.scss"
+			],
+			[
+				"busy",
+				"app/services/busy.js"
+			],
+			[
+				"cheedet",
+				"app/controllers/index/cheevie-details.js"
+			],
+			[
+				"giphy",
+				"app/services/giphy.js"
+			],
+			[
+				"image",
+				"app/services/image-processor.js"
+			],
+			[
+				"image-uploader",
+				"app/mixins/image-uploader.js"
+			],
+			[
+				"userin",
+				"app/components/user-in-list.js"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"cheeinlist",
+				"app/components/cheevie-in-list.js"
 			],
 			[
 				"chedet",
@@ -612,10 +784,6 @@
 			[
 				"cheevdehbs",
 				"app/templates/index/profile/cheevie-details.hbs"
-			],
-			[
-				"userinlist",
-				"app/components/user-in-list.js"
 			],
 			[
 				"index.hbs",
@@ -634,20 +802,12 @@
 				"app/templates/index/cheevie-details.hbs"
 			],
 			[
-				"cheedet",
-				"app/controllers/index/cheevie-details.js"
-			],
-			[
 				"cheevide",
 				"app/templates/index/profile/cheevie-details.hbs"
 			],
 			[
 				"upload",
 				"app/mixins/image-uploader.js"
-			],
-			[
-				"giphy",
-				"app/services/giphy.js"
 			],
 			[
 				"uploade",
@@ -678,10 +838,6 @@
 				"app/controllers/index/cheevie-details.js"
 			],
 			[
-				"header",
-				"app/components/site-header.hbs"
-			],
-			[
 				"cheevidetai",
 				"app/controllers/index/cheevie-details.js"
 			],
@@ -690,20 +846,12 @@
 				"app/components/modal-wrapper.js"
 			],
 			[
-				"profile",
-				"app/templates/index/profile.hbs"
-			],
-			[
 				"cheevidet",
 				"app/templates/index/profile/cheevie-details.hbs"
 			],
 			[
 				"cheevie-details",
 				"app/templates/index/cheevie-details.hbs"
-			],
-			[
-				"router",
-				"app/router.js"
 			],
 			[
 				"iconi",
@@ -718,16 +866,8 @@
 				"app/components/cheevie-in-list.js"
 			],
 			[
-				"give",
-				"app/controllers/index/profile/give-cheevie.js"
-			],
-			[
 				"profil",
 				"app/controllers/index/profile.js"
-			],
-			[
-				"group",
-				"app/models/group.js"
 			],
 			[
 				"my-gr",
@@ -748,10 +888,6 @@
 			[
 				"create-c",
 				"app/routes/index/create-cheevie.js"
-			],
-			[
-				"create",
-				"app/controllers/index/create-cheevie.js"
 			],
 			[
 				"UserInList",
@@ -790,10 +926,6 @@
 				"app/services/settings.js"
 			],
 			[
-				"user",
-				"app/models/user.js"
-			],
-			[
 				"routeappli",
 				"app/routes/application.js"
 			],
@@ -810,18 +942,6 @@
 				"app/services/settings.js"
 			],
 			[
-				"my",
-				"app/services/my-group.js"
-			],
-			[
-				"applica",
-				"app/adapters/application.js"
-			],
-			[
-				"select",
-				"app/controllers/wardrobe/select-group.js"
-			],
-			[
 				"me",
 				"app/services/me.js"
 			],
@@ -832,14 +952,6 @@
 			[
 				"pac",
 				"package.json"
-			],
-			[
-				"tr",
-				"translations/ru-ru.yaml"
-			],
-			[
-				"signin",
-				"app/templates/wardrobe/sign-in.hbs"
 			],
 			[
 				"fire",
@@ -1016,90 +1128,6 @@
 			[
 				"rct",
 				"packages/vc-web/src/js/reducers/rct.js"
-			],
-			[
-				"/constants/types",
-				"packages/vc-web/src/js/constants/types.js"
-			],
-			[
-				"containers/call-ended",
-				"packages/vc-web/src/js/containers/call-ended.jsx"
-			],
-			[
-				"rate",
-				"packages/vc-web/src/js/containers/modal/rate-quality.jsx"
-			],
-			[
-				"mani",
-				"packages/vc-web/ads/manifests/rwc_rc_us.manifest.json"
-			],
-			[
-				"selectors/rct/participant",
-				"packages/vc-web/src/js/selectors/rct/participant.js"
-			],
-			[
-				"call",
-				"packages/vc-web/src/js/containers/call-ended.jsx"
-			],
-			[
-				"selectors/gallery-common",
-				"packages/vc-web/src/js/selectors/gallery-common.js"
-			],
-			[
-				"selectors/rct-gallery",
-				"packages/vc-web/src/js/selectors/rct-gallery.js"
-			],
-			[
-				"gallery-grid-tile.jsx",
-				"packages/vc-web/src/js/containers/gallery/gallery-grid-tile.jsx"
-			],
-			[
-				"closed-captions/closed-captions",
-				"packages/vc-web/src/js/components/closed-captions/closed-captions.jsx"
-			],
-			[
-				"closed-captions/captions-stream-processor",
-				"packages/vc-web/src/js/components/closed-captions/captions-stream-processor.js"
-			],
-			[
-				"closed-captions/closed-captions-container",
-				"packages/vc-web/src/js/components/closed-captions/closed-captions-container.jsx"
-			],
-			[
-				"typ",
-				"packages/vc-web/src/js/constants/types.js"
-			],
-			[
-				"conconf",
-				"packages/vc-web/src/js/actions/onconf.js"
-			],
-			[
-				"oncon",
-				"packages/vc-web/src/js/containers/onconf.jsx"
-			],
-			[
-				"containers/closed-captions-session-manage",
-				"packages/vc-web/src/js/containers/closed-captions-session-manager.jsx"
-			],
-			[
-				"jen",
-				"Jenkinsfile"
-			],
-			[
-				"constants/proptypes",
-				"packages/vc-web/src/js/constants/proptypes.js"
-			],
-			[
-				"components/participant-avatar",
-				"packages/vc-web/src/js/components/participant-avatar.jsx"
-			],
-			[
-				"closedcaptionsindex",
-				"packages/rcv-ui/src/components/ClosedCaptions/index.jsx"
-			],
-			[
-				"capa",
-				"packages/vc-web/src/js/utils/capabilities.js"
 			]
 		],
 		"width": 0.0

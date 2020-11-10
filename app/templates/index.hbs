@@ -1,1 +1,11 @@
-{{outlet}}
+<SettingsWrapper>
+
+    {{#site-drawer drawerData as |drawerData|}}
+        <SiteHeader @drawerData={{drawerData}} />
+
+        <div class="content-wrapper">
+            {{outlet}}
+        </div>
+    {{/site-drawer}}
+
+</SettingsWrapper>

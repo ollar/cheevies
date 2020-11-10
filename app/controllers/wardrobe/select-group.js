@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { schedule } from '@ember/runloop';
-import { hash } from 'rsvp';
+import { all } from 'rsvp';
 
 
 export default class WardrobeSelectGroupController extends Controller {
@@ -80,12 +80,8 @@ export default class WardrobeSelectGroupController extends Controller {
                 // Group is public -> pass
                 group.users.pushObject(this.me.model);
                 this.me.model.groups.pushObject(group);
-                return hash({
-                    group: group.save(),
-                    me: this.me.model.save(),
-                });
+                await all([ group.save(), this.me.model.save() ]);
             }
-
 
             this.session.persist('group', group.name)
 

@@ -19,9 +19,9 @@ Router.map(function() {
           this.route('give-cheevie');
           this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
         });
+        this.route('settings');
+        this.route('activity');
     });
-    this.route('settings');
-    this.route('activity');
     this.route('reset-password', { path: '/oh-oh-reset-password' });
     this.route('create-group');
     this.route('join-group', { path: '/join/:group_id' });

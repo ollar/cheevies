@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 import { resolve } from 'rsvp';
 import { getOwner } from '@ember/application';
 import { schedule } from '@ember/runloop';
-import { userIsModerator } from '../utils/user-role';
+import { userIsModerator } from 'cheevies/utils/user-role';
 
 export default Controller.extend({
     me: service(),
@@ -16,10 +16,6 @@ export default Controller.extend({
 
     groupModel: alias('myGroup.model'),
     isDemo: readOnly('myGroup.isDemo'),
-
-    messaging: computed(function() {
-        return this.firebaseApp.messaging();
-    }),
 
     installStandalone: service('install-standalone'),
     version: computed(function() {

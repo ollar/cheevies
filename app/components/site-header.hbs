@@ -3,7 +3,7 @@
         <button class="drawer-toggle-button icon-button" {{on 'click' @drawerData.toggleDrawer}}>
           <SvgIcon @_size={{24}} @_name="menu" @_title={{t "icons.menu"}} class="h-center bottom" />
         </button>
-        {{else}}
+    {{else}}
         <button class="drawer-toggle-button icon-button" {{on 'click' this.goBack}}>
           <SvgIcon @_size={{24}} @_name="chevron-left" @_title={{t "icons.back"}} class="h-center bottom" />
         </button>

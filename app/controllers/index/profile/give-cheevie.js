@@ -2,8 +2,6 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { TimelineLite } from 'gsap';
-import { tracked } from '@glimmer/tracking';
-import { getOwner } from '@ember/application';
 
 export default class ProfileController extends Controller {
     @service activity;
