@@ -38,7 +38,7 @@
 
 {{outlet}}
 
-<footer>
+<footer class="footer-nav">
   <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{on 'click' (fn this.setActivePage 'users')}}>
     <SvgIcon @_name="users" @_size={{24}} @_title={{t "icons.users"}} @class="bottom h-center" />
   </button>

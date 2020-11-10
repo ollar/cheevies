@@ -75,37 +75,6 @@
     }
 }
 
-.card {
-    display: none;
-    background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
-    border-radius: 10px;
-    z-index: 10;
-    width: 300px;
-
-    .card-content {
-        @include center-wrapper;
-        padding: ms(1) 0;
-        position: relative;
-
-        .title {
-            font-size: 24px;
-        }
-    }
-
-    .delete {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        color: white;
-    }
-
-    .share {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-    }
-}
-
 .give-cheevie {
     background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
     width: 34px;
