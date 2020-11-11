@@ -69,6 +69,8 @@ figure.image {
     img {
         display: block;
         width: 100%;
+        user-select: none;
+        pointer-events: none;
     }
 }
 

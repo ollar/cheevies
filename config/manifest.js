@@ -15,7 +15,6 @@ module.exports = function(/* environment, appConfig */) {
         background_color: '#1D2349',
         theme_color: '#1D2349',
         orientation: 'portrait',
-        gcm_sender_id: '103953800507',
         icons: [
             {
                 src: 'firefox/firefox-marketplace-512-512.png',

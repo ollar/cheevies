@@ -11,27 +11,17 @@ const IS_CORDOVA = environment === 'cordova';
 module.exports = function(defaults) {
     let app = new EmberApp(defaults, {
         // Add options here
-        'ember-service-worker': {
-            enabled: IS_PROD,
-            versionStrategy: 'every-build',
-        },
-        'asset-cache': {
-            enabled: IS_PROD,
-            include: ['assets/**/*', 'images/**/*'],
-        },
         hinting: IS_TEST,
         tests: IS_TEST,
-        'ember-cli-babel': {
-            includePolyfill: IS_PROD,
-        },
-        autoprefixer: {
-            sourcemap: false, // Was never helpful
-        },
+        // 'ember-cli-babel': {
+        //     includePolyfill: false,
+        // },
         sourcemaps: {
             enabled: !IS_PROD && !IS_CORDOVA,
         },
         'ember-cli-uglify': {
             enabled: IS_PROD || IS_CORDOVA,
+            exclude: ["**/vendor.js"], // tenser is shit
         },
         minifyCSS: {
             enabled: IS_PROD || IS_CORDOVA,
