@@ -1,7 +1,7 @@
-<div class="user-in-list">
+<div class="user-in-list" {{haotic-move}}>
     <IconImage @data={{@user}} @image={{this.image}} />
     <div class="cheevies-counter">
-      {{cheevies.length}}
+      {{this.cheevies.length}}
     </div>
 
     {{yield}}

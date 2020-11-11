@@ -1,4 +1,4 @@
-{{!-- <ProfileAnimationWrapper @_cheeviesPromise={{_cheeviesPromise}}> --}}
+<ProfileAnimationWrapper>
 <section class="center-wrapper {{if this.isMe 'is-me'}}">
 <div class="user-image-wrapper {{if this.busy 'busy'}}">
     {{#unless this.isMe}}
@@ -42,7 +42,7 @@
   {{/each}}
 </div>
 </section>
-{{!-- </ProfileAnimationWrapper> --}}
+</ProfileAnimationWrapper>
 
 {{#unless this.isMe}}
   <footer>

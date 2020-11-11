@@ -16,9 +16,9 @@ export default class ProfileController extends Controller {
 
     get image() {
         const user = this.model;
-        if (!user.get('image-set.128')) return null;
+        if (!user.get('image-set.256')) return null;
         return {
-            sm: user.get('image-set.128'),
+            sm: user.get('image-set.256'),
             md: user.get('image-set.256'),
             lg: user.get('image-set.512'),
         };
