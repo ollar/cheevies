@@ -7,6 +7,10 @@ export default class MeService extends Service {
     @service store;
     @tracked model = null;
 
+    get isDemo() {
+        return this.session.data.authenticated.demoGroup;
+    }
+
     get appName() {
         return getOwner(this).application.appName;
     }
@@ -24,6 +28,12 @@ export default class MeService extends Service {
 
     fetch() {
         if (!this.isAuthenticated || this.model) return Promise.resolve(this.model);
+
+        if (this.isDemo) {
+            const me = this.store.peekRecord('demo/user', 'youruserid');
+            this.model = me;
+            return me;
+        }
 
         return this.store.queryRecord('me', {
             collection_name: this.appName

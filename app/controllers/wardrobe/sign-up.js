@@ -29,9 +29,9 @@ export default class WardrobeSignUpController extends Controller {
     @action
     onError(err) {
         Object.keys(err).forEach(key =>
-            this.send({
+            this.send('notify', {
                 type: 'error',
-                text: err[key]
+                text: err[key][0]
             })
         );
     }

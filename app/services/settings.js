@@ -18,7 +18,7 @@ export default class SettingsService extends Service {
     }
 
     get _type() {
-        return this.isDemo ? 'demo/settings' : 'setting';
+        return this.isDemo ? 'demo/setting' : 'setting';
     }
 
     constructor() {

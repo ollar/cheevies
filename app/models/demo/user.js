@@ -6,5 +6,5 @@ export default UserModel.extend({
     cheevies: hasMany('demo/cheevie', { inverse: null }),
     unseenCheevies: hasMany('demo/cheevie', { inverse: null }),
     groups: hasMany('demo/group', { inverse: null }),
-    settings: belongsTo('demo/settings', { inverse: null }),
+    settings: belongsTo('demo/setting', { inverse: null }),
 });

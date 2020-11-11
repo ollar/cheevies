@@ -19,7 +19,7 @@ export default Route.extend({
     },
 
     model() {
-        if (!this.get('myGroup.groupName')) return {};
+        if (!this.get('myGroup.groupName')) throw new Error('no groupName set');
 
         return this.myGroup
             .fetch()
@@ -30,17 +30,18 @@ export default Route.extend({
                     cheevies: group.get('cheevies'),
                     settings: this.settings.fetch(),
                 })
-            })
-            .catch(e => this.onModelError(e));
+            });
     },
 
-    onModelError(e) {
-        console.log(e)
-        this.transitionTo('wardrobe.sign-out');
-        this.send('notify', {
-            type: 'error',
-            text: this.intl.t('messages.app_init_error'),
-        });
+    actions: {
+        error(e) {
+            console.log(e)
+            this.send('notify', {
+                type: 'error',
+                text: this.intl.t('messages.app_init_error'),
+            });
+            this.transitionTo('wardrobe.sign-out');
+        },
     },
 
     afterModel() {

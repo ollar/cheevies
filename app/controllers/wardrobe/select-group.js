@@ -50,43 +50,46 @@ export default class WardrobeSelectGroupController extends Controller {
     @action
     async selectGroup() {
         if (this.model.validate()) {
-            await this.me.fetch();
+            try {
+                await this.me.fetch();
 
-            const groups = await this.store
-                    .query('group', {
-                        find: {
-                            name: this.model.group
-                                .toLowerCase() // todo: check this
-                                .trim()
-                        }
-                    });
+                const groups = await this.store
+                        .query('group', {
+                            find: {
+                                name: this.model.group
+                                    .toLowerCase() // todo: check this
+                                    .trim()
+                            }
+                        });
 
-            if (!groups || groups.length === 0) {
-                throw new Error(this.intl.t('login.messages.no_such_group'));
-            }
-
-            const group = groups.firstObject;
-            const users = group.users.toArray().map(u => u.id);
-
-            // no user in group
-            if (!users.includes(this.me.model.id)) {
-                // Group is locked -> show error
-                if (group.locked) {
-                    throw new Error(
-                        this.intl.t('login.messages.group_is_locked')
-                    );
+                if (!groups || groups.length === 0) {
+                    throw new Error(this.intl.t('login.messages.no_such_group'));
                 }
 
-                // Group is public -> pass
-                group.users.pushObject(this.me.model);
-                this.me.model.groups.pushObject(group);
-                await all([ group.save(), this.me.model.save() ]);
+                const group = groups.firstObject;
+                const users = group.users.toArray().map(u => u.id);
+
+                // no user in group
+                if (!users.includes(this.me.model.id)) {
+                    // Group is locked -> show error
+                    if (group.locked) {
+                        throw new Error(
+                            this.intl.t('login.messages.group_is_locked')
+                        );
+                    }
+
+                    // Group is public -> pass
+                    group.users.pushObject(this.me.model);
+                    this.me.model.groups.pushObject(group);
+                    await all([ group.save(), this.me.model.save() ]);
+                }
+
+                this.session.persist('group', group.name)
+
+                return group.reload().then(this.onSuccess);
+            } catch (error) {
+                this.onError(error);
             }
-
-            this.session.persist('group', group.name)
-
-            return group.reload()
-                    .then(this.onSuccess, this.onError);
         }
     }
 
