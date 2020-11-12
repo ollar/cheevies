@@ -54,7 +54,8 @@ module.exports = function(deployTarget) {
             accessKeyId: awsAccessKey,
             secretAccessKey: awsSecurityKey,
             bucket: 'cheevies',
-            region: 'eu-west-1'
+            region: 'eu-west-1',
+            filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm,webmanifest}'
         };
 
         ENV['s3-index'] = {
