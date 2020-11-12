@@ -14,7 +14,7 @@
 
   <section class="cheevies-list grid-wrapper-3">
     {{#each this.model.cheevies as |cheevie|}}
-      <LinkTo @route="index.cheevie-details" @model={{cheevie}}>
+      <LinkTo @route="index.index.cheevie-details" @model={{cheevie}}>
         <CheevieInList @cheevie={{cheevie}} />
       </LinkTo>
     {{else}}

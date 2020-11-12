@@ -48,7 +48,7 @@ export default class SiteDrawerAsideComponent extends Component {
 
     @action
     createCheevie() {
-        this.router.transitionTo('index.create-cheevie');
+        this.router.transitionTo('index.index.create-cheevie');
     }
 
     @action

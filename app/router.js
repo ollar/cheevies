@@ -9,10 +9,11 @@ export default class Router extends EmberRouter {
 Router.map(function() {
 
     this.route('index', { path: '/' }, function() {
-        this.route('index', { path: '/' });
-        this.route('create-cheevie');
+        this.route('index', { path: '/' }, function() {
+            this.route('create-cheevie');
+            this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
+        });
         this.route('create-badge');
-        this.route('cheevie-details', { path: '/cheevie/:cheevie_id' });
         this.route('new-cheevies');
         this.route('profile', { path: '/profile/:user_id' }, function() {
           this.route('give-cheevie');
