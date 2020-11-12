@@ -1,6 +1,6 @@
 <ProfileAnimationWrapper>
 <section class="center-wrapper {{if this.isMe 'is-me'}}">
-<div class="user-image-wrapper {{if this.busy 'busy'}}">
+<div {{busy-loader this.busy}} class="user-image-wrapper">
     {{#unless this.isMe}}
         <IconImage @data={{this.model}} @image={{this.image}} @class="user-image" />
     {{else}}

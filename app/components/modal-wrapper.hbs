@@ -1,11 +1,11 @@
-<div class="modal" {{did-insert this.didInsert}}>
+<div class="modal {{@class}}" {{did-insert this.didInsert}}>
     <a class="modal-background" {{on 'click' this.goBack}}></a>
     <ModalContent
         {{busy-loader this.args.busy}}
         @goBack={{this.goBack}}
-        @giveCheevieModal={{this.giveCheevieModal}}
+        @giveCheevieModal={{@giveCheevieModal}}
         @disableDrag={{this.disableDrag}}
-        @class={{if this.noTransition "no-transition"}}>
+        @class={{if this.noTransition 'no-transition'}}>
       {{yield}}
     </ModalContent>
     <button class="icon-button modal-close" aria-label="close" {{on 'click' this.goBack}}>

@@ -1,12 +1,17 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+
 import { TimelineLite } from 'gsap';
+
 
 export default class ProfileController extends Controller {
     @service activity;
     @service me;
     @service myGroup;
+
+    @tracked busy = false;
 
     get cheevies() {
         return this.myGroup.cheevies.filter(cheevie => !this.model.cheevies.includes(cheevie));
@@ -32,17 +37,19 @@ export default class ProfileController extends Controller {
     @action
     pickCheevie(cheevie, e) {
         let _this = this;
+        this.busy = true;
         let $cheevie = e.currentTarget;
         let tline = new TimelineLite({
             onComplete() {
                 const user = _this.model;
                 user.get('cheevies').pushObject(cheevie);
-                user.save().then(() =>
+                user.save().then(() => {
+                    _this.busy = false;
                     _this.activity.send({
                         cheevie,
                         action: 'giveCheevie',
-                    })
-                );
+                    });
+                });
             },
         });
 
