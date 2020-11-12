@@ -4,7 +4,6 @@ import { tracked } from '@glimmer/tracking';
 
 export default class IndexIndexController extends Controller {
     @tracked activePage = 'users';
-    @tracked shouldHideGuidePopup = false;
 
     constructor() {
         super(...arguments);
@@ -23,11 +22,5 @@ export default class IndexIndexController extends Controller {
     @action
     setActivePage(type) {
         this.set('activePage', type);
-    }
-
-    @action
-    hideGuidePopup() {
-        this.shouldHideGuidePopup = true;
-        return window.localStorage.setItem('hideGuidePopup', true);
     }
 }

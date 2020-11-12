@@ -19,7 +19,7 @@ export default class ShareService extends Service {
 
     get appDomain() {
         const owner = getOwner(this);
-        return owner.application.appDomain || window.location.href;
+        return owner.application.appDomain || `${window.location.origin}`;
     }
 
     post({ title, text, url }) {

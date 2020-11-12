@@ -196,3 +196,19 @@ h6 {
         }
     }
 }
+
+.is-busy {
+    position: relative;
+
+    &:after {
+        content: "";
+        @include loader;
+        position: absolute;
+        z-index: 10;
+        opacity: 0.4;
+        top: 0;
+        left: 0;
+        @include size(100%);
+        grid-column: all;
+    }
+}

@@ -192,20 +192,10 @@
 	"buffers":
 	[
 		{
-			"file": "config/manifest.js",
+			"file": "app/modifiers/busy-loader.js",
 			"settings":
 			{
-				"buffer_size": 1951,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 2025,
-				"encoding": "UTF-8",
+				"buffer_size": 122,
 				"line_ending": "Unix"
 			}
 		}
@@ -303,11 +293,14 @@
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe",
 		"/Users/ollar/Work/cheevies/app/helpers",
 		"/Users/ollar/Work/cheevies/app/mixins",
+		"/Users/ollar/Work/cheevies/app/modifiers",
 		"/Users/ollar/Work/cheevies/config"
 	],
 	"file_history":
 	[
+		"/Users/ollar/Work/cheevies/config/manifest.js",
 		"/Users/ollar/Work/cheevies/app/index.html",
+		"/Users/ollar/Work/cheevies/config/deploy.js",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/sign-in.js",
 		"/Users/ollar/Work/cheevies/app/utils/get-root-url.js",
 		"/Users/ollar/Work/cheevies/app/routes/index.js",
@@ -345,7 +338,6 @@
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/modal-wrapper.scss",
 		"/Users/ollar/Work/cheevies/tests/unit/models/image-test.js",
 		"/Users/ollar/Work/cheevies/package.json",
-		"/Users/ollar/Work/cheevies/config/manifest.js",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/_demo-group.js",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/index.scss",
 		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
@@ -379,7 +371,6 @@
 		"/Users/ollar/Work/cheevies/translations/ru-ru.yaml",
 		"/Users/ollar/Work/cheevies/app/templates/index/create-cheevie.hbs",
 		"/Users/ollar/Work/cheevies/app/controllers/index/create-cheevie.js",
-		"/Users/ollar/Work/cheevies/config/deploy.js",
 		"/Users/ollar/Work/cheevies/app/components/particlesjs-config.js",
 		"/Users/ollar/Work/cheevies/.env",
 		"/Users/ollar/Work/cheevies/.gitlab-ci.yml",
@@ -438,7 +429,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -453,6 +444,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"standalone",
 			"manifest",
 			"this",
 			"demoGroupModulePath",
@@ -579,8 +571,7 @@
 			"data.group",
 			"set",
 			"data.group",
-			"group",
-			"access"
+			"group"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -603,62 +594,30 @@
 			[
 				{
 					"buffer": 0,
-					"file": "config/manifest.js",
-					"semi_transient": false,
+					"file": "app/modifiers/busy-loader.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1951,
+						"buffer_size": 122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1847,
-								1847
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2025,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1319,
-								1319
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 23.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]

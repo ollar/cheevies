@@ -1,7 +1,0 @@
-<a class="modal-background" {{action 'goBack'}}></a>
-<ModalContent @goBack={{action "goBack"}} @giveCheevieModal={{giveCheevieModal}} @disableDrag={{disableDrag}} @class={{if noTransition "no-transition"}}>
-  {{yield}}
-</ModalContent>
-<button class="icon-button modal-close" aria-label="close" {{action 'goBack'}}>
-  <SvgIcon @_name="x" @_size={{24}} @_title={{t "icons.close"}} @class="left v-center" />
-</button>

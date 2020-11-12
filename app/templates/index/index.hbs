@@ -1,13 +1,3 @@
-{{#unless this.shouldHideGuidePopup}}
-    <div class="guide-invitation-button-wrapper">
-        <LinkTo @route="index.guide">{{t 'nav.guide-invitation-text' }}</LinkTo>
-
-        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
-            <SvgIcon @_name="x" @_size={{24}} />
-        </button>
-    </div>
-{{/unless}}
-
 <ParticlesContainer>
 <IndexSectionsWrapper @class={{add "sections-wrapper " activePage}} @setActivePage={{this.setActivePage}}>
   <section class="users-list grid-wrapper-2">

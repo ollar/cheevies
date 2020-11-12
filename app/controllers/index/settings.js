@@ -101,7 +101,7 @@ export default Controller.extend({
                 .post({
                     title: this.intl.t('settings.group.invitation.title'),
                     text: this.intl.t('settings.group.invitation.text', {
-                        sender: this.me.model.name,
+                        sender: this.me.model.username,
                         group: this.groupModel.name,
                     }),
                     url: `${this.share.appDomain}/join/${this.groupModel.id}?code=${
