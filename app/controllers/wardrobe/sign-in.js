@@ -5,14 +5,6 @@ import { schedule } from '@ember/runloop';
 
 import { tracked } from '@glimmer/tracking';
 
-import demoGroup, {
-  users,
-  cheevies,
-  images,
-  imageSets,
-  you
-} from './_demo-group';
-
 export default class WardrobeSignInController extends Controller {
     @service session;
     @service me;
@@ -65,8 +57,9 @@ export default class WardrobeSignInController extends Controller {
     @action
     demoSignIn() {
             this.busy = true;
-            return Promise.resolve()
-                .then(async () => {
+
+            return import('/_demo-group.js')
+                    .then(async ({ imageSets, cheevies, users, you, demoGroup }) => {
                     Object.keys(imageSets).forEach(key => {
                         this.store.push(
                             this.store.normalize(

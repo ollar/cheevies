@@ -639,7 +639,7 @@ export const imageSets = {
 
 export const demoGroupId = '-LPjoo_3C0RoXTMnyA72';
 
-export default name => ({
+export const demoGroup = name => ({
     _id: '-LPjoo_3C0RoXTMnyA72',
     cheevies: [
         '-LPjs_gQPtzaTZuulofD',
