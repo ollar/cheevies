@@ -1,10 +1,6 @@
 import { helper } from '@ember/component/helper';
-import ENV from 'cheevies/config/environment';
+import getRootUrl from 'cheevies/utils/get-root-url';
 
-const { rootURL } = ENV;
-
-export function getPath(params /*, hash*/) {
-    return rootURL + params.join('/');
-}
-
-export default helper(getPath);
+export default helper(function getPath(params/*, hash*/) {
+  return getRootUrl() + params;
+});

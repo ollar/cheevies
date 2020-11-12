@@ -2,8 +2,9 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
-
 import { tracked } from '@glimmer/tracking';
+
+// import getRootUrl from 'cheevies/utils/get-root-url';
 
 export default class WardrobeSignInController extends Controller {
     @service session;
@@ -57,6 +58,8 @@ export default class WardrobeSignInController extends Controller {
     @action
     demoSignIn() {
             this.busy = true;
+
+            // const demoGroupModulePath = () => getRootUrl() + '_demo-group.js';
 
             return import('/_demo-group.js')
                     .then(async ({ imageSets, cheevies, users, you, demoGroup }) => {
