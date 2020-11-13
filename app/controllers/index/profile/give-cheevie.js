@@ -43,6 +43,7 @@ export default class ProfileController extends Controller {
             onComplete() {
                 const user = _this.model;
                 user.get('cheevies').pushObject(cheevie);
+                user.get('unseenCheevies').pushObject(cheevie);
                 user.save().then(() => {
                     _this.busy = false;
                     _this.activity.send({

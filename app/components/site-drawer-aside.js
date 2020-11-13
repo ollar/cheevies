@@ -5,8 +5,12 @@ import { action } from '@ember/object';
 
 import { userIsModerator, userIsGroupAuthor } from '../utils/user-role';
 
+import { DIRECTION_HORIZONTAL } from 'draggable-modifier';
+
 
 export default class SiteDrawerAsideComponent extends Component {
+    panDirection = DIRECTION_HORIZONTAL;
+
     @service me;
     @service myGroup;
     @service router;
@@ -19,7 +23,6 @@ export default class SiteDrawerAsideComponent extends Component {
         return this.me.model.get('image-set');
     }
 
-    // todo fix this
     get image() {
         if (!this.imageSet) return null;
         if (!this.imageSet.get('128')) return null;
@@ -44,6 +47,22 @@ export default class SiteDrawerAsideComponent extends Component {
         const groupCheevies = this.groupModel.cheevies;
 
         return userCheevies.filter(cheevie => groupCheevies.includes(cheevie));
+    }
+
+    handlePanMove(ev, cb, draggable) {
+        if (draggable.initialTransform[0] + ev.deltaX >= 300) return;
+        cb(ev);
+    }
+
+    @action
+    onPanEnvComplete(ev, cb, draggable) {
+        const moveX = draggable.initialTransform[0] - draggable.previousMoveX;
+        if (Math.abs(moveX) > 150) {
+            if (moveX > 0) {
+                this.args.closeDrawer(ev); // close it
+            }
+        }
+        cb(ev);
     }
 
     @action

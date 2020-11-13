@@ -1,3 +1,4 @@
+<div class="drawer-inner" {{draggable panDirection=this.panDirection handlePanMove=this.handlePanMove onPanEnvComplete=this.onPanEnvComplete}}>
 <div class="avatar">
     <IconImage @data={{this.myModel}} @image={{this.image}} />
 </div>
@@ -21,7 +22,7 @@
 
     {{#if this.canCreateCheevie}}
         <div class="add-cheevie-wrapper">
-            <button class="icon-button" {{action 'createCheevie'}}>
+            <button class="icon-button" {{on 'click' this.createCheevie}}>
                 <SvgIcon @_name="plus-circle" @_size={{48}} />
             </button>
             <span class="add-cheevie-text">
@@ -46,3 +47,4 @@
         <SvgIcon @_name="log-out" @_size={{24}} @_title={{t "icons.sign_out"}} class="bottom h-center" />
     </button>
 </footer>
+</div>
