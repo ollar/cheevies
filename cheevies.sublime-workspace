@@ -196,36 +196,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/components/site-drawer-aside.hbs",
-			"settings":
-			{
-				"buffer_size": 1628,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/index.hbs",
-			"settings":
-			{
-				"buffer_size": 234,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/styles/components/site-drawer.scss",
-			"settings":
-			{
-				"buffer_size": 1820,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/components/site-drawer-aside.js",
 			"settings":
 			{
-				"buffer_size": 2131,
+				"buffer_size": 2202,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -329,9 +303,12 @@
 	],
 	"file_history":
 	[
-		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/styles/components/site-drawer.scss",
+		"/Users/ollar/Work/cheevies/app/components/site-header.hbs",
 		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.hbs",
+		"/Users/ollar/Work/cheevies/app/templates/index.hbs",
+		"/Users/ollar/Work/cheevies/app/components/site-header.js",
+		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-wrapper.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-content.js",
@@ -400,9 +377,6 @@
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/index.scss",
 		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/profile/cheevie-details.scss",
-		"/Users/ollar/Work/cheevies/app/templates/index.hbs",
-		"/Users/ollar/Work/cheevies/app/components/site-header.hbs",
-		"/Users/ollar/Work/cheevies/app/components/site-header.js",
 		"/Users/ollar/Work/cheevies/app/routes/wardrobe/sign-in.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index.js",
 		"/Users/ollar/Work/cheevies/app/templates/application.hbs",
@@ -475,6 +449,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"div",
 			"closeDrawer",
 			"this",
 			"draggable",
@@ -601,8 +576,7 @@
 			"this.args.cheevies",
 			"cheevies",
 			"this.args.cheevies",
-			"this",
-			"cheevies"
+			"this"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -620,112 +594,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/components/site-drawer-aside.hbs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1628,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								140,
-								140
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/templates/index.hbs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 234,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19,
-								19
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/styles/components/site-drawer.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1820,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								356,
-								356
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1169.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "app/components/site-drawer-aside.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2131,
+						"buffer_size": 2202,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1839,
-								1839
+								658,
+								658
 							]
 						],
 						"settings":
@@ -735,7 +621,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 579.0,
+						"translation.y": 620.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -801,8 +687,16 @@
 		"selected_items":
 		[
 			[
+				"site",
+				"app/components/site-drawer-aside.hbs"
+			],
+			[
 				"drawer",
 				"app/styles/components/site-drawer.scss"
+			],
+			[
+				"siteha",
+				"app/components/site-header.js"
 			],
 			[
 				"index",
@@ -991,10 +885,6 @@
 			[
 				"cheedethbs",
 				"app/templates/index/profile/cheevie-details.hbs"
-			],
-			[
-				"site",
-				"app/components/site-drawer-aside.hbs"
 			],
 			[
 				"header",
@@ -1307,10 +1197,6 @@
 			[
 				"selectors/prefs",
 				"packages/vc-web/src/js/selectors/prefs.js"
-			],
-			[
-				"welcome",
-				"packages/vc-web/src/js/containers/welcome/welcome-screen.jsx"
 			]
 		],
 		"width": 0.0

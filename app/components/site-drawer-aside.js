@@ -57,12 +57,10 @@ export default class SiteDrawerAsideComponent extends Component {
     @action
     onPanEnvComplete(ev, cb, draggable) {
         const moveX = draggable.initialTransform[0] - draggable.previousMoveX;
-        if (Math.abs(moveX) > 150) {
-            if (moveX > 0) {
-                this.args.closeDrawer(ev); // close it
-            }
+        if (Math.abs(moveX) >= 150) {
+            this.args.closeDrawer(ev); // close it
         }
-        cb(ev);
+        return cb(ev);
     }
 
     @action
