@@ -1,4 +1,4 @@
-.drawer-inner {
+.drawer {
     background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
         linear-gradient(180deg, #1D2349 0%, #131731 100%);
     background-size: 100% auto;
@@ -87,14 +87,4 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.site-drawer-component.opened {
-  .drawer {
-    transform: translate(0, 0);
-  }
-
-  .drawer-inner {
-    transform: translate(100%, 0);
-  }
 }

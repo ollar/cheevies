@@ -1,11 +1,14 @@
 <SettingsWrapper>
+    <SiteDrawer as |drawer|>
+         <div class="site-drawer-component {{if drawer.opened 'opened'}}">
+            <drawer.overlay />
+            <drawer.aside />
+        </div>
 
-    {{#site-drawer drawerData as |drawerData|}}
-        <SiteHeader @drawerData={{drawerData}} />
+        <SiteHeader @drawer={{drawer}} />
 
         <div class="content-wrapper">
             {{outlet}}
         </div>
-    {{/site-drawer}}
-
+    </SiteDrawer>
 </SettingsWrapper>

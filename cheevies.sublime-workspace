@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"dra",
+				"drawer-inner"
+			],
+			[
 				"demo",
 				"demoGroup"
 			],
@@ -191,6 +195,41 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/components/site-drawer-aside.hbs",
+			"settings":
+			{
+				"buffer_size": 1628,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/index.hbs",
+			"settings":
+			{
+				"buffer_size": 234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/components/site-drawer.scss",
+			"settings":
+			{
+				"buffer_size": 1820,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/components/site-drawer-aside.js",
+			"settings":
+			{
+				"buffer_size": 2131,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -279,7 +318,6 @@
 		"/Users/ollar/Work/cheevies",
 		"/Users/ollar/Work/cheevies/app",
 		"/Users/ollar/Work/cheevies/app/authenticators",
-		"/Users/ollar/Work/cheevies/app/components",
 		"/Users/ollar/Work/cheevies/app/controllers",
 		"/Users/ollar/Work/cheevies/app/controllers/index",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe",
@@ -291,12 +329,14 @@
 	],
 	"file_history":
 	[
+		"/Users/ollar/Work/cheevies/package.json",
+		"/Users/ollar/Work/cheevies/app/styles/components/site-drawer.scss",
+		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.hbs",
+		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-wrapper.js",
 		"/Users/ollar/Work/cheevies/app/components/modal-content.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/profile/give-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/models/user.js",
-		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.hbs",
-		"/Users/ollar/Work/cheevies/app/components/site-drawer-aside.js",
 		"/Users/ollar/Work/cheevies/app/controllers/index/index/create-cheevie.js",
 		"/Users/ollar/Work/cheevies/app/router.js",
 		"/Users/ollar/Work/cheevies/app/templates/index/index.hbs",
@@ -351,13 +391,11 @@
 		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.js",
 		"/Users/ollar/Work/cheevies/app/components/cheevie-in-list.hbs",
 		"/Users/ollar/Work/cheevies/app/components/profile-animation-wrapper.js",
-		"/Users/ollar/Work/cheevies/app/styles/components/site-drawer.scss",
 		"/Users/ollar/Work/cheevies/app/controllers/index/profile.js",
 		"/Users/ollar/Work/cheevies/ember-cli-build.js",
 		"/Users/ollar/Work/cheevies/app/models/demo/image-set.js",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/modal-wrapper.scss",
 		"/Users/ollar/Work/cheevies/tests/unit/models/image-test.js",
-		"/Users/ollar/Work/cheevies/package.json",
 		"/Users/ollar/Work/cheevies/app/controllers/wardrobe/_demo-group.js",
 		"/Users/ollar/Work/cheevies/app/styles/component-styles/index/index.scss",
 		"/Users/ollar/Work/cheevies/app/templates/index/profile/cheevie-details.hbs",
@@ -422,7 +460,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -437,6 +475,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"closeDrawer",
+			"this",
+			"draggable",
+			"this",
+			"draggable",
 			".cheevie-details",
 			"create-cheevie",
 			"give-cheevie-modal",
@@ -559,11 +602,6 @@
 			"cheevies",
 			"this.args.cheevies",
 			"this",
-			"cheevies",
-			"this",
-			"cheevies",
-			"availableCheevies",
-			"computed",
 			"cheevies"
 		],
 		"highlight": true,
@@ -582,14 +620,133 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/components/site-drawer-aside.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/templates/index.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19,
+								19
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/styles/components/site-drawer.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1820,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								356,
+								356
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1169.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/components/site-drawer-aside.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1839,
+								1839
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 579.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -634,7 +791,7 @@
 	"project": "cheevies.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -643,6 +800,30 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"drawer",
+				"app/styles/components/site-drawer.scss"
+			],
+			[
+				"index",
+				"app/templates/index.hbs"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"drawer.scss",
+				"app/styles/components/site-drawer.scss"
+			],
+			[
+				"draweras",
+				"app/components/site-drawer-aside.js"
+			],
+			[
+				"sitedra",
+				"app/components/site-drawer-aside.hbs"
+			],
 			[
 				"user",
 				"app/models/user.js"
@@ -776,10 +957,6 @@
 				"app/components/site-drawer-aside.js"
 			],
 			[
-				"drawer",
-				"app/components/site-drawer-aside.hbs"
-			],
-			[
 				"userin",
 				"app/components/user-in-list.hbs"
 			],
@@ -814,10 +991,6 @@
 			[
 				"cheedethbs",
 				"app/templates/index/profile/cheevie-details.hbs"
-			],
-			[
-				"index",
-				"app/templates/index.hbs"
 			],
 			[
 				"site",
@@ -930,10 +1103,6 @@
 			[
 				"image-uploader",
 				"app/mixins/image-uploader.js"
-			],
-			[
-				"pack",
-				"package.json"
 			],
 			[
 				"cheeinlist",
@@ -1142,18 +1311,6 @@
 			[
 				"welcome",
 				"packages/vc-web/src/js/containers/welcome/welcome-screen.jsx"
-			],
-			[
-				"components/menu",
-				"packages/vc-web/src/js/components/menu.jsx"
-			],
-			[
-				"more",
-				"packages/vc-web/src/js/containers/more-btn.jsx"
-			],
-			[
-				"js/components/popup",
-				"packages/vc-web/src/js/components/popup.jsx"
 			]
 		],
 		"width": 0.0
