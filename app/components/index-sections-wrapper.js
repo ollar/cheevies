@@ -1,22 +1,22 @@
-import Component from '@ember/component';
-import DraggableMixin from 'draggable-mixin/mixins/draggable';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { DIRECTION_HORIZONTAL } from 'draggable-modifier';
 
-export default Component.extend(DraggableMixin, {
-    panDirection() {
-        return this.DIRECTION_HORIZONTAL;
-    },
+export default class IndexSectionsWrapperComponent extends Component {
+    panDirection = DIRECTION_HORIZONTAL;
 
-    onPanEnvComplete() {
-        this._super();
-
-        const moveX = this.initialTransform[0] - this.previousMoveX;
+    @action
+    onPanEnvComplete(ev, cb, draggable) {
+        const moveX = draggable.initialTransform[0] - draggable.previousMoveX;
 
         if (Math.abs(moveX) > 50) {
             if (moveX > 0) {
-                this.setActivePage('cheevies');
+                this.args.setActivePage('cheevies');
             } else {
-                this.setActivePage('users');
+                this.args.setActivePage('users');
             }
         }
-    },
-});
+
+        return cb(...arguments);
+    }
+}

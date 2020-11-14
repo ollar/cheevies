@@ -1,5 +1,5 @@
 <ParticlesContainer>
-<IndexSectionsWrapper @class={{add "sections-wrapper " activePage}} @setActivePage={{this.setActivePage}}>
+<IndexSectionsWrapper @activePage={{activePage}} @setActivePage={{this.setActivePage}}>
   <section class="users-list grid-wrapper-2">
     <LinkTo @route="index.profile" @model={{this.model.me}}>
       <UserInList @user={{this.model.me}} @class="is-me" @cheevies={{this.model.cheevies}} />

@@ -1,4 +1,4 @@
-& {
+.modal-content {
     background: linear-gradient(191.73deg, #0075FF 1.99%, #4838FF 97.39%);
     @include center-wrapper;
     border-radius: 10px;
@@ -14,8 +14,9 @@
     &.is-dragged {
         transition: none;
     }
+
+    &>* {
+        grid-column: content;
+    }
 }
 
-&>* {
-    grid-column: content;
-}
