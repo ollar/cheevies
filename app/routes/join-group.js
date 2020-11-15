@@ -27,19 +27,17 @@ export default class JoinGroupRoute extends Route {
     redirectToSignIn({ group_id }, transition) {
         const { queryParams } = transition.to;
 
-        return new Promise(() => {
-            this.store.createRecord('join-group', {
-                group_id,
-                queryParams,
-            });
-            return this.transitionTo('wardrobe.sign-in')
-                .then(() => {
-                    this.send('notify', {
-                        type: 'info',
-                        text: this.intl.t('join-group.messages.attempt-signin'),
-                    });
-                });
+        this.store.createRecord('join-group', {
+            group_id,
+            queryParams,
         });
+        return this.transitionTo('wardrobe.sign-in')
+            .then(() => {
+                this.send('notify', {
+                    type: 'info',
+                    text: this.intl.t('join-group.messages.attempt-signin'),
+                });
+            });
     }
 
     model({ group_id }, transition) {

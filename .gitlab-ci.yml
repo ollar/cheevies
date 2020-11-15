@@ -58,7 +58,7 @@ patch_version:
 
         - npm version patch -m "Version up to %s [skip ci]"
 
-        - git push https://${GITLAB_USER_LOGIN}:${CI_ACCESS_TOKEN}@gitlab.com/ollar/webslides.git HEAD:${CI_COMMIT_REF_NAME}
+        - git push https://${GITLAB_USER_LOGIN}:${CI_ACCESS_TOKEN}@gitlab.com/ollar/cheevies.git HEAD:${CI_COMMIT_REF_NAME}
     only:
         refs:
             - dev
