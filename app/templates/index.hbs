@@ -5,7 +5,9 @@
             <drawer.aside />
         </div>
 
-        <SiteHeader @drawer={{drawer}} />
+        <SiteHeader
+            @drawer={{drawer}}
+            @currentRouteName={{this.currentRouteName}} />
 
         <div class="content-wrapper">
             {{outlet}}

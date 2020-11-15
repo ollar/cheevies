@@ -54,7 +54,7 @@ export default class ModalContentComponent extends Component {
     @action
     onPanEnvComplete(ev, cb, draggable) {
         //remove it maybe
-        if (this.disableDrag) return;
+        if (this.args.disableDrag) return;
 
         const transformY = draggable.initialTransform[1];
         const moveY = transformY - draggable.previousMoveY;

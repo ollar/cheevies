@@ -1,4 +1,6 @@
-<header class="header">
+<header
+    {{did-update this.onCurrentRouteNameChange @currentRouteName}}
+    class="header">
     {{#if this.isIndex}}
         <@drawer.trigger class="drawer-toggle-button icon-button">
           <SvgIcon @_size={{24}} @_name="menu" @_title={{t "icons.menu"}} class="h-center bottom" />

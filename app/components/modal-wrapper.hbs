@@ -1,10 +1,10 @@
 <div class="modal {{@class}}" {{did-insert this.didInsert}}>
     <a class="modal-background" {{on 'click' this.goBack}}></a>
     <ModalContent
-        {{busy-loader this.args.busy}}
+        {{busy-loader @busy}}
         @goBack={{this.goBack}}
         @giveCheevieModal={{@giveCheevieModal}}
-        @disableDrag={{this.disableDrag}}
+        @disableDrag={{@disableDrag}}
         @class={{if this.noTransition 'no-transition'}}>
       {{yield}}
     </ModalContent>
