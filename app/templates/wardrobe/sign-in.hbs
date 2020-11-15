@@ -16,8 +16,8 @@
             <div class="field">
                 <label class="label" for="email">{{t 'form.email.label'}}</label>
                 <div class="control">
-                    <Input @autocomplete="off" class="input" @id="email" @type="email" placeholder=" " @value={{model.email}} />
-                    <div class="placeholder">{{t 'form.email.placeholder'}}</div>
+                    <Input @autocomplete="off" class="input" id="username" type="text" placeholder=" " @value={{model.username}} />
+                    <div class="placeholder">{{t 'form.name.placeholder'}}</div>
                     <div class="background"></div>
                 </div>
             </div>
@@ -34,6 +34,12 @@
                 </div>
             </div>
         </form>
+
+        <div class="field">
+            <button class="pretty-button demo" {{action 'demoSignIn'}}>
+                {{t 'buttons.demo-sign-in'}}
+            </button>
+        </div>
     </section>
 </div>
 
@@ -41,8 +47,6 @@
 
 <div class="text-center-wrapper">
     <LinkTo @route="wardrobe.sign-up">{{t 'login.buttons.register' }}</LinkTo>
-    {{t 'or'}}
-    <LinkTo @route="reset-password">{{t 'nav.forgot-password' }}</LinkTo>
-    {{t 'or'}}
-    <LinkTo @route="wardrobe.social-sign-in">{{t 'nav.back-to-future' }}</LinkTo>
+    {{!-- {{t 'or'}} --}}
+    {{!-- <LinkTo @route="reset-password">{{t 'nav.forgot-password' }}</LinkTo> --}}
 </div>

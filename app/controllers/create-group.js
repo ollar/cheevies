@@ -1,19 +1,57 @@
-import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve, all } from 'rsvp';
 import { schedule } from '@ember/runloop';
 
-export default Controller.extend({
-    session: service(),
-    intl: service(),
-    me: service(),
 
-    myModel: alias('me.model'),
+export default class CreateGroupController extends Controller {
+    @service session;
+    @service intl;
+    @service me;
 
+    get myModel() {
+        return this.me.model;
+    }
+
+    @action
+    async createGroup() {
+        if (this.model.validate()) {
+            await this.me.fetch();
+
+            const groups = await this.store.query('group', { find: { name: this.model.name } });
+
+            if (groups && groups.length) {
+                return this.send('notify', {
+                    type: 'error',
+                    text: this.intl.t('messages.group_already_exist'),
+                });
+            }
+            const newGroup = this.store.createRecord('group', {
+                name: this.model.name,
+            });
+
+            newGroup.get('users').addObject(this.myModel);
+            newGroup.set('author', this.myModel);
+            newGroup.get('moderators').addObject(this.myModel);
+
+            await newGroup.save();
+
+            this.myModel.get('groups').addObject(newGroup);
+            this.session.persist('group', newGroup.name);
+
+            return this.myModel.save().then(this.onSuccess, this.onError);
+        }
+    }
+
+    @action
+    cancel() {
+        return window.history.back();
+    }
+
+
+    @action
     onSuccess() {
-        return resolve()
+        return Promise.resolve()
             .then(() =>
                 this.send('notify', {
                     type: 'success',
@@ -23,53 +61,13 @@ export default Controller.extend({
             .then(() => {
                 schedule('routerTransitions', () => this.transitionToRoute('index'));
             });
-    },
+    }
 
+    @action
     onError(e) {
         return this.send('notify', {
             type: 'error',
             text: e.message || this.intl.t('create_group.error_message'),
         });
-    },
-
-    actions: {
-        createGroup() {
-            if (this.model.validate()) {
-                this.me.fetch().then(() =>
-                    this.store
-                        .query('group', {
-                            orderBy: 'name',
-                            equalTo: this.model.name,
-                        })
-                        .then(groups => {
-                            if (groups && groups.length) {
-                                return this.send('notify', {
-                                    type: 'error',
-                                    text: this.intl.t('messages.group_already_exist'),
-                                });
-                            }
-                            const newGroup = this.store.createRecord('group', {
-                                name: this.model.name,
-                            });
-
-                            newGroup.get('users').addObject(this.myModel);
-                            this.myModel.get('groups').addObject(newGroup);
-
-                            newGroup.set('author', this.myModel);
-                            newGroup.get('moderators').addObject(this.myModel);
-
-                            this.session.set('data.group', newGroup.name);
-                            return all([newGroup.save(), this.myModel.save()]).then(
-                                () => this.onSuccess(),
-                                e => this.onError(e)
-                            );
-                        })
-                );
-            }
-        },
-
-        cancel() {
-            return window.history.back();
-        },
-    },
-});
+    }
+}

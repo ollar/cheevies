@@ -3,7 +3,7 @@
 </div>
 {{!-- user --}}
 {{#if user}}
-    <LinkTo @route="profile" @model={{user}}>
+    <LinkTo @route="index.profile" @model={{user}}>
         <IconImage @data={{user}} @image={{userImage}} @class="user-icon" />
     </LinkTo>
 {{/if}}
@@ -16,7 +16,9 @@
 {{!-- cheevie --}}
 {{#if cheevie}}
     <div class="activity-cheevie">
-        <IconImage @data={{cheevie}} @image={{cheevieImage}} @class="cheevie-icon" />
+        <LinkTo @route="index.index.cheevie-details" @model={{cheevie}}>
+            <IconImage @data={{cheevie}} @image={{cheevieImage}} @class="cheevie-icon" />
+        </LinkTo>
     </div>
 {{/if}}
 

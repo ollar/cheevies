@@ -12,7 +12,7 @@ module('Acceptance | index', function(hooks) {
 
         await settled();
 
-        assert.equal(currentURL(), '/wardrobe/social-sign-in');
+        assert.equal(currentURL(), '/wardrobe/sign-in');
     });
 
     test('visiting / signed but no group should redirect to /select-group', async function(assert) {

@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { observer } from '@ember/object';
 
 import { TimelineLite } from 'gsap';
 
@@ -17,10 +16,6 @@ export default Component.extend({
         });
     },
 
-    cheeviesLoaded: observer('_cheeviesPromise.length', '_cheeviesPromise.isFulfilled', function() {
-        if (this._cheeviesPromise.isFulfilled) this._runAnimation();
-    }),
-
     _runAnimation() {
         if (!this.tline.isActive()) this.tline.play();
     },
@@ -34,6 +29,6 @@ export default Component.extend({
                 opacity: 0,
             });
 
-        if (this._cheeviesPromise.isFulfilled) this._runAnimation();
+        this._runAnimation();
     },
 });

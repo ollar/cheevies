@@ -11,11 +11,11 @@
     </ul>
 
     <section class="section container" test-id="credentials-section">
-        <form {{action 'handleRegister' on="submit"}}>
+        <form {{on 'submit' this.handleRegister}}>
             <div class="field">
-                <label class="label" for="name">{{t 'form.name.label'}}</label>
+                <label class="label" for="username">{{t 'form.name.label'}}</label>
                 <div class="control">
-                    <Input class="input" @id="name" @type="text" placeholder=" " @autocomplete="name" @value={{model.name}} />
+                    <Input class="input" id="username" type="text" placeholder=" " autocomplete="username" @value={{this.model.username}} />
                     <div class="placeholder">{{t 'form.name.placeholder'}}</div>
                     <div class="background"></div>
                 </div>
@@ -50,8 +50,6 @@
 
 <div class="text-center-wrapper">
     <LinkTo @route="wardrobe.sign-in">{{t 'register.buttons.login' }}</LinkTo>
-    {{t 'or'}}
-    <LinkTo @route="reset-password">{{t 'nav.forgot-password' }}</LinkTo>
-    {{t 'or'}}
-    <LinkTo @route="wardrobe.social-sign-in">{{t 'nav.back-to-future' }}</LinkTo>
+    {{!-- {{t 'or'}} --}}
+    {{!-- <LinkTo @route="reset-password">{{t 'nav.forgot-password' }}</LinkTo> --}}
 </div>

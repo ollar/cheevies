@@ -1,42 +1,47 @@
 import { alias } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import AuthenticatedRouteMixin from '../mixins/authenticated-route-mixin';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 // import { later } from '@ember/runloop';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend({
     me: service(),
     settings: service(),
     myGroup: service('my-group'),
     cachedImage: service(),
     intl: service(),
+    session: service(),
 
     settingsModel: alias('settings.model'),
-    authenticationRoute: 'wardrobe.social-sign-in',
+
+    beforeModel(transition) {
+        this.session.requireAuthentication(transition, 'wardrobe.sign-in');
+    },
 
     model() {
-        if (!this.get('myGroup.groupName')) return {};
+        if (!this.get('myGroup.groupName')) throw new Error('no groupName set');
 
         return this.myGroup
             .fetch()
-            .then(group =>
-                hash({
+            .then(group => {
+                return hash({
                     me: this.me.fetch(),
                     users: group.get('users'),
+                    cheevies: group.get('cheevies'),
                     settings: this.settings.fetch(),
                 })
-            )
-            .catch(e => this.onModelError(e));
+            });
     },
 
-    onModelError() {
-        this.transitionTo('wardrobe.sign-out');
-        this.send('notify', {
-            type: 'error',
-            text: this.intl.t('messages.app_init_error'),
-        });
+    actions: {
+        error(e) {
+            console.log(e)
+            this.send('notify', {
+                type: 'error',
+                text: this.intl.t('messages.app_init_error'),
+            });
+            this.transitionTo('wardrobe.sign-out');
+        },
     },
 
     afterModel() {

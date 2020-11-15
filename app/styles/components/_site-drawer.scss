@@ -1,0 +1,90 @@
+.drawer {
+    background: url('/images/drawer_bottom_bg.svg') no-repeat left bottom,
+        linear-gradient(180deg, #1D2349 0%, #131731 100%);
+    background-size: 100% auto;
+    display: grid;
+    grid-template-columns: 1.5em auto 1.5em;
+    grid-template-rows: minmax(0, 35%) minmax(0, 1fr) 50px;
+    height: 100vh;
+    transition: transform 0.3s;
+
+    &.is-dragged {
+        transition: none;
+    }
+
+    .avatar {
+        overflow: hidden;
+        grid-column: 1 / 4;
+        grid-row: 1 / 2;
+
+        .icon-image {
+            border-radius: 0;
+            padding: 0 0 3px;
+            box-sizing: border-box;
+        }
+
+        img {
+            border-radius: 0;
+        }
+    }
+
+  .info {
+    padding-top: 28px;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-name {
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0 0 30px;
+  }
+
+  .cheevies-list {
+    padding: 0 ms(0);
+  }
+
+  .cheevie-in-list {
+      @include size(64px);
+  }
+
+  .add-cheevie-wrapper {
+    color: white;
+    text-align: center;
+    padding: ms(0) 0 0;
+    margin-top: auto;
+
+    svg {
+      stroke-width: 1px;
+    }
+
+    .add-cheevie-text {
+      display: block;
+      font-size: 10px;
+      margin-top: -5px;
+      line-height: 1;
+    }
+  }
+
+  .empty-placeholder {
+    margin: 0;
+  }
+}
+
+.drawer-footer {
+    grid-column: 1 / 4;
+    grid-row: 3 / 4;
+    height: 48px;
+    padding: 0 ms(0);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

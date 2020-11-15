@@ -5,8 +5,12 @@ import { action } from '@ember/object';
 
 import { userIsModerator, userIsGroupAuthor } from '../utils/user-role';
 
+import { DIRECTION_HORIZONTAL } from 'draggable-modifier';
+
 
 export default class SiteDrawerAsideComponent extends Component {
+    panDirection = DIRECTION_HORIZONTAL;
+
     @service me;
     @service myGroup;
     @service router;
@@ -37,9 +41,31 @@ export default class SiteDrawerAsideComponent extends Component {
         );
     }
 
+    get cheevies() {
+        if (!this.myModel || !this.groupModel) return [];
+        const userCheevies = this.myModel.cheevies;
+        const groupCheevies = this.groupModel.cheevies;
+
+        return userCheevies.filter(cheevie => groupCheevies.includes(cheevie));
+    }
+
+    handlePanMove(ev, cb, draggable) {
+        if (draggable.initialTransform[0] + ev.deltaX >= 300) return;
+        cb(ev);
+    }
+
+    @action
+    onPanEnvComplete(ev, cb, draggable) {
+        const moveX = draggable.initialTransform[0] - draggable.previousMoveX;
+        if (Math.abs(moveX) >= 150) {
+            this.args.closeDrawer(ev); // close it
+        }
+        return cb(ev);
+    }
+
     @action
     createCheevie() {
-        this.router.transitionTo('index.create-cheevie');
+        this.router.transitionTo('index.index.create-cheevie');
     }
 
     @action

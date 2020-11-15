@@ -1,36 +1,16 @@
-import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    computed
-} from '@ember/object';
-import {
-    schedule,
-    later
-} from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-    session: service(),
-    me: service(),
-    myModel: alias('me.model'),
-    activity: service(),
+export default class WardrobeSignUpController extends Controller {
+    @service session;
+    @service me;
+    @service activity;
 
-    init() {
-        this._super(...arguments);
-
-        this.onSuccess = this.onSuccess.bind(this);
-        this.onError = this.onError.bind(this);
-    },
-
+    @action
     onSuccess() {
         return this.me
             .fetch()
-            .then(() => {
-                this.myModel.set('name', this.model.name);
-                return this.myModel.save();
-            })
             .then(() => {
                 const joinGroupModel = this.store.peekAll('join-group').firstObject;
                 if (joinGroupModel)
@@ -39,39 +19,52 @@ export default Controller.extend({
                     });
             })
             .then(() =>
-                later(
-                    () =>
-                    this.activity.send({
-                        action: 'registered',
-                    }),
-                    2000
-                )
+                this.activity.send({
+                    action: 'registered',
+                })
             )
-            .then(() => schedule('routerTransitions', () =>
-                this.transitionToRoute('wardrobe.select-group')
-            ))
-    },
-
-    onError(err) {
-        return this.send('notify', {
-            type: 'error',
-            text: err.message,
-        });
-    },
-
-    actions: {
-        handleRegister() {
-            if (this.model.validate()) {
-                this.model
-                    .signUp()
-                    .then(() =>
-                        this.session.authenticate('authenticator:firebase', {
-                            email: this.get('model.email'),
-                            password: this.get('model.password'),
-                        })
-                    )
-                    .then(this.onSuccess, this.onError);
-            }
-        },
+            .then(() => this.transitionToRoute('wardrobe.select-group'))
     }
-});
+
+    @action
+    onError(err) {
+        Object.keys(err).forEach(key =>
+            this.send('notify', {
+                type: 'error',
+                text: err[key][0]
+            })
+        );
+    }
+
+    @action
+    handleRegister(e) {
+        if (e && e.preventDefault) e.preventDefault();
+
+        const data = this.model.serialize();
+
+        if (this.model.validate()) {
+            return this.session.register(data)
+                .then(() => this.session.authenticate('authenticator:application', data))
+                .then(async () => {
+                    const user = this.store.createRecord('user', {
+                        username: data.username,
+                        email: data.email,
+                    });
+
+                    await user.save();
+
+                    const settings = this.store.createRecord('setting', {
+                        user,
+                    });
+
+                    await settings.save();
+
+                    user.set('settings', settings);
+
+                    await user.save();
+                })
+                .then(this.onSuccess)
+                .catch(this.onError);
+        }
+    }
+}

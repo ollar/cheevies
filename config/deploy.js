@@ -3,16 +3,11 @@
 
 require('dotenv').config();
 
-const { deployToken } = process.env;
+const { awsAccessKey, awsSecurityKey } = process.env;
 
 module.exports = function(deployTarget) {
     let ENV = {
         build: {},
-        firebase: {
-            deployToken,
-            appName: 'default',
-            // deployToken: process.env.FIREBASE_TOKEN (if .env stuff is your style)
-        },
         // include other plugin configuration that applies to all deploy targets here
     };
 
@@ -20,14 +15,30 @@ module.exports = function(deployTarget) {
         ENV.build.environment = 'development';
         // configure other plugins for development deploy target here
 
-        ENV.firebase.appName = 'dev';
+        ENV.manifest = {
+            fileIgnorePattern: '*',
+        };
+
+        ENV.s3 = {
+            accessKeyId: awsAccessKey,
+            secretAccessKey: awsSecurityKey,
+            bucket: 'cheevies-dev',
+            region: 'eu-west-1',
+            allowOverwrite: true,
+        };
+
+        ENV['s3-index'] = {
+            accessKeyId: awsAccessKey,
+            secretAccessKey: awsSecurityKey,
+            bucket: 'cheevies-dev',
+            region: 'eu-west-1',
+            allowOverwrite: true,
+        };
     }
 
     if (deployTarget === 'testing') {
         ENV.build.environment = 'test';
         // configure other plugins for staging deploy target here
-
-        ENV.firebase.appName = 'test';
     }
 
     if (deployTarget === 'staging') {
@@ -38,6 +49,21 @@ module.exports = function(deployTarget) {
     if (deployTarget === 'production') {
         ENV.build.environment = 'production';
         // configure other plugins for production deploy target here
+
+        ENV.s3 = {
+            accessKeyId: awsAccessKey,
+            secretAccessKey: awsSecurityKey,
+            bucket: 'cheevies',
+            region: 'eu-west-1',
+            filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm,webmanifest}'
+        };
+
+        ENV['s3-index'] = {
+            accessKeyId: awsAccessKey,
+            secretAccessKey: awsSecurityKey,
+            bucket: 'cheevies',
+            region: 'eu-west-1'
+        };
     }
 
     // Note: if you need to build some configuration asynchronously, you can return

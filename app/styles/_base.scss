@@ -13,10 +13,6 @@ body {
     overscroll-behavior: contain;
 }
 
-body>.ember-view {
-    min-height: 100vh;
-}
-
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     user-select: none;
@@ -198,5 +194,21 @@ h6 {
             align-items: center;
             justify-content: center;
         }
+    }
+}
+
+.is-busy {
+    position: relative;
+
+    &:after {
+        content: "";
+        @include loader;
+        position: absolute;
+        z-index: 10;
+        opacity: 0.4;
+        top: 0;
+        left: 0;
+        @include size(100%);
+        grid-column: all;
     }
 }

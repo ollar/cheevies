@@ -1,48 +1,16 @@
-{{#unless hideGuidePopup}}
-    <div class="guide-invitation-button-wrapper">
-        <LinkTo @route="index.guide">{{t 'nav.guide-invitation-text' }}</LinkTo>
+<SettingsWrapper>
+    <SiteDrawer as |drawer|>
+        <div class="site-drawer-component {{if drawer.opened 'opened'}}">
+            <drawer.overlay />
+            <drawer.aside />
+        </div>
 
-        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
-            <SvgIcon @_name="x" @_size={{24}} />
-        </button>
-    </div>
-{{/unless}}
+        <SiteHeader
+            @drawer={{drawer}}
+            @currentRouteName={{this.currentRouteName}} />
 
-<ParticlesContainer>
-<IndexSectionsWrapper @class={{add "sections-wrapper " activePage}} @setActivePage={{action "setActivePage"}}>
-  <section class="users-list grid-wrapper-2">
-    <LinkTo @route="profile" @model={{model.me}}>
-      <UserInList @user={{model.me}} @class="is-me" />
-    </LinkTo>
-
-    {{#each users as |user|}}
-      <LinkTo @route="profile" @model={{user}}>
-        <UserInList @user={{user}} />
-      </LinkTo>
-    {{/each}}
-  </section>
-
-  <section class="cheevies-list grid-wrapper-3">
-    {{#each cheevies as |cheevie|}}
-      <LinkTo @route="index.cheevie-details" @model={{cheevie}}>
-        <CheevieInList @cheevie={{cheevie}} />
-      </LinkTo>
-    {{else}}
-      <div class="empty-placeholder">
-        {{t 'no-cheevies-placeholder'}}
-      </div>
-    {{/each}}
-  </section>
-</IndexSectionsWrapper>
-</ParticlesContainer>
-
-{{outlet}}
-
-<footer>
-  <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{action 'setActivePage' 'users'}}>
-    <SvgIcon @_name="users" @_size={{24}} @_title={{t "icons.users"}} @class="bottom h-center" />
-  </button>
-  <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{action 'setActivePage' 'cheevies'}}>
-    <SvgIcon @_name="star" @_size={{24}} @_title={{t "icons.cheevies"}} @class="bottom h-center" />
-  </button>
-</footer>
+        <div class="content-wrapper">
+            {{outlet}}
+        </div>
+    </SiteDrawer>
+</SettingsWrapper>

@@ -1,16 +1,15 @@
 import Route from '@ember/routing/route';
-import UnauthenticatedRouteMixin from '../../mixins/unauthenticated-route-mixin';
 import { inject as service } from '@ember/service';
 
-export default Route.extend(UnauthenticatedRouteMixin, {
+export default Route.extend({
     session: service(),
     me: service(),
 
     beforeModel(transition) {
-        if (!this.session.isAuthenticated) {
-            this.transitionTo('wardrobe.social-sign-in');
-            transition.abort();
+        if (this.session.data.authenticated.group) {
+            this.transitionTo('index');
         }
+        this.session.requireAuthentication(transition, 'wardrobe.sign-in');
     },
 
     model() {

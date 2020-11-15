@@ -13,11 +13,11 @@ export default class MyGroupService extends Service {
     }
 
     get groupName() {
-        return this.session.data.group;
+        return this.session.data.authenticated.group;
     }
 
     get isDemo() {
-        return this.session.data.demoGroup;
+        return this.session.data.authenticated.demoGroup;
     }
 
     get _type() {
@@ -33,19 +33,17 @@ export default class MyGroupService extends Service {
 
     fetch() {
         return Promise.resolve().then(() => {
-            if (!this.groupName) throw new Error('session.data.group not filled');
+            if (!this.groupName) throw new Error('group not filled');
             if (this.model) return this.model;
 
             return this.store
                 .query(this._type, {
-                    orderBy: 'name',
-                    equalTo: this.groupName,
+                    find: {
+                        name: this.groupName
+                    }
                 })
-                .then(_group => {
-
-
-                    const group = _group.firstObject;
-                    console.log(group)
+                .then(_groups => {
+                    const group = _groups.firstObject;
                     this.model = group;
                     return group;
                 });

@@ -1,0 +1,76 @@
+<ModalWrapper
+    @goBack={{this.goBack}}
+    @class={{if this._image "has-image" "no-image"}}
+    @busy={{this.busy}}
+    @disableDrag={{this.editMode}}>
+  {{#if this.showMode}}
+    {{#if this.canEditCheevie}}
+        <button class="icon-button mode-toggle is-info" {{on 'click' this.toggleMode}}>
+        <SvgIcon @_name="edit" @_size={{24}} @_title={{t "icons.edit"}} @class="h-center bottom" />
+        </button>
+    {{/if}}
+
+    {{#if this._image}}
+        <figure class="image">
+        <img src={{this._image.url}}>
+        </figure>
+    {{else}}
+        <div class="image-placeholder">
+          <SvgIcon @_name="image" @_size={{48}} />
+        </div>
+    {{/if}}
+
+    <h1 class="title">
+      {{this.model.name}}
+    </h1>
+
+    <div class="description">
+      {{this.model.description}}
+    </div>
+  {{else}}
+    <button class="icon-button mode-toggle" {{on 'click' this.toggleMode}}>
+      <SvgIcon @_name="chevron-left" @_size={{24}} @_title={{t "icons.cancel"}} @class="h-center bottom" />
+    </button>
+    <button class="icon-button cheevie-delete" {{on 'click' this.deleteCheevie}}>
+      <SvgIcon @_name="trash-2" @_size={{24}} @_title={{t "icons.remove"}} @class="h-center bottom" />
+    </button>
+
+    <div class="image-uploader-wrapper">
+        <a class="image-uploader-trigger" href="" {{on 'click' this.chooseMethod}}></a>
+        <ImagesDropArea @uploadImage={{this.uploadImage}}>
+        {{#if this._image}}
+            <figure class="image">
+            <img src={{this._image.url}}>
+            </figure>
+
+            <button class="icon-button delete" {{on 'click' this.removeImage}}>
+            <SvgIcon @_name="x" @_size={{48}} @_title={{t "icons.remove"}} @class="h-center bottom" />
+            </button>
+        {{else}}
+            <div class="drop-area">
+            <SvgIcon @_name="image" @_size={{48}} @_title={{t "icons.add_image"}} @class="h-center bottom" />
+            </div>
+        {{/if}}
+        </ImagesDropArea>
+        {{#if this.showOptionalMenu}}
+            <ul class="optional-menu">
+                <li {{on 'click' this.selectGiphy}}>
+                    {{t 'optional-menu.giphy'}}
+                </li>
+                <li {{on 'click' this.selectUpload}}>
+                    {{t 'optional-menu.upload'}}
+                </li>
+                <li {{on 'click' this.closeOptionalMenu}}>
+                    {{t 'optional-menu.cancel'}}
+                </li>
+            </ul>
+        {{/if}}
+    </div>
+
+    {{#if this.showGiphySelector}}
+        <GiphySelector @goBack={{this.closeOptionalMenu}} @takeGiphy={{this.takeGiphy}} />
+    {{/if}}
+
+    {{partial 'cheevie-edit-form'}}
+  {{/if}}
+</ModalWrapper>

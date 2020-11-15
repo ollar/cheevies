@@ -8,17 +8,17 @@ export default Route.extend({
 
     beforeModel() {
         return run(() => {
-            try {
-                this.store.unloadAll();
-            } catch (e) {
-                /* eslint-disable */
-                console.error(e);
-            }
+            // try {
+            //     this.store.unloadAll();
+            // } catch (e) {
+            //     /* eslint-disable */
+            //     console.error(e);
+            // }
 
             run(() => {
                 this.session
                     .invalidate()
-                    .then(() => this.router.transitionTo('wardrobe.social-sign-in'));
+                    // .then(() => this.router.transitionTo('wardrobe.sign-in'));
             });
         });
     },

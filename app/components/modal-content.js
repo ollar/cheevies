@@ -1,59 +1,63 @@
-import Component from '@ember/component';
-import DraggableMixin from 'draggable-mixin/mixins/draggable';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 
-export default Component.extend(DraggableMixin, {
-    classNames: ['modal-content'],
-    threshold: 100,
+import { DIRECTION_VERTICAL } from 'draggable-modifier';
 
-    panDirection() {
-        return this.DIRECTION_VERTICAL;
-    },
+export default class ModalContentComponent extends Component {
+    threshold = 200;
+    panDirection = DIRECTION_VERTICAL;
+    marginTop = 0;
+    elWrapperHeight = 0;
+    elementHeight = 0;
+    elWrapper = null;
+    element = null;
 
-    didInsertElement() {
-        this.elWrapper = this.element.parentElement;
-        const { marginTop } = window.getComputedStyle(this.element);
-        this.set('marginTop', parseInt(marginTop));
+    @action
+    didInsert(element) {
+        this.elWrapper = element.parentElement;
+        this.element = element;
+        const { marginTop } = window.getComputedStyle(element);
 
-        if (this.disableDrag) return;
-        this._super(...arguments);
-    },
+        this.marginTop = parseInt(marginTop);
 
-    willDestroyElement() {
-        if (this.disableDrag) return;
-        this._super(...arguments);
-    },
+        // if (this.disableDrag) return;
+    }
 
-    handlePanStart() {
+
+    @action
+    handlePanStart(ev, cb) {
         this.elWrapperHeight = this.elWrapper.offsetHeight;
         this.elementHeight = this.element.offsetHeight;
-        this._super(...arguments);
-    },
+        return cb(ev);
+    }
 
-    handlePanMove(ev) {
-        const transformY = this.initialTransform[1];
+    @action
+    handlePanMove(ev, cb, draggable) {
+        const transformY = draggable.initialTransform[1];
         const moveY = transformY + ev.deltaY;
 
         // if modal content is bigger than wrapper
         if (this.elementHeight + this.marginTop > this.elWrapperHeight) {
             if (
-                this.giveCheevieModal &&
+                this.args.giveCheevieModal &&
                 this.elementHeight + moveY + this.marginTop < this.elWrapperHeight
             )
-                return ev;
+                return false;
         } else {
-            if (this.giveCheevieModal && moveY < 0) return ev;
+            if (this.args.giveCheevieModal && moveY < 0) return false;
         }
 
-        this._super(ev);
-    },
+        return cb(ev);
+    }
 
-    onPanEnvComplete() {
+    @action
+    onPanEnvComplete(ev, cb, draggable) {
         //remove it maybe
-        if (this.disableDrag) return;
+        if (this.args.disableDrag) return;
 
-        const transformY = this.initialTransform[1];
-        const moveY = transformY - this.previousMoveY;
+        const transformY = draggable.initialTransform[1];
+        const moveY = transformY - draggable.previousMoveY;
         const resultMoveY = -transformY + moveY;
         // const elRect = this.element.getBoundingClientRect();
 
@@ -62,18 +66,18 @@ export default Component.extend(DraggableMixin, {
             if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
                 if (Math.abs(resultMoveY) > this.threshold) {
-                    return this.goBack();
+                    return this.args.goBack();
                 } else {
-                    return this._super(...arguments);
+                    return cb(ev);
                 }
             } else {
                 // modal content is bigger than wrapper ========================
                 if (resultMoveY < 0) {
                     // pan down
                     if (Math.abs(resultMoveY) > this.threshold) {
-                        return this.goBack();
+                        return this.args.goBack();
                     } else {
-                        return this._super(...arguments);
+                        return cb(ev);
                     }
                 }
             }
@@ -82,18 +86,18 @@ export default Component.extend(DraggableMixin, {
             if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
                 if (Math.abs(resultMoveY) > this.threshold) {
-                    return this.goBack();
+                    return this.args.goBack();
                 } else {
-                    return this._super(...arguments);
+                    return cb(ev);
                 }
             } else {
                 // modal content is bigger than wrapper ========================
                 if (resultMoveY < 0) {
                     // pan down
                     if (Math.abs(resultMoveY) > this.threshold) {
-                        return this.goBack();
+                        return this.args.goBack();
                     } else {
-                        return this._super(...arguments);
+                        return cb(ev);
                     }
                 } else {
                     // pan up
@@ -103,19 +107,17 @@ export default Component.extend(DraggableMixin, {
                     let bottomIsVisible = bottomOffset > 0;
 
                     if (bottomIsVisible && bottomOffset < this.threshold) {
-                        return this.set(
-                            'style',
+                        return draggable.element.style =
                             htmlSafe(
-                                `${this.cachedStyle} transform: translate(0px, ${-elResultHeight +
+                                `${draggable.cachedStyle} transform: translate(0px, ${-elResultHeight +
                                     this.elWrapperHeight -
                                     10}px)`
-                            )
-                        );
+                            );
                     } else if (bottomIsVisible && bottomOffset > this.threshold) {
-                        return this.goBack();
+                        return this.args.goBack();
                     }
                 }
             }
         }
-    },
-});
+    }
+}

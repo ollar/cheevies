@@ -1,0 +1,149 @@
+.modal {
+    @include center-wrapper;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 200;
+    -webkit-overflow-scrolling: touch;
+
+    figure {
+        min-height: 30vh;
+    }
+
+    .image-placeholder {
+        height: 30vh;
+        position: relative;
+
+        [class*='__svg-icon'] {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+
+            svg {
+                stroke-width: 1px;
+            }
+        }
+    }
+
+    .modal-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        grid-column: all;
+        background: rgba(5, 7, 14, 0.7);
+    }
+
+    &.is-busy .modal-content {
+        overflow: hidden;
+
+        &:after {
+            @include loader;
+            content: '';
+            position: absolute;
+            opacity: 0.4;
+            z-index: 10;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .image-uploader-wrapper,
+    .images-drop-area,
+    figure.image {
+        grid-column: all;
+    }
+
+    figure.image {
+        margin: 0 0 ms(2);
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+
+        img {
+            display: block;
+            width: 100%;
+            user-select: none;
+            pointer-events: none;
+        }
+    }
+
+    .icon-button {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        z-index: 11;
+    }
+
+    .mode-toggle,
+    .cheevie-delete {
+        z-index: 12;
+    }
+
+    .modal-close {
+        right: 0;
+        left: auto;
+    }
+
+    .cheevie-delete {
+        color: #f00;
+        right: 0;
+        left: auto;
+    }
+
+    .title,
+    .description {
+        margin: 0 0 ms(1, 16px);
+    }
+
+    .control {
+        text-align: center;
+
+        .button {
+            width: 34px;
+            height: 34px;
+            border: none;
+            padding: 4px;
+            color: white;
+            border-radius: 100%;
+            background: linear-gradient(208.67deg, #FF008A 8.29%, #8F38FF 92.27%);
+        }
+    }
+
+    &.new-cheevies {
+        .title {
+            text-align: center;
+        }
+
+        .modal-content {
+            background: transparent;
+            justify-content: center;
+            pointer-events: none;
+        }
+    }
+
+    .new-cheevies-wrapper {
+        justify-self: center;
+    }
+
+    &.give-cheevie-modal {
+        grid-auto-rows: auto;
+        align-items: flex-end;
+
+        .modal-content {
+            grid-column: all;
+            margin-bottom: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            max-width: 100%;
+            // transform: translate(0, 100%);
+        }
+    }
+}

@@ -19,9 +19,5 @@
 /bower.json.ember-try
 /package.json.ember-try
 
-# firebase
-/public/firebase-messaging-sw.js
-/functions/
-
 # cordova
 /corber/

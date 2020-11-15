@@ -1,22 +1,31 @@
 import Controller from '@ember/controller';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    schedule
-} from '@ember/runloop';
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { schedule } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-    session: service(),
-    me: service(),
-    activity: service(),
+// import getRootUrl from 'cheevies/utils/get-root-url';
 
-    init() {
-        this._super(...arguments);
-        this.onError = this.onError.bind(this);
-        this.onSuccess = this.onSuccess.bind(this);
-    },
+export default class WardrobeSignInController extends Controller {
+    @service session;
+    @service me;
+    @service activity;
 
+    @tracked busy;
+
+    @action
+    passwordSignIn(e) {
+        if (e && e.preventDefault) e.preventDefault();
+
+        if (this.model.validate()) {
+            const data = this.model.serialize();
+
+            this.session.authenticate('authenticator:application', data)
+                .then(this.onSuccess, this.onError);
+        }
+    }
+
+    @action
     onSuccess() {
         return this.me
             .fetch()
@@ -35,26 +44,82 @@ export default Controller.extend({
             .then(() => schedule('routerTransitions', () =>
                 this.transitionToRoute('wardrobe.select-group')
             ));
-    },
+    }
 
+    @action
     onError(err) {
         this.send('notify', {
             type: 'error',
-            text: err.message,
+            text: err.detail
         });
-    },
+    }
 
-    actions: {
-        passwordSignIn() {
-            if (this.model.validate()) {
-                return this.session
-                    .authenticate('authenticator:firebase', {
-                        email: this.get('model.email'),
-                        password: this.get('model.password'),
-                        model: this.model,
-                    })
-                    .then(this.onSuccess, this.onError);
-            }
-        },
-    },
-});
+
+    @action
+    demoSignIn() {
+            this.busy = true;
+
+            // const demoGroupModulePath = () => getRootUrl() + '_demo-group.js';
+
+            return import('/_demo-group.js')
+                    .then(async ({ imageSets, cheevies, users, you, demoGroup }) => {
+                    Object.keys(imageSets).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/image-set',
+                                Object.assign({}, { _id: key }, imageSets[key])
+                            )
+                        );
+                    });
+
+                    Object.keys(cheevies).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/cheevie',
+                                Object.assign({}, { _id: key }, cheevies[key])
+                            )
+                        );
+                    });
+
+                    Object.keys(users).forEach(key => {
+                        this.store.push(
+                            this.store.normalize(
+                                'demo/user',
+                                Object.assign({}, { _id: key }, users[key])
+                            )
+                        );
+                    });
+
+                    const user = this.store.push(
+                        this.store.normalize(
+                            'demo/user',
+                            Object.assign({}, { _id: 'youruserid' }, you)
+                        )
+                    );
+
+                    const group = this.store.push(
+                        this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))
+                    );
+
+                    await this.session.authenticate('authenticator:test', {
+                        group: group.name,
+                        demoGroup: true
+                    });
+
+                    group.users.pushObject(user);
+                    group.set('author', user);
+                    user.groups.pushObject(group);
+
+                    this.busy = false;
+
+                    return Promise.all([user.save(), group.save()]);
+                })
+                .then(() => schedule('routerTransitions', () => this.transitionToRoute('index')))
+                .catch(err => {
+                    this.send('notify', {
+                        type: 'error',
+                        text: err.message
+                    });
+                });
+        }
+}

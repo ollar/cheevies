@@ -1,0 +1,19 @@
+{{#unless this.isMe}}
+<ModalWrapper @goBack={{this.goBack}} @busy={{this.busy}} @class="give-cheevie-modal" @giveCheevieModal={{true}}>
+    <div class="cheevies grid-wrapper-3">
+        {{#each this.cheevies as |cheevie|}}
+            <div class="cheevie-item has-text-centered">
+                <div {{on 'click' (fn this.pickCheevie cheevie)}}>
+                    <CheevieInList @cheevie={{cheevie}} @id={{cheevie.id}} />
+                </div>
+            </div>
+        {{else}}
+            <div class="empty-placeholder">
+                {{t 'no-cheevies-placeholder'}}
+            </div>
+        {{/each}}
+    </div>
+</ModalWrapper>
+{{/unless}}
+
+{{outlet}}
