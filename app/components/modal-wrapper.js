@@ -19,18 +19,18 @@ export default class ModalWrapperComponent extends Component {
             if (!this.isDestroyed || !this.isDestroying) this.noTransition = false;
         };
 
-        if (this.giveCheevieModal) {
+        if (this.args.giveCheevieModal) {
             TweenLite.from('.modal-content', this.animationDuration, {
                 y: '100%',
                 opacity: 0,
-                ease: Power2.easeOut,
+                ease: Power2.easeIn,
                 onComplete,
             });
         } else {
             TweenLite.from('.modal-content', this.animationDuration, {
                 y: 20,
                 opacity: 0,
-                ease: Power2.easeOut,
+                ease: Power2.easeIn,
                 onComplete,
             });
         }
@@ -65,7 +65,7 @@ export default class ModalWrapperComponent extends Component {
                 if (this.args.goBack && this.args.goBack.call) this.args.goBack();
             }
         };
-        if (this.giveCheevieModal) {
+        if (this.args.giveCheevieModal) {
             TweenLite.fromTo(
                 '.modal-content',
                 this.animationDuration,
