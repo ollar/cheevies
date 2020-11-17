@@ -1,44 +1,45 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import Service, { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-    session: service(),
-    store: service(),
-    myGroup: service('my-group'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+export default class MeService extends Service {
+    @service session;
+    @service store;
+    @tracked model = null;
 
-    _type: computed('isDemo', function() {
-        return this.isDemo ? 'demo/user' : 'user';
-    }),
+    get isDemo() {
+        return this.session.data.authenticated.demoGroup;
+    }
 
-    isAuthenticated: computed.readOnly('session.isAuthenticated'),
+    get appName() {
+        return getOwner(this).application.appName;
+    }
 
-    uid: computed('isAuthenticated', function() {
-        return this.isAuthenticated
-            ? this.getWithDefault('session.data.authenticated.uid', '')
-            : '';
-    }),
+    get isAuthenticated() {
+        return this.session.isAuthenticated;
+    }
 
-    init() {
-        this._super(...arguments);
+    constructor() {
+        super(...arguments);
         this.session.on('invalidationSucceeded', () => {
-            this.set('model', null);
+            this.model = null;
         });
-    },
+    }
 
     fetch() {
-        return resolve().then(() => {
-            if (!this.uid) throw new Error('session.data.authenticated.uid not filled');
-            if (this.model) return this.model;
+        if (!this.isAuthenticated || this.model) return Promise.resolve(this.model);
 
-            return this.store.findRecord(this._type, this.uid).then(user => {
-                this.set('model', user);
-                return user;
-            });
+        if (this.isDemo) {
+            const me = this.store.peekRecord('demo/user', 'youruserid');
+            this.model = me;
+            return me;
+        }
+
+        return this.store.queryRecord('me', {
+            collection_name: this.appName
+        }).then(me => {
+            this.model = me;
+            return me;
         });
-    },
-
-    model: null,
-});
+    }
+}

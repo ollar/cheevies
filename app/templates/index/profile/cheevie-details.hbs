@@ -1,0 +1,43 @@
+<Modal
+    @goBack={{this.goBack}}
+    @class={{if this.image "has-image" "no-image"}}
+    as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
+
+    {{#if this.isMe}}
+    <button class="icon-button share" {{on 'click' (fn this.shareCheevie this.model)}}>
+        <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center right" />
+    </button>
+    {{/if}}
+
+    {{#if this.isMe}}
+        <button class="icon-button delete" {{on 'click' (fn this.refuseCheevie this.model)}}>
+            <SvgIcon @_name="trash-2" @_size={{18}} @_title={{t "icons.remove"}} @class="v-center left" />
+        </button>
+    {{/if}}
+
+    {{#if this.image}}
+        <figure class="image">
+        <img src={{this.image.url}}>
+
+        </figure>
+    {{else}}
+        <div class="image-placeholder">
+          <SvgIcon @_name="image" @_size={{48}} />
+        </div>
+    {{/if}}
+
+    <h1 class="title">
+      {{this.model.name}}
+    </h1>
+
+    <div class="description">
+      {{this.model.description}}
+    </div>
+
+    {{outlet}}
+
+    </modal.content>
+</Modal>

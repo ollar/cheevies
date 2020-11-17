@@ -1,10 +1,9 @@
 import Route from '@ember/routing/route';
-import UnauthenticatedRouteMixin from '../../mixins/unauthenticated-route-mixin';
 import {
     inject as service
 } from '@ember/service';
 
-export default Route.extend(UnauthenticatedRouteMixin, {
+export default Route.extend({
     session: service(),
 
     beforeModel(transition) {
@@ -15,9 +14,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     model() {
-        return this.get('store').createRecord('user/signup', {
-            type: 'email',
-        });
+        return this.store.createRecord('user/signup');
     },
 
     actions: {

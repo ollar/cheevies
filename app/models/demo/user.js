@@ -1,10 +1,10 @@
+import { belongsTo, hasMany } from '@ember-data/model';
 import UserModel from '../user';
-import DS from 'ember-data';
 
 export default UserModel.extend({
-    'image-set': DS.belongsTo('demo/image-set', { inverse: null }),
-    cheevies: DS.hasMany('demo/cheevie', { inverse: null }),
-    unseenCheevies: DS.hasMany('demo/cheevie', { inverse: null }),
-    groups: DS.hasMany('demo/group', { inverse: null }),
-    settings: DS.belongsTo('demo/settings', { inverse: null }),
+    'image-set': belongsTo('demo/image-set', { inverse: null }),
+    cheevies: hasMany('demo/cheevie', { inverse: null }),
+    unseenCheevies: hasMany('demo/cheevie', { inverse: null }),
+    groups: hasMany('demo/group', { inverse: null }),
+    settings: belongsTo('demo/setting', { inverse: null }),
 });

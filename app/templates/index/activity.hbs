@@ -1,0 +1,15 @@
+<div class="center-wrapper">
+    <h1 class="title">
+        {{t 'activity.title'}}
+    </h1>
+
+    <div class="activities-list">
+        {{#each this.model as |activity|}}
+            <ActivityListItem @_data={{activity}} @class="activity-list-item" />
+        {{else}}
+            <p class="empty">{{t 'activity.empty'}}</p>
+        {{/each}}
+    </div>
+
+    {{outlet}}
+</div>

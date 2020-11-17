@@ -1,0 +1,9 @@
+<div
+    class="modal-content"
+    {{draggable panDirection=@panDirection handlePanStart=@handlePanStart handlePanMove=@handlePanMove onPanEnvComplete=@onPanEnvComplete}}
+    {{did-insert @saveContentRef}}
+    {{did-insert @contentDidInsert}}
+    {{busy-loader @busy}}
+    ...attributes>
+    {{yield}}
+</div>

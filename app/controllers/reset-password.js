@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import firebase from 'firebase';
 import { resolve } from 'rsvp';
+import { inject as service } from '@ember/service';
 import { schedule, later } from '@ember/runloop';
 
 export default Controller.extend({
@@ -16,7 +16,7 @@ export default Controller.extend({
             .then(() =>
                 this.send('notify', {
                     type: 'success',
-                    text: this.get('intl').t('reset-password.success_message'),
+                    text: this.intl.t('reset-password.success_message'),
                 })
             )
             .then(() =>
@@ -28,15 +28,16 @@ export default Controller.extend({
         this.model.rollbackAttributes();
         this.send('notify', {
             type: 'error',
-            text: e.message || this.get('intl').t('reset-password.error_message'),
+            text: e.message || this.intl.t('reset-password.error_message'),
         });
     },
 
     actions: {
         resetPassword() {
             if (this.model.validate()) {
-                var auth = firebase.auth();
-                auth.sendPasswordResetEmail(this.model.email).then(this.onSuccess, this.onError);
+                return this.firebase.auth()
+                    .then(auth => auth.sendPasswordResetEmail(this.model.email))
+                    .then(this.onSuccess, this.onError);
             }
         },
 

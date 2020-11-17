@@ -1,23 +1,10 @@
-{{#settings-wrapper}}
-
-    {{#site-drawer drawerData as |drawerData|}}
-    {{#if session.isAuthenticated}}
-        {{#if session.data.group}}
-            {{site-header _drawerData=drawerData}}
-        {{/if}}
-    {{/if}}
-
-    {{#ember-notify classPrefix="app-notify" as |message close|}}
+<EmberNotify @classPrefix="app-notify" as |message close|>
     <div class="notification is-{{message.type}}">
         <button class="delete" {{action close}}></button>
         {{message.text}}
     </div>
-    {{/ember-notify}}
+</EmberNotify>
 
-    <div class="content-wrapper {{routeStyleNamespaceClassSet}}">
-        {{outlet}}
-    </div>
-
-    {{/site-drawer}}
-
-{{/settings-wrapper}}
+<div class="{{routeStyleNamespaceClassSet}}">
+    {{outlet}}
+</div>

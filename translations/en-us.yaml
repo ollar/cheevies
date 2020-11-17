@@ -151,6 +151,7 @@ index:
         title: Hooray! You've got new cheevies!
 no-cheevies-placeholder: There are no cheevies yet, maybe you can create one?
 you-have-no-cheevies-yet: You have no cheevies yet, but you are the best!
+user-have-no-cheevies-yet: '{username} has no cheevies yet, give him some?'
 footer_message: Made with ♥ 2017
 share:
     cheevie:

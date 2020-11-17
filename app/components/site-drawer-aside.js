@@ -1,81 +1,75 @@
-import Component from 'site-drawer-component/components/site-drawer-aside';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import DS from 'ember-data';
-import { resolve } from 'rsvp';
-
-import DraggableMixin from 'draggable-mixin/mixins/draggable';
+import { readOnly } from '@ember/object/computed';
+import { action } from '@ember/object';
 
 import { userIsModerator, userIsGroupAuthor } from '../utils/user-role';
 
-export default Component.extend(DraggableMixin, {
-    me: service(),
-    myGroup: service('my-group'),
-    router: service(),
+import { DIRECTION_HORIZONTAL } from 'draggable-modifier';
 
-    myModel: computed.readOnly('me.model'),
-    groupModel: computed.readOnly('myGroup.model'),
 
-    imageSet: computed.readOnly('me.model.image-set'),
-    image: computed('imageSet.{}', function() {
-        if (!this.get('imageSet.128')) return null;
+export default class SiteDrawerAsideComponent extends Component {
+    panDirection = DIRECTION_HORIZONTAL;
+
+    @service me;
+    @service myGroup;
+    @service router;
+
+    @readOnly('me.model') myModel;
+    @readOnly('myGroup.model') groupModel;
+
+    get imageSet() {
+        if (!this.me.model) return null;
+        return this.me.model.get('image-set');
+    }
+
+    get image() {
+        if (!this.imageSet) return null;
+        if (!this.imageSet.get('128')) return null;
         return {
-            sm: this.get('imageSet.256'),
-            md: this.get('imageSet.512'),
+            sm: this.imageSet.get('256'),
+            md: this.imageSet.get('512'),
         };
-    }),
+    }
 
-    panDirection() {
-        return this.DIRECTION_HORIZONTAL;
-    },
-
-    handlePanMove(ev) {
-        if (this.initialTransform[0] + ev.deltaX >= 300) return;
-        this._super(ev);
-    },
-
-    onPanEnvComplete() {
-        const moveX = this.initialTransform[0] - this.previousMoveX;
-        if (Math.abs(moveX) > 150) {
-            if (moveX > 0) {
-                this.closeDrawer(); // close it
-            }
-        }
-        this._super(...arguments);
-    },
-
-    cheevies: computed('myModel.cheevies.[]', 'myGroup.groupName', function() {
-        if (!this.get('myGroup.groupName')) return;
-        return DS.PromiseArray.create({
-            promise: this.myGroup
-                .fetch()
-                .then(myGroup => {
-                    if (!myGroup) return resolve([]);
-                    return this.myGroup.cheevies;
-                })
-                .then(availableCheevies =>
-                    this.getWithDefault('me.model.cheevies', []).filter(
-                        cheevie => availableCheevies.indexOf(cheevie) > -1
-                    )
-                ),
-        });
-    }),
-
-    canCreateCheevie: computed('myModel.id', 'groupModel.{id,policy}', function() {
+    get canCreateCheevie() {
         if (!this.myModel || !this.groupModel) return false;
         return (
             this.groupModel.policy === 'anarchy' ||
             userIsModerator(this.groupModel, this.myModel) ||
             userIsGroupAuthor(this.groupModel, this.myModel)
         );
-    }),
+    }
 
-    actions: {
-        createCheevie() {
-            this.get('router').transitionTo('index.create-cheevie');
-        },
-        invalidate() {
-            return this.get('router').transitionTo('wardrobe.sign-out');
-        },
-    },
-});
+    get cheevies() {
+        if (!this.myModel || !this.groupModel) return [];
+        const userCheevies = this.myModel.cheevies;
+        const groupCheevies = this.groupModel.cheevies;
+
+        return userCheevies.filter(cheevie => groupCheevies.includes(cheevie));
+    }
+
+    handlePanMove(ev, cb, draggable) {
+        if (draggable.initialTransform[0] + ev.deltaX >= 300) return;
+        cb(ev);
+    }
+
+    @action
+    onPanEnvComplete(ev, cb, draggable) {
+        const moveX = draggable.initialTransform[0] - draggable.previousMoveX;
+        if (Math.abs(moveX) >= 150) {
+            this.args.closeDrawer(ev); // close it
+        }
+        return cb(ev);
+    }
+
+    @action
+    createCheevie() {
+        this.router.transitionTo('index.index.create-cheevie');
+    }
+
+    @action
+    invalidate() {
+        return this.router.transitionTo('wardrobe.sign-out');
+    }
+}

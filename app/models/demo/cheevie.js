@@ -1,8 +1,8 @@
-import DS from 'ember-data';
+import { belongsTo } from '@ember-data/model';
 import CheevieModel from '../cheevie';
 
 export default CheevieModel.extend({
-    'image-set': DS.belongsTo('demo/image-set', { inverse: null }),
-    group: DS.belongsTo('demo/group', { inverse: null }),
-    author: DS.belongsTo('demo/user', { inverse: null }),
+    'image-set': belongsTo('demo/image-set', { inverse: null }),
+    group: belongsTo('demo/group', { inverse: null }),
+    author: belongsTo('demo/user', { inverse: null }),
 });

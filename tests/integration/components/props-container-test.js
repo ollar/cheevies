@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | props-container', function(hooks) {
   setupRenderingTest(hooks);
@@ -10,15 +10,15 @@ module('Integration | Component | props-container', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{props-container}}`);
+    await render(hbs`<PropsContainer />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      {{#props-container}}
+      <PropsContainer>
         template block text
-      {{/props-container}}
+      </PropsContainer>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

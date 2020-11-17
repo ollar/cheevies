@@ -1,37 +1,42 @@
 language: node_js
 node_js:
-    - '8'
-sudo: false
-dist: trusty
+  - "10"
+
+dist: xenial
+
 addons:
     chrome: stable
 cache:
     directories:
         - '$HOME/.npm'
 env:
-    global:
-        - JOBS=1
-before_install:
-    - npm config set spin false
-script:
-    - npm run lint:js
-    - npm test
-after_success:
-    # - chmod +x ./patch_version.sh
-    - test $TRAVIS_BRANCH = "dev" && ./patch_version.sh
-before_deploy:
-    - cd functions
-    - npm i
-    - cd ..
-deploy:
-    - provider: script
-      skip_cleanup: true
-      script: $TRAVIS_BUILD_DIR/deploy_production.sh production
-      on:
-          branch: master
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
 
-    - provider: script
-      skip_cleanup: true
-      script: $TRAVIS_BUILD_DIR/deploy_production.sh development
-      on:
-          branch: dev
+branches:
+  only:
+    - master
+
+script:
+#     - npm test
+# after_success:
+#     # - chmod +x ./patch_version.sh
+#     - test $TRAVIS_BRANCH = "dev" && ./patch_version.sh
+# before_deploy:
+#     - cd functions
+#     - npm i
+#     - cd ..
+# deploy:
+#     - provider: script
+#       skip_cleanup: true
+#       script: $TRAVIS_BUILD_DIR/deploy_production.sh production
+#       on:
+#           branch: master
+
+#     - provider: script
+#       skip_cleanup: true
+#       script: $TRAVIS_BUILD_DIR/deploy_production.sh development
+#       on:
+#           branch: dev
+  - npm test

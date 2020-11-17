@@ -14,8 +14,8 @@ export default Base.extend({
     },
 
     invalidate() {
-        this.get('session').set('data.group', null);
-        this.get('session').set('data.demoGroup', null);
+        // this.session.set('data.group', null);
+        // this.session.set('data.demoGroup', null);
 
         return resolve();
     },

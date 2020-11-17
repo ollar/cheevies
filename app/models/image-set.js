@@ -1,9 +1,8 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  // '32': DS.belongsTo('image'),
-  '64': DS.belongsTo('image'),
-  '128': DS.belongsTo('image'),
-  '256': DS.belongsTo('image'),
-  '512': DS.belongsTo('image'),
-});
+export default class ImageSetModel extends Model{
+    @attr '64';
+    @attr '128';
+    @attr '256';
+    @attr '512';
+}

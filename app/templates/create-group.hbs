@@ -1,4 +1,4 @@
-{{#login-svg-bg _isAuthenticated=session.isAuthenticated}}
+<LoginSvgBg @_isAuthenticated={{session.isAuthenticated}}>
     <div class="center-wrapper">
         <div class="logo-wrapper">
             <img src="/images/Logo.svg" alt="">
@@ -15,18 +15,12 @@
             <div class="field">
                 <label class="label" for="group">{{t 'form.group.label'}}</label>
                 <div class="control">
-                {{input
-                    class="input"
-                    id="name"
-                    placeholder=' '
-                    value=model.name
-                    autocapitalize='off'
-                    autocomplete="off"}}
+                <Input class="input" @id="name" placeholder=" " @value={{model.name}} @autocapitalize="off" @autocomplete="off" />
                 <div class="placeholder">{{t 'form.group.placeholder'}}</div>
                 <div class="background"></div>
 
                     <button type="submit" class="submit-button icon-button">
-                        {{svg-icon _name="arrow-right" _size=20}}
+                        <SvgIcon @_name="arrow-right" @_size={{20}} />
                     </button>
                 </div>
             </div>
@@ -39,4 +33,4 @@
         {{outlet}}
 
     </div>
-{{/login-svg-bg}}
+</LoginSvgBg>

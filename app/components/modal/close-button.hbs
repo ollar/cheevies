@@ -1,0 +1,4 @@
+<button class="icon-button modal-close" aria-label="close" {{on 'click' @goBack}} {{did-insert @saveCloseRef}} ...attributes>
+    <SvgIcon @_name="x" @_size={{24}} @_title={{t "icons.close"}} @class="left v-center" />
+    {{yield}}
+</button>

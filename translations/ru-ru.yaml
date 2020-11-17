@@ -147,6 +147,7 @@ index:
         title: Поздравляем, у вас новая ачивка!
 no-cheevies-placeholder: Пока ачивок нет, может создать парочку?
 you-have-no-cheevies-yet: У вас пока нет ачивок, но вы все равно лучший!
+user-have-no-cheevies-yet: '{username} пока нет ачивок, подарим ему?'
 footer_message: Made with ♥ 2017
 share:
     cheevie:

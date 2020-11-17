@@ -13,9 +13,9 @@
 
    <section class="group-select-section" test-id="group-select-section">
         <div class="user-image-wrapper">
-        {{icon-image data=myModel image=myImage class="user-avatar"}}
+        <IconImage @data={{myModel}} @image={{myImage}} @class="user-avatar" />
         <button class="icon-button" data-test-id="invalidate-button" {{action 'invalidate'}}>
-            {{svg-icon _name="x" _size=20}}
+            <SvgIcon @_name="x" @_size={{20}} />
         </button>
         </div>
 
@@ -23,18 +23,12 @@
         <div class="field">
             <label class="label" for="group">{{t 'form.group.label'}}</label>
             <div class="control">
-            {{input
-                class="input"
-                id="group"
-                placeholder=' '
-                value=model.group
-                autocapitalize='off'
-                autocomplete="off"}}
+            <Input class="input" @id="group" placeholder=" " @value={{model.group}} @autocapitalize="off" @autocomplete="off" />
             <div class="placeholder">{{t 'form.group.placeholder'}}</div>
             <div class="background"></div>
 
                 <button type="submit" class="submit-button icon-button">
-                    {{svg-icon _name="arrow-right" _size=20}}
+                    <SvgIcon @_name="arrow-right" @_size={{20}} />
                 </button>
             </div>
         </div>
@@ -45,5 +39,5 @@
 {{outlet}}
 
 <div class="text-center-wrapper">
-    {{link-to (t 'nav.create-group') 'create-group'}}
+    <LinkTo @route="create-group">{{t 'nav.create-group' }}</LinkTo>
 </div>

@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import UnauthenticatedRouteMixin from '../../mixins/unauthenticated-route-mixin';
 import { inject as service } from '@ember/service';
-import firebase from 'firebase';
 import { resolve } from 'rsvp';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
@@ -15,7 +14,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     },
 
     model() {
-        return this.get('store').createRecord('user/signin', {
+        return this.store.createRecord('user/signin', {
             type: 'social',
         });
     },
@@ -26,9 +25,8 @@ export default Route.extend(UnauthenticatedRouteMixin, {
             return resolve()
                 .then(() => {
                     controller.setBusy(true);
-                    return firebase
-                        .auth()
-                        .getRedirectResult()
+                    return this.firebase.auth()
+                        .then(auth => auth.getRedirectResult())
                         .then(result => controller.onSuccess(result))
                         .catch(error => controller.onError(error));
                 })

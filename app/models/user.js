@@ -1,21 +1,21 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-    name: DS.attr('string'),
-    'image-set': DS.belongsTo('image-set'),
-    email: DS.attr('string'),
-    fcmToken: DS.attr('string'),
+export default Model.extend({
+    username: attr('string'),
+    'image-set': belongsTo('image-set'),
+    email: attr('string'),
+    fcmToken: attr('string'),
 
-    providerId: DS.attr('string', { defaultValue: 'email' }),
-    accessToken: DS.attr('string'),
-    photoURL: DS.attr('string'),
+    providerId: attr('string', { defaultValue: 'email' }),
+    accessToken: attr('string'),
+    photoURL: attr('string'),
 
-    cheevies: DS.hasMany('cheevie'),
-    unseenCheevies: DS.hasMany('cheevie'),
-    badges: DS.hasMany('badge'),
+    cheevies: hasMany('cheevie', { inverse: null }),
+    unseenCheevies: hasMany('cheevie', { inverse: null }),
+    badges: hasMany('badge', { inverse: null }),
 
-    created: DS.attr('number'),
-    groups: DS.hasMany('group'),
+    created: attr('number'),
+    groups: hasMany('group', { inverse: null }),
 
-    settings: DS.belongsTo('settings'),
+    settings: belongsTo('setting'),
 });

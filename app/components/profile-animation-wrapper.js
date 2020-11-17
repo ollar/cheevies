@@ -1,39 +1,32 @@
-import Component from '@ember/component';
-import { observer } from '@ember/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { later } from '@ember/runloop';
 
-import { TimelineLite } from 'gsap';
+export default class ProfileAnimationWrapperComponent extends Component {
+    @action
+    didInsert() {
+        const $userImage = document.querySelector('.user-image');
+        const $name = document.querySelector('.name');
+        const $cheevies = document.querySelector('.cheevies');
 
-export default Component.extend({
-    tagName: '',
+        $userImage.style.scale = 1.2;
+        $userImage.style.opacity = 0;
+        $name.style.opacity = 0;
+        $cheevies.style.scale = 0.8;
+        $cheevies.style.opacity = 0;
 
-    init() {
-        this._super();
-        this.tline = new TimelineLite({
-            paused: true,
-            onComplete() {
-                const cheevies = document.querySelector('.cheevies');
-                if (cheevies) cheevies.removeAttribute('style');
-            },
+        later(() => {
+            $userImage.style.scale = '';
+            $userImage.style.opacity = '';
+
+            later(() => {
+                $name.style.opacity = '';
+
+                later(() => {
+                    $cheevies.style.scale = '';
+                    $cheevies.style.opacity = '';
+                }, 200);
+            }, 100);
         });
-    },
-
-    cheeviesLoaded: observer('_cheeviesPromise.length', '_cheeviesPromise.isFulfilled', function() {
-        if (this._cheeviesPromise.isFulfilled) this._runAnimation();
-    }),
-
-    _runAnimation() {
-        if (!this.tline.isActive()) this.tline.play();
-    },
-
-    didInsertElement() {
-        this.tline
-            .from('.user-image', 0.2, { scale: 1.2, opacity: 0 })
-            .from('.name', 0.1, { opacity: 0 })
-            .from('.cheevies', 0.2, {
-                scale: 0.8,
-                opacity: 0,
-            });
-
-        if (this._cheeviesPromise.isFulfilled) this._runAnimation();
-    },
-});
+    }
+}

@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "default": "cheevies-jerk",
-    "dev": "cheevies-dev",
-    "test": "cheevies-test"
-  }
-}

@@ -1,44 +1,52 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { resolve } from 'rsvp';
+import Service, { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import { filterBy } from '@ember/object/computed';
 
-export default Service.extend({
-    session: service(),
-    store: service(),
+export default class MyGroupService extends Service {
+    @service session;
+    @service store;
+    @filterBy('model.cheevies', 'deleted', false) cheevies;
+    @tracked model = null;
 
-    isAuthenticated: computed.readOnly('session.isAuthenticated'),
-    groupName: computed.readOnly('session.data.group'),
-    isDemo: computed.readOnly('session.data.demoGroup'),
-    model: null,
-    _type: computed('isDemo', function() {
+    get isAuthenticated() {
+        return this.session.isAuthenticated;
+    }
+
+    get groupName() {
+        return this.session.data.authenticated.group;
+    }
+
+    get isDemo() {
+        return this.session.data.authenticated.demoGroup;
+    }
+
+    get _type() {
         return this.isDemo ? 'demo/group' : 'group';
-    }),
+    }
 
-    init() {
-        this._super(...arguments);
+    constructor() {
+        super(...arguments);
         this.session.on('invalidationSucceeded', () => {
-            this.set('model', null);
+            this.model = null;
         });
-    },
-
-    cheevies: computed.filterBy('model.cheevies', 'deleted', false),
+    }
 
     fetch() {
-        return resolve().then(() => {
-            if (!this.groupName) throw new Error('session.data.group not filled');
+        return Promise.resolve().then(() => {
+            if (!this.groupName) throw new Error('group not filled');
             if (this.model) return this.model;
 
-            return this.get('store')
+            return this.store
                 .query(this._type, {
-                    orderBy: 'name',
-                    equalTo: this.groupName,
+                    find: {
+                        name: this.groupName
+                    }
                 })
-                .then(_group => {
-                    const group = _group.firstObject;
-                    this.set('model', group);
+                .then(_groups => {
+                    const group = _groups.firstObject;
+                    this.model = group;
                     return group;
                 });
         });
-    },
-});
+    }
+}

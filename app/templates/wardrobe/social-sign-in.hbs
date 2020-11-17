@@ -28,7 +28,7 @@
 </div>
 
 <div class="text-center-wrapper">
-    {{link-to (t 'nav.oldschool') 'wardrobe.sign-in'}}
+    <LinkTo @route="wardrobe.sign-in">{{t 'nav.oldschool' }}</LinkTo>
 </div>
 
 {{#if busy}}

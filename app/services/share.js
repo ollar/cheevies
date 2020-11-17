@@ -1,11 +1,10 @@
 import Service from '@ember/service';
-import { computed, getWithDefault } from '@ember/object';
 import { getOwner } from '@ember/application';
 
-export default Service.extend({
-    isAvailable: computed(function() {
+export default class ShareService extends Service {
+    get isAvailable() {
         return Boolean(navigator.share);
-    }),
+    }
 
     emailFallBack({ title, text, url }) {
         url = typeof url === 'undefined' ? this.appDomain : url;
@@ -16,11 +15,12 @@ export default Service.extend({
             );
             return sharer;
         });
-    },
+    }
 
-    appDomain: computed(function() {
-        return getWithDefault(getOwner(this), 'application.appDomain', window.location.href);
-    }),
+    get appDomain() {
+        const owner = getOwner(this);
+        return owner.application.appDomain || `${window.location.origin}`;
+    }
 
     post({ title, text, url }) {
         url = typeof url === 'undefined' ? this.appDomain : url;
@@ -35,5 +35,5 @@ export default Service.extend({
                 : this.emailFallBack({ title, text, url });
             return sharer;
         });
-    },
-});
+    }
+}

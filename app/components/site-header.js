@@ -1,23 +1,18 @@
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  tagName: 'header',
-  classNames: ['header'],
-  router: service(),
+export default class SiteHeaderComponent extends Component {
+    get isIndex() {
+        return this.args.currentRouteName.startsWith('index.index');
+    }
 
-  currentRouteName: computed.readOnly('router.currentRouteName'),
-  isIndex: computed('currentRouteName', function() {
-    return this.currentRouteName.startsWith('index');
-  }),
-
-  actions: {
+    @action
     goBack() {
       return window.history.back();
-    },
-    toggleDrawer() {
-      this._drawerData.toggleDrawer();
-    },
-  },
-});
+    }
+
+    @action
+    onCurrentRouteNameChange(el, routeName) {
+        this.args.drawer.closeDrawer();
+    }
+}

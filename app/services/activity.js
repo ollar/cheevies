@@ -1,3 +1,4 @@
+import { readOnly } from '@ember/object/computed';
 import Service, {
     inject as service
 } from '@ember/service';
@@ -9,7 +10,7 @@ export default Service.extend({
     store: service(),
     me: service(),
     myGroup: service('my-group'),
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    isDemo: readOnly('myGroup.isDemo'),
     _type: computed('isDemo', function () {
         return this.isDemo ? 'demo/activity' : 'activity';
     }),
@@ -34,7 +35,7 @@ export default Service.extend({
             })
             .then(activities =>
                 activities.filter(
-                    activity => activity.created >= +this.get('lastFetchedActivity')
+                    activity => activity.created >= +this.lastFetchedActivity
                 )
             )
             .then(activities => {

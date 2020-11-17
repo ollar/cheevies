@@ -2,8 +2,13 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
-import firebase from 'firebase';
-import demoGroup, { users, cheevies, images, imageSets, you } from './_demo-group';
+import demoGroup, {
+  users,
+  cheevies,
+  images,
+  imageSets,
+  you
+} from './_demo-group';
 
 import BusyLoaderMixin from '../../mixins/busy-loader';
 
@@ -25,7 +30,6 @@ export default Controller.extend(BusyLoaderMixin, {
         const { email, displayName, photoURL, uid } = user;
 
         window.localStorage.removeItem('awaitForSignInRedirect');
-
         return this.store
             .findRecord('user', uid)
             .catch(() => {
@@ -43,9 +47,9 @@ export default Controller.extend(BusyLoaderMixin, {
                     });
                 }
                 return all([
-                    firebase
+                    this.firebase
                         .database()
-                        .ref('/users/' + uid)
+                        .then(database => database.ref('/users/' + uid))
                         .set({
                             name: displayName || 'newb',
                             email: email,
@@ -94,9 +98,9 @@ export default Controller.extend(BusyLoaderMixin, {
             return this.model
                 .googleSignIn()
                 .then(() =>
-                    firebase
+                    this.firebase
                         .auth()
-                        .getRedirectResult()
+                        .then(auth => auth.getRedirectResult())
                         .then(this.onSuccess)
                 )
                 .catch(this.onError);
@@ -105,9 +109,9 @@ export default Controller.extend(BusyLoaderMixin, {
             return this.model
                 .facebookSignIn()
                 .then(() =>
-                    firebase
+                    this.firebase
                         .auth()
-                        .getRedirectResult()
+                        .then(auth => auth.getRedirectResult())
                         .then(this.onSuccess)
                 )
                 .catch(this.onError);

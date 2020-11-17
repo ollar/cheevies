@@ -1,5 +1,11 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, fillIn, click, triggerEvent } from '@ember/test-helpers';
+import {
+  visit,
+  currentURL,
+  fillIn,
+  click,
+  triggerEvent
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { testgroup, uid } from '../consts';
 import { sleep } from '../utils';

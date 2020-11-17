@@ -1,10 +1,10 @@
-import DS from 'ember-data';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  description: DS.attr('string'),
-  cheevies: DS.hasMany('cheevie'),
-  group: DS.belongsTo(),
+export default Model.extend({
+  name: attr('string'),
+  description: attr('string'),
+  cheevies: hasMany('cheevie'),
+  group: belongsTo(),
 
-  isComplete: DS.attr('boolean'),
+  isComplete: attr('boolean'),
 });

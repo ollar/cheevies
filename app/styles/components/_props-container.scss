@@ -1,0 +1,49 @@
+.props-container {
+    // position: absolute;
+    // top: 0; left: 0;
+    height: 100vh;
+    width: 100vw;
+    // z-index: 999;
+
+    svg {
+        position: absolute;
+        transition: 0.3s;
+        opacity: 0;
+
+        &[name="anchor"] {
+            stroke: #FF0000;
+        }
+
+        &[name="bell"] {
+            stroke: #4838FF;
+        }
+
+        &[name="camera"] {
+            stroke: #1D2349;
+        }
+
+        &[name="film"] {
+            stroke: #CD04FF;
+        }
+
+        &[name="headphones"] {
+            stroke: #BA0064;
+        }
+
+        &[name="heart"] {
+            stroke: #0075FF;
+        }
+
+        &[name="scissors"] {
+            stroke: #FF5C00;
+        }
+
+        &[name="star"] {
+            stroke: #FFEC87;
+        }
+
+        &[name="zap"] {
+            stroke: #FF008A;
+        }
+    }
+}

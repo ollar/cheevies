@@ -1,51 +1,16 @@
-{{#unless hideGuidePopup}}
-    <div class="guide-invitation-button-wrapper">
-        {{link-to (t 'nav.guide-invitation-text') 'index.guide'}}
+<SettingsWrapper>
+    <SiteDrawer as |drawer|>
+        <div class="site-drawer-component {{if drawer.opened 'opened'}}">
+            <drawer.overlay />
+            <drawer.aside />
+        </div>
 
-        <button class="icon-button modal-close" aria-label="close" {{action 'hideGuidePopup'}}>
-            {{svg-icon _name="x" _size=24}}
-        </button>
-    </div>
-{{/unless}}
+        <SiteHeader
+            @drawer={{drawer}}
+            @currentRouteName={{this.currentRouteName}} />
 
-{{#particles-container}}
-{{#index-sections-wrapper
-    class=(add "sections-wrapper " activePage)
-    setActivePage=(action 'setActivePage')
-}}
-  <section class="users-list grid-wrapper-2">
-    {{#link-to 'profile' model.me}}
-      {{user-in-list user=model.me class="is-me"}}
-    {{/link-to}}
-
-    {{#each users as |user|}}
-      {{#link-to 'profile' user}}
-        {{user-in-list user=user}}
-      {{/link-to}}
-    {{/each}}
-  </section>
-
-  <section class="cheevies-list grid-wrapper-3">
-    {{#each cheevies as |cheevie|}}
-      {{#link-to 'index.cheevie-details' cheevie}}
-        {{cheevie-in-list cheevie=cheevie}}
-      {{/link-to}}
-    {{else}}
-      <div class="empty-placeholder">
-        {{t 'no-cheevies-placeholder'}}
-      </div>
-    {{/each}}
-  </section>
-{{/index-sections-wrapper}}
-{{/particles-container}}
-
-{{outlet}}
-
-<footer>
-  <button class="icon-button {{if (eq activePage 'users') 'active'}}" {{action 'setActivePage' 'users'}}>
-    {{svg-icon _name="users" _size=24 _title=(t 'icons.users') class="bottom h-center"}}
-  </button>
-  <button class="icon-button {{if (eq activePage 'cheevies') 'active'}}" {{action 'setActivePage' 'cheevies'}}>
-    {{svg-icon _name="star" _size=24 _title=(t 'icons.cheevies') class="bottom h-center"}}
-  </button>
-</footer>
+        <div class="content-wrapper">
+            {{outlet}}
+        </div>
+    </SiteDrawer>
+</SettingsWrapper>

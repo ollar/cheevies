@@ -1,0 +1,55 @@
+<ProfileAnimationWrapper>
+<section class="center-wrapper {{if this.isMe 'is-me'}}">
+<div {{busy-loader this.busy}} class="user-image-wrapper">
+    {{#unless this.isMe}}
+        <IconImage @data={{this.model}} @image={{this.image}} @class="user-image" />
+    {{else}}
+        <ImagesDropArea @images={{this.model.imageUrl}} @uploadImage={{this.uploadImage}}>
+        <IconImage @data={{this.model}} @image={{this.image}} @class="user-image" />
+        {{#if this.isMe}}
+            {{#if this.model.imageUrl}}
+            <button class="icon-image delete" {{on 'click' this.removeImage}}>
+                <SvgIcon @_name="x" @_size={{24}} @_title={{t "icons.remove"}} @class="h-center bottom" />
+            </button>
+            {{/if}}
+        {{/if}}
+        </ImagesDropArea>
+        <a class="input-click-handler" {{on 'click' this.handleInputClick}}></a>
+    {{/unless}}
+
+  <div class="experience">
+    {{cheevie-exp this.cheevies}}
+  </div>
+</div>
+
+<h1 class="name">
+  {{#if this.isMe}}
+    <Input @type="text" @value={{this.model.username}} class="psevdo-title" />
+  {{else}}
+    {{this.model.username}}
+  {{/if}}
+</h1>
+
+<div class="cheevies grid-wrapper-3">
+  {{#each this.cheevies as |cheevie|}}
+    <LinkTo @route="index.profile.cheevie-details" @model={{cheevie}} class="cheevie-wrapper">
+      <CheevieInList @cheevie={{cheevie}} />
+    </LinkTo>
+  {{else}}
+    <div class="empty-placeholder">
+      {{if this.isMe (t 'you-have-no-cheevies-yet') (t 'user-have-no-cheevies-yet' username=this.model.username)}}
+    </div>
+  {{/each}}
+</div>
+</section>
+</ProfileAnimationWrapper>
+
+{{#unless this.isMe}}
+  <footer>
+    <button class="icon-button give-cheevie" {{on 'click' this.showCheeviesPicker}}>
+      <SvgIcon @_name="award" @_size={{24}} @_title={{t "icons.reward"}} @class="h-center bottom" />
+    </button>
+  </footer>
+{{/unless}}
+
+{{outlet}}

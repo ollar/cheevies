@@ -1,62 +1,62 @@
-import Service from '@ember/service';
-import {
-    inject as service
-} from '@ember/service';
-import {
-    all
-} from 'rsvp';
-import {
-    computed
-} from '@ember/object';
+import Service, { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-    session: service(),
-    me: service(),
-    myGroup: service(),
-    store: service(),
-    myModel: computed.alias('me.model'),
-    model: null,
+export default class SettingsService extends Service {
+    @service session;
+    @service me;
+    @service myGroup;
+    @service store;
 
-    isDemo: computed.readOnly('myGroup.isDemo'),
+    @tracked model;
 
-    _type: computed('isDemo', function () {
-        return this.isDemo ? 'demo/settings' : 'settings';
-    }),
+    get myModel() {
+        return this.me.model;
+    }
 
-    init() {
-        this._super(...arguments);
+    get isDemo() {
+        return this.myGroup.isDemo;
+    }
+
+    get _type() {
+        return this.isDemo ? 'demo/setting' : 'setting';
+    }
+
+    constructor() {
+        super(...arguments);
         this.session.on('invalidationSucceeded', () => {
-            this.set('model', null);
+            this.model = null;
         });
-    },
+    }
 
-    fetch() {
-        return this.me.fetch().then(() => {
-            if (this.model) return this.model;
+    async fetch() {
+        await this.me.fetch();
 
-            return this.myModel.get('settings').then(settings => {
-                if (settings) {
-                    this.set('model', settings);
-                    return settings;
-                } else {
-                    settings = this.store.createRecord(this._type, {
-                        user: this.myModel,
-                    });
+        if (this.model) return this.model;
 
-                    this.myModel.set('settings', settings);
+        let settings = await this.myModel.get('settings');
 
-                    return all([this.myModel.save(), settings.save()]).then(() => {
-                        this.set('model', settings);
-                        return settings;
-                    });
-                }
+        if (settings) {
+            this.model = settings;
+            return settings;
+        } else {
+            settings = this.store.createRecord(this._type, {
+                user: this.myModel,
             });
-        });
-    },
+
+            await settings.save();
+
+            this.myModel.set('settings', settings);
+
+            await this.myModel.save();
+
+            this.model = settings;
+            return settings;
+        }
+    }
 
     save() {
         const model = this.model;
         model.set('updated', Date.now());
         return model.save();
-    },
-});
+    }
+}

@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    group_id: DS.attr('string'),
-    queryParams: DS.attr(),
+export default Model.extend({
+    group_id: attr('string'),
+    queryParams: attr(),
 });

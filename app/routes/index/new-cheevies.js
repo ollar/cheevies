@@ -8,8 +8,6 @@ export default Route.extend({
     myGroup: service('my-group'),
 
     model() {
-        if (!this.get('myGroup.groupName')) return {};
-
         return hash({
             myGroup: this.myGroup.fetch(),
             me: this.me.fetch(),
