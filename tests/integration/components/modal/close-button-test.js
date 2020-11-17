@@ -3,22 +3,22 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | profile-animation-wrapper', function(hooks) {
+module('Integration | Component | modal/close-button', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<ProfileAnimationWrapper />`);
+    await render(hbs`<Modal::CloseButton />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <ProfileAnimationWrapper>
+      <Modal::CloseButton>
         template block text
-      </ProfileAnimationWrapper>
+      </Modal::CloseButton>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

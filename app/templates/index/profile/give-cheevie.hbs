@@ -1,5 +1,15 @@
 {{#unless this.isMe}}
-<ModalWrapper @goBack={{this.goBack}} @busy={{this.busy}} @class="give-cheevie-modal" @giveCheevieModal={{true}}>
+
+<Modal
+    @goBack={{this.goBack}}
+    @class="give-cheevie-modal"
+    @giveCheevieModal={{true}}
+    @busy={{this.busy}}
+    as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
+
     <div class="cheevies grid-wrapper-3">
         {{#each this.cheevies as |cheevie|}}
             <div class="cheevie-item has-text-centered">
@@ -13,7 +23,8 @@
             </div>
         {{/each}}
     </div>
-</ModalWrapper>
-{{/unless}}
+    </modal.content>
+</Modal>
 
+{{/unless}}
 {{outlet}}

@@ -1,0 +1,19 @@
+<div class="modal {{@class}}" {{did-insert this.didInsert}}>
+    {{yield (hash
+        close=(component this.closeButtonComponent goBack=this.goBack saveCloseRef=this.saveCloseRef)
+        overlay=(component this.overlayComponent goBack=this.goBack saveOverlayRef=this.saveOverlayRef)
+        content=(component this.contentComponent
+                            goBack=this.goBack
+                            busy=@busy
+                            giveCheevieModal=@giveCheevieModal
+                            disableDrag=@disableDrag
+                            class=(if this.noTransition 'no-transition')
+                            contentDidInsert=this.contentDidInsert
+                            saveContentRef=this.saveContentRef
+                            panDirection=this.panDirection
+                            handlePanStart=this.handlePanStart
+                            handlePanMove=this.handlePanMove
+                            onPanEnvComplete=this.onPanEnvComplete
+                )
+    )}}
+</div>

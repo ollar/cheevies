@@ -90,6 +90,7 @@
     .modal-close {
         right: 0;
         left: auto;
+        transition: opacity 0.2s;
     }
 
     .cheevie-delete {

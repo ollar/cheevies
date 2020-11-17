@@ -34,6 +34,8 @@
 }
 
 .user-image {
+    transition: 0.2s;
+
     &.icon-image {
         border-radius: 0;
         height: 40vh;
@@ -50,6 +52,7 @@
 .name {
     margin: 0 0 ms(2, $font-size);
     text-align: center;
+    transition: 0.1s;
 
     .psevdo-title {
         font: inherit;
@@ -61,6 +64,10 @@
             border-bottom: 1px solid;
         }
     }
+}
+
+.cheevies {
+    transition: 0.2s;
 }
 
 .give-cheevie {

@@ -1,8 +1,12 @@
-<ModalWrapper
+<Modal
     @goBack={{this.goBack}}
     @class={{if this._image "has-image" "no-image"}}
     @busy={{this.busy}}
-    @disableDrag={{this.editMode}}>
+    @disableDrag={{this.editMode}}
+    as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
   {{#if this.showMode}}
     {{#if this.canEditCheevie}}
         <button class="icon-button mode-toggle is-info" {{on 'click' this.toggleMode}}>
@@ -73,4 +77,5 @@
 
     {{partial 'cheevie-edit-form'}}
   {{/if}}
-</ModalWrapper>
+    </modal.content>
+</Modal>

@@ -1,11 +1,16 @@
-<ModalWrapper @goBack={{this.goBack}} @class={{if this.image "has-image" "no-image"}}>
-    {{!-- {{#if this.isShareAvailable}} --}}
-        {{#if this.isMe}}
-        <button class="icon-button share" {{on 'click' (fn this.shareCheevie this.model)}}>
-            <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center right" />
-        </button>
-        {{/if}}
-    {{!-- {{/if}} --}}
+<Modal
+    @goBack={{this.goBack}}
+    @class={{if this.image "has-image" "no-image"}}
+    as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
+
+    {{#if this.isMe}}
+    <button class="icon-button share" {{on 'click' (fn this.shareCheevie this.model)}}>
+        <SvgIcon @_name="share-2" @_size={{18}} @_title={{t "icons.share"}} @class="v-center right" />
+    </button>
+    {{/if}}
 
     {{#if this.isMe}}
         <button class="icon-button delete" {{on 'click' (fn this.refuseCheevie this.model)}}>
@@ -34,4 +39,5 @@
 
     {{outlet}}
 
-</ModalWrapper>
+    </modal.content>
+</Modal>

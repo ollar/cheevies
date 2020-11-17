@@ -1,21 +1,38 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { schedule, later } from '@ember/runloop';
 import { htmlSafe } from '@ember/string';
 
+
 import { DIRECTION_VERTICAL } from 'draggable-modifier';
 
-export default class ModalContentComponent extends Component {
+
+export default class ModalComponent extends Component {
+    closeButtonComponent = 'modal/close-button';
+    contentComponent = 'modal/content';
+    overlayComponent = 'modal/overlay';
+
+    animationDuration = 200;
     threshold = 200;
     panDirection = DIRECTION_VERTICAL;
-    marginTop = 0;
-    elWrapperHeight = 0;
-    elementHeight = 0;
-    elWrapper = null;
-    element = null;
+
+    @tracked wrapperElement = null;
+    @tracked contentElement = null;
+    @tracked closeElement = null;
+    @tracked overlayElement = null;
+
 
     @action
     didInsert(element) {
+        this.wrapperElement = element;
+    }
+
+    @action
+    contentDidInsert(element) {
+        this.closeElement.style.opacity = 0;
+        this.overlayElement.style.opacity = 0;
+
         if (this.args.giveCheevieModal) {
             element.style.transform = 'translate(0, 100%)';
         } else {
@@ -24,22 +41,36 @@ export default class ModalContentComponent extends Component {
         }
 
         schedule('afterRender', () => {
+            element.style.opacity = 1;
             element.style.transform = '';
-            element.style.opacity = '';
+            this.closeElement.style.opacity = 1;
+            this.overlayElement.style.opacity = 1;
         });
 
-        this.elWrapper = element.parentElement;
-        this.element = element;
         const { marginTop } = window.getComputedStyle(element);
 
         this.marginTop = parseInt(marginTop);
     }
 
+    @action
+    saveCloseRef(element) {
+        this.closeElement = element;
+    }
+
+    @action
+    saveOverlayRef(element) {
+        this.overlayElement = element;
+    }
+
+    @action
+    saveContentRef(element) {
+        this.contentElement = element;
+    }
 
     @action
     handlePanStart(ev, cb) {
-        this.elWrapperHeight = this.elWrapper.offsetHeight;
-        this.elementHeight = this.element.offsetHeight;
+        this.elWrapperHeight = this.wrapperElement.offsetHeight;
+        this.elementHeight = this.contentElement.offsetHeight;
         return cb(ev);
     }
 
@@ -63,20 +94,6 @@ export default class ModalContentComponent extends Component {
     }
 
     @action
-    goBack() {
-        if (this.args.giveCheevieModal) {
-            this.element.style.transform = 'translate(0, 100%)';
-        } else {
-            this.element.style.opacity = 0;
-            this.element.style.transform = 'translate(0, 20px)';
-        }
-
-        later(() => {
-            this.args.goBack();
-        }, 200);
-    }
-
-    @action
     onPanEnvComplete(ev, cb, draggable) {
         //remove it maybe
         if (this.args.disableDrag) return;
@@ -91,7 +108,7 @@ export default class ModalContentComponent extends Component {
             if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
                 if (Math.abs(resultMoveY) > this.threshold) {
-                    return this.args.goBack();
+                    return this.goBack();
                 } else {
                     return cb(ev);
                 }
@@ -100,7 +117,7 @@ export default class ModalContentComponent extends Component {
                 if (resultMoveY < 0) {
                     // pan down
                     if (Math.abs(resultMoveY) > this.threshold) {
-                        return this.args.goBack();
+                        return this.goBack();
                     } else {
                         return cb(ev);
                     }
@@ -111,7 +128,7 @@ export default class ModalContentComponent extends Component {
             if (this.elementHeight + this.marginTop < this.elWrapperHeight) {
                 // modal content is smaller than wrapper =======================
                 if (Math.abs(resultMoveY) > this.threshold) {
-                    return this.args.goBack();
+                    return this.goBack();
                 } else {
                     return cb(ev);
                 }
@@ -120,7 +137,7 @@ export default class ModalContentComponent extends Component {
                 if (resultMoveY < 0) {
                     // pan down
                     if (Math.abs(resultMoveY) > this.threshold) {
-                        return this.args.goBack();
+                        return this.goBack();
                     } else {
                         return cb(ev);
                     }
@@ -139,10 +156,33 @@ export default class ModalContentComponent extends Component {
                                     10}px)`
                             );
                     } else if (bottomIsVisible && bottomOffset > this.threshold) {
-                        return this.args.goBack();
+                        return this.goBack();
                     }
                 }
             }
         }
+    }
+
+    @action
+    goBack() {
+        if (this.args.giveCheevieModal) {
+            this.contentElement.style.transform = 'translate(0, 100%)';
+        } else {
+            let y = this.contentElement.style.transform;
+            y = parseInt(y.split(', ')[1]);
+            this.contentElement.style.transform = `translate(0, ${y + 20}px)`;
+            this.contentElement.style.opacity = 0;
+        }
+        this.closeElement.style.opacity = 0;
+        this.overlayElement.style.opacity = 0;
+
+        later(() => {
+            if (!this.isDestroyed || !this.isDestroying) {
+                this.noTransition = false;
+                if (this.args.goBack && this.args.goBack.call) this.args.goBack();
+            }
+        }, this.animationDuration);
+
+        return;
     }
 }

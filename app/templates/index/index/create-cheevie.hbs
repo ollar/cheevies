@@ -1,4 +1,11 @@
-<ModalWrapper @goBack={{this.goBack}} @busy={{this.busy}} @disableDrag={{this.hasChangedAttributes}}>
+<Modal
+    @goBack={{this.goBack}}
+    @busy={{this.busy}}
+    @disableDrag={{true}}
+    as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
 
     <div class="image-uploader-wrapper">
         <a class="image-uploader-trigger" href="" {{on 'click' this.chooseMethod}}></a>
@@ -40,4 +47,5 @@
 
     {{partial 'cheevie-edit-form'}}
 
-</ModalWrapper>
+    </modal.content>
+</Modal>

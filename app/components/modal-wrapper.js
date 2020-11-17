@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { schedule } from '@ember/runloop';
 
 import { TweenLite } from 'gsap';
 import { Power2 } from 'gsap/easing';
@@ -14,29 +15,41 @@ export default class ModalWrapperComponent extends Component {
     @action
     didInsert() {
         this.noTransition = true;
+        // const $modalContent = document.querySelector('.modal-content');
+        const $modalBackground = document.querySelector('.modal-background');
+        const $modalClose = document.querySelector('.modal-close');
+        // const onComplete = () => {
+        //     if (!this.isDestroyed || !this.isDestroying) this.noTransition = false;
+        // };
 
-        const onComplete = () => {
-            if (!this.isDestroyed || !this.isDestroying) this.noTransition = false;
-        };
+        // if (this.args.giveCheevieModal) {
+        //     TweenLite.from('.modal-content', this.animationDuration, {
+        //         y: '100%',
+        //         opacity: 0,
+        //         ease: Power2.easeIn,
+        //         onComplete,
+        //     });
+        // } else {
+        //     TweenLite.from('.modal-content', this.animationDuration, {
+        //         y: 20,
+        //         opacity: 0,
+        //         ease: Power2.easeIn,
+        //         onComplete,
+        //     });
+        // }
 
-        if (this.args.giveCheevieModal) {
-            TweenLite.from('.modal-content', this.animationDuration, {
-                y: '100%',
-                opacity: 0,
-                ease: Power2.easeIn,
-                onComplete,
-            });
-        } else {
-            TweenLite.from('.modal-content', this.animationDuration, {
-                y: 20,
-                opacity: 0,
-                ease: Power2.easeIn,
-                onComplete,
-            });
-        }
-        TweenLite.from('.modal-background,.modal-close', this.animationDuration, {
-            opacity: 0,
+        $modalBackground.style.opacity = 0;
+        $modalClose.style.opacity = 0;
+
+        schedule('afterRender', () => {
+            $modalBackground.style.opacity = '';
+            $modalClose.style.opacity = '';
         });
+
+
+        // TweenLite.from('.modal-background,.modal-close', this.animationDuration, {
+        //     opacity: 0,
+        // });
     }
 
     @action
