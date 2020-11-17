@@ -1,66 +1,32 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { later } from '@ember/runloop';
+import Middleware from 'cheevies/utils/middleware';
 
-import { TimelineLite } from 'gsap';
-import { Power4 } from 'gsap/easing';
+export default class PropsContainerComponent extends Component {
+    shuffleProps(element) {
+        const middleware = new Middleware();
+        const height = element.offsetHeight;
+        const width = element.offsetWidth;
+        const $props = element.querySelectorAll('svg');
 
-export default Component.extend({
-    classNames: ['props-container'],
+        $props.forEach($prop => {
+            $prop.style.left = `${Math.random() * width / 2}px`;
+            $prop.style.top = `${Math.random() * height / 2}px`;
+        });
 
-    init() {
-        this._super(...arguments);
-        this.tline = new TimelineLite();
-    },
-    shuffleProps() {
-        const height = document.body.scrollHeight;
-        const width = document.body.scrollWidth;
+        later(() => {
+            $props.forEach($prop => {
+                middleware.use(next => {
+                    later(() => {
+                        $prop.style.transform = `translate(${Math.random() * width}px, -${Math.random() * height}px)`;
+                        $prop.style.opacity = 1;
 
-        this.tline
-            .from('.title', 0.3, {
-                scale: 1.2,
-            })
-            .staggerFrom(
-                '.cards-view',
-                0.5,
-                {
-                    opacity: 0,
-                    x: 100,
-                    ease: Power4.easeIn,
-                },
-                0.1
-            )
-            .staggerFromTo(
-                '.props-container svg',
-                1,
-                {
-                    opacity: 0,
-                    transform: () =>
-                        `translate(${Math.random() * width}px, -${Math.random() * height}px)`,
-                },
-                {
-                    opacity: 1,
-                    transform: () =>
-                        `translate(${Math.random() * width}px, -${Math.random() * height}px)`,
-                },
-                1
-            )
-            .staggerTo(
-                'svg',
-                1,
-                {
-                    opacity: 0,
-                },
-                0.3
-            );
-    },
+                        next();
+                    }, 100);
+                });
+            });
 
-    didInsertElement() {
-        this._super(...arguments);
-
-        this.shuffleProps();
-    },
-
-    willDestroyElement() {
-        this._super(...arguments);
-        this.tline.kill();
-    },
-});
+            middleware.go(() => true);
+        }, 100);
+    }
+}

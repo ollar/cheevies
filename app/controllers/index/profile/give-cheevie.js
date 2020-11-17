@@ -2,8 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-
-import { TimelineLite } from 'gsap';
+import { later } from '@ember/runloop';
 
 
 export default class ProfileController extends Controller {
@@ -39,8 +38,13 @@ export default class ProfileController extends Controller {
         let _this = this;
         this.busy = true;
         let $cheevie = e.currentTarget;
-        let tline = new TimelineLite({
-            onComplete() {
+
+        $cheevie.style.transition = '0.2s';
+
+        later(() => {
+            $cheevie.style.transform = 'translate(0, -100px)';
+            $cheevie.style.opacity = 0;
+            later(() => {
                 const user = _this.model;
                 user.get('cheevies').pushObject(cheevie);
                 user.get('unseenCheevies').pushObject(cheevie);
@@ -51,9 +55,9 @@ export default class ProfileController extends Controller {
                         action: 'giveCheevie',
                     });
                 });
-            },
+            }, 200);
         });
 
-        tline.to($cheevie, 0.2, { y: -100, scale: 1.2, opacity: 0.3 }).to($cheevie, 0.2, { opacity: 0 });
+        return;
     }
 }

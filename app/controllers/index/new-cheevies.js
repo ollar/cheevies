@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  actions: {
+
+export default class NewCheeviesController extends Controller {
+    @action
     goBack() {
-      this.transitionToRoute('index');
+        this.transitionToRoute('index');
     }
-  }
-});
+}

@@ -1,15 +1,17 @@
-<ModalWrapper @goBack={{action "goBack"}} @class="new-cheevies">
+<Modal @goBack={{this.goBack}} @class="new-cheevies" as |modal|>
+    <modal.overlay />
+    <modal.close />
+    <modal.content>
+        <h1 class="title">
+          {{t 'index.new-cheevies.title'}}
+        </h1>
 
-<h1 class="title">
-  {{t 'index.new-cheevies.title'}}
-</h1>
-
-<div class="new-cheevies-wrapper">
-  {{#each model as |cheevie|}}
-    <CheevieInList @cheevie={{cheevie}} @class="cards-view" />
-  {{/each}}
-</div>
-
-</ModalWrapper>
+        <div class="new-cheevies-wrapper">
+          {{#each this.model as |cheevie|}}
+            <CheevieInList @cheevie={{cheevie}} @class="cards-view" />
+          {{/each}}
+        </div>
+    </modal.content>
+</Modal>
 
 <PropsContainer />
