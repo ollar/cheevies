@@ -9,7 +9,7 @@ export default function cordovaGetImage({ confirmStrings: { title, text, buttons
                 sourceType: srcType,
                 encodingType: window.Camera.EncodingType.JPEG,
                 mediaType: window.Camera.MediaType.PICTURE,
-                allowEdit: true,
+                // allowEdit: true,
                 correctOrientation: true, //Corrects Android orientation quirks
             };
             return options;

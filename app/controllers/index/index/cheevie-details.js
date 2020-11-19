@@ -131,7 +131,7 @@ export default class IndexCheevieDetailsController extends Controller {
     @action
     selectUpload() {
         if (window.cordova) {
-            cordovaGetImage({
+            return cordovaGetImage({
                 confirmStrings: {
                     title: this.intl.t('cordova-get-image.modal.title'),
                     text: this.intl.t('cordova-get-image.modal.text'),
@@ -145,8 +145,6 @@ export default class IndexCheevieDetailsController extends Controller {
                 this.showOptionalMenu = false;
                 this._file = _file;
             });
-
-            return;
         }
 
         this._fileInput = document.querySelector('input[type="file"]');
