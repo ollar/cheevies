@@ -18,15 +18,18 @@
     <platform name="android">
         <allow-intent href="market:*" />
 
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
-            <intent-filter>
-                <data android:host="cheevies.club" android:scheme="https" />
+        </edit-config>
+
+        <config-file target="AndroidManifest.xml" parent="./application/activity/[@android:name='MainActivity']">
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="cheevies.club" />
             </intent-filter>
-        </edit-config>
+        </config-file>
 
         <resource-file src="res/android/values/ic_launcher_background.xml" target="app/src/main/res/values/ic_launcher_background.xml" />
         <resource-file src="res/android/drawable/ic_launcher_background.xml" target="app/src/main/res/drawable/ic_launcher_background.xml" />

@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
+import getRootUrl from 'cheevies/utils/get-root-url';
 
 export default class WardrobeSignInController extends Controller {
     @service session;
@@ -57,7 +58,21 @@ export default class WardrobeSignInController extends Controller {
     demoSignIn() {
             this.busy = true;
 
-            return import('/_demo-group.js')
+            function fetchLocal(url) {
+              return new Promise(function(resolve, reject) {
+                var xhr = new XMLHttpRequest
+                xhr.onload = function() {
+                  resolve(new Response(xhr.responseText, {status: xhr.status}))
+                }
+                xhr.onerror = function() {
+                  reject(new TypeError('Local request failed'))
+                }
+                xhr.open('GET', url)
+                xhr.send(null)
+              })
+            }
+
+            return fetchLocal(`${getRootUrl()}_demo-group.json`).then(res => res.json()).then(res => JSON.parse(res))
                     .then(async ({ imageSets, cheevies, users, you, demoGroup }) => {
                     Object.keys(imageSets).forEach(key => {
                         this.store.push(
@@ -93,8 +108,12 @@ export default class WardrobeSignInController extends Controller {
                         )
                     );
 
+                    const _demoGroup = {...demoGroup};
+
+                    _demoGroup.name = 'demo-group-' + user.id;
+
                     const group = this.store.push(
-                        this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))
+                        this.store.normalize('demo/group', _demoGroup)
                     );
 
                     await this.session.authenticate('authenticator:test', {
