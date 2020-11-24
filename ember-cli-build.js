@@ -26,6 +26,9 @@ module.exports = function(defaults) {
         minifyCSS: {
             enabled: IS_PROD || IS_CORDOVA,
         },
+        fingerprint: {
+            extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'json'],
+        }
     });
 
     app.import('node_modules/normalize.css/normalize.css');

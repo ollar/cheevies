@@ -55,14 +55,15 @@ module.exports = function(deployTarget) {
             secretAccessKey: awsSecurityKey,
             bucket: 'cheevies',
             region: 'eu-west-1',
-            filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm,webmanifest}'
+            filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm,webmanifest,json}'
         };
 
         ENV['s3-index'] = {
             accessKeyId: awsAccessKey,
             secretAccessKey: awsSecurityKey,
             bucket: 'cheevies',
-            region: 'eu-west-1'
+            region: 'eu-west-1',
+            allowOverwrite: true
         };
     }
 
