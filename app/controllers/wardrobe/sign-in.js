@@ -11,12 +11,14 @@ export default class WardrobeSignInController extends Controller {
     @service activity;
 
     @tracked busy;
+    @tracked formIsActive = false;
 
     @action
     passwordSignIn(e) {
         if (e && e.preventDefault) e.preventDefault();
 
         if (this.model.validate()) {
+            this.busy = true;
             const data = this.model.serialize();
 
             this.session.authenticate('authenticator:application', data)
@@ -34,6 +36,7 @@ export default class WardrobeSignInController extends Controller {
                     this.transitionToRoute('join-group', joinGroupModel['group_id'], {
                         queryParams: joinGroupModel.queryParams,
                     });
+                this.busy = false;
             })
             .then(() =>
                 this.activity.send({
@@ -47,10 +50,24 @@ export default class WardrobeSignInController extends Controller {
 
     @action
     onError(err) {
+        this.busy = false;
+
         this.send('notify', {
             type: 'error',
             text: err.detail
         });
+    }
+
+
+    @action
+    onFormFocus() {
+        this.formIsActive = true;
+    }
+
+
+    @action
+    onFormBlur() {
+        this.formIsActive = false;
     }
 
 

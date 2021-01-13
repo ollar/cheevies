@@ -1,26 +1,26 @@
-import { alias } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import { inject as service } from '@ember/service';
-// import { later } from '@ember/runloop';
+import { action } from '@ember/object';
+import { schedule } from '@ember/runloop';
 
-export default Route.extend({
-    me: service(),
-    settings: service(),
-    myGroup: service('my-group'),
-    cachedImage: service(),
-    intl: service(),
-    session: service(),
+export default class IndexRoute extends Route {
+    @service me;
+    @service settings;
+    @service myGroup;
+    @service intl;
+    @service session;
 
-    settingsModel: alias('settings.model'),
+    get settingsModel() {
+        return this.settings.model;
+    }
 
     beforeModel(transition) {
         this.session.requireAuthentication(transition, 'wardrobe.sign-in');
-    },
+        if (!this.myGroup.groupName) throw new Error('no groupName set');
+    }
 
     model() {
-        if (!this.get('myGroup.groupName')) throw new Error('no groupName set');
-
         return this.myGroup
             .fetch()
             .then(group => {
@@ -31,22 +31,21 @@ export default Route.extend({
                     settings: this.settings.fetch(),
                 })
             });
-    },
+    }
 
-    actions: {
-        error(e) {
-            console.log(e)
+    @action
+    error(e, transition) {
+        console.log(e);
+        transition.abort();
+        this.transitionTo('wardrobe.sign-out').then(() => {
             this.send('notify', {
                 type: 'error',
                 text: this.intl.t('messages.app_init_error'),
             });
-            this.transitionTo('wardrobe.sign-out');
-        },
-    },
+        });
+    }
 
     afterModel() {
-        // const imageSets = this.store.peekAll('image-set');
-
         if (this.me.model) {
             hash({
                 myGroup: this.myGroup.fetch(),
@@ -63,17 +62,5 @@ export default Route.extend({
                     if (unseenCheevies.length) this.transitionTo('index.new-cheevies');
                 });
         }
-
-        // later(
-        //     () =>
-        //     imageSets.forEach(imageSet =>
-        //         imageSet.eachRelationship(key =>
-        //             imageSet
-        //             .get(key)
-        //             .then(imageModel => this.cachedImage.getCachedSrc(imageModel.url))
-        //         )
-        //     ),
-        //     3000
-        // );
-    },
-});
+    }
+}
