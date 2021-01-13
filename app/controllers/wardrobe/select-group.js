@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { schedule } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
 import { all } from 'rsvp';
 
 
@@ -9,6 +9,8 @@ export default class WardrobeSelectGroupController extends Controller {
     @service me;
     @service session;
     @service intl;
+
+    @tracked busy;
 
     get myModel() {
         return this.me.model;
@@ -29,6 +31,8 @@ export default class WardrobeSelectGroupController extends Controller {
 
     @action
     onSuccess() {
+        this.busy = false;
+
         return Promise.resolve()
             .then(() =>
                 this.send('notify', {
@@ -41,6 +45,8 @@ export default class WardrobeSelectGroupController extends Controller {
 
     @action
     onError(err) {
+        this.busy = false;
+
         this.send('notify', {
             type: 'error',
             text: err.message,
@@ -50,6 +56,8 @@ export default class WardrobeSelectGroupController extends Controller {
     @action
     async selectGroup() {
         if (this.model.validate()) {
+            this.busy = true;
+
             try {
                 await this.me.fetch();
 

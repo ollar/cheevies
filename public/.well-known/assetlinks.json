@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "club.cheevies",
+               "sha256_cert_fingerprints": ["04:81:A3:4A:53:3D:D3:BE:17:D1:0A:2A:01:7D:F0:EB:53:41:4F:84:D7:22:83:78:98:04:FA:50:1D:13:B5:60"] }
+}]

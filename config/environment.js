@@ -3,7 +3,7 @@
 require("dotenv").config();
 
 const APP_NAME = "cheevies";
-const { sentryDsn, giphyApiKey } = process.env;
+const { sentryDsn, giphyApiKey, appDomain } = process.env;
 
 module.exports = function(environment) {
   let ENV = {
@@ -32,7 +32,10 @@ module.exports = function(environment) {
       // authHost: 'http://localhost:8090',
       appName: APP_NAME,
       giphyApiKey,
-    }
+    },
+    '@sentry/ember': {
+        sentry: {}
+      }
   };
 
   if (environment === 'development') {
@@ -57,9 +60,35 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.APP.sentryDsn = sentryDsn;
     ENV.APP.apiHost = 'https://api.ollar.rocks';
     ENV.APP.authHost = 'https://auth.ollar.rocks';
+
+    ENV['@sentry/ember'] = {
+      sentry: {
+        dsn: sentryDsn,
+
+        // Set tracesSampleRate to 1.0 to capture 100%
+        // of transactions for performance monitoring.
+        // We recommend adjusting this value in production, or using tracesSampler
+        // for finer control
+        tracesSampleRate: 1.0,
+      }
+    };
+  }
+
+  if (environment === 'cordova') {
+      ENV.rootURL = '';
+      ENV.locationType = 'hash';
+      ENV.APP.apiHost = 'https://api.ollar.rocks';
+      ENV.APP.authHost = 'https://auth.ollar.rocks';
+      ENV.APP.appDomain = appDomain;
+
+      ENV['@sentry/ember'] = {
+        sentry: {
+          dsn: sentryDsn,
+          tracesSampleRate: 1.0,
+        }
+      };
   }
 
   return ENV;

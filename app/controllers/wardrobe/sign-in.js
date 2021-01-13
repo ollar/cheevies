@@ -3,8 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
-
-// import getRootUrl from 'cheevies/utils/get-root-url';
+import getRootUrl from 'cheevies/utils/get-root-url';
 
 export default class WardrobeSignInController extends Controller {
     @service session;
@@ -12,12 +11,14 @@ export default class WardrobeSignInController extends Controller {
     @service activity;
 
     @tracked busy;
+    @tracked formIsActive = false;
 
     @action
     passwordSignIn(e) {
         if (e && e.preventDefault) e.preventDefault();
 
         if (this.model.validate()) {
+            this.busy = true;
             const data = this.model.serialize();
 
             this.session.authenticate('authenticator:application', data)
@@ -35,6 +36,7 @@ export default class WardrobeSignInController extends Controller {
                     this.transitionToRoute('join-group', joinGroupModel['group_id'], {
                         queryParams: joinGroupModel.queryParams,
                     });
+                this.busy = false;
             })
             .then(() =>
                 this.activity.send({
@@ -48,6 +50,8 @@ export default class WardrobeSignInController extends Controller {
 
     @action
     onError(err) {
+        this.busy = false;
+
         this.send('notify', {
             type: 'error',
             text: err.detail
@@ -56,12 +60,36 @@ export default class WardrobeSignInController extends Controller {
 
 
     @action
+    onFormFocus() {
+        this.formIsActive = true;
+    }
+
+
+    @action
+    onFormBlur() {
+        this.formIsActive = false;
+    }
+
+
+    @action
     demoSignIn() {
             this.busy = true;
 
-            // const demoGroupModulePath = () => getRootUrl() + '_demo-group.js';
+            function fetchLocal(url) {
+              return new Promise(function(resolve, reject) {
+                var xhr = new XMLHttpRequest
+                xhr.onload = function() {
+                  resolve(new Response(xhr.responseText, {status: xhr.status}))
+                }
+                xhr.onerror = function() {
+                  reject(new TypeError('Local request failed'))
+                }
+                xhr.open('GET', url)
+                xhr.send(null)
+              })
+            }
 
-            return import('/_demo-group.js')
+            return fetchLocal(`${getRootUrl()}_demo-group.json`).then(res => res.json()).then(res => JSON.parse(res))
                     .then(async ({ imageSets, cheevies, users, you, demoGroup }) => {
                     Object.keys(imageSets).forEach(key => {
                         this.store.push(
@@ -97,8 +125,12 @@ export default class WardrobeSignInController extends Controller {
                         )
                     );
 
+                    const _demoGroup = {...demoGroup};
+
+                    _demoGroup.name = 'demo-group-' + user.id;
+
                     const group = this.store.push(
-                        this.store.normalize('demo/group', demoGroup('demo-group-' + user.id))
+                        this.store.normalize('demo/group', _demoGroup)
                     );
 
                     await this.session.authenticate('authenticator:test', {
